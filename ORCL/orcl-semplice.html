@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oracle ORCL - Semplice</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d0f14; color:#e8eaf0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.7; font-size:15px; }
+    .wrap { max-width:720px; margin:0 auto; padding:24px 20px 60px; }
+
+    /* Header */
+    .hdr { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding:20px 0; border-bottom:1px solid #1e2230; margin-bottom:32px; }
+    .hdr-left { display:flex; align-items:center; gap:14px; }
+    .logo { width:44px; height:44px; border-radius:8px; background:#c74634; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; color:#fff; }
+    .hdr-name { font-size:18px; font-weight:700; }
+    .hdr-sub { font-size:12px; color:#9ca3af; margin-top:2px; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; }
+    .bp { background:#00c89622; color:#00c896; border:1px solid #00c89644; }
+    .bn { background:#e0525222; color:#e05252; border:1px solid #e0525244; }
+    .link-current { display:inline-block; padding:6px 14px; border-radius:6px; background:#7c3aed; color:#fff; font-size:12px; font-weight:700; text-decoration:none; }
+    .link-other { display:inline-block; padding:6px 14px; border-radius:6px; background:#13161e; border:1px solid #1e2230; color:#9ca3af; font-size:12px; font-weight:600; text-decoration:none; }
+    .link-other:hover { color:#7c3aed; border-color:#7c3aed; }
+
+    /* Section numbers */
+    .s-num { font-size:11px; font-weight:700; color:#7c3aed; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px; }
+    .s-h2 { font-size:24px; font-weight:700; margin-bottom:20px; color:#f0f2f6; }
+
+    /* Cards */
+    .card { background:#13161e; border:1px solid #1e2230; border-radius:12px; padding:20px; margin-bottom:16px; }
+
+    /* Growth section */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .stat { text-align:center; padding:16px; background:#13161e; border:1px solid #1e2230; border-radius:10px; }
+    .big { font-size:44px; font-weight:800; line-height:1.1; margin-bottom:4px; }
+    .big.g { color:#00c896; }
+    .big.y { color:#f5a623; }
+    .big.r { color:#e05252; }
+    .sub { font-size:13px; color:#9ca3af; }
+    .lbl { font-size:11px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+
+    /* Info box */
+    .ibox { background:#13161e; border:1px solid #1e2230; border-radius:8px; padding:16px; margin:16px 0; }
+    .ival { font-size:14px; color:#d0d4dc; }
+
+    /* Scenario cards */
+    .sc { background:#13161a; border:1px solid #1e2230; border-radius:10px; padding:18px; margin:12px 0; }
+    .sc.sc-bull { border-left:4px solid #00c896; }
+    .sc.sc-base { border-left:4px solid #f5a623; }
+    .sc.sc-bear { border-left:4px solid #e05252; }
+    .sc-hdr { font-size:18px; font-weight:700; margin-bottom:6px; }
+    .sc-hdr .price { font-family:"SF Mono","Fira Code","Courier New",monospace; font-size:22px; }
+    .sc p { font-size:14px; color:#c0c5d0; }
+
+    /* Valuation range bar */
+    .rng { margin:24px 0; }
+    .rng-bar { position:relative; height:32px; border-radius:16px; background:linear-gradient(90deg,#e05252 0%,#f5a623 50%,#00c896 100%); margin:20px 0; }
+    .rl { position:absolute; top:-28px; font-size:11px; font-weight:700; color:#e8eaf0; }
+    .rl.l { left:0; }
+    .rl.c { left:50%; transform:translateX(-50%); }
+    .rl.r { right:0; }
+    .rdot { position:absolute; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; background:#fff; border:2px solid #0d0f14; box-shadow:0 0 8px rgba(255,255,255,0.3); }
+    .rdot-c { position:absolute; top:-24px; left:50%; transform:translateX(-50%); font-size:11px; font-weight:700; color:#fff; white-space:nowrap; }
+    .rdot-l { position:absolute; top:38px; left:50%; transform:translateX(-50%); font-size:10px; color:#9ca3af; white-space:nowrap; }
+
+    /* Legend */
+    .leg { display:flex; gap:20px; justify-content:center; margin:16px 0; flex-wrap:wrap; }
+    .leg-item { display:flex; align-items:center; gap:6px; font-size:12px; color:#9ca3af; }
+    .leg-dot { width:10px; height:10px; border-radius:50%; }
+    .leg-dot.g { background:#00c896; }
+    .leg-dot.y { background:#f5a623; }
+    .leg-dot.r { background:#e05252; }
+
+    /* Disclaimer */
+    .disc { font-size:11px; color:#6b7280; border-top:1px solid #1e2230; padding-top:16px; margin-top:32px; text-align:center; }
+
+    @media (max-width:600px) {
+      .g2 { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <div class="hdr">
+      <div class="hdr-left">
+        <div class="logo">ORCL</div>
+        <div>
+          <div class="hdr-name">Oracle Corporation &mdash; NYSE: ORCL</div>
+          <div class="hdr-sub">Equity Narrative Analysis &middot; FY2026 Q4 &middot; 30 Luglio 2026</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="badge bp">Cloud Growth</span>
+        <span class="badge bn">Capex Pressure</span>
+        <span class="link-current">&#128196; Semplice</span>
+        <a class="link-other" href="orcl-pro.html">&#128202; Pro</a>
+      </div>
+    </div>
+
+    <!-- Section 01: Come sta crescendo -->
+    <div class="s-num">01 &middot; Come sta crescendo</div>
+    <h2 class="s-h2">I numeri della crescita</h2>
+
+    <div class="g2">
+      <div class="stat">
+        <div class="lbl">Ricavi FY2026</div>
+        <div class="big g">$55.5B</div>
+        <div class="sub">+8% rispetto all&rsquo;anno scorso</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Cloud (OCI + SaaS)</div>
+        <div class="big g">$23.0B</div>
+        <div class="sub">+22% &egrave; il motore della crescita</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Utile per azione (EPS)</div>
+        <div class="big g">$5.95</div>
+        <div class="sub">+12% rispetto all&rsquo;anno scorso</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Free Cash Flow</div>
+        <div class="big y">$12.8B</div>
+        <div class="sub">-5% per l&rsquo;aumento degli investimenti</div>
+      </div>
+    </div>
+
+    <div class="ibox">
+      <p><strong>Guidance FY2027:</strong> Oracle prevede ricavi tra $60 e $62 miliardi (+8-10%), con il cloud in crescita al 20-24%. L&rsquo;EPS &egrave; atteso tra $6.40 e $6.70. La spesa per data center (capex) rimarr&agrave; alta, tra $10 e $12 miliardi.</p>
+    </div>
+
+    <div class="ibox">
+      <p><strong>In parole semplici:</strong> Oracle sta crescendo grazie al cloud, il suo servizio di data center e software online. Le aziende stanno spostando i loro sistemi su Oracle Cloud, e la domanda di intelligenza artificiale sta accelerando questo processo. Per crescere, Oracle sta investendo molto in nuovi data center, il che riduce temporaneamente il denaro disponibile (free cash flow).</p>
+    </div>
+
+    <!-- Section 02: Cosa può succedere -->
+    <div class="s-num" style="margin-top:40px;">02 &middot; Cosa pu&ograve; succedere</div>
+    <h2 class="s-h2">I tre scenari possibili</h2>
+
+    <div class="sc sc-bull">
+      <div class="sc-hdr">&#9650; Scenario Ottimista <span class="price" style="color:#00c896;">$240</span></div>
+      <p>La crescita del cloud accelera grazie all&rsquo;intelligenza artificiale e alla partnership con Microsoft. Oracle diventa il terzo grande player del cloud enterprise. Il mercato premia il titolo con un prezzo pi&ugrave; alto.</p>
+    </div>
+
+    <div class="sc sc-base">
+      <div class="sc-hdr">&#9632; Scenario Probabile <span class="price" style="color:#f5a623;">$195</span></div>
+      <p>Oracle continua a crescere bene nel cloud, ma il mercato ha gi&agrave; scontato questa crescita nel prezzo attuale. Il titolo rimane stabile intorno ai valori correnti.</p>
+    </div>
+
+    <div class="sc sc-bear">
+      <div class="sc-hdr">&#9660; Scenario Pessimista <span class="price" style="color:#e05252;">$140</span></div>
+      <p>La concorrenza di Amazon, Microsoft e Google si fa sentire. La crescita del cloud rallenta, e gli investimenti fatti non danno i ritorni attesi. Il titolo scende.</p>
+    </div>
+
+    <!-- Section 03: Quanto vale -->
+    <div class="s-num" style="margin-top:32px;">03 &middot; Quanto vale</div>
+    <h2 class="s-h2">La fascia di prezzo</h2>
+
+    <div class="range">
+      <div class="rng-bar">
+        <span class="rl l">$140 (Bear)</span>
+        <span class="rl c">$195 (Base)</span>
+        <span class="rl r">$240 (Bull)</span>
+        <div class="rdot" style="left:62%;"></div>
+        <div class="rdot-c" style="left:62%;">$187</div>
+        <div class="rdot-l" style="left:62%;">Prezzo attuale</div>
+      </div>
+    </div>
+
+    <div class="leg">
+      <div class="leg-item"><span class="leg-dot r"></span> Bear: $140</div>
+      <div class="leg-item"><span class="leg-dot y"></span> Base: $195</div>
+      <div class="leg-item"><span class="leg-dot g"></span> Bull: $240</div>
+    </div>
+
+    <div class="ibox">
+      <p><strong>Bear ($140):</strong> Se la crescita del cloud rallenta sotto il 15% e la concorrenza si intensifica.</p>
+      <p><strong>Base ($195):</strong> Se la crescita del cloud si mantiene al 20-22%, in linea con le attese del mercato.</p>
+      <p><strong>Bull ($240):</strong> Se la crescita del cloud accelera oltre il 28% grazie all&rsquo;AI e alle partnership.</p>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disc">
+      <p>Questa analisi &egrave; prodotta a scopo informativo e non costituisce consulenza finanziaria. I dati provengono da fonti pubbliche e stime. &copy; 2026 Equity Narrative Analysis</p>
+    </div>
+  </div>
+</body>
+</html>

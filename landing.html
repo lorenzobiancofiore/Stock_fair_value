@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Research Hub</title>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --card-bg: #13161e;
+    --border: #1e2230;
+    --accent: #cc092f;
+    --accent-hover: #e60b37;
+    --text: #e8eaf0;
+    --sub: #9ca3af;
+    --bull: #00c896;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 24px 20px 60px;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .title-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+  p.subtitle { color: var(--sub); font-size: 14px; margin-top: 4px; }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 200, 150, 0.1);
+    color: var(--bull);
+    border: 1px solid rgba(0, 200, 150, 0.3);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .search-box input {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-box input:focus { border-color: var(--accent); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: #2e3548;
+  }
+
+  .card-top { margin-bottom: 16px; }
+
+  .company-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #1e2230;
+    color: var(--accent);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .links-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-simple {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-simple:hover { background: var(--border); }
+
+  .btn-pro {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-pro:hover { background: var(--accent-hover); }
+
+  .btn-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    border-style: dashed;
+  }
+
+  .loading, .empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--sub);
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="title-group">
+      <div>
+        <h1>Equity Research Hub</h1>
+        <p class="subtitle">Indice delle analisi e report di ricerca</p>
+      </div>
+      <div class="status-badge" id="status">
+        ● Scansione cartelle in corso...
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Cerca azienda o ticker..." oninput="filterCards()">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="company-grid">
+      <div class="loading">Caricamento delle analisi...</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Mappa delle cartelle esatte presenti nella tua struttura di file
+  const STOCKS = [
+    { name: 'Applied Materials', folder: 'Amat', ticker: 'AMAT' },
+    { name: 'Broadcom', folder: 'AVGO', ticker: 'AVGO' },
+    { name: 'Buzzi Unicem', folder: 'buzzi_analysis', ticker: 'BZU' },
+    { name: 'CrowdStrike', folder: 'Crowdstrike', ticker: 'CRWD' },
+    { name: 'LVMH', folder: 'lvmh_analysis', ticker: 'MC' },
+    { name: 'Netflix', folder: 'NFLX', ticker: 'NFLX' },
+    { name: 'Oracle', folder: 'ORCL', ticker: 'ORCL' },
+    { name: 'Palo Alto Networks', folder: 'Palo alto', ticker: 'PANW' },
+    { name: 'Palantir', folder: 'PLTR', ticker: 'PLTR' },
+    { name: 'Vistra', folder: 'Vistra', ticker: 'VST' },
+    { name: 'Webuild', folder: 'Webuild', ticker: 'WBD' }
+  ];
+
+  // Nomi di file possibili all'interno di ogni cartella
+  const SIMPLE_FILES = ['semplice.html', 'index-semplice.html', 'report-semplice.html'];
+  const PRO_FILES = ['pro.html', 'index-pro.html', 'report-pro.html', 'index.html'];
+
+  async function checkFile(path) {
+    try {
+      const res = await fetch(path, { method: 'HEAD' });
+      return res.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  async function findFirstExistingFile(folder, candidates) {
+    for (const file of candidates) {
+      const fullPath = `./${folder}/${file}`;
+      if (await checkFile(fullPath)) {
+        return fullPath;
+      }
+    }
+    return null;
+  }
+
+  async function scanFolders() {
+    const grid = document.getElementById('company-grid');
+    const status = document.getElementById('status');
+    
+    const results = [];
+
+    for (const stock of STOCKS) {
+      // Cerca i file dentro la sottocartella specifica
+      const simplePath = await findFirstExistingFile(stock.folder, [
+        `${stock.folder.toLowerCase()}-semplice.html`,
+        'semplice.html',
+        'report-semplice.html'
+      ]);
+
+      const proPath = await findFirstExistingFile(stock.folder, [
+        `${stock.folder.toLowerCase()}-pro.html`,
+        'pro.html',
+        'index.html',
+        'report-pro.html'
+      ]);
+
+      if (simplePath || proPath) {
+        results.push({ ...stock, simplePath, proPath });
+      }
+    }
+
+    status.textContent = `● ${results.length} analisi disponibili`;
+    renderGrid(results);
+  }
+
+  function renderGrid(list) {
+    const grid = document.getElementById('company-grid');
+    grid.innerHTML = '';
+
+    if (list.length === 0) {
+      grid.innerHTML = '<div class="empty">Nessun report trovato nelle cartelle indicate.</div>';
+      return;
+    }
+
+    list.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.setAttribute('data-search', `${item.name.toLowerCase()} ${item.ticker.toLowerCase()} ${item.folder.toLowerCase()}`);
+
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="company-badge">${item.ticker}</span>
+          <div class="company-name">${item.name}</div>
+        </div>
+        <div class="links-group">
+          ${item.simplePath 
+            ? `<a href="${item.simplePath}" class="btn btn-simple">📄 Semplice</a>` 
+            : `<span class="btn btn-simple btn-disabled">📄 N/D</span>`}
+          
+          ${item.proPath 
+            ? `<a href="${item.proPath}" class="btn btn-pro">📊 Pro</a>` 
+            : `<span class="btn btn-pro btn-disabled">📊 N/D</span>`}
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function filterCards() {
+    const query = document.getElementById('search').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      const searchKey = card.getAttribute('data-search');
+      card.style.display = searchKey.includes(query) ? 'flex' : 'none';
+    });
+  }
+
+  scanFolders();
+</script>
+
+</body>
+</html>

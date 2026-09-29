@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix NFLX - Pro Report</title><style>*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#e50914;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.04em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#e50914;color:#fff;border:2px solid #e50914;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #e50914;color:#e50914;}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#e50914;border-color:#e50914;}
+.p-tag{color:#e50914;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#e5091418;border:1px solid #e5091440;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#e50914;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#e5091460;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#e50914;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#e50914;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.dv{border-top:1px solid #1e2230;margin:20px 0;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.sec{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec:last-child{border-bottom:none;}</style></head><body>
+<div class="hdr"><div class="hdr-left"><div class="logo">NFLX</div><div>
+<div class="hdr-name">Netflix &mdash; NASDAQ: NFLX</div>
+<div class="hdr-sub">Equity Narrative Analysis &middot; Q1 2026 &middot; 30 Giugno 2026</div>
+</div></div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+<span class="badge bp">Ad Tier +60%</span><span class="badge bn">-45% YTD</span><span class="badge bm">Hastings Exit</span>
+<span class="lk-cur">&#128202; Pro</span>
+<a class="lk-oth" href="nflx-semplice.html">&#128196; Semplice</a>
+</div></div>
+<div class="wrap">
+<div class="toc">
+<a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a></div>
+
+<div class="sec" id="exec">
+<div class="p-tag">Equity Narrative Analysis &middot; NFLX</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Core Investment Thesis &mdash; Q1 2026</div>
+<p style="color:#e8eaf0;font-size:14px;line-height:1.75">Netflix Q1 2026 ha confermato la solidit&agrave; operativa: revenue +16% YoY a $12.25B, operating margin al 32.3%, 325M+ abbonati, e advertising tier con 190M utenti attivi. Ma il titolo &egrave; sceso del 45% dal picco di giugno 2025. Tre overhang pesano sulla narrativa: (1) l&rsquo;uscita del fondatore Reed Hastings dal board; (2) la guidance Q2 leggermente sotto il consensus che segnala prudenza del management; (3) l&rsquo;acquisizione di Roku da parte di Fox ($22B) che crea un nuovo concorrente nella pubblicit&agrave; streaming. La domanda chiave: il mercato sta prezzando il Netflix di oggi (crescita mid-teens, nessuna storia AI) o il Netflix del 2028-2030 (advertising da $9B+, margini 35%+)?</p></div>
+<div class="kpi-g">
+<div class="kpi hi"><div class="kpi-l">Revenue Q1</div><div class="kpi-v">$12.25B</div><div class="kpi-s">+16% YoY</div></div>
+<div class="kpi"><div class="kpi-l">Op. Income</div><div class="kpi-v">~$4B</div><div class="kpi-s">+18% YoY</div></div>
+<div class="kpi"><div class="kpi-l">Op. Margin</div><div class="kpi-v">32.3%</div><div class="kpi-s">vs 31.5% FY guide</div></div>
+<div class="kpi"><div class="kpi-l">Net Income</div><div class="kpi-v">$5.28B</div><div class="kpi-s">incl. $2.8B WBD fee</div></div>
+<div class="kpi"><div class="kpi-l">EPS</div><div class="kpi-v">$1.23</div><div class="kpi-s">vs $0.76 consensus</div></div>
+<div class="kpi"><div class="kpi-l">Ad Tier</div><div class="kpi-v">190M</div><div class="kpi-s">utenti attivi/mese</div></div>
+<div class="kpi"><div class="kpi-l">Cash</div><div class="kpi-v">$12.3B</div><div class="kpi-s">$14.4B gross debt</div></div>
+<div class="kpi"><div class="kpi-l">Stock YTD</div><div class="kpi-v">-45%</div><div class="kpi-s">52w low: $70.86</div></div>
+</div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Netflix &egrave; la streaming company pi&ugrave; profittevole al mondo, con un business advertising appena nato che pu&ograve; raddoppiare i ricavi entro il 2030. A ~$74, con forward P/E ~21x e PEG 0.66, il mercato la prezza come se non avesse crescita futura. Il consensus degli analisti ($114) implica un upside del 55%.</p>
+</div>
+
+<div class="sec" id="market">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Market Snapshot &amp; Price Action</h2>
+<div class="g2p">
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:10px">Price Context</div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">Prezzo (30 giu)</span><span style="color:#e50914;font-weight:700">~$74</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">52w high</span><span style="color:#e05252;font-weight:700">$134.12 (giu 2025)</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">52w low</span><span style="color:#e05252;font-weight:700">$70.86</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">YTD return</span><span style="color:#e05252;font-weight:700">~-45%</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">Market Cap</span><span style="color:#e8eaf0;font-weight:700">~$311B</span></div>
+<div style="display:flex;justify-content:space-between"><span style="color:#9ca3af;font-size:13px">Fwd P/E</span><span style="color:#f5a623;font-weight:700">~21x</span></div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:10px">Key Events YTD</div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#e50914;font-size:12px;font-weight:700;min-width:55px">Feb 2026</span><span style="color:#9ca3af;font-size:12px">WBD deal abbandonato, $2.8B fee incassata</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#e50914;font-size:12px;font-weight:700;min-width:55px">Apr 16</span><span style="color:#9ca3af;font-size:12px">Q1 earnings: beat revenue, Hastings exit annunciato</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#e50914;font-size:12px;font-weight:700;min-width:55px">Apr 17</span><span style="color:#9ca3af;font-size:12px">Stock -9% post-earnings (Q2 guidance miss)</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#e50914;font-size:12px;font-weight:700;min-width:55px">Giu 4</span><span style="color:#9ca3af;font-size:12px">Hastings esce dal board</span></div>
+<div style="display:flex;gap:8px"><span style="color:#e50914;font-size:12px;font-weight:700;min-width:55px">Giu 15</span><span style="color:#9ca3af;font-size:12px">Fox compra Roku per $22B</span></div></div></div>
+<div class="fb">
+<div class="fb-r"><span class="fl" style="color:#e50914">Fact &mdash; </span><span style="color:#e8eaf0">Il titolo &egrave; sceso del 45%% dal picco di giugno 2025. Dopo il Q1 beat, &egrave; sceso del 9%% per la guidance Q2 sotto consensus e l&rsquo;annuncio dell&rsquo;exit di Hastings. RSI a 16.87, il livello di oversold pi&ugrave; estremo nella storia recente di NFLX.</span></div><div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Il mercato sconta tre overhang simultanei: leadership transition, competizione Fox-Roku, e mancanza di una narrativa AI. La combinazione spiega il drawdown anche con fondamentali solidi.</span></div><div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">Forward P/E ~21x e PEG 0.66 sono multipli da titolo value, non da leader della crescita streaming. Se il mercato inizia a scontare l&rsquo;advertising come secondo motore, il rerating &egrave; significativo.</span></div><div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Consensus $114 (50 analisti). Range $80-$151. Upside implicito: +55%%.</span></div></div></div>
+
+<div class="sec" id="fin">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Financial Deep Dive &mdash; Q1 2026</h2>
+<div class="tbl"><table><tr><th>Metrica</th><th>Q1 2025</th><th>Q1 2026</th><th>YoY</th></tr>
+<tr><td class="f">Revenue</td><td>$10.54B</td><td>$12.25B</td><td>+16%</td></tr>
+<tr><td class="f">UCAN Revenue</td><td>$4.56B</td><td>$5.20B</td><td>+14%</td></tr>
+<tr><td class="f">EMEA Revenue</td><td>$3.42B</td><td>$4.00B</td><td>+17%</td></tr>
+<tr><td class="f">LatAm Revenue</td><td>$1.26B</td><td>$1.50B</td><td>+19%</td></tr>
+<tr><td class="f">APAC Revenue</td><td>$1.15B</td><td>$1.38B</td><td>+20%</td></tr>
+<tr><td class="f">Operating Income</td><td>$3.39B</td><td>~$4.0B</td><td>+18%</td></tr>
+<tr><td class="f">Operating Margin</td><td>~31%</td><td>32.3%</td><td>+130bps</td></tr>
+<tr><td class="f">Net Income</td><td>$2.89B</td><td>$5.28B</td><td>+83%*</td></tr>
+<tr><td class="f">EPS</td><td>$0.66</td><td>$1.23</td><td>+86%*</td></tr>
+<tr><td class="f">Free Cash Flow</td><td>$2.66B</td><td>$5.09B</td><td>+91%*</td></tr>
+<tr><td class="f">Cash</td><td>&mdash;</td><td>$12.3B</td><td>&mdash;</td></tr>
+<tr><td class="f">Subscribers</td><td>~301M</td><td>325M+</td><td>+8%</td></tr>
+<tr><td class="f">Ad tier viewers</td><td>&mdash;</td><td>190M MAU</td><td>&mdash;</td></tr>
+</table><div style="color:#6b7280;font-size:11px;padding:8px 14px">* Net income, EPS e FCF includono la termination fee WBD di $2.8B</div></div>
+<div class="fb">
+<div class="fb-r"><span class="fl" style="color:#e50914">Fact &mdash; </span><span style="color:#e8eaf0">Revenue +16%% YoY a $12.25B, beat consensus. Operating margin 32.3%%, sopra la guidance FY. Net income $5.28B e FCF $5.09B sono gonfiati dalla WBD fee ($2.8B); la profittabilit&agrave; sottostante &egrave; comunque in espansione.</span></div><div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">La crescita +16%% &egrave; solida ma in decelerazione (vs +17%% in Q4 2025). La content amortization &egrave; front-loaded in H1 con double digit growth, il che comprime i margini nei primi due trimestri. H2 dovrebbe migliorare.</span></div><div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">APAC +20%% e LatAm +19%% mostrano che i mercati emergenti accelerano. L&rsquo;ad tier al 60%% dei nuovi sign-up indica che la crescita di abbonati continua con il piano economico come driver.</span></div><div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">A $51B di revenue FY guidance e op margin 31.5%%, Netflix genera ~$16B di operating income e $12.5B di FCF. Su una market cap di $311B, il FCF yield &egrave; ~4%% &mdash; attraente per un business in crescita.</span></div></div></div>
+
+<div class="sec" id="qoe">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">Distortion Alert: $2.8B WBD Termination Fee</div>
+<p class="pcard-p">Il net income di $5.28B e l&rsquo;EPS di $1.23 sono quasi raddoppiati grazie alla termination fee di $2.8B incassata da Warner Bros. Discovery dopo il mancato merger. Questo elemento &egrave; non-ricorrente e non rappresenta la profittabilit&agrave; operativa. Depurando la fee, l&rsquo;EPS sottostante &egrave; intorno a $0.56-0.60, in linea con le stime. Il margine operativo del 32.3% &egrave; invece genuino e sopra la guidance annuale del 31.5%.</p></div>
+<div class="fb">
+<div class="fb-r"><span class="fl" style="color:#e50914">Fact &mdash; </span><span style="color:#e8eaf0">Il net income include $2.8B di termination fee WBD &mdash; non ricorrente. L&rsquo;EPS sottostante &egrave; ~$0.56-0.60 vs $0.66 in Q4 2025. Il margine operativo del 32.3%% &egrave; genuino e sopra la guidance annuale.</span></div><div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Il cash position di $12.3B &egrave; elevato per la pausa nel buyback durante il processo WBD e la fee incassata. Netflix ha ripreso i riacquisti. Il gross debt di $14.4B &egrave; gestibile con il profilo FCF.</span></div><div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">La profittabilit&agrave; operativa &egrave; reale e in espansione: da ~28%% nel 2024 a 32.3%% nel Q1 2026. Il business ha superato la soglia critica dove il margine incrementale sui nuovi ricavi &egrave; molto alto.</span></div><div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Analizzare Netflix su GAAP EPS include la distorsione WBD. Il forward P/E ~21x su base normalizzata &egrave; il parametro corretto. Un PEG di 0.66 con crescita al 14-16%% segnala undervaluation relativa.</span></div></div></div>
+
+<div class="sec" id="mix">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Business Mix &amp; Revenue Concentration</h2>
+<div class="g2p">
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">UCAN</div><div style="color:#e50914;font-size:22px;font-weight:800">42%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$5.20B (+14%)</div><div style="color:#9ca3af;font-size:12px">89.63M subs</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">EMEA</div><div style="color:#00c896;font-size:22px;font-weight:800">33%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$4.00B (+17%)</div><div style="color:#9ca3af;font-size:12px">101.13M subs</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">LatAm</div><div style="color:#f5a623;font-size:22px;font-weight:800">12%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$1.50B (+19%)</div><div style="color:#9ca3af;font-size:12px">53.33M subs</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">APAC</div><div style="color:#6b7280;font-size:22px;font-weight:800">11%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$1.38B (+20%)</div><div style="color:#9ca3af;font-size:12px">57.54M subs</div></div></div>
+<div class="fb">
+<div class="fb-r"><span class="fl" style="color:#e50914">Fact &mdash; </span><span style="color:#e8eaf0">EMEA &egrave; la regione pi&ugrave; grande per abbonati (101M) ma UCAN genera il 42%% dei ricavi con ARPU pi&ugrave; alto. APAC (+20%%) e LatAm (+19%%) crescono pi&ugrave; velocemente. Il piano con ads rappresenta oltre il 60%% dei nuovi sign-up nei mercati disponibili.</span></div><div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Netflix non comunica pi&ugrave; il dato abbonati trimestrale, rendendo pi&ugrave; difficile monitorare il churn e il mix ARPU. La crescita revenue dipende sempre pi&ugrave; dal pricing power e meno dalla crescita abbonati netta.</span></div><div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">La diversificazione geografica &egrave; forte: nessuna regione supera il 42%% dei ricavi. Il piano con ads apre un mercato di utenti price-sensitive che prima non erano raggiungibili. L&rsquo;advertising business a $3B target 2026 &egrave; ancora &lt;6%% dei ricavi totali &mdash; enorme spazio di crescita.</span></div><div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Se l&rsquo;advertising raggiunge $9.6B entro il 2030 (proiezione MoffettNathanson), sar&agrave; ~12%% dei ricavi totali con margini molto pi&ugrave; alti della media. Questo cambia la revenue quality e giustifica un multiplo pi&ugrave; alto.</span></div></div></div>
+
+<div class="sec" id="news">
+<div class="p-tag">NFLX</div><h2 class="p-h2">News-Driven Narrative</h2>
+<div class="tbl"><table><tr><th>Data</th><th>Evento</th><th>Interp.</th></tr>
+<tr><td class="f">Feb 2026</td><td>WBD deal abbandonato, $2.8B termination fee incassata</td><td><span class="badge bm">Misto</span></td></tr>
+<tr><td class="f">Apr 2026</td><td>Q1 beat: revenue +16%, op margin 32.3%, ad tier 190M utenti</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Apr 2026</td><td>Reed Hastings annuncia exit dal board a giugno</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Apr 2026</td><td>Q2 guidance $12.57B sotto consensus $12.63B; stock -9%</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Mag 2026</td><td>Price increase annunciato su tutti i piani</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Giu 2026</td><td>Reed Hastings esce dal board (giu 4)</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 2026</td><td>Fox compra Roku per $22B &mdash; nuovo concorrente ads/streaming</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 2026</td><td>Netflix + Omnicom AI advertising collaboration (Acxiom data)</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Giu 2026</td><td>Clips (vertical video) e podcast expansion (iHeart, Martha Stewart)</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Giu 2026</td><td>NFLX tocca 52w low $70.86, RSI 16.87 &mdash; estremo oversold</td><td><span class="badge bn">Rischioso</span></td></tr>
+</table></div>
+<div class="dv"></div>
+<div class="pcard" style="border-left:3px solid #e0525260"><div class="pcard-l" style="color:#e05252">1. Hastings exit + stock in caduta libera</div>
+<p class="pcard-p">Il fondatore lascia dopo 29 anni. Il titolo &egrave; sceso del 32% dal giorno dell&rsquo;annuncio. I co-CEO Sarandos e Peters gestiscono bene, ma il mercato legge la partenza come un segnale che la fase eroica &egrave; finita. L&rsquo;RSI a 16.87 &egrave; tra i pi&ugrave; bassi nella storia di Netflix.</p></div>
+<div class="pcard" style="border-left:3px solid #f5a62360"><div class="pcard-l" style="color:#f5a623">2. Fox-Roku: il nuovo concorrente nella pubblicit&agrave;</div>
+<p class="pcard-p">Fox ha comprato Roku per $22B, combinando sport live + news (Fox) con la piattaforma streaming pi&ugrave; diffusa al mondo (100M+ household). Il target diretto &egrave; il mercato della pubblicit&agrave; streaming dove Netflix sta appena iniziando a scalare. Il timing &egrave; sfavorevole per Netflix.</p></div>
+<div class="pcard" style="border-left:3px solid #00c89660"><div class="pcard-l" style="color:#00c896">3. Ad tier: la storia non ancora prezzata</div>
+<p class="pcard-p">190M utenti attivi, 60% dei nuovi sign-up, 4.000+ inserzionisti (+70% YoY), $3B target 2026, $9.6B proiezione 2030 (MoffettNathanson). Il piano con ads &egrave; il secondo motore di crescita che il mercato non sta ancora scontando nel prezzo. L&rsquo;AI advertising con Omnicom/Acxiom accelera la monetizzazione.</p></div>
+</div>
+
+<div class="sec" id="cat">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Catalyst Calendar</h2>
+<p style="color:#e50914;font-size:12px;text-transform:uppercase;font-weight:700;margin-bottom:12px">Q3 2026</p>
+<div class="cat"><span class="ctag" style="background:#e5091420;color:#e50914">16 Lug 2026</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Q2 2026 Earnings</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Guidance $12.57B. Margine Q2 al 32.6%? Primo update post-Hastings exit?</div></div></div>
+<div class="cat"><span class="ctag" style="background:#f5a62320;color:#f5a623">Estate 2026</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Fox-Roku integration details</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Impatto competitivo visibile o gestibile?</div></div></div>
+<div class="cat"><span class="ctag" style="background:#e5091420;color:#e50914">H2 2026</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Content amortization decelera</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Management ha promesso crescita mid-to-high single digit H2 vs double digit H1. Se confermato, i margini espandono.</div></div></div>
+<p style="color:#f5a623;font-size:12px;text-transform:uppercase;font-weight:700;margin:16px 0 12px">H2 2026 / 2027</p>
+<div class="cat"><span class="ctag" style="background:#e5091420;color:#e50914">Fine 2026</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">FY 2026 $50.7-51.7B confermata?</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Se il FY &egrave; in linea, la guidance 2027 sar&agrave; il catalizzatore di rerating.</div></div></div>
+<div class="cat"><span class="ctag" style="background:#00c89620;color:#00c896">2027</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Ad revenue $4-5B run rate</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Se la traiettoria $3B 2026 &rarr; $9.6B 2030 si conferma, il rerating della revenue quality &egrave; inevitabile.</div></div></div>
+<div class="cat"><span class="ctag" style="background:#00c89620;color:#00c896">2027</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Live sports expansion</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Dopo il successo del World Baseball Classic, ulteriori eventi live possono attrarre nuovi abbonati e inserzionisti premium.</div></div></div>
+</div>
+
+<div class="sec" id="scen">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Bull / Base / Bear Scenarios</h2>
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">$125-$135</div></div>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Ad revenue 2026 raggiunge $3B+; H2 content cost decelera come promesso, margini al 33%+; Fox-Roku non erode materialmente; price increases assorbiti; FY 2027 guidance &gt;$58B con margini al 34%.</p>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 25x forward EPS (~$4.80 FY2027E). BoA target $125.</p></div>
+<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">$100-$115</div></div>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> FY 2026 in linea con guidance $50.7-51.7B; operating margin 31.5%; ad revenue $2.5-3B; Fox-Roku impatto gestibile; crescita 13-14% nel 2027.</p>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 22-24x forward EPS. Consensus $114.</p></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">$55-$65</div></div>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Fox-Roku attrae inserzionisti premium via da Netflix; content spend esplode in H2 2026 senza ritorno proporzionale; recessione macro taglia consumer spend; margini comprimono sotto 30%; crescita decelera sotto 10%.</p>
+<p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 15-17x forward EPS. Bear scenario.</p></div>
+</div>
+
+<div class="sec" id="val">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><tr><th>Metrica</th><th>Valore</th><th>Commento</th></tr>
+<tr><td class="f">Prezzo (30 giu)</td><td>~$74</td><td>Vicino al 52w low ($70.86)</td></tr>
+<tr><td class="f">Market Cap</td><td>~$311B</td><td>Post 10:1 split (nov 2025)</td></tr>
+<tr><td class="f">P/E trailing</td><td>~30x</td><td>Distorto da WBD fee</td></tr>
+<tr><td class="f">P/E forward</td><td>~21x</td><td>Su EPS FY26E ~$3.50</td></tr>
+<tr><td class="f">PEG ratio</td><td>~0.66</td><td>Sotto 1 &mdash; potenzialmente undervalued</td></tr>
+<tr><td class="f">EV/Revenue NTM</td><td>~6x</td><td>Modesto per piattaforma leader</td></tr>
+<tr><td class="f">FCF FY26 target</td><td>$12.5B</td><td>FCF yield ~4%</td></tr>
+<tr><td class="f">Op. Margin FY26</td><td>31.5%</td><td>Guidance confermata</td></tr>
+<tr><td class="f">Content spend</td><td>~$20B</td><td>50-60% of revenue</td></tr>
+<tr><td class="f">Consensus target</td><td>$114</td><td>50 analisti: Strong Buy</td></tr>
+<tr><td class="f">Bear target</td><td>$80</td><td>Deutsche Bank Hold</td></tr>
+<tr><td class="f">Bull target</td><td>$125-151</td><td>BoA Buy, top analysts</td></tr>
+</table></div>
+<div class="fb">
+<div class="fb-r"><span class="fl" style="color:#e50914">Fact &mdash; </span><span style="color:#e8eaf0">Forward P/E ~21x con PEG 0.66 e EV/Revenue ~6x. Netflix tratta sotto il P/E medio dell&rsquo;S&amp;P 500 (~22x) nonostante una crescita del 16%% e margini al 32%%. Il titolo &egrave; in uno dei periodi di maggiore sconto della sua storia post-IPO.</span></div><div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Il mercato &egrave; in AI FOMO mode e Netflix non ha una storia AI convincente. Viene trattata come un media stock tradizionale, non come una tech company. Questo spiega il multiplo compresso anche con fondamentali in espansione.</span></div><div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">$12.5B di FCF target 2026 su market cap di $311B = FCF yield ~4%%. Con buyback attivo e crescita del 14-16%%, il compounding del valore per azionista &egrave; potente. Netflix &egrave; un dividend-quality cash generator mascherato da growth stock.</span></div><div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">A $114 (consensus), Netflix tratterebbe a ~25x forward EPS &mdash; un multiplo ragionevole per un business con questa traiettoria. Il rischio principale &egrave; il timing: senza un catalizzatore AI, il rerating pu&ograve; richiedere 2-3 trimestri.</span></div></div></div>
+
+<div class="sec" id="risk">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Key Risks</h2>
+<div class="risk" style="border:1px solid #e0525230"><span class="rsev" style="background:#e0525220;color:#e05252">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Fox-Roku: nuovo concorrente ads</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Fox ($22B per Roku) combina sport live+news con la piattaforma streaming pi&ugrave; diffusa (100M+ household). Target diretto: il mercato della pubblicit&agrave; streaming dove Netflix sta iniziando a scalare.</div></div></div>
+<div class="risk" style="border:1px solid #e0525230"><span class="rsev" style="background:#e0525220;color:#e05252">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Content cost acceleration</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">~$20B di spesa contenuti nel 2026. H1 content amortization in double digit growth. Se H2 non decelera come promesso dal management, i margini comprimono significativamente.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio-Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Hastings exit e leadership transition</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il fondatore &egrave; uscito dal board a giugno 2026. La co-CEO structure &egrave; rara e non testata in crisi. Il titolo &egrave; sceso del 32% dall&rsquo;annuncio &mdash; il mercato prezza un premium di incertezza.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">No AI narrative per Wall Street</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il mercato &egrave; in full AI FOMO mode. Netflix non ha una storia AI da vendere e viene trattata come un media stock tradizionale anzich&eacute; un tech compounder. Questo comprime il multiplo relativo.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Macro / consumer spending</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">In un contesto di tassi alti, il consumer spending su entertainment &egrave; sotto pressione. Il piano con ads mitiga il rischio (prezzo basso) ma non lo elimina.</div></div></div>
+</div>
+
+<div class="sec" id="thesis">
+<div class="p-tag">NFLX</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">Il quarter cambia la narrativa? &mdash; Non direttamente, ma il contesto s&igrave;</div>
+<p style="color:#e8eaf0;font-size:14px;line-height:1.75">Il Q1 2026 di Netflix ha confermato un business solido e in crescita. Ma la narrativa &egrave; stata dominata da tre eventi esterni: la partenza di Hastings, la guidance Q2 leggermente sotto consensus, e l&rsquo;acquisizione Fox-Roku che ridefinisce la competizione ads. Il paradosso &egrave; che Netflix a ~$74 con forward P/E ~21x e PEG 0.66 &egrave; valutata meno di molti titoli value nel S&amp;P 500, pur avendo crescita al 16%, margini al 32%, e un business advertising appena nato con potenziale $9B+. Il mercato la sta ignorando perch&eacute; non ha una storia AI. Ma il rerating arriva quando la pubblicit&agrave; diventa innegabilmente grande &mdash; e quel momento si avvicina.</p></div>
+<div class="g2p">
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Revenue +16%, op margin 32.3% &mdash; business profittevole</li><li>Ad tier: 190M utenti, 60% nuovi sign-up, $3B target 2026</li><li>325M+ abbonati, il pi&ugrave; grande streamer al mondo</li><li>PEG 0.66 &mdash; potenzialmente sottovalutata</li><li>$12.3B cash, buyback attivo</li><li>Price increases assorbiti positivamente</li></ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Hastings exit &mdash; fine di un&rsquo;era</li><li>Fox-Roku: competizione diretta sugli ads</li><li>Titolo -45% dal picco, -32% post-Hastings</li><li>Q2 guidance sotto consensus</li><li>Nessuna storia AI per attrarre il mercato</li><li>Content cost pesante in H1 2026</li></ul></div></div>
+<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8">Netflix &egrave; la streaming company pi&ugrave; profittevole del mondo con un business advertising che raddoppia ogni anno. A ~$74 con forward P/E ~21x, il mercato la tratta come se non avesse crescita futura. Il consensus a $114 implica un upside del 55%. Il rerating richiede: (1) Q2 earnings il 16 luglio che confermino la traiettoria; (2) H2 margin expansion come promesso; (3) ad revenue che diventi innegabilmente grande. Il titolo &egrave; in territorio estremo oversold (RSI 16.87) &mdash; storicamente un segnale di rimbalzo tecnico nel breve.</p>
+<div class="pills">
+<span class="pill" style="background:#00c89615;border:1px solid #00c89640;color:#00c896">Bull $125-135</span>
+<span class="pill" style="background:#f5a62315;border:1px solid #f5a62340;color:#f5a623">Base $100-115</span>
+<span class="pill" style="background:#e0525215;border:1px solid #e0525240;color:#e05252">Bear $55-65</span>
+<span class="pill" style="background:#e5091415;border:1px solid #e5091440;color:#e50914">Oggi ~$74</span></div></div>
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 30 giugno 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+
+</div></body></html>

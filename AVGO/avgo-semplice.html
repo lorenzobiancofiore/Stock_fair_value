@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broadcom AVGO - Semplice</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#0d0f14;color:#e8eaf0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.65;-webkit-text-size-adjust:100%}
+a{color:#cc092f}
+.hdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:16px 20px;border-bottom:1px solid #1e2230;background:#0d0f14}
+.hdr-left{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:10px;background:#cc092f;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;letter-spacing:.5px}
+.hdr-name{font-weight:700;font-size:15px}
+.hdr-sub{color:#9ca3af;font-size:12px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.bp{background:rgba(0,200,150,.12);color:#00c896;border:1px solid rgba(0,200,150,.35)}
+.bn{background:rgba(224,82,82,.12);color:#e05252;border:1px solid rgba(224,82,82,.35)}
+.bm{background:rgba(245,166,35,.12);color:#f5a623;border:1px solid rgba(245,166,35,.35)}
+.link-current{display:inline-block;padding:6px 12px;border-radius:6px;background:#cc092f;color:#fff;font-size:12px;font-weight:700}
+.link-other{display:inline-block;padding:6px 12px;border-radius:6px;border:1px solid #cc092f;color:#e8eaf0;font-size:12px;font-weight:700;text-decoration:none}
+.wrap{margin:0 auto;padding:28px 20px 60px}
+.disc{color:#6b7280;font-size:12px;line-height:1.6}
+.dv{height:1px;background:#1e2230;margin:36px 0}
+.warn{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.35);color:#f5c06a;border-radius:8px;padding:12px 14px;font-size:13px;margin-bottom:24px}
+/* simple */
+.s-num{font-family:ui-monospace,Menlo,Consolas,monospace;color:#cc092f;font-size:13px;font-weight:700;letter-spacing:2px;margin-top:8px}
+.s-h2{font-size:24px;margin:4px 0 18px}
+.card{background:#13161e;border:1px solid #1e2230;border-radius:10px;padding:18px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.stat{background:#13161e;border:1px solid #1e2230;border-radius:10px;padding:16px}
+.big{font-size:44px;font-weight:800;line-height:1.1;font-family:ui-monospace,Menlo,Consolas,monospace}
+.sub{color:#9ca3af;font-size:13px;margin-top:4px}
+.lbl{color:#9ca3af;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.ibox{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:12px}
+.ival{font-size:20px;font-weight:700;font-family:ui-monospace,Menlo,Consolas,monospace}
+.ebox{background:rgba(204,9,47,.06);border:1px solid rgba(204,9,47,.3);border-radius:10px;padding:16px;font-size:15px;line-height:1.8}
+.sc{background:#13161e;border:1px solid #1e2230;border-radius:10px;padding:16px;margin-bottom:12px}
+.sc-bull{border-left:4px solid #00c896}.sc-base{border-left:4px solid #f5a623}.sc-bear{border-left:4px solid #e05252}
+.sc-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:10px}
+.sc-t{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:26px;font-weight:800}
+.rng{position:relative;height:74px;margin:34px 0 10px}
+.rng-bar{position:absolute;top:10px;left:0;right:0;height:14px;border-radius:7px}
+.rl{position:absolute;top:34px;font-size:11px;font-weight:700;color:#9ca3af;line-height:1.4}
+.rdot{position:absolute;top:5px;width:24px;height:24px;margin-left:-12px;background:#fff;border-radius:50%;border:4px solid #0d0f14;box-shadow:0 0 0 2px #fff}
+.rdot-c{background:#fff}
+.rdot-l{position:absolute;top:-18px;transform:translateX(-50%);font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+.leg{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:8px 0;color:#c9ccd6}
+.leg-dot{width:10px;height:10px;border-radius:50%;margin-top:7px;flex:0 0 10px}
+/* pro */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600}
+.toc a:hover{color:#cc092f;border-color:#cc092f}
+.sec{padding:34px 0;border-bottom:1px solid #1e2230}
+.p-tag{font-family:ui-monospace,Menlo,Consolas,monospace;color:#cc092f;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.p-h2{font-size:22px;margin:6px 0 16px}
+.thesis{background:#13161e;border:1px solid #1e2230;border-left:4px solid #cc092f;border-radius:8px;padding:16px 18px;margin:12px 0 18px}
+.thesis-lbl{color:#9ca3af;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.kpi-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.kpi{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:12px}
+.kpi-l{color:#9ca3af;font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.kpi-v{font-size:20px;font-weight:800;font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:4px}
+.kpi-s{color:#6b7280;font-size:12px}
+.fb{background:#13161e;border:1px solid #1e2230;border-radius:8px;margin:16px 0;overflow:hidden}
+.fb-r{padding:12px 14px;border-bottom:1px solid #1e2230;font-size:14px;color:#c9ccd6}
+.fb-r:last-child{border-bottom:none}
+.fl{display:inline-block;min-width:150px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#cc092f;margin-right:6px}
+.tblw{overflow-x:auto}
+table,.tbl{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+th{text-align:left;color:#9ca3af;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid #1e2230;padding:8px}
+td{border-bottom:1px solid #1e2230;padding:8px;vertical-align:top;color:#c9ccd6}
+td.f{color:#e8eaf0;font-weight:600}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mc{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px}
+.pcard{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;margin-bottom:10px}
+.pcard-l{font-weight:800;font-size:13px;letter-spacing:.6px;text-transform:uppercase}
+.pcard-p{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:22px;font-weight:800}
+.cat{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #1e2230;font-size:14px}
+.ctag{flex:0 0 74px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;font-weight:800;color:#cc092f}
+.risk{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #1e2230;font-size:14px}
+.rsev{flex:0 0 64px;font-size:11px;font-weight:800;text-transform:uppercase;padding-top:2px}
+.verdict{background:#13161e;border:1px solid #cc092f;border-radius:10px;padding:18px;margin-top:10px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{padding:4px 10px;border-radius:999px;background:#1e2230;color:#c9ccd6;font-size:12px}
+p{margin:0 0 12px}
+@media (max-width:640px){.g2,.g2p,.g3{grid-template-columns:1fr}.kpi-g{grid-template-columns:1fr 1fr}.big{font-size:38px}.fl{display:block;margin-bottom:2px}}
+.wrap{max-width:720px}</style>
+</head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">AVGO</div>
+    <div>
+      <div class="hdr-name">Broadcom Inc. &mdash; NASDAQ: AVGO</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q3 FY2026 &middot; 25 settembre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">AI semis +221% a/a</span>
+    <span class="badge bn">&minus;29% dal massimo</span>
+    <span class="link-current">&#128196; Semplice</span><a class="link-other" href="avgo-pro.html">&#128202; Pro</a>
+  </div>
+</div>
+<div class="wrap">
+
+<div class="s-num">01</div>
+<h2 class="s-h2">Come sta crescendo</h2>
+<div class="g2">
+  <div class="stat"><div class="lbl">Ricavi del trimestre</div><div class="big" style="color:#00c896">+86%</div><div class="sub">$29,6 miliardi, rispetto a un anno fa</div></div>
+  <div class="stat"><div class="lbl">Chip per l'intelligenza artificiale</div><div class="big" style="color:#00c896">+221%</div><div class="sub">$16,7 miliardi, pi&#249; che triplicati</div></div>
+  <div class="stat"><div class="lbl">Utile netto</div><div class="big" style="color:#00c896">+216%</div><div class="sub">$13,1 miliardi</div></div>
+  <div class="stat"><div class="lbl">Cassa generata (FCF)</div><div class="big" style="color:#00c896">+95%</div><div class="sub">$13,7 miliardi, 46 centesimi per ogni dollaro venduto</div></div>
+</div>
+<div class="g3" style="margin-top:14px">
+  <div class="ibox"><div class="lbl">Prossimo trimestre</div><div class="ival">$34,8 mld</div><div class="sub">ricavi attesi, +93%</div></div>
+  <div class="ibox"><div class="lbl">Chip AI nel 2027</div><div class="ival">~$115 mld</div><div class="sub">obiettivo dell'azienda</div></div>
+  <div class="ibox"><div class="lbl">Chip AI nel 2028</div><div class="ival">~$230 mld</div><div class="sub">obiettivo dell'azienda</div></div>
+</div>
+<div class="ebox" style="margin-top:18px">
+Broadcom progetta i chip "su misura" che Google, Anthropic, OpenAI e altri usano per far funzionare l'intelligenza artificiale, e anche i chip di rete che collegano migliaia di questi processori. Questa parte del business sta crescendo a una velocit&#224; rara per un'azienda di queste dimensioni. <strong>Il problema non sono i numeri, ma la fiducia:</strong> il titolo &#232; sceso di quasi un terzo dal massimo di giugno perch&#233; il mercato si chiede se i pochi grandi clienti riusciranno davvero a pagare tutti questi chip.
+</div>
+
+<div class="dv"></div>
+<div class="s-num">02</div>
+<h2 class="s-h2">Cosa pu&#242; succedere</h2>
+<div class="sc sc-bull"><div class="sc-hdr"><div class="lbl" style="color:#00c896">Scenario positivo</div><div class="sc-t" style="color:#00c896">$600</div></div>
+Broadcom consegna i chip come promesso e i clienti (Anthropic in testa, se si quota in borsa) confermano di avere i soldi per comprarli. Gli utili continuano a salire velocemente. Il mercato torna a fidarsi e paga di pi&#249; per il titolo.</div>
+<div class="sc sc-base"><div class="sc-hdr"><div class="lbl" style="color:#f5a623">Scenario centrale</div><div class="sc-t" style="color:#f5a623">$440</div></div>
+I ricavi crescono pi&#249; o meno come previsto dagli analisti, un po' meno di quanto promette l'azienda. Il mercato resta prudente perch&#233; dipende da pochi clienti. Il titolo sale, ma senza euforia.</div>
+<div class="sc sc-bear"><div class="sc-hdr"><div class="lbl" style="color:#e05252">Scenario negativo</div><div class="sc-t" style="color:#e05252">$270</div></div>
+Uno o pi&#249; grandi clienti rallenta gli acquisti perch&#233; fatica a finanziarsi, e la Cina riduce l'uso dei suoi chip di rete. La crescita delude le attese. Il titolo torna verso i minimi dell'ultimo anno.</div>
+<p class="disc">Obiettivi di prezzo a 12 mesi, stimati in questa analisi. Probabilit&#224; indicative: 25% positivo, 50% centrale, 25% negativo.</p>
+
+<div class="dv"></div>
+<div class="s-num">03</div>
+<h2 class="s-h2">Quanto vale</h2>
+<div class="rng">
+  <div class="rng-bar" style="background:linear-gradient(90deg,#e05252 0%,#f5a623 50%,#00c896 100%)"></div>
+  <div class="rl" style="left:0">BEAR<br><span style="font-weight:400">$270</span></div>
+  <div class="rl" style="left:51.5%;transform:translateX(-50%);text-align:center">BASE<br><span style="font-weight:400">$440</span></div>
+  <div class="rl" style="right:0;text-align:right">BULL<br><span style="font-weight:400">$600</span></div>
+  <div class="rdot" style="left:24.5%"></div>
+  <div class="rdot-l" style="left:24.5%">oggi $351</div>
+</div>
+<div class="leg"><span class="leg-dot" style="background:#fff"></span><span><strong>Oggi $351</strong> &mdash; il prezzo &#232; pi&#249; vicino allo scenario negativo che a quello centrale.</span></div>
+<div class="leg"><span class="leg-dot" style="background:#e05252"></span><span><strong>Bear $270</strong> &mdash; i clienti rallentano, la crescita delude.</span></div>
+<div class="leg"><span class="leg-dot" style="background:#f5a623"></span><span><strong>Base $440</strong> &mdash; la crescita va come stimano gli analisti.</span></div>
+<div class="leg"><span class="leg-dot" style="background:#00c896"></span><span><strong>Bull $600</strong> &mdash; l'azienda mantiene tutte le promesse fino al 2028.</span></div>
+<p class="disc" style="margin-top:10px">Per confronto: la media degli analisti di Wall Street indica circa $532.</p>
+
+<div class="dv"></div>
+
+    <div class="s-num">04</div>
+    <h2 class="s-h2">Il prezzo giusto secondo i conti</h2>
+
+    <div class="card" style="border-left:3px solid #4a9eda">
+      <div class="lbl" style="color:#4a9eda">VALUTAZIONE CONGRUA</div>
+      <div style="font-size:15px;line-height:1.8;margin-top:10px">Il prezzo a cui conviene comprare secondo i conti &egrave; <strong>USD&nbsp;365.26</strong>, e oggi costa <strong>USD&nbsp;350.89</strong>. Sono praticamente allineati: n&eacute; occasione n&eacute; trappola.</div>
+    </div>
+
+    <div class="g2" style="margin-top:20px">
+      <div class="stat">
+        <div class="lbl">Prezzo di oggi</div>
+        <div class="big">USD&nbsp;350.89</div>
+        <div class="sub">quotazione di mercato</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Prezzo a cui comprare</div>
+        <div class="big" style="color:#00c896">USD&nbsp;365.26</div>
+        <div class="sub">con margine di sicurezza</div>
+      </div>
+    </div>
+
+    <div class="rng" style="margin-top:24px">
+      <div class="rng-bar" style="background:linear-gradient(90deg,#00c896 0%,#f5a623 55%,#e05252 100%)"></div>
+      <div class="rl" style="left:0">COMPRARE<br><span style="font-weight:400">USD&nbsp;365.26</span></div>
+      <div class="rl" style="right:0;text-align:right">VENDERE<br><span style="font-weight:400">USD&nbsp;511.37</span></div>
+      <div class="rdot" style="left:0.0%"></div>
+      <div class="rdot-l" style="left:0.0%">oggi</div>
+    </div>
+
+    <div class="ebox" style="margin-top:28px">
+      <div class="lbl">Come funziona questo calcolo</div>
+      <div style="font-size:14px;line-height:1.8;margin-top:8px">
+        Si parte dagli utili reali che l&rsquo;azienda produce &mdash; non quelli promessi &mdash;
+        e si proiettano su 10 anni. Poi si sconta il risultato per tenere conto del fatto che
+        mille euro oggi valgono pi&ugrave; di mille euro fra dieci anni.<br><br>
+        A questo valore si applica uno <strong>sconto di sicurezza</strong> che dipende da quanto
+        l&rsquo;azienda &egrave; robusta. Qui il voto &egrave; <strong style="color:#00c896">A</strong>
+        &mdash; azienda molto solida &mdash; e lo sconto applicato &egrave; del
+        <strong>0%</strong>.<br><br>
+        Pi&ugrave; l&rsquo;azienda &egrave; fragile, pi&ugrave; grande lo sconto richiesto prima
+        di considerarla comprabile.
+      </div>
+    </div>
+
+    <div class="disc" style="margin-top:20px">
+      Calcolo automatico su dati di bilancio degli ultimi 12 mesi
+      (2026-09-25 08:34). Ipotesi di crescita: 30.0% annuo
+      (consenso analisti). Non &egrave; un consiglio di investimento.
+    </div>
+<div class="ebox" style="margin-top:18px">
+<strong>Attenzione a leggere bene questo "congruo".</strong> Il calcolo arriva al prezzo di oggi solo ipotizzando che gli utili crescano del 30% all'anno per dieci anni di fila, che &#232; il massimo che il modello consente. Con una crescita del 20% il prezzo giusto scenderebbe a circa $212. E se si contano come costo le azioni regalate ai dipendenti (circa $8,5 miliardi l'anno), anche con il 30% si scende a circa $301. In pratica: oggi si paga gi&#224; una crescita molto forte e molto lunga.
+</div>
+<p class="disc" style="margin-top:24px">Analisi a scopo informativo, non &#232; un consiglio di investimento. Dati: comunicati e documenti ufficiali Broadcom depositati alla SEC, prezzo di chiusura del 24/09/2026. Nota: Anthropic, che sviluppa l'assistente che ha prodotto questa analisi, &#232; uno dei principali clienti di Broadcom.</p>
+
+</div>
+</body></html>

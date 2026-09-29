@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palantir PLTR - Q1 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+button,a{-webkit-tap-highlight-color:rgba(124,58,237,0.3);touch-action:manipulation;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.logo{background:#7c3aed;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:9px;color:#fff;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.btn{padding:8px 18px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;font-family:inherit;}
+.btn-on{background:#7c3aed;color:#fff;border:2px solid #7c3aed;}
+.btn-off{background:transparent;color:#9ca3af;border:2px solid #1e2230;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+#view-simple{max-width:720px;margin:0 auto;padding:32px 20px;}
+#view-pro{display:none;}
+#view-pro.show{display:block;}
+.pro-wrap{display:flex;flex-wrap:wrap;align-items:flex-start;}
+.sb{width:185px;background:#13161e;border-right:1px solid #1e2230;flex-shrink:0;}
+.sb a{display:block;padding:11px 14px;color:#9ca3af;font-size:12px;text-decoration:none;border-left:2px solid transparent;cursor:pointer;}
+.sb a.on{color:#7c3aed;background:#7c3aed18;border-left-color:#7c3aed;font-weight:700;}
+.pro-c{flex:1;min-width:0;padding:28px 24px;}
+.sec{display:none;}
+.sec.on{display:block;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.p-tag{color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#7c3aed18;border:1px solid #7c3aed40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#7c3aed;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#7c3aed60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#7c3aed;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.dv{border-top:1px solid #1e2230;margin:20px 0;}
+
+@media(max-width:640px){
+  .sb{width:100%;display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid #1e2230;-webkit-overflow-scrolling:touch;}
+  .sb a{white-space:nowrap;border-left:none;border-bottom:2px solid transparent;}
+  .sb a.on{border-left:none;border-bottom-color:#7c3aed;}
+  .pro-c{padding:24px 18px;}
+}
+</style></head><body>
+<div class="hdr">
+<div class="hdr-left"><div class="logo">PLTR</div><div>
+<div class="hdr-name">Palantir Technologies &mdash; NASDAQ: PLTR</div>
+<div class="hdr-sub">Equity Narrative Analysis &middot; Q1 2026 &middot; 27 Giugno 2026</div>
+</div></div>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+<span class="badge bp">Record Q1</span><span class="badge bn">-40% YTD</span>
+<button class="btn btn-on" id="bs">Semplice</button>
+<button class="btn btn-off" id="bp">Pro</button>
+</div></div>
+<div id="view-simple">
+<div class="s-num" style="color:#7c3aed;margin-top:8px">01</div>
+<h2 class="s-h2">Come sta crescendo Palantir</h2>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">Risultati Q1 2025 vs Q1 2026</div>
+<div class="g2" style="margin-bottom:16px">
+<div class="stat"><div class="lbl">Fatturato</div><div class="big">+85%</div><div class="sub">$884M &rarr; $1.63B</div></div>
+<div class="stat"><div class="lbl">Clienti USA</div><div class="big">+133%</div><div class="sub">Commerciale</div></div>
+<div class="stat"><div class="lbl">Utile netto</div><div class="big">+307%</div><div class="sub">$214M &rarr; $871M</div></div>
+<div class="stat"><div class="lbl">Cash</div><div class="big">$8B</div><div class="sub">Zero debiti</div></div></div>
+<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div>
+<div style="color:#9ca3af;font-size:14px;line-height:1.7">Palantir costruisce software per governi ed eserciti. Con l&rsquo;AI, il suo prodotto AIP &egrave; diventato uno strumento molto richiesto dalle grandi aziende. Il CEO: &ldquo;I nostri risultati superano ogni software company della storia a questa scala&rdquo;.</div></div></div>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni prossimi mesi</div><div class="g2">
+<div class="ibox"><div class="lbl">Fatturato Q2 2026</div><div class="ival">$1.80B</div><div class="sub">+73% YoY</div></div>
+<div class="ibox"><div class="lbl">Fatturato 2026</div><div class="ival">$7.65B</div><div class="sub">+71% YoY</div></div></div></div>
+<div style="margin-top:32px"><div class="s-num" style="color:#f5a623">02</div>
+<h2 class="s-h2">Cosa pu&ograve; succedere</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Il business va benissimo. Il titolo era salito troppo, ora &egrave; sceso del 40%. Tre scenari possibili.</p>
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Ottimista</div><div style="color:#00c896;font-size:20px;font-weight:800">L&rsquo;AI conquista tutto</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">$240</div></div>
+<p style="color:#e8eaf0;font-size:15px;line-height:1.75">Il software diventa lo standard AI per le grandi aziende. Il governo USA espande i contratti. L&rsquo;Europa smette di preoccuparsi. Il titolo supera i massimi.</p></div>
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Centrale</div><div style="color:#f5a623;font-size:20px;font-weight:800">Crescita continua ma lenta</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">$165</div></div>
+<p style="color:#e8eaf0;font-size:15px;line-height:1.75">Crescita al 70% quest&rsquo;anno. NHS UK si chiude ordinatamente. La crescita rallenta nel 2027 ma resta forte. Il titolo risale gradualmente.</p></div>
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Pessimista</div><div style="color:#e05252;font-size:20px;font-weight:800">Troppe incertezze</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">$72</div></div>
+<p style="color:#e8eaf0;font-size:15px;line-height:1.75">Amazon, Microsoft e Google rubano clienti. L&rsquo;Inghilterra rescinde il NHS. Tanti Paesi UE seguono la Francia e abbandonano Palantir.</p></div></div>
+<div style="margin-top:32px"><div class="s-num" style="color:#e05252">03</div>
+<h2 class="s-h2">Quanto vale il titolo</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Prezzo attuale ~$112. Era a $207 a novembre 2025. 32 analisti la valutano in media $182.</p>
+<div class="card"><div class="rng"><div class="rng-bar"></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">$72</div></div>
+<div class="rl" style="left:55%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">$165</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">$240</div></div>
+<div class="rdot" style="left:24%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">$112</div></div></div></div>
+<div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear $55-90:</strong> I cloud hyperscaler rubano clienti e l&rsquo;Europa abbandona Palantir.</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base $150-185:</strong> Crescita normalizzata. Target medio dei 32 analisti.</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull $220-255:</strong> L&rsquo;AI trasforma ogni industria. Wedbush ($230), Citi ($225).</div></div></div></div>
+<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px">Perch&eacute; &egrave; sceso del 40%?</div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px">Il business va benissimo. Ma a novembre 2025 il titolo era gi&agrave; prezzato come se tutto fosse perfetto per 10 anni. Quando arrivano brutte notizie, chi aveva comprato a $207 vende. Non significa problemi al business &mdash; era troppo caro.</p>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8">Prossimo appuntamento: <strong style="color:#e8eaf0">3 agosto 2026</strong>, risultati Q2.</p></div>
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 27 giugno 2026. Non &egrave; consulenza finanziaria.</div></div>
+</div>
+<div id="view-pro">
+<div class="pro-wrap">
+<div class="sb">
+<a href="#" class="on" data-sec="0">Executive Summary</a>
+<a href="#" data-sec="1">Market Snapshot</a>
+<a href="#" data-sec="2">Financial Deep Dive</a>
+<a href="#" data-sec="3">Quality of Earnings</a>
+<a href="#" data-sec="4">Business Mix</a>
+<a href="#" data-sec="5">News Narrative</a>
+<a href="#" data-sec="6">Catalyst Calendar</a>
+<a href="#" data-sec="7">Scenarios</a>
+<a href="#" data-sec="8">Valuation</a>
+<a href="#" data-sec="9">Key Risks</a>
+<a href="#" data-sec="10">Final Thesis</a>
+</div>
+<div class="pro-c">
+<div class="sec on" id="x0"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Core Investment Thesis &mdash; Q1 2026</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Palantir ha pubblicato il miglior trimestre della sua storia: +85% YoY, GAAP net income $871M, Rule of 40 a 145%. Ma il titolo &egrave; crollato del 40% YTD. Paradosso estremo: fondamentali eccellenti, prezzo devastato. La narrativa si &egrave; spostata da &ldquo;crescer&agrave; abbastanza?&rdquo; a &ldquo;la valutazione era insostenibile?&rdquo;. Tre overhang: multiple compressione da 150x+ P/E, rischio europeo (NHS, Francia, Svizzera), insider selling $422M.</p></div>
+<div class="kpi-g">
+<div class="kpi hi"><div class="kpi-l">Revenue Q1</div><div class="kpi-v">$1.63B</div><div class="kpi-s">+85% YoY</div></div>
+<div class="kpi"><div class="kpi-l">US Revenue</div><div class="kpi-v">$1.28B</div><div class="kpi-s">+104%</div></div>
+<div class="kpi"><div class="kpi-l">US Comm.</div><div class="kpi-v">+133%</div><div class="kpi-s">YoY</div></div>
+<div class="kpi"><div class="kpi-l">Net Income</div><div class="kpi-v">$871M</div><div class="kpi-s">GAAP</div></div>
+<div class="kpi"><div class="kpi-l">Adj. EPS</div><div class="kpi-v">$0.33</div><div class="kpi-s">vs $0.28e</div></div>
+<div class="kpi"><div class="kpi-l">FCF</div><div class="kpi-v">$925M</div><div class="kpi-s">57% mgn</div></div>
+<div class="kpi"><div class="kpi-l">Cash</div><div class="kpi-v">$8.0B</div><div class="kpi-s">no debt</div></div>
+<div class="kpi"><div class="kpi-l">YTD</div><div class="kpi-v">-40%</div><div class="kpi-s">52w low</div></div>
+</div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> probabilmente la software company con la crescita pi&ugrave; alta al mondo nel 2026. A $112, con guidance $7.65B e cash $8B, il risk/reward inizia a diventare interessante su orizzonte 2-3 anni.</p></div>
+<div class="sec" id="x1"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p"><div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:10px">Price Context</div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">Prezzo</span><span style="color:#7c3aed;font-weight:700">~$112</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">52w high</span><span style="color:#e05252;font-weight:700">$207.52</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">52w low</span><span style="color:#e05252;font-weight:700">$106.39</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">YTD</span><span style="color:#e05252;font-weight:700">-40%</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#9ca3af;font-size:13px">P/E</span><span style="color:#f5a623;font-weight:700">~127x</span></div>
+</div><div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:10px">Key Events</div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#7c3aed;font-size:12px;font-weight:700;min-width:50px">Mag 4</span><span style="color:#9ca3af;font-size:12px">Q1 record, stock -5.66%</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#7c3aed;font-size:12px;font-weight:700;min-width:50px">Mag fine</span><span style="color:#9ca3af;font-size:12px">Rally +20%</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#7c3aed;font-size:12px;font-weight:700;min-width:50px">Giu 22</span><span style="color:#9ca3af;font-size:12px">NGC2+Zeta, nuovo low</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#7c3aed;font-size:12px;font-weight:700;min-width:50px">Giu 25</span><span style="color:#9ca3af;font-size:12px">52w low $106.39</span></div>
+</div></div><div class="fb">
+<div class="fb-r"><span class="fl" style="color:#7c3aed">Fact &mdash; </span><span style="color:#e8eaf0">Sceso 40% YTD pur battendo il consensus. Il 25 giugno ha toccato $106.39 (nuovo 52w low) lo stesso giorno dell&rsquo;annuncio NGC2 + Zeta.</span></div>
+<div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Il titolo che scende su buone notizie indica de-rating del multiplo indipendente dai fondamentali.</span></div>
+<div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">A $112, -$95 dai massimi: il titolo stava anticipando la crescita futura e ora la restituisce.</span></div>
+<div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Consensus $182-193, upside 62-72%. Range $70-$255 segnala disaccordo strutturale.</span></div>
+</div></div>
+<div class="sec" id="x2"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><tr><th>Metrica</th><th>Q1 25</th><th>Q1 26</th><th>YoY</th></tr>
+<tr><td class="f">Revenue</td><td>$884M</td><td>$1.633B</td><td>+85%</td></tr>
+<tr><td class="f">US Revenue</td><td>$628M</td><td>$1.282B</td><td>+104%</td></tr>
+<tr><td class="f">US Commercial</td><td>$255M</td><td>$595M</td><td>+133%</td></tr>
+<tr><td class="f">US Government</td><td>$373M</td><td>$687M</td><td>+84%</td></tr>
+<tr><td class="f">International</td><td>$256M</td><td>$351M</td><td>+37%</td></tr>
+<tr><td class="f">GAAP Net Income</td><td>$214M</td><td>$871M</td><td>+307%</td></tr>
+<tr><td class="f">Adj. EPS</td><td>$0.13</td><td>$0.33</td><td>+154%</td></tr>
+<tr><td class="f">FCF</td><td>$370M</td><td>$925M</td><td>+150%</td></tr>
+<tr><td class="f">Cash</td><td>&mdash;</td><td>$8.0B</td><td>&mdash;</td></tr>
+<tr><td class="f">Rule of 40</td><td>&mdash;</td><td>145%</td><td>&mdash;</td></tr>
+</table></div><div class="fb">
+<div class="fb-r"><span class="fl" style="color:#7c3aed">Fact &mdash; </span><span style="color:#e8eaf0">Revenue +85% a $1.63B, beat del 5.8%. 11&deg; trimestre consecutivo di beat. GAAP net income quadruplicato.</span></div>
+<div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Spese +32% YoY. Concentrazione US (79%) &egrave; forza e rischio insieme.</span></div>
+<div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">US Commercial +133% con TCV bookings TTM $4.7B (+115%): pipeline futura ancora pi&ugrave; forte.</span></div>
+<div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Crescita &gt;70% + FCF 57% + GAAP profit &egrave; combinazione rarissima. Il nodo &egrave; il prezzo.</span></div>
+</div></div>
+<div class="sec" id="x3"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#00c89640;background:#001a0d"><div class="pcard-l" style="color:#00c896">GAAP Profitability: raro e reale</div><p class="pcard-p">GAAP profitable da 11 trimestri. Il net income $871M non &egrave; distorto da elementi non-cash. Nessuna svalutazione mark-to-market come quelle che hanno colpito Uber.</p></div><div class="fb">
+<div class="fb-r"><span class="fl" style="color:#7c3aed">Fact &mdash; </span><span style="color:#e8eaf0">Net income $871M (53% mgn), adj op margin 60%, FCF margin 57%, Rule of 40 145%, cash $8B zero debito.</span></div>
+<div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Spese +32% YoY: se la top-line decelera la leva operativa funziona al contrario.</span></div>
+<div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">Rule of 40 a 145% tra i pi&ugrave; alti della storia del software. Floor strutturale alto.</span></div>
+<div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">La qualit&agrave; giustifica un premium. A 100x P/E forward resta premium ma meno estremo del 150x+ di nov 2025.</span></div>
+</div></div>
+<div class="sec" id="x4"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Business Mix</h2><div class="g2p">
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">US Government</div><div style="color:#7c3aed;font-size:22px;font-weight:800">42%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$687M (+84%)</div><div style="color:#9ca3af;font-size:12px">Maven, NGC2</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">US Commercial</div><div style="color:#00c896;font-size:22px;font-weight:800">36%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">$595M (+133%)</div><div style="color:#9ca3af;font-size:12px">AIP Boot Camp</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Intl Gov.</div><div style="color:#f5a623;font-size:22px;font-weight:800">13%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">~$215M</div><div style="color:#9ca3af;font-size:12px">Pressione EU</div></div>
+<div class="mc"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Intl Comm.</div><div style="color:#6b7280;font-size:22px;font-weight:800">9%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">~$140M</div><div style="color:#9ca3af;font-size:12px">Crescita lenta</div></div>
+</div><div class="fb">
+<div class="fb-r"><span class="fl" style="color:#7c3aed">Fact &mdash; </span><span style="color:#e8eaf0">US &egrave; il 79% dei ricavi. US Commercial (+133%) accelera vs Government (+84%). International perde peso.</span></div>
+<div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">Solo 1.007 clienti commerciali, pochi rispetto ai peer SaaS. Aumenta il single-market risk.</span></div>
+<div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">TCV US Commercial TTM $4.7B (+115%) &egrave; un leading indicator potentissimo.</span></div>
+<div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Se International stagna, il guidance $7.65B dipende dall&rsquo;US commercial a +100%+.</span></div>
+</div></div>
+<div class="sec" id="x5"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">News-Driven Narrative</h2>
+<div class="tbl"><table><tr><th>Data</th><th>Evento</th><th>Interp.</th></tr>
+<tr><td class="f">Mag 26</td><td>Q1 beat record, guidance FY $7.65B</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Mag 26</td><td>Partnership 7 anni Zeta Global</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>Ruolo fondativo US Army NGC2</td><td><span class="badge bm">Misto</span></td></tr>
+<tr><td class="f">Giu 26</td><td>Francia esce dalla piattaforma</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>UK: possibile break clause NHS &pound;330M</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>Svizzera: causa persa</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>Insider selling $422M (Karp+Sankar)</td><td><span class="badge bn">Negativo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>Cathie Wood compra sul calo</td><td><span class="badge bp">Positivo</span></td></tr>
+<tr><td class="f">Giu 26</td><td>-40% YTD, 52w low su buone notizie</td><td><span class="badge bn">Rischioso</span></td></tr>
+</table></div><div class="dv"></div>
+<div class="pcard" style="border-left:3px solid #e0525260"><div class="pcard-l" style="color:#e05252">1. Il Paradosso</div><p class="pcard-p">Il 25 giugno $106.39 (nuovo low) lo stesso giorno di NGC2+Zeta. Quando le buone notizie non fermano la caduta, il mercato sta repricing il multiplo.</p></div>
+<div class="pcard" style="border-left:3px solid #f5a62360"><div class="pcard-l" style="color:#f5a623">2. Europa: data-sovereignty</div><p class="pcard-p">Francia esce, UK valuta break clause NHS &pound;330M, Svizzera causa persa. Le istituzioni EU riducono l&rsquo;esposizione a software US. 21% dei ricavi a rischio strutturale.</p></div>
+<div class="pcard" style="border-left:3px solid #7c3aed60"><div class="pcard-l" style="color:#7c3aed">3. Insider selling $422M</div><p class="pcard-p">Karp e Sankar hanno venduto centinaia di milioni via piani 10b5-1 con il titolo a $140-170. Segnale che lo ritenevano sopravvalutato.</p></div></div>
+<div class="sec" id="x6"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Catalyst Calendar</h2>
+<p style="color:#7c3aed;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:12px">Q3 2026</p>
+<div class="cat"><span class="ctag" style="background:#7c3aed20;color:#7c3aed">3 Ago</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Q2 2026 Earnings</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Guidance $1.80B. US Commercial ancora &gt;100%?</div></div></div>
+<div class="cat"><span class="ctag" style="background:#f5a62320;color:#f5a623">Estate</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">NHS UK Decision</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Voto sulla break clause. Cambia la narrativa EU.</div></div></div>
+<div class="cat"><span class="ctag" style="background:#7c3aed20;color:#7c3aed">Q3</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">NGC2 formalizzato</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Valore in $ del contratto, prossimo catalyst gov.</div></div></div>
+<p style="color:#f5a623;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin:16px 0 12px">H2 2026 / 2027</p>
+<div class="cat"><span class="ctag" style="background:#7c3aed20;color:#7c3aed">Fine 26</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">FY $7.65B confermata</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Trigger per guidance 2027 &gt;$10B.</div></div></div>
+<div class="cat"><span class="ctag" style="background:#00c89620;color:#00c896">2027</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">US Commercial &gt;$1B/q</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Possibile gi&agrave; Q1-Q2 2027.</div></div></div>
+<div class="cat"><span class="ctag" style="background:#f5a62320;color:#f5a623">2027</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Insider selling esaurito</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Se si ferma, fiducia torna positiva.</div></div></div>
+</div>
+<div class="sec" id="x7"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Bull / Base / Bear</h2>
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">$220-$255</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> US Commercial +100%+ per 2-3 trim; AIP standard de facto; NHS positivo; insider selling stop; FY $7.7B+.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 30-35x EV/Revenue 2027E.</p></div>
+<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">$150-$185</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> FY in linea $7.65B; US Comm decelera a +70-80%; NHS exit ordinata; multiple a 20-25x.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 20-25x EV/Revenue. Consensus $182-193.</p></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">$55-$90</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> US Comm sotto +50%; NHS break clause; altri Paesi EU escono; Fed alza tassi; P/E verso 60-80x.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> 10-12x EV/Revenue 2027E.</p></div>
+</div>
+<div class="sec" id="x8"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><tr><th>Metrica</th><th>Valore</th><th>Commento</th></tr>
+<tr><td class="f">Prezzo</td><td>~$112</td><td>52w low area</td></tr>
+<tr><td class="f">Market Cap</td><td>~$270B</td><td>~2.41B shares</td></tr>
+<tr><td class="f">P/E trailing</td><td>~127x</td><td>EPS TTM ~$0.88</td></tr>
+<tr><td class="f">P/E fwd non-GAAP</td><td>~80x</td><td>EPS FY26E ~$1.40</td></tr>
+<tr><td class="f">EV/Revenue NTM</td><td>~29-35x</td><td>Su $7.65B+</td></tr>
+<tr><td class="f">FCF margin</td><td>57%</td><td>$925M in Q1</td></tr>
+<tr><td class="f">Rule of 40</td><td>145%</td><td>Best-in-class</td></tr>
+<tr><td class="f">Consensus</td><td>$182-193</td><td>+62-72% upside</td></tr>
+<tr><td class="f">Bull</td><td>$225-255</td><td>Wedbush, Citi</td></tr>
+<tr><td class="f">Bear</td><td>$70-90</td><td>Wolfe</td></tr>
+</table></div><div class="fb">
+<div class="fb-r"><span class="fl" style="color:#7c3aed">Fact &mdash; </span><span style="color:#e8eaf0">29-35x EV/Revenue NTM vs Snowflake 12-14x, Salesforce 7-8x.</span></div>
+<div class="fb-r"><span class="fl" style="color:#9ca3af">Neutral &mdash; </span><span style="color:#9ca3af">P/E 80x fwd con crescita 71% = PEG ~1.1x. Ragionevole ma non economico.</span></div>
+<div class="fb-r"><span class="fl" style="color:#60a5fa">Bullish &mdash; </span><span style="color:#9ca3af">$8B cash + FCF 57%: $3.5-4B/anno comprime rapidamente l&rsquo;EV/FCF.</span></div>
+<div class="fb-r"><span class="fl" style="color:#f5a623">Valuation &mdash; </span><span style="color:#9ca3af">Range consensus $70-$255 il pi&ugrave; ampio su un large cap tech. Disaccordo sul fair value.</span></div>
+</div></div>
+<div class="sec" id="x9"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Key Risks</h2>
+<div class="risk" style="border:1px solid #e0525230"><span class="rsev" style="background:#e0525220;color:#e05252">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Valuation compressione</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">P/E &gt;127x. Con Fed hawkish, anche piccola decelerazione causa drawdown severo.</div></div></div>
+<div class="risk" style="border:1px solid #e0525230"><span class="rsev" style="background:#e0525220;color:#e05252">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Europa: NHS+Francia+Svizzera</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Data-sovereignty &egrave; un trend. 21% dei ricavi a rischio.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio-Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Insider selling $422M</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Karp e Sankar vendono a $140-170: segnale di sopravvalutazione percepita.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Competizione hyperscaler</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Azure, AWS, Google offrono capacit&agrave; simili con GTM pi&ugrave; efficiente.</div></div></div>
+<div class="risk" style="border:1px solid #f5a62330"><span class="rsev" style="background:#f5a62320;color:#f5a623">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Scende su buone notizie</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">De-rating tecnico difficile da fermare finch&eacute; non trova equilibrio.</div></div></div>
+</div>
+<div class="sec" id="x10"><div class="p-tag">Equity Narrative Analysis &middot; PLTR</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">Il quarter cambia la narrativa? S&igrave;, ma non come atteso</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Miglior quarter della storia, mercato a nuovi minimi. La narrativa &egrave; passata da &ldquo;quanto cresce?&rdquo; a &ldquo;quanto si paga?&rdquo;. Tre catalizzatori: Q2 conferma US Commercial, NHS si risolve, insider selling si ferma. Senza almeno due, il rerating continua.</p></div>
+<div class="g2p"><div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>US Commercial +133%</li><li>GAAP profit, FCF 57%</li><li>Rule of 40: 145%</li><li>Cash $8B, no debito</li><li>NGC2 + Zeta</li></ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>P/E &gt;127x</li><li>Insider selling $422M</li><li>NHS+Francia+Svizzera</li><li>Scende su buone notizie</li><li>1.007 clienti</li></ul></div></div>
+<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div><p style="color:#9ca3af;font-size:14px;line-height:1.8">Probabilmente la miglior combinazione crescita+profittabilit&agrave; nel software nel 2026. A $112 dopo -40%, il risk/reward &egrave; migliore di 6 mesi fa. Ma il multiplo resta il pi&ugrave; alto del settore. Il Q2 del <strong style="color:#e8eaf0">3 agosto 2026</strong> &egrave; il momento della verit&agrave;.</p>
+<div class="pills"><span class="pill" style="background:#00c89615;border:1px solid #00c89640;color:#00c896">Bull $220-255</span><span class="pill" style="background:#f5a62315;border:1px solid #f5a62340;color:#f5a623">Base $150-185</span><span class="pill" style="background:#e0525215;border:1px solid #e0525240;color:#e05252">Bear $55-90</span><span class="pill" style="background:#7c3aed15;border:1px solid #7c3aed40;color:#7c3aed">Oggi ~$112</span></div></div>
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 27 giugno 2026. Non &egrave; consulenza finanziaria.</div></div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  function byId(id){ return document.getElementById(id); }
+  var bs = byId("bs"), bp = byId("bp");
+  var vs = byId("view-simple"), vp = byId("view-pro");
+
+  function goSimple(e){
+    if(e){ e.preventDefault(); }
+    vs.style.display = "block";
+    vp.className = "";
+    bs.className = "btn btn-on";
+    bp.className = "btn btn-off";
+  }
+  function goPro(e){
+    if(e){ e.preventDefault(); }
+    vs.style.display = "none";
+    vp.className = "show";
+    bs.className = "btn btn-off";
+    bp.className = "btn btn-on";
+  }
+
+  // Attach with both click and touchend for iOS Safari reliability
+  bs.addEventListener("click", goSimple, false);
+  bp.addEventListener("click", goPro, false);
+  bs.addEventListener("touchend", goSimple, false);
+  bp.addEventListener("touchend", goPro, false);
+
+  function makeSecHandler(){
+    return function(e){
+      if(e){ e.preventDefault(); }
+      var n = this.getAttribute("data-sec");
+      var i, allsec = document.getElementsByClassName("sec");
+      for(i=0;i<allsec.length;i++){ allsec[i].className = "sec"; }
+      var links = vp.getElementsByTagName("a");
+      for(i=0;i<links.length;i++){
+        if(links[i].getAttribute("data-sec") !== null){ links[i].className = ""; }
+      }
+      byId("x"+n).className = "sec on";
+      this.className = "on";
+    };
+  }
+
+  var slinks = vp.getElementsByTagName("a");
+  for(var k=0;k<slinks.length;k++){
+    if(slinks[k].getAttribute("data-sec") !== null){
+      var h = makeSecHandler();
+      slinks[k].addEventListener("click", h, false);
+      slinks[k].addEventListener("touchend", h, false);
+    }
+  }
+})();
+</script>
+</body></html>

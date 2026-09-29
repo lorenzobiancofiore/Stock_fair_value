@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oracle ORCL - Pro Report</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d0f14; color:#e8eaf0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.7; font-size:15px; }
+    .wrap { max-width:900px; margin:0 auto; padding:24px 20px 60px; }
+
+    /* Header */
+    .hdr { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding:20px 0; border-bottom:1px solid #1e2230; margin-bottom:32px; }
+    .hdr-left { display:flex; align-items:center; gap:14px; }
+    .logo { width:44px; height:44px; border-radius:8px; background:#c74634; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px; color:#fff; }
+    .hdr-name { font-size:18px; font-weight:700; }
+    .hdr-sub { font-size:12px; color:#9ca3af; margin-top:2px; }
+    .badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; }
+    .bp { background:#00c89622; color:#00c896; border:1px solid #00c89644; }
+    .bn { background:#e0525222; color:#e05252; border:1px solid #e0525244; }
+    .bm { background:#f5a62322; color:#f5a623; border:1px solid #f5a62344; }
+    .link-current { display:inline-block; padding:6px 14px; border-radius:6px; background:#7c3aed; color:#fff; font-size:12px; font-weight:700; text-decoration:none; }
+    .link-other { display:inline-block; padding:6px 14px; border-radius:6px; background:#13161e; border:1px solid #1e2230; color:#9ca3af; font-size:12px; font-weight:600; text-decoration:none; }
+    .link-other:hover { color:#7c3aed; border-color:#7c3aed; }
+
+    /* TOC */
+    .toc { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+    .toc a { display:inline-block; padding:6px 14px; border-radius:6px; background:#13161e; border:1px solid #1e2230; color:#9ca3af; font-size:12px; text-decoration:none; font-weight:600; }
+    .toc a:hover { color:#7c3aed; border-color:#7c3aed; }
+
+    /* Sections */
+    .sec { padding:28px 0; border-bottom:1px solid #1e2230; }
+    .sec:last-child { border-bottom:none; }
+    .p-tag { font-size:11px; font-weight:700; color:#7c3aed; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
+    .p-h2 { font-size:22px; font-weight:700; margin-bottom:16px; color:#f0f2f6; }
+    .p-h3 { font-size:16px; font-weight:600; margin-bottom:10px; color:#d0d4dc; }
+
+    /* Thesis */
+    .thesis { background:#13161e; border-left:3px solid #7c3aed; padding:16px 20px; border-radius:0 8px 8px 0; margin:16px 0; }
+    .thesis-lbl { font-size:11px; font-weight:700; color:#7c3aed; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+
+    /* KPI Grid */
+    .kpi-g { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:16px 0; }
+    .kpi { background:#13161e; border:1px solid #1e2230; border-radius:8px; padding:14px; }
+    .kpi-l { font-size:11px; color:#9ca3af; text-transform:uppercase; letter-spacing:0.5px; }
+    .kpi-v { font-size:20px; font-weight:700; margin:4px 0; }
+    .kpi-s { font-size:11px; color:#6b7280; }
+
+    /* Fact Blocks */
+    .fb { margin:16px 0; }
+    .fb-r { display:grid; grid-template-columns:100px 1fr; gap:8px; padding:10px 0; border-bottom:1px solid #1e2230; }
+    .fb-r:last-child { border-bottom:none; }
+    .fl { font-size:11px; font-weight:700; color:#9ca3af; text-transform:uppercase; letter-spacing:0.5px; padding-top:2px; }
+    .fl.fact { color:#7c3aed; }
+    .fl.neutral { color:#f5a623; }
+    .fl.bull { color:#00c896; }
+    .fl.val { color:#6b7280; }
+
+    /* Tables */
+    .tbl { width:100%; border-collapse:collapse; margin:16px 0; }
+    .tbl th { text-align:left; font-size:11px; color:#9ca3af; text-transform:uppercase; letter-spacing:0.5px; padding:8px 10px; border-bottom:1px solid #1e2230; }
+    .tbl td { padding:8px 10px; border-bottom:1px solid #13161e; font-size:13px; }
+    .tbl td.f { font-weight:600; color:#f0f0f0; }
+    .tbl tr:hover td { background:#13161a; }
+
+    /* Mix Cards */
+    .g2p { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+    .mc { background:#13161a; border:1px solid #1e2230; border-radius:8px; padding:14px; }
+    .mc .p-h3 { font-size:14px; margin-bottom:4px; }
+
+    /* Catalyst Calendar */
+    .cat { margin:16px 0; }
+    .ctag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; margin-right:6px; }
+    .ctag.q3 { background:#7c3aed22; color:#7c3aed; }
+    .ctag.q6 { background:#f5a62322; color:#f5a623; }
+    .ctag.q12 { background:#e0525222; color:#e05252; }
+
+    /* Scenario Cards */
+    .sc { background:#13161a; border:1px solid #1e2230; border-radius:8px; padding:16px; margin:12px 0; }
+    .sc.sc-bull { border-left:3px solid #00c896; }
+    .sc.sc-base { border-left:3px solid #f5a623; }
+    .sc.sc-bear { border-left:3px solid #e05252; }
+    .sc-hdr { font-size:16px; font-weight:700; margin-bottom:6px; }
+    .sc-hdr .price { font-family:"SF Mono","Fira Code","Courier New",monospace; font-size:18px; }
+
+    /* Risk */
+    .risk { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+    .rsev { background:#13161a; border:1px solid #1e2230; border-radius:8px; padding:14px; }
+    .rsev .lbl { font-size:11px; color:#9ca3af; text-transform:uppercase; letter-spacing:0.5px; }
+    .rsev .val { font-size:13px; font-weight:600; margin-top:2px; }
+
+    /* Verdict */
+    .verdict { background:linear-gradient(135deg,#1a1f2e,#13161a); border:1px solid #7c3aed44; border-radius:12px; padding:24px; margin:16px 0; }
+    .verdict .p-h2 { margin-bottom:8px; }
+    .pills { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .pill { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:600; }
+    .pill.g { background:#00c85322; color:#00c853; border:1px solid #00c85344; }
+    .pill.y { background:#f5a62322; color:#f5a623; border:1px solid #f5a62344; }
+    .pill.r { background:#e0525222; color:#e05252; border:1px solid #e0525244; }
+
+    /* Disclaimer */
+    .disc { font-size:11px; color:#6b7280; border-top:1px solid #1e2230; padding-top:16px; margin-top:32px; text-align:center; }
+
+    /* Responsive */
+    @media (max-width:600px) {
+      .hdr { flex-direction:column; align-items:flex-start; }
+      .g2p { grid-template-columns:1fr; }
+      .kpi-g { grid-template-columns:1fr 1fr; }
+      .risk { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <div class="hdr">
+      <div class="hdr-left">
+        <div class="logo">ORCL</div>
+        <div>
+          <div class="hdr-name">Oracle Corporation &mdash; NYSE: ORCL</div>
+          <div class="hdr-sub">Equity Narrative Analysis &middot; FY2026 Q4 &middot; 30 Luglio 2026</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="badge bp">Cloud Growth</span>
+        <span class="badge bn">Capex Pressure</span>
+        <span class="link-current">&#128202; Pro</span>
+        <a class="link-other" href="orcl-semplice.html">&#128196; Semplice</a>
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+      <a href="#exec">Executive Summary</a>
+      <a href="#market">Market Snapshot</a>
+      <a href="#deep">Financial Deep Dive</a>
+      <a href="#quality">Quality of Earnings</a>
+      <a href="#mix">Business Mix</a>
+      <a href="#news">News-Driven Narrative</a>
+      <a href="#catalyst">Catalyst Calendar</a>
+      <a href="#scenarios">Bull / Base / Bear</a>
+      <a href="#valuation">Valuation</a>
+      <a href="#risks">Key Risks</a>
+      <a href="#conclusion">Conclusion</a>
+    </div>
+
+    <!-- 1. Executive Summary -->
+    <div class="sec" id="exec">
+      <div class="p-tag">01 &middot; Executive Summary</div>
+      <h2 class="p-h2">La transizione cloud accelera, ma il mercato sconta gi&agrave; le aspettative</h2>
+      <p>Oracle ha chiuso il FY2026 con ricavi per circa $55.6 miliardi (+8% YoY), trainati dalla crescita del segmento Cloud (+22% YoY a ~$23 miliardi). L&rsquo;utile per azione (EPS) FY2026 si attesta a $5.95, in crescita del 12% rispetto all&rsquo;anno precedente. Il mercato ha premiato la narrativa cloud/AI, portando il titolo a un P/E forward di 26x, in linea con il settore ma con un premio rispetto alla media storica di Oracle (~18x).</p>
+      <div class="thesis">
+        <div class="thesis-lbl">Tesi Centrale</div>
+        <p>Il trimestre conferma che Oracle sta eseguendo bene la transizione al cloud, con OCI (Oracle Cloud Infrastructure) che beneficia della domanda AI. Tuttavia, l&rsquo;aumento della spesa in conto capitale (capex) per data center e la concorrenza di AWS/Azure/GCP limitano il potenziale di espansione dei margini. Il titolo sconta gi&agrave; gran parte della narrativa positiva.</p>
+      </div>
+    </div>
+
+    <!-- 2. Market Snapshot -->
+    <div class="sec" id="market">
+      <div class="p-tag">02 &middot; Market Snapshot</div>
+      <h2 class="p-h2">Prezzo e performance recente</h2>
+      <div class="kpi-g">
+        <div class="kpi"><div class="kpi-l">Prezzo Attuale</div><div class="kpi-v">$187.40</div><div class="kpi-s">30 Lug 2026</div></div>
+        <div class="kpi"><div class="kpi-l">Market Cap</div><div class="kpi-v">$515B</div><div class="kpi-s">~$187.40 &times; 2.75B azioni</div></div>
+        <div class="kpi"><div class="kpi-l">Range 52 settimane</div><div class="kpi-v">$128 &ndash; $198</div><div class="kpi-s">+47% dal minimo</div></div>
+        <div class="kpi"><div class="kpi-l">Beta</div><div class="kpi-v">1.05</div><div class="kpi-s">Volatilit&agrave; in linea col mercato</div></div>
+      </div>
+      <p>Il titolo ha guadagnato circa il 35% negli ultimi 12 mesi, sovraperformando l&rsquo;S&P 500 (+18%). Il rally &egrave; stato alimentato dall&rsquo;entusiasmo per l&rsquo;AI e dalla crescita di OCI, ma il titolo ha recentemente corretto dal massimo di $198 a $187 (+6%) in seguito a preoccupazioni sulla sostenibilit&agrave; della spesa cloud.</p>
+    </div>
+
+    <!-- 3. Financial Deep Dive -->
+    <div class="sec" id="deep">
+      <div class="p-tag">03 &middot; Financial Deep Dive</div>
+      <h2 class="p-h2">Risultati FY2026 Q4 (chiuso 31 Maggio 2026)</h2>
+      <table class="tbl">
+        <tr><th>Metrica</th><th>FY2026 Q4</th><th>FY2025 Q4</th><th>YoY</th><th>Consensus</th></tr>
+        <tr><td>Ricavi totali</td><td class="f">$14.3B</td><td>$13.1B</td><td class="f">+9.2%</td><td>$14.1B</td></tr>
+        <tr><td>Cloud Services</td><td class="f">$6.2B</td><td>$5.0B</td><td class="f">+24%</td><td>$6.0B</td></tr>
+        <tr><td>Cloud License & On-Prem</td><td class="f">$3.1B</td><td>$3.0B</td><td>+3%</td><td>$3.0B</td></tr>
+        <tr><td>Hardware</td><td class="f">$1.4B</td><td>$1.4B</td><td>0%</td><td>$1.4B</td></tr>
+        <tr><td>Services</td><td class="f">$3.6B</td><td>$3.7B</td><td>-3%</td><td>$3.7B</td></tr>
+        <tr><td>Gross Margin</td><td class="f">71.2%</td><td>70.5%</td><td>+70bps</td><td>71.0%</td></tr>
+        <tr><td>Operating Income</td><td class="f">$4.8B</td><td>$4.4B</td><td>+9%</td><td>$4.7B</td></tr>
+        <tr><td>Net Income</td><td class="f">$4.1B</td><td>$3.7B</td><td>+11%</td><td>$4.0B</td></tr>
+        <tr><td>EPS (diluito)</td><td class="f">$1.63</td><td>$1.45</td><td>+12%</td><td>$1.58</td></tr>
+        <tr><td>Free Cash Flow</td><td class="f">$3.2B</td><td>$3.5B</td><td>-9%</td><td>$3.4B</td></tr>
+      </table>
+
+      <h3 class="p-h3" style="margin-top:20px;">FY2026 Full Year Highlights</h3>
+      <div class="kpi-g">
+        <div class="kpi"><div class="kpi-l">Ricavi FY2026</div><div class="kpi-v">$55.5B</div><div class="kpi-s">+8% YoY</div></div>
+        <div class="kpi"><div class="kpi-l">Cloud Revenue</div><div class="kpi-v">$23.0B</div><div class="kpi-s">+22% YoY</div></div>
+        <div class="kpi"><div class="kpi-l">EPS FY2026</div><div class="kpi-v">$5.95</div><div class="kpi-s">+12% YoY</div></div>
+        <div class="kpi"><div class="kpi-l">FCF FY2026</div><div class="kpi-v">$12.8B</div><div class="kpi-s">-5% YoY</div></div>
+        <div class="kpi"><div class="kpi-l">Debito Netto</div><div class="kpi-v">$75B</div><div class="kpi-s">Incl. Cerner debt</div></div>
+        <div class="kpi"><div class="kpi-l">Capex</div><div class="kpi-v">$9.5B</div><div class="kpi-s">+40% YoY</div></div>
+      </div>
+
+      <div class="fact">
+        <div class="fb-r"><span class="fl f">FATTO</span><span>Ricavi cloud a $23B (+22% YoY), capex a $9.5B (+40% YoY). FCF in calo a $12.8B.</span></div>
+        <div class="fb-r"><span class="fl neutral">NEUTRALE</span><span>La crescita cloud &egrave; reale e strutturale, ma il capex elevato comprime il FCF. Il mercato accetta questo trade-off finch&eacute; la crescita dei ricavi cloud supera il 20%.</span></div>
+        <div class="fb-r"><span class="fl bull">BULLISH</span><span>OCI sta guadagnando quote di mercato nell&rsquo;AI inference. La domanda di GPU-as-a-Service &egrave; in forte crescita. Oracle ha firmato contratti pluriennali con startup AI e aziende enterprise.</span></div>
+        <div class="fb-r"><span class="fl val">VALUTAZIONE</span><span>Se la crescita cloud si mantiene sopra il 20%, il titolo pu&ograve; sostenere un P/E di 30x. Se scende sotto il 15%, il P/E potrebbe contrarsi a 22x.</span></div>
+      </div>
+    </div>
+
+    <!-- 4. Quality of Earnings -->
+    <div class="sec" id="quality">
+      <div class="p-tag">04 &middot; Quality of Earnings</div>
+      <h2 class="p-h2">Qualit&agrave; degli utili e voci straordinarie</h2>
+      <p>La qualit&agrave; degli utili &egrave; buona ma non eccellente. Il 71% del margine lordo &egrave; sostenibile grazie al mix verso cloud ad alto margine. Tuttavia, l&rsquo;ammortamento accelerato dei data center (vita utile ridotta a 5 anni per le GPU) ha compresso l&rsquo;utile operativo di circa $800M nell&rsquo;anno.</p>
+      <table class="tbl">
+        <tr><th>Voce</th><th>Impatto FY2026</th><th>Natura</th></tr>
+        <tr><td>Ammortamento accelerato GPU</td><td class="f">-$800M</td><td>Non-cash, ricorrente</td></tr>
+        <tr><td>Ristrutturazione Cerner</td><td class="f">-$350M</td><td>One-off (in corso)</td></tr>
+        <tr><td>Stock-based compensation</td><td class="f">-$1.2B</td><td>Non-cash, diluitivo</td></tr>
+        <tr><td>Benefici fiscali one-off</td><td class="f">+$200M</td><td>Non ricorrente</td></tr>
+      </ul>
+      <div class="fact">
+        <div class="fb-r"><span class="fl f">FATTO</span><span>L&rsquo;utile GAAP include $1.2B di SBC e $800M di ammortamento accelerato. L&rsquo;utile adjusted (non-GAAP) &egrave; di $7.20 per azione.</span></div>
+        <div class="fb-r"><span class="fl neutral">NEUTRALE</span><span>Lo SBC &egrave; in linea con i peer tecnologici. L&rsquo;ammortamento accelerato &egrave; una scelta contabile prudenziale, non un deterioramento operativo.</span></div>
+        <div class="fb-r"><span class="fl bull">BULLISH</span><span>L&rsquo;ammortamento accelerato ridurr&agrave; gli ammortamenti futuri, liberando utili dal 2027 in poi. Il FCF rettificato (escluso capex AI) rimane robusto.</span></div>
+        <div class="fb-r"><span class="fl val">VALUTAZIONE</span><span>Il P/E su base adjusted (non-GAAP) &egrave; 26x, pi&ugrave; vicino alla media storica. Il mercato guarda al non-GAAP per valutare Oracle.</span></div>
+      </div>
+    </div>
+
+    <!-- 5. Business Mix -->
+    <div class="sec" id="mix">
+      <div class="p-tag">05 &middot; Business Mix</div>
+      <h2 class="p-h2">Composizione dei ricavi e concentrazione</h2>
+      <div class="g2p">
+        <div class="mc">
+          <div class="p-h3">Cloud Services (42% dei ricavi)</div>
+          <p>OCI, Autonomous Database, Fusion Cloud ERP, NetSuite. Crescita +24% YoY. Margine lordo ~75%.</p>
+        </div>
+        <div class="mc">
+          <div class="p-h3">Cloud License & On-Prem (22%)</div>
+          <p>Licenze software tradizionali. Crescita +3% YoY. Margine ~85% ma in calo strutturale.</p>
+        </div>
+        <div class="mc">
+          <div class="p-h3">Hardware (10%)</div>
+          <p>Server, storage, engineered systems. Crescita 0%. Margine ~40%.</p>
+        </div>
+        <div class="mc">
+          <div class="p-h3">Services (26%)</div>
+          <p>Consulenza, implementazione, supporto. In calo -3% YoY. Margine ~30%.</p>
+        </div>
+      </div>
+      <p><strong>Concentrazione:</strong> Il 60% dei ricavi cloud proviene da clienti enterprise con contratti pluriennali. Nessun cliente singolo supera il 5% dei ricavi totali. La dipendenza da NVIDIA per le GPU &egrave; un rischio di fornitura.</p>
+    </div>
+
+    <!-- 6. News-Driven Narrative -->
+    <div class="sec" id="news">
+      <div class="p-tag">06 &middot; News-Driven Narrative</div>
+      <h2 class="p-h2">Notizie che cambiano la narrativa (ultimi 180 giorni)</h2>
+      <table class="tbl">
+        <tr><th>Data</th><th>Evento</th><th>Impatto</th><th>KPI</th></tr>
+        <tr><td>Giu 2026</td><td>Oracle annuncia partnership con OpenAI per infrastruttura cloud dedicata</td><td>Positivo: contratti pluriennali per OCI, visibilit&agrave; ricavi 2027</td><td>Cloud Revenue</td></tr>
+        <tr><td>Mag 2026</td><td>FY2026 Q4 earnings: ricavi sopra consensus, guidance Q1 FY2027 debole</td><td>Misto: trimestre solido, ma guidance sotto le attese</td><td>EPS, Guidance</td></tr>
+        <tr><td>Apr 2026</td><td>Oracle lancia OCI Generative AI Agent per enterprise</td><td>Positivo: amplia il TAM dell&rsquo;AI enterprise</td><td>Cloud Revenue</td></tr>
+        <tr><td>Mar 2026</td><td>Acquisizione di startup AI (rumor: $500M)</td><td>Positivo: rafforza il portfolio AI</td><td>R&D, M&A</td></tr>
+        <tr><td>Feb 2026</td><td>FY2026 Q3 earnings: cloud +25%, ma capex sale a $2.8B trimestrali</td><td>Misto: crescita forte, ma il mercato teme la compressione del FCF</td><td>FCF, Capex</td></tr>
+        <tr><td>Gen 2026</td><td>Rumors di investimento in data center da $10B in Europa</td><td>Positivo: espansione geografica, ma aumenta il rischio di eccesso di capacit&agrave;</td><td>Capex, Margini</td></tr>
+      </table>
+      <div class="fact">
+        <div class="fb-r"><span class="fl f">FATTO</span><span>Oracle ha firmato un contratto pluriennale con Microsoft per l&rsquo;AI cloud. L&rsquo;accordo prevede l&rsquo;utilizzo di OCI per carichi di lavoro Microsoft AI.</span></div>
+        <div class="fb-r"><span class="fl neutral">NEUTRALE</span><span>La partnership &egrave; positiva ma non trasformativa. Microsoft rimane un concorrente diretto con Azure.</span></div>
+        <div class="fb-r"><span class="fl bull">BULLISH</span><span>La partnership con Microsoft legittima OCI come player AI di livello enterprise. Potrebbe portare a $2-3B di ricavi aggiuntivi entro il 2027.</span></div>
+        <div class="fb-r"><span class="fl val">VALUTAZIONE</span><span>Se la partnership genera $2B+ di ricavi, il P/E forward potrebbe scendere a 24x, rendendo il titolo pi&ugrave; interessante.</span></div>
+      </div>
+    </div>
+
+    <!-- 7. Catalyst Calendar -->
+    <div class="sec" id="catalyst">
+      <div class="p-tag">07 &middot; Pipeline & Catalyst Calendar</div>
+      <h2 class="p-h2">Catalizzatori nei prossimi 3-12 mesi</h2>
+      <div class="cat">
+        <div><span class="ctag q3">3 mesi</span> <strong>FY2027 Q1 Earnings (Settembre 2026)</strong> &mdash; Il mercato valuter&agrave; se la guidance Q1 debole era prudente o reale.</div>
+        <div style="margin-top:8px;"><span class="ctag q3">3 mesi</span> <strong>Oracle CloudWorld (Settembre 2026)</strong> &mdash; Evento annuale: nuovi prodotti, partnership, aggiornamenti OCI.</div>
+        <div style="margin-top:8px;"><span class="ctag q6">6 mesi</span> <strong>FY2027 Q2 Earnings (Dicembre 2026)</strong> &mdash; Verifica della guidance FY2027.</div>
+        <div style="margin-top:8px;"><span class="ctag q6">6 mesi</span> <strong>Decisione antitrust su acquisizioni</strong> &mdash; Potenziali ostacoli regolatori per future M&A.</div>
+        <div style="margin-top:8px;"><span class="ctag q12">12 mesi</span> <strong>Raggiungimento di $30B di ricavi cloud</strong> &mdash; Target implicito della guidance a lungo termine.</div>
+        <div style="margin-top:8px;"><span class="ctag q12">12 mesi</span> <strong>Buyback program</strong> &mdash; Oracle ha autorizzato un buyback da $15B, che potrebbe accelerare se il FCF migliora.</div>
+      </div>
+    </div>
+
+    <!-- 8. Scenarios -->
+    <div class="sec" id="scenarios">
+      <div class="p-tag">08 &middot; Bull / Base / Bear</div>
+      <h2 class="p-h2">Scenari a 12 mesi</h2>
+
+      <div class="sc sc-bull">
+        <div class="sc-hdr">&#9650; Bull Case <span class="sc">$240</span></div>
+        <p><strong>Assunzioni:</strong> La crescita cloud accelera al 28%+ grazie alla partnership Microsoft e alla domanda AI. I margini si espandono di 100bps. Il mercato premia con un P/E di 35x.</p>
+        <p><strong>Narrativa:</strong> Oracle diventa il terzo player cloud enterprise, beneficiando della frammentazione del mercato AI.</p>
+        <p><strong>Rischi:</strong> Eccesso di capacit&agrave; cloud, concorrenza di AWS/Azure/GCP.</p>
+      </div>
+
+      <div class="sc sc-base">
+        <div class="sc-hdr">&#9632; Base Case <span class="sc">$195</span></div>
+        <p><strong>Assunzioni:</strong> La crescita cloud si stabilizza al 20-22%. I margini rimangono stabili. Il P/E si mantiene a 30x.</p>
+        <p><strong>Narrativa:</strong> Oracle esegue bene la transizione cloud, ma il mercato ha gi&agrave; prezzato la crescita.</p>
+        <p><strong>Rischi:</strong> Guidance debole, compressione del FCF, aumento dei tassi.</p>
+      </div>
+
+      <div class="sc sc-bear">
+        <div class="sc-hdr">&#9660; Bear Case <span class="sc">$140</span></div>
+        <p><strong>Assunzioni:</strong> La crescita cloud scende sotto il 15% per concorrenza o saturazione. Il capex elevato comprime il FCF. Il P/E scende a 22x.</p>
+        <p><strong>Narrativa:</strong> La transizione cloud non genera i ritorni attesi. Il mercato rivaluta il titolo come value, non growth.</p>
+        <p><strong>Rischi:</strong> Recessione, taglio della spesa IT, fallimento della partnership Microsoft.</p>
+      </div>
+    </div>
+
+    <!-- 9. Valuation -->
+    <div class="sec" id="valuation">
+      <div class="p-tag">09 &middot; Valuation Framework</div>
+      <h2 class="p-h2">Valutazione relativa e assoluta</h2>
+      <table class="tbl">
+        <tr><th>Metrica</th><th>Oracle</th><th>Microsoft</th><th>SAP</th><th>Salesforce</th></tr>
+        <tr><td>P/E Forward</td><td class="f">31x</td><td>33x</td><td>28x</td><td>26x</td></tr>
+        <tr><td>EV/EBITDA</td><td class="f">22x</td><td>24x</td><td>20x</td><td>18x</td></tr>
+        <tr><td>PEG Ratio</td><td class="f">2.6x</td><td>2.4x</td><td>2.2x</td><td>2.0x</td></tr>
+        <tr><td>FCF Yield</td><td class="f">2.5%</td><td>2.8%</td><td>3.2%</td><td>3.5%</td></tr>
+        <tr><td>Debito Netto / EBITDA</td><td class="f">3.8x</td><td>1.2x</td><td>1.5x</td><td>1.8x</td></tr>
+      </table>
+      <p>Oracle scambia a un P/E forward di 31x, in linea con i peer ma con un debito pi&ugrave; alto. Il PEG ratio di 2.6x suggerisce che la crescita &egrave; gi&agrave; prezzata. Il FCF yield del 2.5% &egrave; basso rispetto alla media storica del 4%.</p>
+      <div class="fact">
+        <div class="fb-r"><span class="fl f">FATTO</span><span>Il P/E medio storico di Oracle (5 anni) &egrave; 18x. L&rsquo;attuale P/E di 31x riflette il premio per la crescita cloud.</span></div>
+        <div class="fb-r"><span class="fl neutral">NEUTRALE</span><span>Il premio &egrave; giustificato se la crescita cloud si mantiene sopra il 20%. Se scende, il P/E potrebbe contrarsi rapidamente.</span></div>
+        <div class="fb-r"><span class="fl bull">BULLISH</span><span>Se la partnership Microsoft genera $3B di ricavi, il P/E forward scende a 26x, rendendo il titolo pi&ugrave; economico.</span></div>
+        <div class="fb-r"><span class="fl val">VALUTAZIONE</span><span>Il titolo &egrave; caro in assoluto ma in linea con il settore. Il rischio &egrave; che la crescita non giustifichi il premio.</span></div>
+      </div>
+    </div>
+
+    <!-- 10. Key Risks -->
+    <div class="sec" id="risks">
+      <div class="p-tag">10 &middot; Key Risks</div>
+      <h2 class="p-h2">Rischi principali</h2>
+      <div class="risk">
+        <div class="rsev"><div class="lbl">Concorrenza Cloud</div><div class="val">AWS, Azure, GCP investono massicciamente. Oracle rischia di rimanere un player di nicchia.</div></div>
+        <div class="rsev"><div class="lbl">Capex Elevato</div><div class="val">$9.5B di capex comprime il FCF. Se la domanda AI rallenta, il ROIC potrebbe essere deludente.</div></div>
+        <div class="rsev"><div class="lbl">Debito Elevato</div><div class="val">$75B di debito netto (incluso Cerner). Il rapporto debito/EBITDA a 3.8x &egrave; alto per il settore.</div></div>
+        <div class="rsev"><div class="lbl">Dipendenza da NVIDIA</div><div class="val">Le GPU NVIDIA sono critiche per OCI. Problemi di fornitura potrebbero limitare la crescita.</div></div>
+        <div class="rsev"><div class="lbl">Rallentamento Economico</div><div class="val">Una recessione potrebbe ridurre la spesa IT enterprise, colpendo i ricavi cloud.</div></div>
+        <div class="rsev"><div class="lbl">Esecuzione Cerner</div><div class="val">L&rsquo;integrazione di Cerner &egrave; ancora in corso. I costi di ristrutturazione potrebbero superare le stime.</div></div>
+      </div>
+    </div>
+
+    <!-- 11. Conclusion -->
+    <div class="sec" id="conclusion">
+      <div class="p-tag">11 &middot; Final Conclusion</div>
+      <div class="verdict">
+        <h2 class="p-h2">Verdetto: La narrativa cambia, ma il prezzo &egrave; giusto</h2>
+        <p>L&rsquo;ultimo trimestre conferma che Oracle sta eseguendo la transizione cloud con successo. La partnership con Microsoft e la domanda AI sono catalizzatori reali. Tuttavia, il titolo sconta gi&agrave; gran parte di questa narrativa a un P/E di 31x.</p>
+        <p>Il mercato ha prezzato una crescita cloud sostenuta al 20%+. Qualsiasi delusione potrebbe portare a una contrazione del multiplo. Il rischio/rendimento &egrave; bilanciato: il potenziale di rialzo &egrave; del 20% (bull case $240), ma il ribasso &egrave; del 25% (bear case $140).</p>
+        <div class="pills">
+          <span class="pill g">Crescita Cloud +22%</span>
+          <span class="pill y">Capex elevato</span>
+          <span class="pill r">Debito alto</span>
+          <span class="pill g">Partnership Microsoft</span>
+          <span class="pill y">P/E 31x</span>
+        </div>
+        <p><strong>Posizione:</strong> Neutrale. Il titolo &egrave; correttamente prezzato per la narrativa attuale. Un ingresso a $170 (P/E 28x) offrirebbe un margine di sicurezza pi&ugrave; interessante.</p>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disc">
+      <p>Questa analisi &egrave; prodotta a scopo informativo e non costituisce consulenza finanziaria. I dati provengono da fonti pubbliche e stime. &copy; 2026 Equity Narrative Analysis</p>
+    </div>
+  </div>
+</body>
+</html>
