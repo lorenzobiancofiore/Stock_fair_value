@@ -180,7 +180,7 @@
         <p class="subtitle">Indice delle analisi e report di ricerca</p>
       </div>
       <div class="status-badge" id="status">
-        ● Scansione cartelle in corso...
+        ● Caricamento delle analisi...
       </div>
     </div>
 
@@ -193,93 +193,43 @@
 
   <main>
     <div class="grid" id="company-grid">
-      <div class="loading">Caricamento delle analisi...</div>
+      <div class="loading">Caricamento in corso...</div>
     </div>
   </main>
 </div>
 
 <script>
-  // Mappa delle cartelle esatte presenti nella tua struttura di file
-  const STOCKS = [
-    { name: 'Applied Materials', folder: 'Amat', ticker: 'AMAT' },
-    { name: 'Broadcom', folder: 'AVGO', ticker: 'AVGO' },
-    { name: 'Buzzi Unicem', folder: 'buzzi_analysis', ticker: 'BZU' },
-    { name: 'CrowdStrike', folder: 'Crowdstrike', ticker: 'CRWD' },
-    { name: 'LVMH', folder: 'lvmh_analysis', ticker: 'MC' },
-    { name: 'Netflix', folder: 'NFLX', ticker: 'NFLX' },
-    { name: 'Oracle', folder: 'ORCL', ticker: 'ORCL' },
-    { name: 'Palo Alto Networks', folder: 'Palo alto', ticker: 'PANW' },
-    { name: 'Palantir', folder: 'PLTR', ticker: 'PLTR' },
-    { name: 'Vistra', folder: 'Vistra', ticker: 'VST' },
-    { name: 'Webuild', folder: 'Webuild', ticker: 'WBD' }
-  ];
-
-  // Nomi di file possibili all'interno di ogni cartella
-  const SIMPLE_FILES = ['semplice.html', 'index-semplice.html', 'report-semplice.html'];
-  const PRO_FILES = ['pro.html', 'index-pro.html', 'report-pro.html', 'index.html'];
-
-  async function checkFile(path) {
-    try {
-      const res = await fetch(path, { method: 'HEAD' });
-      return res.ok;
-    } catch {
-      return false;
-    }
-  }
-
-  async function findFirstExistingFile(folder, candidates) {
-    for (const file of candidates) {
-      const fullPath = `./${folder}/${file}`;
-      if (await checkFile(fullPath)) {
-        return fullPath;
-      }
-    }
-    return null;
-  }
-
-  async function scanFolders() {
-    const grid = document.getElementById('company-grid');
+  async function loadStocks() {
     const status = document.getElementById('status');
-    
-    const results = [];
 
-    for (const stock of STOCKS) {
-      // Cerca i file dentro la sottocartella specifica
-      const simplePath = await findFirstExistingFile(stock.folder, [
-        `${stock.folder.toLowerCase()}-semplice.html`,
-        'semplice.html',
-        'report-semplice.html'
-      ]);
+    try {
+      // Prova a caricare il manifest dinamico generato dallo script Node su Vercel
+      const res = await fetch('./stocks.json');
+      if (!res.ok) throw new Error('File stocks.json non trovato');
+      const stocks = await res.json();
 
-      const proPath = await findFirstExistingFile(stock.folder, [
-        `${stock.folder.toLowerCase()}-pro.html`,
-        'pro.html',
-        'index.html',
-        'report-pro.html'
-      ]);
-
-      if (simplePath || proPath) {
-        results.push({ ...stock, simplePath, proPath });
-      }
+      renderGrid(stocks);
+      status.textContent = `● ${stocks.length} analisi disponibili`;
+    } catch (err) {
+      console.warn('Impossibile caricare stocks.json, uso configurazione di fallback.', err);
+      // Fallback per test o sviluppo locale senza manifest compilato
+      renderFallback();
     }
-
-    status.textContent = `● ${results.length} analisi disponibili`;
-    renderGrid(results);
   }
 
   function renderGrid(list) {
     const grid = document.getElementById('company-grid');
     grid.innerHTML = '';
 
-    if (list.length === 0) {
-      grid.innerHTML = '<div class="empty">Nessun report trovato nelle cartelle indicate.</div>';
+    if (!list || list.length === 0) {
+      grid.innerHTML = '<div class="empty">Nessuna analisi disponibile al momento.</div>';
       return;
     }
 
     list.forEach(item => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.setAttribute('data-search', `${item.name.toLowerCase()} ${item.ticker.toLowerCase()} ${item.folder.toLowerCase()}`);
+      card.setAttribute('data-search', `${item.name.toLowerCase()} ${item.ticker.toLowerCase()} ${item.folder ? item.folder.toLowerCase() : ''}`);
 
       card.innerHTML = `
         <div class="card-top">
@@ -300,6 +250,25 @@
     });
   }
 
+  function renderFallback() {
+    const fallbackList = [
+      { name: 'Applied Materials', ticker: 'AMAT', simplePath: './amat/amat-semplice.html', proPath: './amat/amat-pro.html' },
+      { name: 'Broadcom', ticker: 'AVGO', simplePath: './AVGO/avgo-semplice.html', proPath: './AVGO/avgo-pro.html' },
+      { name: 'Buzzi Unicem', ticker: 'BZU', simplePath: './bzu/bzu-semplice.html', proPath: './bzu/bzu-pro.html' },
+      { name: 'CrowdStrike', ticker: 'CRWD', simplePath: './crwd/crwd-semplice.html', proPath: './crwd/crwd-pro.html' },
+      { name: 'LVMH', ticker: 'MC', simplePath: './lvmh_analysis/lvmh-semplice.html', proPath: './lvmh_analysis/lvmh-pro.html' },
+      { name: 'Netflix', ticker: 'NFLX', simplePath: './NFLX/nflx-semplice.html', proPath: './NFLX/nflx-pro.html' },
+      { name: 'Oracle', ticker: 'ORCL', simplePath: './ORCL/orcl-semplice.html', proPath: './ORCL/orcl-pro.html' },
+      { name: 'Palo Alto Networks', ticker: 'PANW', simplePath: './Palo alto/paloalto-semplice.html', proPath: './Palo alto/paloalto-pro.html' },
+      { name: 'Palantir', ticker: 'PLTR', simplePath: './PLTR/pltr-semplice.html', proPath: './PLTR/pltr-pro.html' },
+      { name: 'Vistra', ticker: 'VST', simplePath: './Vistra/vistra-semplice.html', proPath: './Vistra/vistra-pro.html' },
+      { name: 'Webuild', ticker: 'WBD', simplePath: './Webuild/webuild-semplice.html', proPath: './Webuild/webuild-pro.html' }
+    ];
+
+    renderGrid(fallbackList);
+    document.getElementById('status').textContent = `● ${fallbackList.length} analisi disponibili (Fallback)`;
+  }
+
   function filterCards() {
     const query = document.getElementById('search').value.toLowerCase();
     const cards = document.querySelectorAll('.card');
@@ -310,7 +279,7 @@
     });
   }
 
-  scanFolders();
+  loadStocks();
 </script>
 
 </body>
