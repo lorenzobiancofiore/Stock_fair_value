@@ -1,0 +1,137 @@
+[
+  {
+    "name": "aapl",
+    "ticker": "AAPL",
+    "folder": "aapl",
+    "simplePath": "./aapl/aapl-semplice.html",
+    "proPath": "./aapl/aapl-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "1 ottobre 2026"
+  },
+  {
+    "name": "AMAT",
+    "ticker": "AMAT",
+    "folder": "AMAT",
+    "simplePath": "./AMAT/amat-semplice.html",
+    "proPath": "./AMAT/amat-pro.html",
+    "quarter": "Q4 FY2026",
+    "analysisDate": "1 ottobre 2026"
+  },
+  {
+    "name": "avgo",
+    "ticker": "AVGO",
+    "folder": "avgo",
+    "simplePath": "./avgo/avgo-semplice.html",
+    "proPath": "./avgo/avgo-pro.html",
+    "quarter": "Q3 FY2026",
+    "analysisDate": "25 settembre 2026"
+  },
+  {
+    "name": "bzu",
+    "ticker": "BZU",
+    "folder": "bzu",
+    "simplePath": "./bzu/bzu-semplice.html",
+    "proPath": "./bzu/bzu-pro.html",
+    "quarter": null,
+    "analysisDate": "31 Dic 2025"
+  },
+  {
+    "name": "crwd",
+    "ticker": "CRWD",
+    "folder": "crwd",
+    "simplePath": "./crwd/crwd-semplice.html",
+    "proPath": "./crwd/crwd-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "4 agosto 2026"
+  },
+  {
+    "name": "crwv",
+    "ticker": "CRWV",
+    "folder": "crwv",
+    "simplePath": "./crwv/crwv-semplice.html",
+    "proPath": "./crwv/crwv-pro.html",
+    "quarter": "Q4 FY2026",
+    "analysisDate": "1 ottobre 2026"
+  },
+  {
+    "name": "mc",
+    "ticker": "MC",
+    "folder": "mc",
+    "simplePath": "./mc/mc-semplice.html",
+    "proPath": "./mc/mc-pro.html",
+    "quarter": null,
+    "analysisDate": "N/D"
+  },
+  {
+    "name": "meta",
+    "ticker": "META",
+    "folder": "meta",
+    "simplePath": "./meta/meta-semplice.html",
+    "proPath": "./meta/meta-pro.html",
+    "quarter": null,
+    "analysisDate": "31 luglio 2026"
+  },
+  {
+    "name": "msft",
+    "ticker": "MSFT",
+    "folder": "msft",
+    "simplePath": "./msft/msft-semplice.html",
+    "proPath": "./msft/msft-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "1 ottobre 2026"
+  },
+  {
+    "name": "NFLX",
+    "ticker": "NFLX",
+    "folder": "NFLX",
+    "simplePath": "./NFLX/nflx-semplice.html",
+    "proPath": "./NFLX/nflx-pro.html",
+    "quarter": null,
+    "analysisDate": "30 giugno 2026"
+  },
+  {
+    "name": "nvda",
+    "ticker": "NVDA",
+    "folder": "nvda",
+    "simplePath": "./nvda/nvda-semplice.html",
+    "proPath": "./nvda/nvda-pro.html",
+    "quarter": "Q4 FY2026",
+    "analysisDate": "1 ottobre 2026"
+  },
+  {
+    "name": "ORCL",
+    "ticker": "ORCL",
+    "folder": "ORCL",
+    "simplePath": "./ORCL/orcl-semplice.html",
+    "proPath": "./ORCL/orcl-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "30 luglio 2026"
+  },
+  {
+    "name": "panw",
+    "ticker": "PANW",
+    "folder": "panw",
+    "simplePath": "./panw/panw-semplice.html",
+    "proPath": "./panw/panw-pro.html",
+    "quarter": "Q3 FY2026",
+    "analysisDate": "4 agosto 2026"
+  },
+  {
+    "name": "vstr",
+    "ticker": "VSTR",
+    "folder": "vstr",
+    "simplePath": null,
+    "proPath": "./vstr/vst-pro.html",
+    "quarter": null,
+    "analysisDate": "30 giugno 2026"
+  },
+  {
+    "name": "Webuild",
+    "ticker": "WEBUILD",
+    "folder": "Webuild",
+    "simplePath": "./Webuild/webuild-semplice.html",
+    "proPath": "./Webuild/webuild-pro.html",
+    "quarter": null,
+    "analysisDate": "25 agosto 2026"
+  }
+]

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Platforms (META) - Pro Report</title>
+<style>
+  :root{
+    --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#0081fb;
+    --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+    --text:#e8eaf0; --sub:#9ca3af;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;}
+  .wrap{max-width:900px;margin:0 auto;padding:24px 20px 80px;}
+  .hdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+       border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:28px;}
+  .hdr-left{display:flex;align-items:center;gap:12px;}
+  .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+        display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;}
+  .hdr-name{font-weight:700;font-size:16px;}
+  .hdr-sub{font-size:12px;color:var(--sub);margin-top:2px;}
+  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;border:1px solid var(--border);}
+  .bp{color:var(--bull);border-color:rgba(0,200,150,.35);background:rgba(0,200,150,.08);}
+  .bn{color:var(--bear);border-color:rgba(224,82,82,.35);background:rgba(224,82,82,.08);}
+  .bm{color:var(--warn);border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.08);}
+  .link-current{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;
+        font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;}
+  .link-other{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);color:var(--sub);
+        font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;text-decoration:none;}
+  .link-other:hover{color:var(--accent);border-color:var(--accent);}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+  .toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:var(--card);
+        border:1px solid var(--border);color:var(--sub);font-size:12px;text-decoration:none;font-weight:600;}
+  .toc a:hover{color:var(--accent);border-color:var(--accent);}
+  .sec{padding:32px 0;border-bottom:1px solid var(--border);}
+  .sec:last-child{border-bottom:none;}
+  .p-tag{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+  .p-h2{font-size:21px;font-weight:800;margin:0 0 16px;}
+  .thesis{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);
+        border-radius:8px;padding:16px 18px;margin-bottom:20px;font-size:14.5px;}
+  .thesis-lbl{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;margin-bottom:6px;}
+  .kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0;}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
+  .kpi-l{font-size:11px;color:var(--sub);margin-bottom:4px;}
+  .kpi-v{font-size:20px;font-weight:800;font-family:"SF Mono",Consolas,monospace;}
+  .kpi-s{font-size:11.5px;margin-top:3px;font-weight:600;}
+  .up{color:var(--bull)} .down{color:var(--bear)} .flat{color:var(--sub)}
+  .fb{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:13.5px;}
+  .fb:last-child{border-bottom:none;}
+  .fl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding-top:2px;}
+  .fl-fact{color:var(--sub);} .fl-neu{color:#6ea8ff;} .fl-bull{color:var(--bull);} .fl-val{color:var(--warn);}
+  .tbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--border);}
+  th{color:var(--sub);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.02em;}
+  td.f{font-family:"SF Mono",Consolas,monospace;font-weight:700;}
+  .g2p{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  @media(max-width:640px){.g2p{grid-template-columns:1fr;}}
+  .mc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
+  .mc-t{font-weight:700;font-size:13px;margin-bottom:4px;}
+  .mc-v{font-family:"SF Mono",Consolas,monospace;font-size:17px;font-weight:800;color:var(--accent);}
+  .pcard{border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;}
+  .pcard-l{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+  .pcard-p{font-family:"SF Mono",Consolas,monospace;font-size:15px;font-weight:800;margin-top:8px;}
+  .pcard.bull{border-left:3px solid var(--bull);} .pcard.base{border-left:3px solid var(--accent);} .pcard.bear{border-left:3px solid var(--bear);}
+  .cat{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border);font-size:13.5px;align-items:flex-start;}
+  .cat:last-child{border-bottom:none;}
+  .ctag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:5px;white-space:nowrap;background:var(--card);border:1px solid var(--border);color:var(--sub);}
+  .risk{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border);font-size:13.5px;align-items:center;}
+  .risk:last-child{border-bottom:none;}
+  .rsev{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:5px;text-transform:uppercase;}
+  .rsev.h{background:rgba(224,82,82,.12);color:var(--bear);} .rsev.m{background:rgba(245,166,35,.12);color:var(--warn);} .rsev.l{background:rgba(0,200,150,.12);color:var(--bull);}
+  .verdict{background:linear-gradient(135deg,rgba(0,129,251,.10),rgba(124,58,237,.06));border:1px solid var(--border);
+        border-radius:10px;padding:20px;margin-top:10px;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .pill{font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--card);border:1px solid var(--border);}
+  .disc{font-size:11.5px;color:var(--sub);margin-top:40px;padding-top:16px;border-top:1px solid var(--border);}
+  .dv{height:1px;background:var(--border);margin:20px 0;}
+  p{font-size:14.5px;color:var(--text);}
+  .sub-note{font-size:12.5px;color:var(--sub);}
+</style>
+</head><body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo">META</div>
+      <div>
+        <div class="hdr-name">Meta Platforms, Inc. &mdash; NASDAQ: META</div>
+        <div class="hdr-sub">Equity Narrative Analysis &middot; Q2 2026 &middot; 31 luglio 2026</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="badge bp">Ricavi +28% YoY</span>
+      <span class="badge bn">EPS miss -14% vs consensus</span>
+      <span class="badge bn">FCF -91% YoY</span>
+      <span class="link-current">&#128202; Pro</span>
+      <a class="link-other" href="meta-semplice.html">&#128196; Semplice</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#exec">Executive Summary</a>
+    <a href="#market">Market Snapshot</a>
+    <a href="#financials">Financial Deep Dive</a>
+    <a href="#quality">Quality of Earnings</a>
+    <a href="#mix">Business Mix</a>
+    <a href="#news">News-Driven Narrative</a>
+    <a href="#catalysts">Catalyst Calendar</a>
+    <a href="#scenarios">Bull / Base / Bear</a>
+    <a href="#valuation">Valutazione</a>
+    <a href="#risks">Rischi Chiave</a>
+    <a href="#conclusion">Conclusione</a>
+  </div>
+
+  <!-- 01 EXECUTIVE SUMMARY -->
+  <div class="sec" id="exec">
+    <div class="p-tag">01 &middot; Sintesi</div>
+    <div class="p-h2">Executive Summary</div>
+    <div class="thesis">
+      <div class="thesis-lbl">Tesi centrale</div>
+      Il Q2 2026 non cambia la storia di fondo di Meta &mdash; la macchina pubblicitaria continua a crescere quasi al 30% &mdash;
+      ma cambia radicalmente la percezione del rischio di esecuzione sull'AI. Un EPS mancato di circa il 14%, un free cash flow
+      crollato del 91% e una terza revisione al rialzo della guidance sul capex nello stesso anno fiscale hanno spinto il mercato
+      a ripensare quanto valga oggi la promessa di "superintelligenza personale" di Zuckerberg. Il titolo ha reagito con l'undicesima
+      seduta consecutiva in calo, la striscia negativa più lunga della sua storia da società quotata.
+    </div>
+    <div class="kpi-g">
+      <div class="kpi"><div class="kpi-l">Ricavi Q2 2026</div><div class="kpi-v">$60,80 mld</div><div class="kpi-s up">+28% YoY</div></div>
+      <div class="kpi"><div class="kpi-l">EPS diluito</div><div class="kpi-v">$6,18</div><div class="kpi-s down">vs $7,14&ndash;7,19 stimati</div></div>
+      <div class="kpi"><div class="kpi-l">Free Cash Flow</div><div class="kpi-v">$0,78 mld</div><div class="kpi-s down">-91% YoY</div></div>
+      <div class="kpi"><div class="kpi-l">Capex FY26 guidance</div><div class="kpi-v">$130&ndash;145 mld</div><div class="kpi-s down">3&ordm; revisione al rialzo nel 2026</div></div>
+    </div>
+    <p>La domanda che l'intero report cerca di rispondere: la traiettoria pubblicitaria di Meta è ancora abbastanza forte da
+    finanziare la scommessa AI senza logorare il bilancio, o il mercato ha ragione a chiedere una pausa prima di premiare
+    ulteriore spesa?</p>
+  </div>
+
+  <!-- 02 MARKET SNAPSHOT -->
+  <div class="sec" id="market">
+    <div class="p-tag">02 &middot; Prezzo e posizionamento</div>
+    <div class="p-h2">Market Snapshot</div>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>Il titolo ha chiuso il 29 luglio 2026 a $585,61, poi è sceso di circa il 9&ndash;9,7% il 30 luglio dopo la pubblicazione dei risultati, portandosi in area $529&ndash;535. È l'11&sup a; seduta consecutiva in calo, per un ribasso cumulato di circa il 20% nella striscia, la più lunga della storia di Meta come società quotata (dal 2012).</div></div>
+    <div class="fb"><div class="fl fl-neu">Neutro</div><div>Il titolo è ora sotto tutte le principali medie mobili, con un YTD 2026 di circa -20% e un range 52 settimane che, prima di questa correzione, era $520,26&ndash;$796,25: il prezzo attuale è tornato a ridosso dei minimi dell'anno.</div></div>
+    <div class="fb"><div class="fl fl-bull">Rialzista</div><div>La capitalizzazione resta enorme (~$1,4&ndash;1,5 trilioni) e il multiplo si è compresso a circa 17&ndash;19x utili 2026 attesi, sotto la media a 3 anni di ~23x: chi crede nella tesi AI ottiene oggi un punto di ingresso più favorevole rispetto a inizio anno.</div></div>
+    <div class="fb"><div class="fl fl-val">Implicazione valutativa</div><div>Il de-rating è quasi interamente un effetto multiplo (P/E), non un problema di crescita dei ricavi: la crescita del top line resta nella fascia alta della doppia cifra.</div></div>
+    <div class="sub-note" style="margin-top:14px;">Nota: dato l'elevato numero di sedute consecutive di ribasso, il prezzo può muoversi rapidamente. I valori qui riportati riflettono la chiusura del 30 luglio 2026; verificare la quotazione corrente prima di qualsiasi decisione operativa.</div>
+  </div>
+
+  <!-- 03 FINANCIAL DEEP DIVE -->
+  <div class="sec" id="financials">
+    <div class="p-tag">03 &middot; Numeri</div>
+    <div class="p-h2">Financial Deep Dive</div>
+    <table class="tbl">
+      <tr><th>Metrica</th><th>Q2 2026</th><th>Q2 2025</th><th>YoY</th></tr>
+      <tr><td>Ricavi totali</td><td class="f">$60,80 mld</td><td class="f">$47,52 mld</td><td class="f up">+28%</td></tr>
+      <tr><td>Ricavi advertising</td><td class="f">$59,3 mld</td><td class="f">$46,6 mld</td><td class="f up">+27%</td></tr>
+      <tr><td>Margine operativo</td><td class="f">31%</td><td class="f">43%</td><td class="f down">-12 pp</td></tr>
+      <tr><td>Utile netto</td><td class="f">$15,85 mld</td><td class="f">$18,34 mld</td><td class="f down">-14%</td></tr>
+      <tr><td>EPS diluito</td><td class="f">$6,18</td><td class="f">$7,14</td><td class="f down">-13,4%</td></tr>
+      <tr><td>Operating cash flow</td><td class="f">$31,86 mld</td><td class="f">n.d.</td><td class="f flat">&mdash;</td></tr>
+      <tr><td>Capex</td><td class="f">$31,08 mld</td><td class="f">$17,0 mld</td><td class="f down">+83%</td></tr>
+      <tr><td>Free cash flow</td><td class="f">$0,78 mld</td><td class="f">$8,55 mld</td><td class="f down">-91%</td></tr>
+      <tr><td>DAU Family of Apps</td><td class="f">3,60 mld</td><td class="f">3,48 mld</td><td class="f up">+3%</td></tr>
+    </table>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>Impression pubblicitarie +14% YoY, prezzo medio per impression +12% YoY: la crescita degli ad revenue nel Q2 è quasi equamente divisa tra volumi e prezzo, un mix considerato sano.</div></div>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>Cassa e titoli negoziabili: $90,26 mld. Debito a lungo termine: $83,66 mld, dopo l'emissione di circa $25 mld di nuovo debito nel trimestre. Patrimonio netto: $261,2 mld.</div></div>
+    <div class="fb"><div class="fl fl-neu">Neutro</div><div>Il capex del trimestre ($31,08 mld) ha quasi eroso l'intero operating cash flow ($31,86 mld): il buffer di FCF è sceso a soli $784 mln, insufficiente a coprire i $1,35 mld di dividendi pagati nel periodo, colmati con nuova emissione di debito.</div></div>
+    <div class="fb"><div class="fl fl-val">Implicazione valutativa</div><div>Finché il capex cresce più velocemente dell'operating cash flow, Meta si comporta finanziariamente più come una utility infrastrutturale a leva crescente che come un compounder ad alto margine puro: il mercato sta ripricando questo cambio di profilo, non la qualità del business pubblicitario.</div></div>
+  </div>
+
+  <!-- 04 QUALITY OF EARNINGS -->
+  <div class="sec" id="quality">
+    <div class="p-tag">04 &middot; Qualità dell'utile</div>
+    <div class="p-h2">Quality of Earnings</div>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>La compressione del margine operativo (dal 43% al 31%) è spiegata da tre voci distinte: $2,4 mld di oneri legali, $1,18 mld di costi di buonuscita legati ai licenziamenti di maggio 2026 (~8.000 posizioni), e l'incremento strutturale degli ammortamenti/depreciation legato al nuovo capex AI.</div></div>
+    <div class="fb"><div class="fl fl-neu">Neutro</div><div>Le prime due voci sono in larga parte non ricorrenti; la terza (ammortamento infrastrutture AI) è invece strutturale e crescerà ulteriormente nei prossimi trimestri all'aumentare della base di asset in funzione.</div></div>
+    <div class="fb"><div class="fl fl-bull">Rialzista</div><div>Depurando le due voci one-off (circa $3,6 mld combinati), il margine operativo "normalizzato" si sarebbe attestato più vicino al 37&ndash;38%, un dato meno allarmante del 31% headline.</div></div>
+    <div class="fb"><div class="fl fl-val">Implicazione valutativa</div><div>Il vero tema per gli analisti non è la qualità dell'utile del singolo trimestre, ma la traiettoria degli ammortamenti futuri: se il capex 2026&ndash;2027 resta ai livelli guidati, la depreciation continuerà a pesare sul margine anche in assenza di ulteriori oneri one-off.</div></div>
+  </div>
+
+  <!-- 05 BUSINESS MIX -->
+  <div class="sec" id="mix">
+    <div class="p-tag">05 &middot; Mix di business</div>
+    <div class="p-h2">Business Mix e Concentrazione dei Ricavi</div>
+    <div class="g2p">
+      <div class="mc"><div class="mc-t">Family of Apps</div><div class="mc-v">$23,39 mld</div><div class="sub-note">Operating income Q2 2026 &middot; ~97% dei ricavi totali</div></div>
+      <div class="mc"><div class="mc-t">Reality Labs</div><div class="mc-v">-$4,62 mld</div><div class="sub-note">Operating loss su $431 mln di ricavi (+16% YoY)</div></div>
+    </div>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>La concentrazione dei ricavi resta estrema: la quasi totalità del fatturato e la totalità dell'utile operativo derivano dalla pubblicità digitale nell'ecosistema Facebook/Instagram/WhatsApp. Reality Labs continua a essere un centro di costo puro, con perdite operative superiori a $4 mld a trimestre da anni.</div></div>
+    <div class="fb"><div class="fl fl-neu">Neutro</div><div>Meta non dispone ancora di un secondo motore di ricavi indipendente dall'advertising (a differenza di Amazon con AWS o Google con Google Cloud) capace di monetizzare direttamente la spesa in infrastruttura AI.</div></div>
+    <div class="fb"><div class="fl fl-bull">Rialzista</div><div>Il management ha ribadito che il piano di contingenza prevede la vendita di capacità di calcolo/accesso ai modelli a soggetti esterni, il che apre la porta &mdash; non ancora concretizzata &mdash; a un flusso di ricavi incrementale legato all'infrastruttura.</div></div>
+    <div class="fb"><div class="fl fl-val">Implicazione valutativa</div><div>Finché il 100% dell'utile operativo dipende dalla pubblicità, il multiplo di Meta continuerà a essere ancorato ai multipli delle piattaforme ad-tech, non a quelli delle infrastrutture cloud/AI, anche se la spesa in capitale assomiglia sempre più a queste ultime.</div></div>
+  </div>
+
+  <!-- 06 NEWS-DRIVEN NARRATIVE -->
+  <div class="sec" id="news">
+    <div class="p-tag">06 &middot; Notizie rilevanti (ultimi 90&ndash;180 giorni)</div>
+    <div class="p-h2">News-Driven Narrative</div>
+    <table class="tbl">
+      <tr><th>Data</th><th>Evento</th><th>Perché conta</th><th>Impatto</th></tr>
+      <tr><td>29 lug 2026</td><td>Risultati Q2: EPS miss, FCF -91%, 3&ordm; rialzo capex FY26</td><td>Riaccende i dubbi sul ROI della spesa AI</td><td class="f down">Negativo</td></tr>
+      <tr><td>30 lug 2026</td><td>Oltre 10 broker tagliano il target price</td><td>Riduce l'ancora valutativa di breve periodo</td><td class="f down">Negativo</td></tr>
+      <tr><td>20 gen 2026</td><td>FTC presenta appello contro la sentenza pro-Meta</td><td>Prolunga (ma non riapre nel merito, per ora) il rischio regolatorio</td><td class="f flat">Misto</td></tr>
+      <tr><td>18 nov 2025</td><td>Giudice Boasberg: Meta non è un monopolio, no spin-off</td><td>Rimuove il rischio di scissione forzata di Instagram/WhatsApp</td><td class="f up">Positivo</td></tr>
+      <tr><td>8 lug 2026</td><td>Francia impone il pagamento di fee arretrate agli editori</td><td>Costo regolatorio ricorrente in UE</td><td class="f down">Leggero negativo</td></tr>
+      <tr><td>lug 2026</td><td>Nuovi data center: Alberta (C$13 mld, 1GW), Louisiana, Texas (~$14 mld, 1GW)</td><td>Confirma l'impegno pluriennale sul capex AI</td><td class="f flat">Capex-intensivo</td></tr>
+      <tr><td>mag 2026</td><td>Ristrutturazione: ~8.000 ruoli tagliati, $1,18 mld di severance</td><td>Segnale di disciplina sui costi, ma anche di riorganizzazione profonda legata all'AI</td><td class="f flat">Misto</td></tr>
+      <tr><td>29 lug 2026</td><td>Zuckerberg presenta la visione di agenti AI personali (salute, finanza, carriera)</td><td>Narrativa di monetizzazione futura accolta con scetticismo da parte sell-side</td><td class="f down">Rischio narrativo</td></tr>
+    </table>
+  </div>
+
+  <!-- 07 CATALYST CALENDAR -->
+  <div class="sec" id="catalysts">
+    <div class="p-tag">07 &middot; Prossimi appuntamenti</div>
+    <div class="p-h2">Pipeline / Catalyst Calendar</div>
+    <div class="cat"><span class="ctag">0&ndash;3 mesi</span><div>Andamento della guidance Q3 2026 ($61&ndash;64 mld) rispetto al consensus ($63,15 mld): un'ulteriore guidance "morbida" rafforzerebbe la narrativa negativa sul rallentamento della domanda pubblicitaria relativa alle attese.</div></div>
+    <div class="cat"><span class="ctag">0&ndash;3 mesi</span><div>Prime evidenze quantitative su utilizzo/adozione degli agenti AI personali annunciati da Zuckerberg, oltre ai soli annunci qualitativi.</div></div>
+    <div class="cat"><span class="ctag">3&ndash;6 mesi</span><div>Aggiornamento della guidance capex per il 2027: le stime buy-side si sono già spostate verso $210&ndash;265 mld; una cifra ufficiale in linea o inferiore sarebbe letta come un segnale di disciplina.</div></div>
+    <div class="cat"><span class="ctag">3&ndash;6 mesi</span><div>Sviluppi sui trial legati alla sicurezza dei minori negli USA, segnalati dalla società come possibile fonte di perdita rilevante.</div></div>
+    <div class="cat"><span class="ctag">6&ndash;12 mesi</span><div>Evoluzione dell'appello FTC contro la sentenza Boasberg: un esito negativo per Meta riaprirebbe lo scenario di scissione di Instagram/WhatsApp.</div></div>
+    <div class="cat"><span class="ctag">6&ndash;12 mesi</span><div>Prime evidenze concrete di ricavi da vendita di capacità di calcolo/accesso a modelli a soggetti esterni, il piano di contingenza citato dal management.</div></div>
+  </div>
+
+  <!-- 08 SCENARIOS -->
+  <div class="sec" id="scenarios">
+    <div class="p-tag">08 &middot; Scenari</div>
+    <div class="p-h2">Bull vs. Base vs. Bear Case</div>
+    <div class="pcard bull">
+      <div class="pcard-l" style="color:var(--bull)">Bull Case</div>
+      La pubblicità continua a crescere nella fascia alta della doppia cifra grazie ai miglioramenti AI su targeting e raccomandazioni.
+      Entro il 2027 emergono i primi ricavi concreti da vendita di capacità di calcolo o da prodotti agentici enterprise. La sentenza
+      FTC resta favorevole a Meta in appello. Il multiplo si riespande verso 20&ndash;23x utili forward.
+      <div class="pcard-p">Target price indicativo: $800&ndash;850+</div>
+    </div>
+    <div class="pcard base">
+      <div class="pcard-l" style="color:var(--accent)">Base Case</div>
+      Il capex resta elevato in linea con la guidance ($130&ndash;145 mld nel 2026, presumibilmente in ulteriore crescita nel 2027) e il
+      free cash flow rimane compresso per diversi trimestri, finanziato in parte con nuovo debito. La pubblicità cresce a ritmo più
+      moderato (alta doppia cifra) ma resta il motore di cassa del gruppo. Il multiplo resta ancorato a 17&ndash;19x, in linea con i
+      target aggiornati dal sell-side dopo la trimestrale.
+      <div class="pcard-p">Target price indicativo: $650&ndash;750</div>
+    </div>
+    <div class="pcard bear">
+      <div class="pcard-l" style="color:var(--bear)">Bear Case</div>
+      Il capex continua a salire senza segnali chiari di monetizzazione oltre l'advertising, Reality Labs continua a bruciare oltre
+      $4 mld a trimestre, l'appello FTC riporta in auge il rischio di scissione, e un esito sfavorevole nei trial sui minori produce
+      un onere rilevante. La leva finanziaria cresciuta per finanziare il capex pesa sul rating creditizio in caso di rallentamento
+      della crescita pubblicitaria. Il multiplo si comprime verso la metà della doppia cifra.
+      <div class="pcard-p">Target price indicativo: $580&ndash;650</div>
+    </div>
+  </div>
+
+  <!-- 09 VALUATION -->
+  <div class="sec" id="valuation">
+    <div class="p-tag">09 &middot; Valutazione</div>
+    <div class="p-h2">Valuation Framework</div>
+    <div class="fb"><div class="fl fl-fact">Fatto</div><div>Dopo il calo dell'11&sup a; seduta, il titolo tratta a circa 17&ndash;19x gli utili attesi 2026, contro una media a 3 anni di circa 23x. Il consensus sell-side, ancora "Strong Buy/Buy" in aggregato, si è però ricompattato dopo la trimestrale su un ventaglio di target molto più ampio del solito: dai $580 di BMO agli $810&ndash;825 di BofA e Citi.</div></div>
+    <div class="fb"><div class="fl fl-neu">Neutro</div><div>Le stime aggregate pubblicate da provider come S&amp;P Global/TipRanks (medie nell'ordine di $800+) includono ancora diversi target pre-trimestrale non aggiornati: vanno letti con cautela nei giorni immediatamente successivi ai risultati.</div></div>
+    <div class="fb"><div class="fl fl-bull">Rialzista</div><div>Su base di utili "normalizzati" (depurati da oneri legali e severance one-off), il multiplo effettivo sarebbe leggermente più basso di quello headline, rendendo la compressione valutativa ancora più marcata rispetto ai fondamentali sottostanti.</div></div>
+    <div class="fb"><div class="fl fl-val">Implicazione valutativa</div><div>Il mercato sta essenzialmente prezzando il rischio di esecuzione sul capex, non un deterioramento del business pubblicitario. Un riaccredito del multiplo richiede evidenza concreta che il capex 2027 non acceleri ulteriormente senza un corrispondente flusso di ricavi.</div></div>
+  </div>
+
+  <!-- 10 RISKS -->
+  <div class="sec" id="risks">
+    <div class="p-tag">10 &middot; Rischi</div>
+    <div class="p-h2">Key Risks</div>
+    <div class="risk"><div>Escalation ulteriore del capex 2027 senza ricavi incrementali visibili (rischio di esecuzione AI)</div><span class="rsev h">Alto</span></div>
+    <div class="risk"><div>Esito sfavorevole dell'appello FTC: possibile riapertura del rischio di scissione di Instagram/WhatsApp</div><span class="rsev m">Medio</span></div>
+    <div class="risk"><div>Trial legati alla sicurezza dei minori negli USA, con possibile onere "materiale" secondo la società stessa</div><span class="rsev m">Medio</span></div>
+    <div class="risk"><div>Perdite strutturali di Reality Labs (oltre $4 mld/trimestre) senza un percorso di break-even definito</div><span class="rsev m">Medio</span></div>
+    <div class="risk"><div>Crescente leva finanziaria (debito a lungo termine salito a $83,66 mld) per finanziare il capex in un contesto di FCF quasi nullo</div><span class="rsev m">Medio</span></div>
+    <div class="risk"><div>Pressione regolatoria UE ricorrente (es. fee editori in Francia, Digital Markets Act)</div><span class="rsev l">Basso</span></div>
+    <div class="risk"><div>Rallentamento macro della spesa pubblicitaria globale</div><span class="rsev l">Basso</span></div>
+  </div>
+
+  <!-- 11 CONCLUSION -->
+  <div class="sec" id="conclusion">
+    <div class="p-tag">11 &middot; Conclusione</div>
+    <div class="p-h2">Final Investment-Narrative Conclusion</div>
+    <div class="verdict">
+      <p>Il Q2 2026 segna un punto di svolta nella percezione del mercato, non nei fondamentali del business core. Meta resta la
+      macchina pubblicitaria più efficiente del suo settore, con una crescita dei ricavi vicina al 28% e un motore di utenti
+      (3,6 mld di DAU) ancora in espansione. Ma la combinazione di un EPS mancato, un FCF quasi azzerato e una terza revisione al
+      rialzo del capex nello stesso anno ha eroso la pazienza di Wall Street verso la narrativa della "superintelligenza personale".
+      La sentenza FTC favorevole del novembre 2025 resta un de-risking strutturale importante, oggi parzialmente offuscato
+      dall'incertezza sul ritorno del capex AI. Il titolo, sceso di oltre il 20% in undici sedute, sconta già gran parte dello
+      scetticismo di breve periodo: il prossimo trimestre &mdash; in particolare la guidance sul capex 2027 &mdash; sarà il vero
+      banco di prova per capire se questa è una pausa nella storia di crescita o l'inizio di una revisione più profonda della tesi.</p>
+      <div class="pills">
+        <span class="pill">Rating implicito: Neutrale/Costruttivo</span>
+        <span class="pill">Orizzonte: 12 mesi</span>
+        <span class="pill">Catalizzatore chiave: guidance capex 2027</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="disc">
+    Analisi generata a scopo informativo, non costituisce consulenza finanziaria o raccomandazione di investimento.
+    Dati di mercato e finanziari aggiornati al 31 luglio 2026 sulla base di fonti pubbliche (comunicati Meta, SEC 10-Q/8-K,
+    Reuters, CNBC, Yahoo Finance, TipRanks, S&amp;P Global). Il titolo era in una fase di elevata volatilità (11&sup a; seduta
+    consecutiva di ribasso) al momento della redazione: verificare quotazioni e target price aggiornati prima di qualsiasi
+    decisione operativa.
+  </div>
+
+</div>
+</body></html>

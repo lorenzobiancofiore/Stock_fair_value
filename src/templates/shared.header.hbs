@@ -1,0 +1,16 @@
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">{{ticker}}</div>
+    <div>
+      <div class="hdr-name">{{companyName}} &mdash; {{exchange}}: {{ticker}}</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; {{quarter}} &middot; {{date}}</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">{{badgePositive}}</span>
+    <span class="badge bn">{{badgeNegative}}</span>
+    <span class="badge bm">{{badgeMixed}}</span>
+    <span class="lk-cur">{{currentModeIcon}} {{currentModeLabel}}</span>
+    <a class="lk-oth" href="{{otherFile}}">{{otherModeIcon}} {{otherModeLabel}}</a>
+  </div>
+</div>

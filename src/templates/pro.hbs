@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{companyName}} {{ticker}} - Pro</title>{{> shared.css }}</head><body>
+{{> shared.header }}
+<div class="wrap-p">
+
+<div class="toc"><a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a><a href="#fairvalue">Fair Value</a></div>
+
+<!-- Executive Summary -->
+<div class="sec-p" id="exec"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">{{thesisLabel}}</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">{{executiveSummary}}</p></div>
+{{#if kpis}}<div class="kpi-g">{{#each kpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
+{{#if verdictLine}}<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> {{verdictLine}}</p>{{/if}}
+</div>
+
+<!-- Market Snapshot -->
+{{#if marketCards}}
+<div class="sec-p" id="market"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p">{{#each marketCards}}<div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">{{label}}</div><div style="color:{{#if up}}{{../accent}}{{else}}#9ca3af{{/if}};font-size:22px;font-weight:800">{{value}}</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">{{sub}}</div>{{#if extra}}<div style="color:#9ca3af;font-size:12px">{{extra}}</div>{{/if}}</div></div>{{/each}}</div></div>
+{{/if}}
+
+<!-- Financial Deep Dive -->
+{{#if finTable}}
+<div class="sec-p" id="fin"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><thead><tr>{{#each finTable.headers}}<th>{{this}}</th>{{/each}}</tr></thead><tbody>{{#each finTable.rows}}<tr>{{#each this}}<td{{#if @first}} class="f"{{/if}}>{{this}}</td>{{/each}}</tr>{{/each}}</tbody></table></div>
+{{#if finTable.factBlocks}}<div class="fb">{{#each finTable.factBlocks}}<div class="fb-r"><span class="fl" style="color:{{color}}">{{label}} &mdash; </span><span style="color:#e8eaf0">{{text}}</span></div>{{/each}}</div>{{/if}}
+</div>
+{{/if}}
+
+<!-- Quality of Earnings -->
+{{#if qoe}}
+<div class="sec-p" id="qoe"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Quality of Earnings</h2>
+{{#if qoe.warningTitle}}<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">{{qoe.warningTitle}}</div><p class="pcard-p">{{qoe.warningText}}</p></div>{{/if}}
+{{#if qoe.factBlocks}}<div class="fb">{{#each qoe.factBlocks}}<div class="fb-r"><span class="fl" style="color:{{color}}">{{label}} &mdash; </span><span style="color:#e8eaf0">{{text}}</span></div>{{/each}}</div>{{/if}}
+</div>
+{{/if}}
+
+<!-- Business Mix -->
+{{#if mixCards}}
+<div class="sec-p" id="mix"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Business Mix</h2>
+<div class="g2p">{{#each mixCards}}<div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">{{label}}</div><div style="color:{{color}};font-size:22px;font-weight:800">{{value}}</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">{{sub}}</div>{{#if extra}}<div style="color:#9ca3af;font-size:12px">{{extra}}</div>{{/if}}</div></div>{{/each}}</div></div>
+{{/if}}
+<!-- News Narrative -->
+{{#if news}}
+<div class="sec-p" id="news"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">News Narrative</h2>
+{{#each news}}<div class="cat"><span class="ctag" style="background:{{tagColor}}20;color:{{tagColor}}">{{tag}}</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">{{title}}</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">{{text}}</div></div></div>{{/each}}
+{{#if periodDividers}}{{#each periodDividers}}<p style="color:#f5a623;font-size:12px;text-transform:uppercase;font-weight:700;margin:16px 0 12px">{{period}}</p>{{#each items}}<div class="cat"><span class="ctag" style="background:{{tagColor}}20;color:{{tagColor}}">{{tag}}</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">{{title}}</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">{{text}}</div></div></div>{{/each}}{{/each}}{{/if}}
+</div>
+{{/if}}
+
+<!-- Catalyst Calendar -->
+{{#if catalysts}}
+<div class="sec-p" id="cat"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Catalyst Calendar</h2>
+<div class="tbl"><table><thead><tr><th>Periodo</th><th>Evento</th><th>Impatto</th></tr></thead><tbody>{{#each catalysts}}<tr><td class="f">{{period}}</td><td>{{event}}</td><td>{{impact}}</td></tr>{{/each}}</tbody></table></div>
+</div>
+{{/if}}
+
+<!-- Scenarios -->
+{{#if scenarios}}
+<div class="sec-p" id="scen"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Bull / Base / Bear</h2>
+{{#if scenarios.bull}}<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">{{scenarios.bull.range}}</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> {{scenarios.bull.assumptions}}</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> {{scenarios.bull.valuation}}</p></div>{{/if}}
+{{#if scenarios.base}}<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">{{scenarios.base.range}}</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> {{scenarios.base.assumptions}}</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> {{scenarios.base.valuation}}</p></div>{{/if}}
+{{#if scenarios.bear}}<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">{{scenarios.bear.range}}</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> {{scenarios.bear.assumptions}}</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> {{scenarios.bear.valuation}}</p></div>{{/if}}
+</div>
+{{/if}}
+
+<!-- Valuation Framework -->
+{{#if valTable}}
+<div class="sec-p" id="val"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><thead><tr>{{#each valTable.headers}}<th>{{this}}</th>{{/each}}</tr></thead><tbody>{{#each valTable.rows}}<tr>{{#each this}}<td{{#if @first}} class="f"{{/if}}>{{this}}</td>{{/each}}</tr>{{/each}}</tbody></table></div>
+{{#if valTable.factBlocks}}<div class="fb">{{#each valTable.factBlocks}}<div class="fb-r"><span class="fl" style="color:{{color}}">{{label}} &mdash; </span><span style="color:#e8eaf0">{{text}}</span></div>{{/each}}</div>{{/if}}
+</div>
+<!-- Key Risks -->
+{{#if risks}}
+<div class="sec-p" id="risk"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Key Risks</h2>
+{{#each risks}}<div class="risk" style="border:1px solid {{borderColor}}"><span class="rsev" style="background:{{bgColor}};color:{{textColor}}">{{severity}}</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">{{title}}</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">{{text}}</div></div></div>{{/each}}
+</div>
+{{/if}}
+
+<!-- Final Thesis -->
+{{#if finalThesis}}
+<div class="sec-p" id="thesis"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">{{finalThesis.label}}</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">{{finalThesis.text}}</p></div>
+{{#if finalThesis.works}}<div class="g2p"><div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px">{{#each finalThesis.works}}<li>{{this}}</li>{{/each}}</ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px">{{#each finalThesis.worries}}<li>{{this}}</li>{{/each}}</ul></div></div>{{/if}}
+{{#if finalThesis.verdict}}<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div><p style="color:#9ca3af;font-size:14px;line-height:1.8">{{finalThesis.verdict}}</p></div>{{/if}}
+{{#if finalThesis.pills}}<div class="pills">{{#each finalThesis.pills}}<span class="pill" style="background:{{bg}}15;border:1px solid {{border}}40;color:{{border}}">{{label}}</span>{{/each}}</div>{{/if}}
+</div>
+{{/if}}
+
+<!-- Fair Value -->
+<div class="sec-p" id="fv">
+<div class="p-tag">{{ticker}}</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
+{{{fairValueHtmlPro}}}
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al {{date}}. Non &egrave; consulenza finanziaria.</div>
+</div>
+</body></html>
+{{/if}}

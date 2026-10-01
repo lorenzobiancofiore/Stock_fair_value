@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{companyName}} {{ticker}} - Semplice</title>{{> shared.css }}</head><body>
+{{> shared.header }}
+<div class="wrap-s">
+
+<!-- 01: Come sta crescendo -->
+<div class="sec">
+<div class="s-num">01</div><h2 class="s-h2">Come sta crescendo {{companyName}}</h2>
+{{#if growing.period}}<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">{{growing.period}}</div>{{/if}}
+{{#if growing.metrics}}<div class="g2" style="margin-bottom:16px">
+{{#each growing.metrics}}<div class="stat"><div class="lbl">{{label}}</div><div class="big">{{value}}</div><div class="sub">{{sub}}</div></div>{{/each}}
+</div>{{/if}}
+{{#if growing.plainExplanation}}<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">{{growing.plainExplanation}}</div></div>{{/if}}
+{{#if growing.guidance}}</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2">{{#each growing.guidance}}<div class="ibox"><div class="lbl">{{label}}</div><div class="ival">{{value}}</div><div class="sub">{{sub}}</div></div>{{/each}}</div></div>{{/if}}
+</div>
+
+<!-- 02: Cosa può succedere -->
+<div class="sec">
+<div class="s-num">02</div><h2 class="s-h2">Cosa può succedere</h2>
+{{#if scenarios.intro}}<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">{{scenarios.intro}}</p>{{/if}}
+{{#if scenarios.bull}}
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">{{scenarios.bull.label}}</div><div style="color:#00c896;font-size:20px;font-weight:800">{{scenarios.bull.headline}}</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">{{scenarios.bull.price}}</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">{{scenarios.bull.text}}</p></div>
+{{/if}}
+{{#if scenarios.base}}
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">{{scenarios.base.label}}</div><div style="color:#f5a623;font-size:20px;font-weight:800">{{scenarios.base.headline}}</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">{{scenarios.base.price}}</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">{{scenarios.base.text}}</p></div>
+{{/if}}
+{{#if scenarios.bear}}
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">{{scenarios.bear.label}}</div><div style="color:#e05252;font-size:20px;font-weight:800">{{scenarios.bear.headline}}</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">{{scenarios.bear.price}}</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">{{scenarios.bear.text}}</p></div>
+{{/if}}
+</div>
+
+<!-- 03: Quanto vale il titolo -->
+<div class="sec">
+<div class="s-num">03</div><h2 class="s-h2">Quanto vale il titolo</h2>
+{{#if valuationIntro}}<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">{{valuationIntro}}</p>{{/if}}
+{{#if scale}}
+<div class="card"><div class="rng"><div class="rng-bar"></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">{{scale.bear}}</div></div>
+<div class="rl" style="left:{{scale.basePos}}%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">{{scale.base}}</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">{{scale.bull}}</div></div>
+<div class="rdot" style="left:{{scale.currentPos}}%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">{{scale.current}}</div></div></div>
+</div>
+<div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear {{scale.bear}}-{{scale.bearHigh}}:</strong> {{legends.bear}}</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base {{scale.baseLow}}-{{scale.baseHigh}}:</strong> {{legends.base}}</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull {{scale.bullLow}}-{{scale.bullHigh}}:</strong> {{legends.bull}}</div></div>
+</div></div>
+{{/if}}
+{{#if qa}}<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px">{{qa.question}}</div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px">{{qa.answer}}</p></div>{{/if}}
+</div>
+
+<!-- 04: Il prezzo giusto secondo i conti -->
+<div class="sec">
+{{{fairValueHtmlSimple}}}
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al {{date}}. Non &egrave; consulenza finanziaria.</div>
+</div>
+</body></html>

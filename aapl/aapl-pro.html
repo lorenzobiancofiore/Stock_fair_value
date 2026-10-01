@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Apple Inc. AAPL - Pro</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#7c3aed;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#7c3aed;color:#fff;border:2px solid #7c3aed;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #7c3aed;color:#7c3aed;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#7c3aed;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#7c3aed;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#7c3aed18;border:1px solid #7c3aed40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#7c3aed;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#7c3aed;border-color:#7c3aed;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#7c3aed60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#7c3aed;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">AAPL</div>
+    <div>
+      <div class="hdr-name">Apple Inc. &mdash; Borsa: AAPL</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 1 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">Qualità A · bilanci solido</span>
+    <span class="badge bn">Valutazione premium</span>
+    <span class="badge bm">Crescita 28,7% ma base ampia</span>
+    <span class="lk-cur">📊 Pro</span>
+    <a class="lk-oth" href="aapl-semplice.html">📄 Semplice</a>
+  </div>
+</div><div class="wrap-p">
+
+<div class="toc"><a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a><a href="#fairvalue">Fair Value</a></div>
+
+<!-- Executive Summary -->
+<div class="sec-p" id="exec"><div class="p-tag">AAPL</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Compound di qualità, prezzo non a sconto</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Apple Inc. (Nasdaq: AAPL) resta un compounder di prima fascia: ricavi per $466,8 mld nella stima attuale (da $391,0 mld nel FY2024 chiuso a settembre), utile netto di $128,9 mld, cash flow operativo di $146,7 mld e un ROIC del 71,6%, che segnala un vantaggio competitivo difficilmente replicabile. La conversione utile-cassa è superiore al 100% (OCF/utile netto ≈ 113,8%) e la spesa in conto capitale è contenuta al 6,84% dei ricavi: il modello di business è asset-light e genera cassa abbondante, destinata a dividendo e riacquisto di azioni proprie. Il posizionamento sul debito è prudente (indice di sostenibilità 0,486, sotto la soglia di 0,5). Il lato negativo è il prezzo: il forward P/E è 34,8x e il P/E trailing 37,76x — un multiplo che prezza già una crescita del 28,7% e non perdona rallentamenti. Con il metodo Buffett sugli Owner Earnings il valore equo è stimato in $368,18: a $333,02 il titolo è a sconto del 9,6%, con un potenziale del +10,6% verso il fair value e del +54,8% verso la zona di vendita ($515,45). La transizione di CEO (Tim Cook lascerà il 1° settembre 2026 a favore di John Ternus) e l&#x27;ingresso nel mercato smart-home previsto il 13 ottobre 2026 con l&#x27;hub J490 sono i principali elementi di novità. Il giudizio è costruttivo ma selettivo: qualità elevata, valutazione piena.</p></div>
+<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$333,02</div><div class="kpi-s">ultima chiusura disponibile</div></div><div class="kpi hi"><div class="kpi-l">Valore equo</div><div class="kpi-v">$368,18</div><div class="kpi-s">Buffett Owner Earnings</div></div><div class="kpi hi"><div class="kpi-l">Upside al fair value</div><div class="kpi-v">+10,6%</div><div class="kpi-s">dal prezzo corrente</div></div><div class="kpi"><div class="kpi-l">Zona di vendita</div><div class="kpi-v">$515,45</div><div class="kpi-s">+54,8% potenziale</div></div><div class="kpi hi"><div class="kpi-l">ROIC</div><div class="kpi-v">71,6%</div><div class="kpi-s">eccellenza operativa</div></div><div class="kpi"><div class="kpi-l">Forward P/E</div><div class="kpi-v">34,8x</div><div class="kpi-s">multiplo premium</div></div><div class="kpi hi"><div class="kpi-l">Rating</div><div class="kpi-v">A</div><div class="kpi-s">bilancio solido, utili di qualità</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Qualità da grado A, prezzo da grado B: da detenere/accumulare gradualmente sotto $368,18, non da inseguire.</p>
+</div>
+
+<!-- Market Snapshot -->
+<div class="sec-p" id="market"><div class="p-tag">AAPL</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Prezzo</div><div style="color:#7c3aed;font-size:22px;font-weight:800">$333,02</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Forbes, 30/09 16:00 ET</div><div style="color:#9ca3af;font-size:12px">+1,10% nella seduta</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Market cap</div><div style="color:#7c3aed;font-size:22px;font-weight:800">$4.860 mld</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">≈ 4,86 trilioni di dollari</div><div style="color:#9ca3af;font-size:12px">tra i primi al mondo</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">P/E trailing</div><div style="color:#9ca3af;font-size:22px;font-weight:800">37,76x</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Robinhob/mercato</div><div style="color:#9ca3af;font-size:12px">sopra la media storica</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Forward P/E</div><div style="color:#9ca3af;font-size:22px;font-weight:800">34,75x</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">stima modello</div><div style="color:#9ca3af;font-size:12px">prezza la crescita</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Dividend yield</div><div style="color:#7c3aed;font-size:22px;font-weight:800">0,32%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">dividendo +4% annunciato</div><div style="color:#9ca3af;font-size:12px">+$100 mld di buyback</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Volume</div><div style="color:#7c3aed;font-size:22px;font-weight:800">49,99 mln</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">media giornaliera 40,67 mln</div><div style="color:#9ca3af;font-size:12px">scambi sopra la norma</div></div></div></div></div>
+
+<!-- Financial Deep Dive -->
+<div class="sec-p" id="fin"><div class="p-tag">AAPL</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><thead><tr><th>Voce (mld $)</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>Stima attuale</th></tr></thead><tbody><tr><td class="f">Ricavi totali</td><td>394,33</td><td>383,29</td><td>391,04</td><td>466,82</td></tr><tr><td class="f">Prodotti</td><td>316,20</td><td>298,09</td><td>294,87</td><td>n.d.</td></tr><tr><td class="f">Servizi</td><td>78,13</td><td>85,20</td><td>96,17</td><td>n.d.</td></tr><tr><td class="f">Utile netto</td><td>n.d.</td><td>n.d.</td><td>n.d.</td><td>128,93</td></tr><tr><td class="f">Cash flow operativo</td><td>n.d.</td><td>n.d.</td><td>n.d.</td><td>146,72</td></tr><tr><td class="f">ROIC</td><td>n.d.</td><td>n.d.</td><td>n.d.</td><td>71,6%</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:#16a34a">Fatto (10-K FY2024) &mdash; </span><span style="color:#e8eaf0">I Servizi passano da $78,13 mld (FY2022) a $96,17 mld (FY2024): +23,1% in due anni, con margini strutturalmente più alti dell&#x27;hardware.</span></div><div class="fb-r"><span class="fl" style="color:#2563eb">Neutra &mdash; </span><span style="color:#e8eaf0">La stima attuale di ricavi ($466,82 mld) implica un&#x27;accelerazione rispetto al triennio FY2022-FY2024, in cui la crescita era sostanzialmente piatta su base aggregata.</span></div><div class="fb-r"><span class="fl" style="color:#f59e0b">Valutazione &mdash; </span><span style="color:#e8eaf0">Con $466,82 mld di ricavi e $128,93 mld di utile netto, il margine netto implicito è ~27,6%: coerente con la qualità del business, ma già incorporato nei multipli.</span></div></div>
+</div>
+
+<!-- Quality of Earnings -->
+<div class="sec-p" id="qoe"><div class="p-tag">AAPL</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">Utili di alta qualità: verificare la sostenibilità dei multipli</div><p class="pcard-p">La conversione da utile a cassa è ottima (cash flow operativo $146,72 mld contro utile netto $128,93 mld, ≈113,8%): non emergono segnali di utili &#x27;cartacei&#x27;. Il punto di attenzione non è la qualità contabile ma la sostenibilità della valutazione: con un forward P/E di 34,8x, gran parte della crescita al 28,7% è già nel prezzo. Un eventuale rallentamento dei Servizi o un intervento regolatorio sull&#x27;App Store si tradurrebbe rapidamente in compressione del multiplo.</p></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:#16a34a">ROIC 71,6% &mdash; </span><span style="color:#e8eaf0">Capitale investito molto produttivo: il vantaggio competitivo (ecosistema, brand, switching cost) si traduce in rendimenti elevatissimi.</span></div><div class="fb-r"><span class="fl" style="color:#16a34a">Cassa &gt; utili &mdash; </span><span style="color:#e8eaf0">OCF $146,72 mld su utile netto $128,93 mld: la generazione di cassa è reale e ricorrente.</span></div><div class="fb-r"><span class="fl" style="color:#2563eb">Capex leggero &mdash; </span><span style="color:#e8eaf0">Investimenti in conto capitale al 6,84% dei ricavi: modello asset-light che libera cassa per dividendi e buyback.</span></div><div class="fb-r"><span class="fl" style="color:#dc2626">Debito sotto controllo &mdash; </span><span style="color:#e8eaf0">Indice di sostenibilità del debito 0,486 (&lt;0,5): il leverage non rappresenta un rischio di bilancio.</span></div></div>
+</div>
+
+<!-- Business Mix -->
+<div class="sec-p" id="mix"><div class="p-tag">AAPL</div><h2 class="p-h2">Business Mix</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Servizi</div><div style="color:#16a34a;font-size:22px;font-weight:800">$96,17 mld</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">FY2024 · ~24,6% dei ricavi</div><div style="color:#9ca3af;font-size:12px">motore dei margini</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Prodotti</div><div style="color:#2563eb;font-size:22px;font-weight:800">$294,87 mld</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">FY2024 · ~75,4% dei ricavi</div><div style="color:#9ca3af;font-size:12px">iPhone, Mac, iPad, Wearables</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Segmenti geografici</div><div style="color:#f59e0b;font-size:22px;font-weight:800">5 aree</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Americhe, Europa, Greater China, Giappone, Resto Asia-Pacifico</div><div style="color:#9ca3af;font-size:12px">diversificazione ma esposizione alla Cina</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Ritorno agli azionisti</div><div style="color:#7c3aed;font-size:22px;font-weight:800">+$100 mld</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">buyback addizionale autorizzato</div><div style="color:#9ca3af;font-size:12px">dividendo +4%</div></div></div></div></div>
+<!-- News Narrative -->
+
+<!-- Catalyst Calendar -->
+
+<!-- Scenarios -->
+
+<!-- Valuation Framework -->

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Platforms (META) - Semplice</title>
+<style>
+  :root{
+    --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#0081fb;
+    --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+    --text:#e8eaf0; --sub:#9ca3af;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;}
+  .wrap{max-width:720px;margin:0 auto;padding:24px 20px 80px;}
+  .hdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+       border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:28px;}
+  .hdr-left{display:flex;align-items:center;gap:12px;}
+  .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+        display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;}
+  .hdr-name{font-weight:700;font-size:16px;}
+  .hdr-sub{font-size:12px;color:var(--sub);margin-top:2px;}
+  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;border:1px solid var(--border);}
+  .bp{color:var(--bull);border-color:rgba(0,200,150,.35);background:rgba(0,200,150,.08);}
+  .bn{color:var(--bear);border-color:rgba(224,82,82,.35);background:rgba(224,82,82,.08);}
+  .link-current{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;
+        font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;}
+  .link-other{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);color:var(--sub);
+        font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;text-decoration:none;}
+  .link-other:hover{color:var(--accent);border-color:var(--accent);}
+  .s-num{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.08em;margin-bottom:6px;}
+  .s-h2{font-size:20px;font-weight:800;margin:0 0 16px;}
+  section{margin-bottom:48px;}
+  p{font-size:15px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+  @media(max-width:520px){.g2{grid-template-columns:1fr;}}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+  .big{font-size:38px;font-weight:800;font-family:"SF Mono",Consolas,monospace;}
+  .sub{font-size:12.5px;color:var(--sub);margin-top:4px;}
+  .lbl{font-size:12px;color:var(--sub);margin-bottom:4px;}
+  .up{color:var(--bull)} .down{color:var(--bear)}
+  .ibox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:12px;}
+  .ival{font-family:"SF Mono",Consolas,monospace;font-size:15px;font-weight:700;color:var(--accent);}
+  .ebox{background:rgba(0,129,251,.06);border:1px solid var(--border);border-left:3px solid var(--accent);
+        border-radius:8px;padding:14px 16px;font-size:14.5px;margin-top:14px;}
+  .sc{border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border);}
+  .sc-bull{border-left:4px solid var(--bull);} .sc-base{border-left:4px solid var(--accent);} .sc-bear{border-left:4px solid var(--bear);}
+  .sc-hdr{font-weight:800;font-size:14px;margin-bottom:6px;}
+  .rng{position:relative;height:14px;border-radius:8px;margin:36px 0 8px;
+       background:linear-gradient(90deg,var(--bear),var(--warn),var(--bull));}
+  .rdot{position:absolute;top:-7px;width:26px;height:26px;border-radius:50%;background:#fff;
+        border:3px solid var(--bg);box-shadow:0 0 0 2px var(--accent);transform:translateX(-50%);}
+  .rl{position:absolute;top:-28px;font-size:11px;font-weight:700;color:var(--sub);}
+  .rdot-c{position:absolute;top:20px;font-size:12px;font-weight:800;color:var(--text);transform:translateX(-50%);white-space:nowrap;}
+  .leg{display:flex;gap:18px;margin-top:32px;flex-wrap:wrap;font-size:12.5px;color:var(--sub);}
+  .leg-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;}
+  .disc{font-size:11.5px;color:var(--sub);margin-top:40px;padding-top:16px;border-top:1px solid var(--border);}
+</style>
+</head><body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo">META</div>
+      <div>
+        <div class="hdr-name">Meta Platforms &mdash; NASDAQ: META</div>
+        <div class="hdr-sub">Analisi narrativa &middot; Q2 2026 &middot; 31 luglio 2026</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="badge bp">Ricavi in crescita</span>
+      <span class="badge bn">Utile e cassa in calo</span>
+      <span class="link-current">&#128196; Semplice</span>
+      <a class="link-other" href="meta-pro.html">&#128202; Pro</a>
+    </div>
+  </div>
+
+  <!-- 01 COME STA CRESCENDO -->
+  <section>
+    <div class="s-num">01</div>
+    <div class="s-h2">Come sta crescendo</div>
+    <div class="g2">
+      <div class="stat"><div class="lbl">Ricavi (trimestre)</div><div class="big up">+28%</div><div class="sub">rispetto a un anno fa</div></div>
+      <div class="stat"><div class="lbl">Utile per azione</div><div class="big down">-13%</div><div class="sub">sotto le attese degli analisti</div></div>
+    </div>
+    <div class="ibox">
+      <div class="lbl">Previsioni per il prossimo trimestre</div>
+      <div class="ival">$61&ndash;64 miliardi di ricavi attesi</div>
+    </div>
+    <div class="ebox">
+      Meta continua a vendere pubblicità sempre meglio: più annunci mostrati e prezzi più alti per ogni annuncio.
+      Il problema non è quanto guadagna, ma quanto sta spendendo per costruire l'infrastruttura dell'intelligenza
+      artificiale: quella spesa è quasi raddoppiata rispetto a un anno fa e ha "mangiato" quasi tutta la liquidità
+      che l'azienda genera ogni trimestre.
+    </div>
+  </section>
+
+  <!-- 02 COSA PUÒ SUCCEDERE -->
+  <section>
+    <div class="s-num">02</div>
+    <div class="s-h2">Cosa può succedere</div>
+    <div class="sc sc-bull">
+      <div class="sc-hdr" style="color:var(--bull)">Scenario positivo</div>
+      La pubblicità continua a crescere forte e, entro un anno o due, la spesa in intelligenza artificiale comincia a
+      generare nuovi ricavi (non solo pubblicità). Il titolo torna a salire con decisione.
+    </div>
+    <div class="sc sc-base">
+      <div class="sc-hdr" style="color:var(--accent)">Scenario centrale</div>
+      Meta continua a spendere molto in AI per altri due anni, con poca liquidità libera nel frattempo. La pubblicità
+      resta il vero motore dei guadagni. Il titolo si muove in un intervallo, senza grandi scossoni in una direzione o nell'altra.
+    </div>
+    <div class="sc sc-bear">
+      <div class="sc-hdr" style="color:var(--bear)">Scenario negativo</div>
+      La spesa in AI continua a salire senza mostrare risultati concreti, mentre alcune cause legali negli Stati Uniti
+      vanno male per l'azienda. Il titolo scende ulteriormente.
+    </div>
+  </section>
+
+  <!-- 03 QUANTO VALE -->
+  <section>
+    <div class="s-num">03</div>
+    <div class="s-h2">Quanto vale</div>
+    <div class="rng">
+      <span class="rl" style="left:8%">BEAR</span>
+      <span class="rl" style="left:48%">BASE</span>
+      <span class="rl" style="left:88%">BULL</span>
+      <div class="rdot" style="left:38%"></div>
+      <div class="rdot-c" style="left:38%">Prezzo attuale: ~$530</div>
+    </div>
+    <div class="leg">
+      <div><span class="leg-dot" style="background:var(--bear)"></span>Scenario negativo: circa $580&ndash;650</div>
+      <div><span class="leg-dot" style="background:var(--accent)"></span>Scenario centrale: circa $650&ndash;750</div>
+      <div><span class="leg-dot" style="background:var(--bull)"></span>Scenario positivo: circa $800 e oltre</div>
+    </div>
+  </section>
+
+  <div class="disc">
+    Analisi generata a scopo informativo, non costituisce consulenza finanziaria o raccomandazione di investimento.
+    Dati aggiornati al 31 luglio 2026; il titolo era in una fase di forte volatilità al momento della redazione &mdash;
+    verifica sempre la quotazione corrente prima di qualsiasi decisione.
+  </div>
+
+</div>
+</body></html>

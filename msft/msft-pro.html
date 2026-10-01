@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Microsoft Corporation MSFT - Pro</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#7c3aed;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#7c3aed;color:#fff;border:2px solid #7c3aed;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #7c3aed;color:#7c3aed;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#7c3aed;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#7c3aed;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#7c3aed18;border:1px solid #7c3aed40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#7c3aed;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#7c3aed;border-color:#7c3aed;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#7c3aed60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#7c3aed;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">MSFT</div>
+    <div>
+      <div class="hdr-name">Microsoft Corporation &mdash; Borsa: MSFT</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 1 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">ROIC 28,8%,Cassa operativa 182,9 mld $,Margini solidi</span>
+    <span class="badge bn">Capex ratio 63,4%,Prezzo sopra target analisti medi</span>
+    <span class="badge bm">DCF molto sopra mercato,Grade B (non A)</span>
+    <span class="lk-cur">📊 Pro</span>
+    <a class="lk-oth" href="msft-semplice.html">📄 Semplice</a>
+  </div>
+</div><div class="wrap-p">
+
+<div class="toc"><a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a></div>
+
+<!-- Executive Summary -->
+<div class="sec-p" id="exec"><div class="p-tag">MSFT</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Compounder di qualità, valutazione di mercato prudente, modello DCF ottimistico</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Microsoft Corporation è un compounder di qualità eccezionale: 331,8 mld $ di ricavi, 133,7 mld $ di utile netto, 182,9 mld $ di cassa operativa e un ROIC del 28,8% che testimonia un vantaggio competitivo strutturale. Il modello Two-Stage DCF (Growth) con ipotesi di crescita al 30% restituisce un fair value di 1.431,26 $, con soglia di acquisto a 1.145,01 $ e soglia di vendita a 1.789,08 $. Il prezzo corrente (512,9 $) è circa il 64% sotto il fair value centrale: un divario che riflette sia la sensibilità del modello alle ipotesi di crescita, sia una valutazione di mercato più prudente (P/E forward 21,7x, P/E trailing ~28x). Il grade B indica un&#x27;azienda di buona qualità con bilancio sano e utili affidabili, ma non un&#x27;opportunità di livello A. Il capex ratio al 63,4% è il principale punto di attenzione: la transizione verso AI e cloud infrastructure assorbe gran parte della generazione di cassa, riducendo il free cash flow disponibile per gli azionisti. Il debito è ampiamente sostenibile (indicatore 0,17). Il consensus analisti è Strong Buy con target medio ~576 $, coerente con un titolo ben posizionato ma non a sconto estremo rispetto ai fondamentali correnti.</p></div>
+<div class="kpi-g"><div class="kpi hi"><div class="kpi-l">Ricavi</div><div class="kpi-v">331,8 mld $</div><div class="kpi-s">+17,8% a/a</div></div><div class="kpi hi"><div class="kpi-l">Utile netto</div><div class="kpi-v">133,7 mld $</div><div class="kpi-s">margine ~40%</div></div><div class="kpi"><div class="kpi-l">Cassa operativa</div><div class="kpi-v">182,9 mld $</div><div class="kpi-s">conversione elevata</div></div><div class="kpi hi"><div class="kpi-l">ROIC</div><div class="kpi-v">28,8%</div><div class="kpi-s">eccellente</div></div><div class="kpi"><div class="kpi-l">Capex ratio</div><div class="kpi-v">63,4%</div><div class="kpi-s">assorbe cassa</div></div><div class="kpi"><div class="kpi-l">Debito sostenibile</div><div class="kpi-v">0,17</div><div class="kpi-s">molto basso</div></div><div class="kpi"><div class="kpi-l">P/E forward</div><div class="kpi-v">21,7x</div><div class="kpi-s">ragionevole</div></div><div class="kpi hi"><div class="kpi-l">Fair value DCF</div><div class="kpi-v">1.431 $</div><div class="kpi-s">vs 512,9 $ di mercato</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Qualità alta, prezzo di mercato prudente, fair value DCF da maneggiare con cautela: il titolo è ben posizionato ma il modello è ottimistico.</p>
+</div>
+
+<!-- Market Snapshot -->
+<div class="sec-p" id="market"><div class="p-tag">MSFT</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Prezzo corrente</div><div style="color:#7c3aed;font-size:22px;font-weight:800">512,90 $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">dato fornito</div><div style="color:#9ca3af;font-size:12px">vs fair value -64%</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Market cap</div><div style="color:#7c3aed;font-size:22px;font-weight:800">~3,85 T $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">fonte Robinhood</div><div style="color:#9ca3af;font-size:12px">7,43 mld azioni</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">P/E trailing</div><div style="color:#9ca3af;font-size:22px;font-weight:800">28,4x</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">fonte Robinhood</div><div style="color:#9ca3af;font-size:12px">premium big tech</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">P/E forward</div><div style="color:#7c3aed;font-size:22px;font-weight:800">21,7x</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">dato fornito</div><div style="color:#9ca3af;font-size:12px">sconto vs trailing</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Dividend yield</div><div style="color:#9ca3af;font-size:22px;font-weight:800">0,72%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">cedola bassa</div><div style="color:#9ca3af;font-size:12px">focus su reinvestimento</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Target analisti</div><div style="color:#7c3aed;font-size:22px;font-weight:800">576 $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">consensus 55 analisti</div><div style="color:#9ca3af;font-size:12px">Strong Buy</div></div></div></div></div>
+
+<!-- Financial Deep Dive -->
+<div class="sec-p" id="fin"><div class="p-tag">MSFT</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><thead><tr><th>Voce</th><th>FY2026</th><th>FY2027e</th><th>FY2028e</th></tr></thead><tbody><tr><td class="f">Ricavi (mld $)</td><td>331,8</td><td>391,0</td><td>466,6</td></tr><tr><td class="f">Utile netto (mld $)</td><td>133,7</td><td>146,6</td><td>174,1</td></tr><tr><td class="f">EPS ($)</td><td>—</td><td>19,73</td><td>23,48</td></tr><tr><td class="f">P/E</td><td>—</td><td>25,8x</td><td>21,7x</td></tr><tr><td class="f">EBIT (mld $)</td><td>—</td><td>181,5</td><td>215,7</td></tr><tr><td class="f">EBITDA (mld $)</td><td>—</td><td>241,6</td><td>297,0</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">Fatto &mdash; </span><span style="color:#e8eaf0">Ricavi FY2026 a 331,8 mld $, in crescita del 17,8% a/a.</span></div><div class="fb-r"><span class="fl" style="color:blue">Neutra &mdash; </span><span style="color:#e8eaf0">Consensus FY2027: ricavi 391 mld $, EPS 19,73 $.</span></div><div class="fb-r"><span class="fl" style="color:amber">Valutazione &mdash; </span><span style="color:#e8eaf0">Il P/E forward 21,7x è in linea con il settore, non a sconto.</span></div></div>
+</div>
+
+<!-- Quality of Earnings -->
+<div class="sec-p" id="qoe"><div class="p-tag">MSFT</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">Qualità degli utili: attenzione al capex</div><p class="pcard-p">Il capex ratio al 63,4% indica che oltre la metà della cassa operativa viene reinvestita in infrastrutture. Questo è positivo per la crescita futura ma comprime il free cash flow disponibile. La qualità degli utili è alta (margine netto ~40%), ma la conversione in cassa libera è inferiore a quanto il margine suggerirebbe.</p></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">Fatto &mdash; </span><span style="color:#e8eaf0">Cassa operativa 182,9 mld $, superiore all&#x27;utile netto: ottima conversione.</span></div><div class="fb-r"><span class="fl" style="color:amber">Attenzione &mdash; </span><span style="color:#e8eaf0">Capex ratio 63,4%: la cassa viene reinvestita aggressivamente.</span></div><div class="fb-r"><span class="fl" style="color:blue">Neutra &mdash; </span><span style="color:#e8eaf0">Debito sostenibile (0,17): leva finanziaria molto contenuta.</span></div></div>
+</div>
+
+<!-- Business Mix -->
+<div class="sec-p" id="mix"><div class="p-tag">MSFT</div><h2 class="p-h2">Business Mix</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Intelligent Cloud</div><div style="color:blue;font-size:22px;font-weight:800">Azure + AI</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">motore di crescita</div><div style="color:#9ca3af;font-size:12px">backlog in aumento</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Productivity &amp; Business</div><div style="color:green;font-size:22px;font-weight:800">Office 365</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">cassa stabile</div><div style="color:#9ca3af;font-size:12px">ricavi ricorrenti</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">More Personal Computing</div><div style="color:amber;font-size:22px;font-weight:800">Gaming + Windows</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">maturità</div><div style="color:#9ca3af;font-size:12px">crescita moderata</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Capex &amp; AI infra</div><div style="color:red;font-size:22px;font-weight:800">63,4%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">assorbe cassa</div><div style="color:#9ca3af;font-size:12px">data center</div></div></div></div></div>
+<!-- News Narrative -->
+<div class="sec-p" id="news"><div class="p-tag">MSFT</div><h2 class="p-h2">News Narrative</h2>
+<div class="cat"><span class="ctag" style="background:blue20;color:blue">Mercato</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Rally tech su allentamento timori tassi</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Apple, Alphabet e Nvidia guidano un rimbalzo del comparto tecnologico mentre le preoccupazioni sui tassi si attenuano.</div></div></div><div class="cat"><span class="ctag" style="background:green20;color:green">AI</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">RBC vede Microsoft beneficiare di OpenAI DevDay</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Le innovazioni presentate al DevDay di OpenAI sono viste come catalizzatore positivo per l&#x27;ecosistema Azure/AI di Microsoft.</div></div></div><div class="cat"><span class="ctag" style="background:green20;color:green">Performance</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Miglior trimestre dal 1991</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Il titolo ha chiuso il miglior trimestre dal 1991, spinto da crescita Azure e backlog in espansione.</div></div></div><div class="cat"><span class="ctag" style="background:amber20;color:amber">Gaming</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Xbox conferma retention dell&#x27;unità gaming</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Il CEO di Xbox conferma il mantenimento dell&#x27;unità gaming nonostante le sfide del settore.</div></div></div>
+
+</div>
+
+<!-- Catalyst Calendar -->
+<div class="sec-p" id="cat"><div class="p-tag">MSFT</div><h2 class="p-h2">Catalyst Calendar</h2>
+<div class="tbl"><table><thead><tr><th>Periodo</th><th>Evento</th><th>Impatto</th></tr></thead><tbody><tr><td class="f">Q1 FY2027</td><td>Earnings trimestrali e guidance Azure</td><td>Alto</td></tr><tr><td class="f">Q2 FY2027</td><td>Monetizzazione AI Copilot</td><td>Alto</td></tr><tr><td class="f">FY2027</td><td>Espansione data center e capex</td><td>Medio</td></tr><tr><td class="f">FY2027-28</td><td>Crescita backlog cloud</td><td>Alto</td></tr><tr><td class="f">Continuo</td><td>Buyback (57,3 mld $ residui)</td><td>Medio</td></tr></tbody></table></div>
+</div>
+
+<!-- Scenarios -->
+<div class="sec-p" id="scen"><div class="p-tag">MSFT</div><h2 class="p-h2">Bull / Base / Bear</h2>
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">1.500 – 1.789 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Crescita ricavi &gt;20% annuo, margini stabili, capex in normalizzazione, monetizzazione AI rapida.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> P/E forward 30x su EPS FY2028 di 23,5 $.</p></div>
+<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">1.300 – 1.500 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Crescita in linea con consensus (17-18%), margini stabili, capex elevato ma gestito.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> Fair value DCF centrale 1.431 $.</p></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">1.000 – 1.200 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Crescita cloud rallenta, capex resta elevato, concorrenza AI aggressiva, pressione margini.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> Soglia di acquisto modello 1.145 $.</p></div>
+</div>
+
+<!-- Valuation Framework -->
+<div class="sec-p" id="val"><div class="p-tag">MSFT</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><thead><tr><th>Metodo</th><th>Valore</th><th>Note</th></tr></thead><tbody><tr><td class="f">DCF Two-Stage (Growth)</td><td>1.431,26 $</td><td>Fair value centrale</td></tr><tr><td class="f">Soglia acquisto</td><td>1.145,01 $</td><td>-20% dal fair value</td></tr><tr><td class="f">Soglia vendita</td><td>1.789,08 $</td><td>+25% dal fair value</td></tr><tr><td class="f">Prezzo corrente</td><td>512,90 $</td><td>-64% dal fair value</td></tr><tr><td class="f">Target analisti</td><td>~576 $</td><td>consensus 55 analisti</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">Fatto &mdash; </span><span style="color:#e8eaf0">Il DCF indica un fair value di 1.431 $, molto sopra il prezzo di mercato.</span></div><div class="fb-r"><span class="fl" style="color:amber">Attenzione &mdash; </span><span style="color:#e8eaf0">Il modello usa una crescita al 30%: ipotesi aggressiva.</span></div><div class="fb-r"><span class="fl" style="color:blue">Neutra &mdash; </span><span style="color:#e8eaf0">Il consensus analisti (576 $) è più prudente del DCF.</span></div></div>
+</div>
+<!-- Key Risks -->
+<div class="sec-p" id="risk"><div class="p-tag">MSFT</div><h2 class="p-h2">Key Risks</h2>
+<div class="risk" style="border:1px solid #dc2626"><span class="rsev" style="background:#fef2f2;color:#991b1b">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Capex ratio elevato</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il 63,4% della cassa operativa è reinvestito: se i rendimenti del capitale investito scendono, il free cash flow si comprime.</div></div></div><div class="risk" style="border:1px solid #dc2626"><span class="rsev" style="background:#fef2f2;color:#991b1b">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Sensibilità del DCF</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il fair value di 1.431 $ dipende da ipotesi di crescita al 30%: piccole variazioni cambiano radicalmente il risultato.</div></div></div><div class="risk" style="border:1px solid #d97706"><span class="rsev" style="background:#fffbeb;color:#92400e">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Concorrenza AI</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Google, Amazon e player cinesi competono aggressivamente nel cloud e nell&#x27;AI, con pressione sui prezzi.</div></div></div><div class="risk" style="border:1px solid #d97706"><span class="rsev" style="background:#fffbeb;color:#92400e">Medio</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Valutazione di mercato</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">P/E trailing 28,4x non è a sconto: il titolo prezza già buona parte delle aspettative di crescita.</div></div></div><div class="risk" style="border:1px solid #0891b2"><span class="rsev" style="background:#ecfeff;color:#155e75">Basso</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Regolamentazione</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Scrutinio antitrust su AI e cloud in USA e UE.</div></div></div>
+</div>
+
+<!-- Final Thesis -->
+<div class="sec-p" id="thesis"><div class="p-tag">MSFT</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">Tesi finale</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Microsoft è un compounder di qualità con fondamentali eccellenti: ricavi in crescita, margini elevati, ROIC del 28,8% e debito trascurabile. Il modello DCF indica un fair value molto superiore al prezzo di mercato, ma le ipotesi di crescita al 30% rendono il risultato ottimistico. Il grade B riflette questa combinazione: azienda solida, ma non un&#x27;opportunità di livello A. Il capex ratio al 63,4% è il principale punto di monitoraggio.</p></div>
+<div class="g2p"><div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Crescita ricavi a doppia cifra (17,8% FY2026)</li><li>ROIC 28,8%: capitale reinvestito in modo efficiente</li><li>Cassa operativa 182,9 mld $: generazione robusta</li><li>Debito sostenibile (0,17): bilancio solido</li><li>Backlog cloud in espansione</li></ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Capex ratio 63,4%: assorbe cassa libera</li><li>DCF sensibile alle ipotesi di crescita</li><li>P/E trailing 28,4x non a sconto</li><li>Concorrenza AI aggressiva</li><li>Monetizzazione AI ancora da dimostrare su larga scala</li></ul></div></div>
+<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div><p style="color:#9ca3af;font-size:14px;line-height:1.8">Accumulo graduale su debolezze, con attenzione al capex e alla monetizzazione AI. Il prezzo di mercato è prudente rispetto al DCF, ma il modello è ottimistico: usare il fair value come riferimento direzionale, non come target.</p></div>
+<div class="pills"><span class="pill" style="background:#dcfce715;border:1px solid #16a34a40;color:#16a34a">Qualità: alta</span><span class="pill" style="background:#dbeafe15;border:1px solid #2563eb40;color:#2563eb">Valutazione: prudente</span><span class="pill" style="background:#fee2e215;border:1px solid #dc262640;color:#dc2626">Rischio capex: alto</span><span class="pill" style="background:#fef3c715;border:1px solid #d9770640;color:#d97706">Grade: B</span></div>
+</div>
+
+<!-- Fair Value -->
+<div class="sec-p" id="fv">
+<div class="p-tag">MSFT</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
+
+<div class="sec" id="fairvalue">
+  <div class="p-tag">12 &middot; Modello proprietario</div>
+  <h2 class="p-h2">Fair Value &mdash; Owner Earnings &amp; Two-Stage DCF</h2>
+
+  <div class="thesis">
+    <div class="thesis-lbl">Verdetto del modello</div>
+    <div style="font-size:22px;font-weight:700;color:#00c896;margin-bottom:8px">
+      SOTTOVALUTATA
+    </div>
+    <div style="color:#9ca3af;font-size:14px;line-height:1.7">Il modello indica un margine di sicurezza ampio rispetto al prezzo attuale.
+    Metodo applicato: <strong style="color:#e8eaf0">Two-Stage DCF (Growth)</strong>,
+    selezionato automaticamente perch&eacute; il CapEx ratio &egrave; pari a
+    63.4% dell&rsquo;Operating Cash Flow
+    (sopra la soglia del 40% che qualifica un growth stock).</div>
+  </div>
+
+  <div class="kpi-g">
+    <div class="kpi"><div class="kpi-l">Prezzo corrente</div>
+      <div class="kpi-v">USD&nbsp;512.90</div>
+      <div class="kpi-s">mercato</div></div>
+    <div class="kpi"><div class="kpi-l">Intrinsic Value</div>
+      <div class="kpi-v" style="color:#7c3aed">USD&nbsp;1,431.26</div>
+      <div class="kpi-s">senza margine di sicurezza</div></div>
+    <div class="kpi"><div class="kpi-l">Buy Target</div>
+      <div class="kpi-v" style="color:#00c896">USD&nbsp;1,145.01</div>
+      <div class="kpi-s">IV &times; (1 &minus; MoS 20.0%)</div></div>
+    <div class="kpi"><div class="kpi-l">Sell Target</div>
+      <div class="kpi-v" style="color:#4a9eda">USD&nbsp;1,789.08</div>
+      <div class="kpi-s">IV &times; (1 + 25.0%)</div></div>
+    <div class="kpi"><div class="kpi-l">Upside al Buy</div>
+      <div class="kpi-v" style="color:#00c896">123.2%</div>
+      <div class="kpi-s">vs prezzo corrente</div></div>
+    <div class="kpi"><div class="kpi-l">Stability Grade</div>
+      <div class="kpi-v" style="color:#4a9eda">B</div>
+      <div class="kpi-s">MoS 20.0% applicato</div></div>
+  </div>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">Confronto tra i due metodi</h3>
+  <table class="tbl">
+    <tr><th></th><th>Buffett &mdash; Owner Earnings</th><th>Two-Stage DCF &mdash; Growth</th></tr>
+    <tr><td class="f">Intrinsic Value</td><td>USD&nbsp;456.51</td><td>USD&nbsp;1,431.26</td></tr>
+    <tr><td class="f">Buy Target</td><td>USD&nbsp;365.21</td><td>USD&nbsp;1,145.01</td></tr>
+    <tr><td class="f">Sell Target</td><td>USD&nbsp;570.64</td><td>USD&nbsp;1,789.08</td></tr>
+    <tr><td class="f">Upside al Buy</td><td>-28.8%</td><td>123.2%</td></tr>
+    <tr><td class="f">Base di calcolo</td>
+        <td>NI + imposte &minus; CapEx totale + ammort.</td>
+        <td>NI + imposte (esclude growth CapEx)</td></tr>
+    <tr><td class="f">Discount rate</td>
+        <td>6.0% (save rate)</td>
+        <td>10.0% (save + 4% ERP)</td></tr>
+  </table>
+
+  <div class="fb">
+    <div class="fb-r"><span class="fl">Fact</span>
+      Owner Earnings Conservative USD&nbsp;93.43B
+      (USD&nbsp;12.58/azione), Growth-Adjusted USD&nbsp;165.93B
+      (USD&nbsp;22.35/azione). ROIC 28.8%,
+      Debt/OCF 0.2 anni, CapEx/OCF 63.4%.</div>
+    <div class="fb-r"><span class="fl">Lettura neutra</span>
+      Il modello sconta gli Owner Earnings correnti su 10 anni con un growth rate del
+      30.0% (consenso analisti). Non incorpora opzionalit&agrave;
+      strategiche, nuovi mercati o cambi di mix non ancora visibili nei numeri riportati.</div>
+    <div class="fb-r"><span class="fl">Lettura rialzista</span>
+      Se la crescita effettiva supera il 30.0% assunto, o se il mix migliora
+      i margini oltre le ipotesi, l&rsquo;Intrinsic Value si sposta verso l&rsquo;alto in modo
+      non lineare &mdash; specialmente nel Two-Stage DCF, dove il terminal value pesa molto.</div>
+    <div class="fb-r"><span class="fl">Implicazione valutativa</span>
+      Buy Target USD&nbsp;1,145.01 contro prezzo USD&nbsp;512.90:
+      il titolo offre margine di sicurezza secondo il modello.
+      Questo &egrave; un ancoraggio quantitativo, da leggere insieme agli scenari narrativi
+      della sezione 8, non in sostituzione.</div>
+  </div>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">Multipli P/E &mdash; storico vs forward</h3>
+  
+      <table class="tbl">
+        <tr><th>Esercizio</th><th>Prezzo</th><th>EPS</th><th>P/E</th></tr>
+        <tr><td class='f'>2023</td><td>USD&nbsp;327.54</td><td>USD&nbsp;9.74</td><td>33.6x</td></tr><tr><td class='f'>2024</td><td>USD&nbsp;411.10</td><td>USD&nbsp;11.87</td><td>34.6x</td></tr><tr><td class='f'>2025</td><td>USD&nbsp;528.28</td><td>USD&nbsp;13.71</td><td>38.5x</td></tr><tr><td class='f'>2026</td><td>USD&nbsp;463.85</td><td>USD&nbsp;18.01</td><td>25.8x</td></tr><tr><td class='f' style='color:#7c3aed'>Forward (est.)</td><td>&mdash;</td><td>&mdash;</td><td style='color:#7c3aed'>21.7x</td></tr>
+      </table>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">
+    Stability Grade B &mdash; derivazione del Margin of Safety</h3>
+  <div style="background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px">
+    <div style="color:#9ca3af;font-size:13px;margin-bottom:10px">Azienda di buona qualità — bilancio sano e utili affidabili.</div>
+    <ul style="margin:0;padding-left:20px;color:#9ca3af;font-size:13px;line-height:1.9">
+      <li>ROIC eccellente (28.8%): alta capacità di creare valore sul capitale investito</li><li>Debito ripagabile in 0.2 anni: bilancio molto solido</li><li>CapEx ratio molto elevato (63.4%): alta intensità di capitale</li>
+    </ul>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;
+                color:#6b7280;font-size:12px">
+      Scoring 0&ndash;12 su ROIC, Debt/OCF e CapEx/OCF (4 punti ciascuno).
+      11&ndash;12&rarr;A &middot; 8&ndash;10&rarr;B &middot; 5&ndash;7&rarr;C &middot;
+      2&ndash;4&rarr;D &middot; 0&ndash;1&rarr;F. Il grade determina il Margin of Safety
+      applicato al Buy Target: A 0% &middot; B 20% &middot; C 40% &middot; D 60% &middot; F 80%.
+    </div>
+  </div>
+
+  <div class="disc" style="margin-top:20px">
+    Modello proprietario Owner Earnings / Two-Stage DCF su dati Yahoo Finance TTM
+    (somma ultimi 4 trimestri con fallback annuale). Calcolato il 2026-10-01 10:42.
+    Parametri: growth rate 30.0% (consenso analisti),
+    save rate 6.0%. Non costituisce consulenza finanziaria.
+  </div>
+</div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 1 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+</body></html>

@@ -57,6 +57,97 @@
     font-weight: 600;
   }
 
+  /* ===== Nuova Analisi ===== */
+  .analyze-card {
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .analyze-card h2 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .analyze-card p {
+    color: var(--sub);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .analyze-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .analyze-form input {
+    flex: 1;
+    min-width: 200px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    outline: none;
+    transition: border-color 0.2s;
+    text-transform: uppercase;
+  }
+
+  .analyze-form input:focus { border-color: var(--accent); }
+  .analyze-form input::placeholder { color: var(--muted); font-weight: 400; text-transform: none; }
+
+  .btn-analyze {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--accent);
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .btn-analyze:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .analyze-status {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    display: none;
+  }
+
+  .analyze-status.loading { display: block; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.3); color: var(--warning); }
+  .analyze-status.success { display: block; background: rgba(0,200,150,0.1); border: 1px solid rgba(0,200,150,0.3); color: var(--bull); }
+  .analyze-status.error { display: block; background: rgba(224,82,82,0.1); border: 1px solid rgba(224,82,82,0.3); color: var(--bear); }
+  .analyze-status a { color: var(--accent); text-decoration: underline; }
+
+  .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(245,166,35,0.3);
+    border-top-color: var(--warning);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== Search & Grid ===== */
   .controls {
     display: flex;
     gap: 12px;
@@ -64,10 +155,7 @@
     flex-wrap: wrap;
   }
 
-  .search-box {
-    flex: 1;
-    min-width: 240px;
-  }
+  .search-box { flex: 1; min-width: 240px; }
 
   .search-box input {
     width: 100%;
@@ -120,15 +208,9 @@
     margin-bottom: 10px;
   }
 
-  .company-name {
-    font-size: 18px;
-    font-weight: 700;
-  }
+  .company-name { font-size: 18px; font-weight: 700; }
 
-  .links-group {
-    display: flex;
-    gap: 8px;
-  }
+  .links-group { display: flex; gap: 8px; }
 
   .btn {
     flex: 1;
@@ -141,78 +223,103 @@
     transition: all 0.2s;
   }
 
-  .btn-simple {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
+  .btn-simple { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-simple:hover { border-color: var(--accent); color: var(--accent); }
 
-  .btn-simple:hover { background: var(--border); }
+  .btn-pro { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-pro:hover { border-color: var(--bull); color: var(--bull); }
 
-  .btn-pro {
-    background: var(--accent);
-    color: #fff;
-  }
+  .btn-disabled { opacity: 0.3; pointer-events: none; }
 
-  .btn-pro:hover { background: var(--accent-hover); }
-
-  .btn-disabled {
-    opacity: 0.3;
-    pointer-events: none;
-    border-style: dashed;
-  }
-
-  .loading, .empty {
-    text-align: center;
-    padding: 40px;
-    color: var(--sub);
+  .empty {
     grid-column: 1 / -1;
+    text-align: center;
+    color: var(--muted);
+    padding: 40px;
+    font-size: 16px;
+  }
+
+  /* Card meta info */
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-label {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .meta-value {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .analyze-form { flex-direction: column; }
+    .analyze-form input { width: 100%; }
+    .btn-analyze { width: 100%; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrap">
+
   <header>
     <div class="title-group">
       <div>
-        <h1>Equity Research Hub</h1>
-        <p class="subtitle">Indice delle analisi e report di ricerca</p>
+        <h1>🏦 Equity Research Hub</h1>
+        <p class="subtitle">Analisi narrativa equity con Fair Value &bull; Owner Earnings &bull; DCF</p>
       </div>
-      <div class="status-badge" id="status">
-        ● Caricamento delle analisi...
-      </div>
-    </div>
-
-    <div class="controls">
-      <div class="search-box">
-        <input type="text" id="search" placeholder="Cerca azienda o ticker..." oninput="filterCards()">
-      </div>
+      <span class="status-badge" id="status">● caricamento...</span>
     </div>
   </header>
 
-  <main>
-    <div class="grid" id="company-grid">
-      <div class="loading">Caricamento in corso...</div>
+  <!-- NUOVA ANALISI -->
+  <div class="analyze-card">
+    <h2>🔍 Nuova Analisi</h2>
+    <p>Inserisci il ticker di una stock quotata per generare un report narrativo completo (Fair Value + Owners Earnings + Narrative).</p>
+    <div class="analyze-form">
+      <input type="text" id="ticker-input" placeholder="Es. NVDA, AAPL, ENI.MI, TSLA..." maxlength="10" autocomplete="off" onkeydown="if(event.key==='Enter')startAnalysis()">
+      <button class="btn-analyze" id="analyze-btn" onclick="startAnalysis()">Analizza &rarr;</button>
     </div>
-  </main>
+    <div class="analyze-status" id="analyze-status"></div>
+  </div>
+
+  <!-- FILTRO & GRIGLIA -->
+  <div class="controls">
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Cerca per nome, ticker..." oninput="filterCards()">
+    </div>
+  </div>
+
+  <div class="grid" id="company-grid"></div>
+
 </div>
 
 <script>
   async function loadStocks() {
-    const status = document.getElementById('status');
-
     try {
-      // Prova a caricare il manifest dinamico generato dallo script Node su Vercel
       const res = await fetch('./stocks.json');
       if (!res.ok) throw new Error('File stocks.json non trovato');
       const stocks = await res.json();
-
       renderGrid(stocks);
-      status.textContent = `● ${stocks.length} analisi disponibili`;
+      document.getElementById('status').textContent = `\u25CF ${stocks.length} analisi disponibili`;
     } catch (err) {
       console.warn('Impossibile caricare stocks.json, uso configurazione di fallback.', err);
-      // Fallback per test o sviluppo locale senza manifest compilato
       renderFallback();
     }
   }
@@ -226,10 +333,14 @@
       return;
     }
 
-    list.forEach(item => {
+        list.forEach(item => {
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-search', `${item.name.toLowerCase()} ${item.ticker.toLowerCase()} ${item.folder ? item.folder.toLowerCase() : ''}`);
+
+      // Meta info: quarter e data analisi
+      const quarterHtml = item.quarter ? `<span class="meta-item"><span class="meta-label">📊 Quarter:</span><span class="meta-value">${item.quarter}</span></span>` : '';
+      const dateHtml = item.analysisDate ? `<span class="meta-item"><span class="meta-label">📅 Ultima analisi:</span><span class="meta-value">${item.analysisDate}</span></span>` : '';
 
       card.innerHTML = `
         <div class="card-top">
@@ -237,18 +348,18 @@
           <div class="company-name">${item.name}</div>
         </div>
         <div class="links-group">
-          ${item.simplePath 
-            ? `<a href="${item.simplePath}" class="btn btn-simple">📄 Semplice</a>` 
-            : `<span class="btn btn-simple btn-disabled">📄 N/D</span>`}
-          
-          ${item.proPath 
-            ? `<a href="${item.proPath}" class="btn btn-pro">📊 Pro</a>` 
-            : `<span class="btn btn-pro btn-disabled">📊 N/D</span>`}
+          ${item.simplePath
+            ? `<a href="${item.simplePath}" class="btn btn-simple">\uD83D\uDCC4 Semplice</a>`
+            : `<span class="btn btn-simple btn-disabled">\uD83D\uDCC4 N/D</span>`}
+
+          ${item.proPath
+            ? `<a href="${item.proPath}" class="btn btn-pro">\uD83D\uDCCA Pro</a>`
+            : `<span class="btn btn-pro btn-disabled">\uD83D\uDCCA N/D</span>`}
         </div>
+        ${quarterHtml || dateHtml ? `<div class="card-meta">${quarterHtml}${dateHtml}</div>` : ''}
       `;
       grid.appendChild(card);
-    });
-  }
+    });  }
 
   function renderFallback() {
     const fallbackList = [
@@ -264,19 +375,72 @@
       { name: 'Vistra', ticker: 'VST', simplePath: './Vistra/vistra-semplice.html', proPath: './Vistra/vistra-pro.html' },
       { name: 'Webuild', ticker: 'WBD', simplePath: './Webuild/webuild-semplice.html', proPath: './Webuild/webuild-pro.html' }
     ];
-
     renderGrid(fallbackList);
-    document.getElementById('status').textContent = `● ${fallbackList.length} analisi disponibili (Fallback)`;
+    document.getElementById('status').textContent = `\u25CF ${fallbackList.length} analisi disponibili (Fallback)`;
   }
 
   function filterCards() {
     const query = document.getElementById('search').value.toLowerCase();
     const cards = document.querySelectorAll('.card');
-
     cards.forEach(card => {
       const searchKey = card.getAttribute('data-search');
       card.style.display = searchKey.includes(query) ? 'flex' : 'none';
     });
+  }
+
+  async function startAnalysis() {
+    const input = document.getElementById('ticker-input');
+    const btn = document.getElementById('analyze-btn');
+    const status = document.getElementById('analyze-status');
+    const ticker = input.value.trim().toUpperCase();
+
+    if (!ticker) {
+      status.className = 'analyze-status error';
+      status.innerHTML = 'Inserisci un ticker valido.';
+      return;
+    }
+
+    btn.disabled = true;
+    status.className = 'analyze-status loading';
+    status.innerHTML = `<span class="spinner"></span> Avvio analisi di <strong>${ticker}</strong>...`;
+
+    try {
+      const res = await fetch('/api/analyze/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticker }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        let warningsHtml = '';
+        if (data.warnings && data.warnings.length > 0) {
+          warningsHtml = `<div style="margin-top:8px;font-size:12px;color:var(--sub)">Nota: ${data.warnings.length} warning. I dettagli sono nei log.</div>`;
+        }
+
+        status.className = 'analyze-status success';
+        status.innerHTML = `
+          <strong>\u2705 Analisi completata!</strong> Tempo: ${data.elapsed}<br>
+          <div class="btn-group" style="margin-top:12px;display:flex;gap:8px">
+            <a href="${data.simplePath}" class="btn" style="background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none">\uD83D\uDCC4 Semplice</a>
+            <a href="${data.proPath}" class="btn" style="background:transparent;border:1px solid var(--bull);color:var(--bull);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none">\uD83D\uDCCA Pro</a>
+          </div>
+          ${warningsHtml}
+        `;
+
+        // Ricarica la griglia dopo 2 secondi
+        setTimeout(() => { loadStocks(); }, 2000);
+      } else {
+        status.className = 'analyze-status error';
+        status.innerHTML = `<strong>\u274C Analisi fallita:</strong> ${data.error}.<br><span style="font-size:13px;color:var(--sub)">Verifica che il ticker sia valido e che le API siano configurate.</span>`;
+      }
+    } catch (err) {
+      status.className = 'analyze-status error';
+      status.innerHTML = `<strong>\u274C Errore di rete:</strong> Impossibile contattare il server. Assicurati che il backend sia in esecuzione.`;
+    } finally {
+      btn.disabled = false;
+    }
   }
 
   loadStocks();

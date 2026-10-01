@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Microsoft Corporation MSFT - Semplice</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#7c3aed;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#7c3aed;color:#fff;border:2px solid #7c3aed;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #7c3aed;color:#7c3aed;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#7c3aed;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#7c3aed;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#7c3aed18;border:1px solid #7c3aed40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#7c3aed;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#7c3aed;border-color:#7c3aed;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#7c3aed60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#7c3aed;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">MSFT</div>
+    <div>
+      <div class="hdr-name">Microsoft Corporation &mdash; Borsa: MSFT</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 1 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">ROIC 28,8%,Cassa operativa 182,9 mld $,Margini solidi</span>
+    <span class="badge bn">Capex ratio 63,4%,Prezzo sopra target analisti medi</span>
+    <span class="badge bm">DCF molto sopra mercato,Grade B (non A)</span>
+    <span class="lk-cur">📄 Semplice</span>
+    <a class="lk-oth" href="msft-pro.html">📊 Pro</a>
+  </div>
+</div><div class="wrap-s">
+
+<!-- 01: Come sta crescendo -->
+<div class="sec">
+<div class="s-num">01</div><h2 class="s-h2">Come sta crescendo Microsoft Corporation</h2>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">FY2022 – FY2028 (stime)</div>
+<div class="g2" style="margin-bottom:16px">
+<div class="stat"><div class="lbl">Ricavi FY2026</div><div class="big">331,8 mld $</div><div class="sub">+17,8% a/a</div></div><div class="stat"><div class="lbl">Utile netto FY2026</div><div class="big">133,7 mld $</div><div class="sub">margine ~40%</div></div><div class="stat"><div class="lbl">Cassa operativa</div><div class="big">182,9 mld $</div><div class="sub">generazione molto forte</div></div><div class="stat"><div class="lbl">Crescita attesa</div><div class="big">30%</div><div class="sub">ipotesi modello</div></div><div class="stat"><div class="lbl">ROIC</div><div class="big">28,8%</div><div class="sub">capitale reinvestito bene</div></div>
+</div>
+<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">Microsoft è una macchina da soldi: incassa 331,8 miliardi di dollari l&#x27;anno, ne trattiene 133,7 come utile netto e genera 182,9 miliardi di cassa operativa. Il ROIC del 28,8% dice che ogni dollaro reinvestito rende quasi 29 centesimi: è il segnale di un business di qualità. Il punto di attenzione è il capex ratio al 63,4%: gran parte della cassa viene reinvestita in infrastrutture (data center, cloud, AI), quindi la cassa libera è più contenuta di quanto sembri.</div></div>
+</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2"><div class="ibox"><div class="lbl">Ricavi attesi FY2027</div><div class="ival">~391 mld $</div><div class="sub">consensus analisti</div></div><div class="ibox"><div class="lbl">EPS atteso FY2027</div><div class="ival">~19,7 $</div><div class="sub">stima FactSet</div></div><div class="ibox"><div class="lbl">P/E forward</div><div class="ival">21,7x</div><div class="sub">in linea con big tech</div></div><div class="ibox"><div class="lbl">Dividend yield</div><div class="ival">0,72%</div><div class="sub">cedola simbolica</div></div></div></div>
+</div>
+
+<!-- 02: Cosa può succedere -->
+<div class="sec">
+<div class="s-num">02</div><h2 class="s-h2">Cosa può succedere</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Il modello DCF a due stadi indica un valore intrinseco molto superiore al prezzo di mercato. Questo va letto con cautela: il DCF è sensibile alle ipotesi di crescita e tasso di sconto.</p>
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario rialzista</div><div style="color:#00c896;font-size:20px;font-weight:800">Azure e AI accelerano oltre le attese</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">1.789 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Se la crescita del cloud e dell&#x27;AI si mantiene sopra il 20% annuo per più anni, il valore intrinseco può avvicinarsi al prezzo di vendita teorico del modello (1.789 $).</p></div>
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario base</div><div style="color:#f5a623;font-size:20px;font-weight:800">Crescita solida ma non esplosiva</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">1.431 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Con crescita in linea con il consensus (17-18% ricavi) e margini stabili, il DCF restituisce un fair value di circa 1.431 $ per azione.</p></div>
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario ribassista</div><div style="color:#e05252;font-size:20px;font-weight:800">Pressione su capex e concorrenza AI</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">1.145 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Se il capex resta elevato e la monetizzazione AI delude, il valore scende verso la soglia di acquisto del modello (1.145 $), comunque sopra il prezzo attuale.</p></div>
+</div>
+
+<!-- 03: Quanto vale il titolo -->
+<div class="sec">
+<div class="s-num">03</div><h2 class="s-h2">Quanto vale il titolo</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Il prezzo attuale (512,9 $) è molto al di sotto del fair value stimato dal modello DCF (1.431 $): il mercato sta prezzando uno scenario molto più prudente delle ipotesi del modello.</p>
+<div class="card"><div class="rng"><div class="rng-bar"></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">1.145 $</div></div>
+<div class="rl" style="left:44.40993788819877%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">1.431 $</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">1.789 $</div></div>
+<div class="rdot" style="left:79325.31055900622%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">512,9 $</div></div></div>
+</div>
+<div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear 1.145 $-1.23:</strong> Soglia di acquisto del modello: sotto questo livello il titolo è considerato a sconto.</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base 1.32-1.54:</strong> Fair value centrale: prezzo teorico di equilibrio secondo il DCF.</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull 1.68-1.9:</strong> Soglia di vendita: sopra questo livello il titolo è considerato caro.</div></div>
+</div></div>
+<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px">Perché il fair value è così distante dal prezzo di mercato?</div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px">Il DCF a due stadi con crescita al 30% e orizzonte lungo produce valori molto alti quando applicato a un business con margini elevati come Microsoft. Il mercato, però, prezza un tasso di sconto più alto e una crescita più prudente. Il gap segnala che il modello è ottimistico: va usato come riferimento direzionale, non come target operativo.</p></div>
+</div>
+
+<!-- 04: Il prezzo giusto secondo i conti -->
+<div class="sec">
+
+    <div class="s-num">04</div>
+    <h2 class="s-h2">Il prezzo giusto secondo i conti</h2>
+
+    <div class="card" style="border-left:3px solid #00c896">
+      <div class="lbl" style="color:#00c896">SOTTOVALUTATA</div>
+      <div style="font-size:15px;line-height:1.8;margin-top:10px">Facendo i conti sugli utili che l&rsquo;azienda genera oggi, il prezzo a cui conviene comprare sarebbe <strong>USD&nbsp;1,145.01</strong>. Oggi in borsa costa <strong>USD&nbsp;512.90</strong>, quindi <strong style='color:#00c896'>costa il 123% in meno</strong> di quanto varrebbe. Per il modello &egrave; un buon momento.</div>
+    </div>
+
+    <div class="g2" style="margin-top:20px">
+      <div class="stat">
+        <div class="lbl">Prezzo di oggi</div>
+        <div class="big">USD&nbsp;512.90</div>
+        <div class="sub">quotazione di mercato</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Prezzo a cui comprare</div>
+        <div class="big" style="color:#00c896">USD&nbsp;1,145.01</div>
+        <div class="sub">con margine di sicurezza</div>
+      </div>
+    </div>
+
+    <div class="rng" style="margin-top:24px">
+      <div class="rng-bar" style="background:linear-gradient(90deg,#00c896 0%,#f5a623 55%,#e05252 100%)"></div>
+      <div class="rl" style="left:0">COMPRARE<br><span style="font-weight:400">USD&nbsp;1,145.01</span></div>
+      <div class="rl" style="right:0;text-align:right">VENDERE<br><span style="font-weight:400">USD&nbsp;1,789.08</span></div>
+      <div class="rdot" style="left:0.0%"></div>
+      <div class="rdot-l" style="left:0.0%">oggi</div>
+    </div>
+
+    <div class="ebox" style="margin-top:28px">
+      <div class="lbl">Come funziona questo calcolo</div>
+      <div style="font-size:14px;line-height:1.8;margin-top:8px">
+        Si parte dagli utili reali che l&rsquo;azienda produce &mdash; non quelli promessi &mdash;
+        e si proiettano su 10 anni. Poi si sconta il risultato per tenere conto del fatto che
+        mille euro oggi valgono pi&ugrave; di mille euro fra dieci anni.<br><br>
+        A questo valore si applica uno <strong>sconto di sicurezza</strong> che dipende da quanto
+        l&rsquo;azienda &egrave; robusta. Qui il voto &egrave; <strong style="color:#4a9eda">B</strong>
+        &mdash; azienda solida &mdash; e lo sconto applicato &egrave; del
+        <strong>20%</strong>.<br><br>
+        Pi&ugrave; l&rsquo;azienda &egrave; fragile, pi&ugrave; grande lo sconto richiesto prima
+        di considerarla comprabile.
+      </div>
+    </div>
+
+    <div class="disc" style="margin-top:20px">
+      Calcolo automatico su dati di bilancio degli ultimi 12 mesi
+      (2026-10-01 10:42). Ipotesi di crescita: 30.0% annuo
+      (consenso analisti). Non &egrave; un consiglio di investimento.
+    </div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 1 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+</body></html>

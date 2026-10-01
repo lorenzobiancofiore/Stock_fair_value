@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NVIDIA Corporation NVDA - Semplice</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#76b900;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#76b900;color:#fff;border:2px solid #76b900;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #76b900;color:#76b900;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#76b900;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#76b900;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#76b900;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#76b90018;border:1px solid #76b90040;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#76b900;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#76b900;border-color:#76b900;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#76b90060;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#76b900;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#76b900;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">NVDA</div>
+    <div>
+      <div class="hdr-name">NVIDIA Corporation &mdash; Borsa: NVDA</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q4 FY2026 &middot; 1 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp">Qualità A · ROIC 74% · Cassa solida</span>
+    <span class="badge bn">Prezzo già scontato? Forward P/E 14,6x</span>
+    <span class="badge bm">Crescita 30% ma concentrazione clienti</span>
+    <span class="lk-cur">📄 Semplice</span>
+    <a class="lk-oth" href="nvda-pro.html">📊 Pro</a>
+  </div>
+</div><div class="wrap-s">
+
+<!-- 01: Come sta crescendo -->
+<div class="sec">
+<div class="s-num">01</div><h2 class="s-h2">Come sta crescendo NVIDIA Corporation</h2>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">Ultimi 12 mesi (FY26 stimato)</div>
+<div class="g2" style="margin-bottom:16px">
+<div class="stat"><div class="lbl">Ricavi</div><div class="big">$302,97 mld</div><div class="sub">Crescita a tre cifre guidata dall&#x27;AI</div></div><div class="stat"><div class="lbl">Utile netto</div><div class="big">$192,88 mld</div><div class="sub">Margine netto ~64%</div></div><div class="stat"><div class="lbl">Cassa operativa</div><div class="big">$134,36 mld</div><div class="sub">Conversione elevata</div></div><div class="stat"><div class="lbl">ROIC</div><div class="big">73,9%</div><div class="sub">Rendimento del capitale eccezionale</div></div>
+</div>
+<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">NVIDIA vende i chip che alimentano l&#x27;intelligenza artificiale. In parole semplici: ogni grande azienda tecnologica del mondo sta comprando le sue GPU per costruire data center AI. Questo ha fatto esplodere ricavi e utili. Il ROIC del 74% significa che per ogni 100 dollari investiti nel business, l&#x27;azienda ne genera quasi 74 di profitto operativo: un livello che pochissime aziende al mondo raggiungono.</div></div>
+</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2"><div class="ibox"><div class="lbl">Crescita attesa</div><div class="ival">+30%</div><div class="sub">Stima prudente rispetto al passato</div></div><div class="ibox"><div class="lbl">Forward P/E</div><div class="ival">14,6x</div><div class="sub">Molto basso per un leader AI</div></div><div class="ibox"><div class="lbl">Debito/Equity</div><div class="ival">0,24</div><div class="sub">Bilancio quasi senza debito</div></div><div class="ibox"><div class="lbl">Capex/Ricavi</div><div class="ival">5,5%</div><div class="sub">Modello asset-light</div></div></div></div>
+</div>
+
+<!-- 02: Cosa può succedere -->
+<div class="sec">
+<div class="s-num">02</div><h2 class="s-h2">Cosa può succedere</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Ecco tre scenari possibili a 12-24 mesi, basati sul metodo Buffett (Owner Earnings) e sul consenso degli analisti.</p>
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Ottimista</div><div style="color:#00c896;font-size:20px;font-weight:800">L&#x27;AI accelera ancora</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">$475</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Se la domanda di GPU resta superiore all&#x27;offerta e il ciclo di spesa AI si estende al 2027-2028, il titolo può raggiungere il prezzo di vendita stimato di 475 dollari. Corrisponde al target alto degli analisti ($515) e a un multiplo più generoso.</p></div>
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Base</div><div style="color:#f5a623;font-size:20px;font-weight:800">Crescita solida ma normalizzata</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">$340</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Il fair value calcolato con gli Owner Earnings è 340 dollari. Sconta una crescita del 30% e margini in lieve normalizzazione. È il prezzo &#x27;giusto&#x27; secondo il metodo Buffett, con upside del ~49% dal prezzo attuale.</p></div>
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Pessimista</div><div style="color:#e05252;font-size:20px;font-weight:800">Raffreddamento della spesa AI</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">$180</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Se i grandi clienti (hyperscaler) rallentano gli ordini o emergono concorrenti credibili, il titolo può tornare verso il target basso degli analisti ($180). Sarebbe un -21% dal prezzo attuale.</p></div>
+</div>
+
+<!-- 03: Quanto vale il titolo -->
+<div class="sec">
+<div class="s-num">03</div><h2 class="s-h2">Quanto vale il titolo</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Il titolo quota 228 dollari, ma il valore &#x27;giusto&#x27; stimato con gli Owner Earnings è 340 dollari: c&#x27;è margine di sicurezza del 49%.</p>
+<div class="card"><div class="rng"><div class="rng-bar"></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">$180</div></div>
+<div class="rl" style="left:54.23728813559322%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">$340</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">$475</div></div>
+<div class="rdot" style="left:16.271186440677965%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">$228</div></div></div>
+</div>
+<div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear $180-228:</strong> Scenario negativo: domanda AI in rallentamento</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base 299.5-380.5:</strong> Fair value Buffett: crescita 30%, margini stabili</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull 434.5-515.5:</strong> Scenario positivo: ciclo AI prolungato</div></div>
+</div></div>
+<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px">Perché comprare NVIDIA oggi?</div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px">Perché il prezzo attuale (228$) è ben sotto il fair value stimato (340$) e il forward P/E di 14,6x è basso per un&#x27;azienda che cresce al 30% con ROIC del 74%. Il mercato sembra prezzare uno scenario di rallentamento che, per ora, non si vede nei numeri.</p></div>
+</div>
+
+<!-- 04: Il prezzo giusto secondo i conti -->
+<div class="sec">
+
+    <div class="s-num">04</div>
+    <h2 class="s-h2">Il prezzo giusto secondo i conti</h2>
+
+    <div class="card" style="border-left:3px solid #00c896">
+      <div class="lbl" style="color:#00c896">SOTTOVALUTATA</div>
+      <div style="font-size:15px;line-height:1.8;margin-top:10px">Facendo i conti sugli utili che l&rsquo;azienda genera oggi, il prezzo a cui conviene comprare sarebbe <strong>USD&nbsp;339.68</strong>. Oggi in borsa costa <strong>USD&nbsp;228.38</strong>, quindi <strong style='color:#00c896'>costa il 49% in meno</strong> di quanto varrebbe. Per il modello &egrave; un buon momento.</div>
+    </div>
+
+    <div class="g2" style="margin-top:20px">
+      <div class="stat">
+        <div class="lbl">Prezzo di oggi</div>
+        <div class="big">USD&nbsp;228.38</div>
+        <div class="sub">quotazione di mercato</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Prezzo a cui comprare</div>
+        <div class="big" style="color:#00c896">USD&nbsp;339.68</div>
+        <div class="sub">con margine di sicurezza</div>
+      </div>
+    </div>
+
+    <div class="rng" style="margin-top:24px">
+      <div class="rng-bar" style="background:linear-gradient(90deg,#00c896 0%,#f5a623 55%,#e05252 100%)"></div>
+      <div class="rl" style="left:0">COMPRARE<br><span style="font-weight:400">USD&nbsp;339.68</span></div>
+      <div class="rl" style="right:0;text-align:right">VENDERE<br><span style="font-weight:400">USD&nbsp;475.55</span></div>
+      <div class="rdot" style="left:0.0%"></div>
+      <div class="rdot-l" style="left:0.0%">oggi</div>
+    </div>
+
+    <div class="ebox" style="margin-top:28px">
+      <div class="lbl">Come funziona questo calcolo</div>
+      <div style="font-size:14px;line-height:1.8;margin-top:8px">
+        Si parte dagli utili reali che l&rsquo;azienda produce &mdash; non quelli promessi &mdash;
+        e si proiettano su 10 anni. Poi si sconta il risultato per tenere conto del fatto che
+        mille euro oggi valgono pi&ugrave; di mille euro fra dieci anni.<br><br>
+        A questo valore si applica uno <strong>sconto di sicurezza</strong> che dipende da quanto
+        l&rsquo;azienda &egrave; robusta. Qui il voto &egrave; <strong style="color:#00c896">A</strong>
+        &mdash; azienda molto solida &mdash; e lo sconto applicato &egrave; del
+        <strong>0%</strong>.<br><br>
+        Pi&ugrave; l&rsquo;azienda &egrave; fragile, pi&ugrave; grande lo sconto richiesto prima
+        di considerarla comprabile.
+      </div>
+    </div>
+
+    <div class="disc" style="margin-top:20px">
+      Calcolo automatico su dati di bilancio degli ultimi 12 mesi
+      (2026-10-01 09:55). Ipotesi di crescita: 30.0% annuo
+      (consenso analisti). Non &egrave; un consiglio di investimento.
+    </div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 1 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+</body></html>
