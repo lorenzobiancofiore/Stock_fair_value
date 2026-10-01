@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 });
 
 // API: Nuova analisi (async)
-app.post('/api/analyze', async (req, res) => {
+app.post('/analyze', async (req, res) => {
   const { ticker } = req.body;
 
   if (!ticker || typeof ticker !== 'string' || ticker.trim().length === 0) {
@@ -67,7 +67,7 @@ app.post('/api/analyze', async (req, res) => {
 });
 
 // API: Analisi sincrona (con polling)
-app.post('/api/analyze/sync', async (req, res) => {
+app.post('/analyze/sync', async (req, res) => {
   const { ticker } = req.body;
 
   if (!ticker || typeof ticker !== 'string' || ticker.trim().length === 0) {
@@ -110,7 +110,7 @@ app.post('/api/analyze/sync', async (req, res) => {
 });
 
 // API: Stato salute
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     openRouterKey: config.openRouter.apiKey ? '✅ configured' : '❌ missing',
