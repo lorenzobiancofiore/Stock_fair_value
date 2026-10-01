@@ -3,11 +3,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": null,
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 300
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -19,7 +14,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/$1"
+      "destination": "/public/$1"
     }
   ],
   "env": {

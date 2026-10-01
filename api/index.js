@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(PROJECT_ROOT))); // Serve landing.html + stocks.json + generated files
+app.use(express.static(path.join(PROJECT_ROOT, 'public'))); // Serve landing.html + stocks.json from public/
 
 // CORS
 app.use((req, res, next) => {
