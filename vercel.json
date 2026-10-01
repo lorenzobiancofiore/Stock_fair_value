@@ -4,14 +4,14 @@
   "installCommand": "npm install",
   "framework": null,
   "functions": {
-    "server.js": {
+    "api/index.js": {
       "maxDuration": 300
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/server.js"
+      "destination": "/api/index.js"
     },
     {
       "source": "/stocks.json",
