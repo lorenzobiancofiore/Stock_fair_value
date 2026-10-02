@@ -1,6 +1,9 @@
 {
   "rewrites": [
     {"source": "/api/test", "destination": "/api/test"},
+    {"source": "/api/health", "destination": "/api/main"},
+    {"source": "/api/analyze", "destination": "/api/main"},
+    {"source": "/api/analyze/sync", "destination": "/api/main"},
     {"source": "/api/(.*)", "destination": "/api/main"},
     {"source": "/stocks.json", "destination": "/stocks.json"},
     {"source": "/(.*)", "destination": "/public/$1"}
