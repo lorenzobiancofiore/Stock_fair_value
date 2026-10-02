@@ -6,6 +6,7 @@
     {"source": "/api/analyze/sync", "destination": "/api/analyze-sync"},
     {"source": "/api/(.*)", "destination": "/api/main"},
     {"source": "/stocks.json", "destination": "/stocks.json"},
+    {"source": "/", "destination": "/public/landing.html"},
     {"source": "/(.*)", "destination": "/public/$1"}
   ]
 }
