@@ -107,21 +107,28 @@ function prepareProData(ticker, companyName, narrative, fvHtmlPro, accent, fv, l
 export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimple, fvHtmlPro, accent, fv, latestReportedQuarter) {
   const tickerLower = normalizeTicker(ticker);
   const cleanName = sanitizeName(companyName, fv);
-  const outputDir = path.resolve(process.env.OUTPUT_DIR || '.', tickerLower);
-  await fs.mkdir(outputDir, { recursive: true });
+  
   const simpleSrc = await fs.readFile(new URL('../templates/simple.hbs', import.meta.url), 'utf-8');
   const proSrc = await fs.readFile(new URL('../templates/pro.hbs', import.meta.url), 'utf-8');
   const simpleTmpl = Handlebars.compile(simpleSrc);
   const proTmpl = Handlebars.compile(proSrc);
+  
   const simpleData = prepareSimpleData(ticker, cleanName, narrative, fvHtmlSimple, accent, fv, latestReportedQuarter);
   const proData = prepareProData(ticker, cleanName, narrative, fvHtmlPro, accent, fv, latestReportedQuarter);
+  
   const simpleHtml = simpleTmpl(simpleData);
   const proHtml = proTmpl(proData);
-  const simplePath = path.join(outputDir, `${tickerLower}-semplice.html`);
-  const proPath = path.join(outputDir, `${tickerLower}-pro.html`);
-  await fs.writeFile(simplePath, simpleHtml, 'utf-8');
-  await fs.writeFile(proPath, proHtml, 'utf-8');
-  console.log(`✅ Generated ${simplePath}`);
-  console.log(`✅ Generated ${proPath}`);
-  return { simplePath, proPath, folder: outputDir, simpleUrl: `/${tickerLower}/${tickerLower}-semplice.html`, proUrl: `/${tickerLower}/${tickerLower}-pro.html` };
+  
+  // Upload directly to Vercel Blob (no local filesystem writes)
+  const blobResult = await uploadToBlob(ticker, simpleHtml, proHtml);
+  
+  console.log(`✅ Uploaded to Blob: ${blobResult.simpleUrl}`);
+  console.log(`✅ Uploaded to Blob: ${blobResult.proUrl}`);
+  
+  return {
+    simpleUrl: blobResult.simpleUrl,
+    proUrl: blobResult.proUrl,
+    simplePathname: blobResult.simplePathname,
+    proPathname: blobResult.proPathname
+  };
 }
