@@ -9,8 +9,16 @@
       "destination": "/api/test"
     },
     {
-      "source": "/api/index2",
-      "destination": "/api/index2"
+      "source": "/api/health",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/analyze",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/api/analyze/sync",
+      "destination": "/api/index"
     },
     {
       "source": "/api/(.*)",
