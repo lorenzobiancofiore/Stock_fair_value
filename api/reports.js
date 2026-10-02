@@ -1,6 +1,28 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+/**
+ * Normalizza gli URL dei report: qualsiasi URL Blob diretto viene convertito
+ * nell'endpoint proxy /api/report (che serve inline invece di scaricare).
+ */
+function normalizeUrls(report) {
+  const ticker = (report.ticker || '').toUpperCase();
+  const convert = (p, mode) => {
+    if (!p) return p;
+    const s = String(p);
+    // URL Blob diretto → proxy inline
+    if (s.includes('blob.vercel-storage.com')) {
+      return `/api/report?ticker=${ticker}&mode=${mode}`;
+    }
+    return p;
+  };
+  return {
+    ...report,
+    simplePath: convert(report.simplePath, 'semplice'),
+    proPath: convert(report.proPath, 'pro'),
+  };
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'no-store');
@@ -33,7 +55,9 @@ export default async function handler(req, res) {
       byTicker.set(key, { ...byTicker.get(key), ...r });
     }
 
+    // 4. Normalizza URL (Blob → proxy inline)
     const merged = Array.from(byTicker.values())
+      .map(normalizeUrls)
       .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'it'));
 
     res.json(merged);

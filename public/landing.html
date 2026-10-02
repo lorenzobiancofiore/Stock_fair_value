@@ -333,6 +333,16 @@
     }
   }
 
+  // Normalizza URL Blob → proxy inline (safety net lato client)
+  function normalizeUrl(p, ticker, mode) {
+    if (!p) return p;
+    const s = String(p);
+    if (s.includes('blob.vercel-storage.com')) {
+      return `/api/report?ticker=${(ticker || '').toUpperCase()}&mode=${mode}`;
+    }
+    return p;
+  }
+
   function renderGrid(list) {
     const grid = document.getElementById('company-grid');
     grid.innerHTML = '';
@@ -346,6 +356,12 @@
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-search', `${item.name.toLowerCase()} ${item.ticker.toLowerCase()} ${item.folder ? item.folder.toLowerCase() : ''}`);
+
+      // Normalizza URL (Blob → proxy inline)
+      item = { ...item,
+        simplePath: normalizeUrl(item.simplePath, item.ticker, 'semplice'),
+        proPath: normalizeUrl(item.proPath, item.ticker, 'pro')
+      };
 
       // Meta info: quarter e data analisi
       const quarterHtml = item.quarter ? `<span class="meta-item"><span class="meta-label">📊 Quarter:</span><span class="meta-value">${item.quarter}</span></span>` : '';
