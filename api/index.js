@@ -31,7 +31,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Middleware
 app.use(express.json());
-app.use(express.static(path.join(PROJECT_ROOT, 'public'))); // Serve landing.html + stocks.json from public/
+// Serve static files from public, but exclude api routes
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  return express.static(path.join(PROJECT_ROOT, 'public'))(req, res, next);
+});
 
 // CORS
 app.use((req, res, next) => {
