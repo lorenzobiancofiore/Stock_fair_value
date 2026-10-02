@@ -122,8 +122,8 @@ async function saveReports(ticker, simpleHtml, proHtml) {
   // Vercel Blob (produzione)
   if (vercelBlob?.put && process.env.BLOB_READ_WRITE_TOKEN) {
     const [simpleResult, proResult] = await Promise.all([
-      vercelBlob.put(simplePath, simpleHtml, { access: 'public', contentType: 'text/html; charset=utf-8' }),
-      vercelBlob.put(proPath, proHtml, { access: 'public', contentType: 'text/html; charset=utf-8' })
+      vercelBlob.put(simplePath, simpleHtml, { access: 'public', contentType: 'text/html; charset=utf-8', allowOverwrite: true }),
+      vercelBlob.put(proPath, proHtml, { access: 'public', contentType: 'text/html; charset=utf-8', allowOverwrite: true })
     ]);
     return { simpleUrl: simpleResult.url, proUrl: proResult.url, simplePathname: simplePath, proPathname: proPath };
   }
