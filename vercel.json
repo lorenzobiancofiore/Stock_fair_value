@@ -10,15 +10,7 @@
     },
     {
       "source": "/api/health",
-      "destination": "/api/index"
-    },
-    {
-      "source": "/api/analyze",
-      "destination": "/api/index"
-    },
-    {
-      "source": "/api/analyze/sync",
-      "destination": "/api/index"
+      "destination": "/api/index3"
     },
     {
       "source": "/api/(.*)",
