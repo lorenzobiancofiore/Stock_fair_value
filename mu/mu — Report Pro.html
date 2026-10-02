@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micron (MU) - Pro Report</title>
+<style>
+:root{
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+:root:not([data-theme="light"]){
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+:root[data-theme="dark"]{
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0;line-height:1.6;}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px;}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:24px;}
+.hdr-left{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0a4a42);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;flex-shrink:0;}
+.hdr-name{font-weight:700;font-size:17px;}
+.hdr-sub{color:var(--sub);font-size:12.5px;margin-top:2px;}
+.badge{padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:700;letter-spacing:.2px;}
+.bp{background:rgba(0,200,150,.12);color:var(--bull);border:1px solid rgba(0,200,150,.3);}
+.bn{background:rgba(224,82,82,.12);color:var(--bear);border:1px solid rgba(224,82,82,.3);}
+.bm{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.3);}
+.link-current{background:var(--accent);color:#fff;padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:700;}
+.link-other{background:transparent;color:var(--sub);border:1px solid var(--border);padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:700;text-decoration:none;}
+.link-other:hover{color:var(--accent);border-color:var(--accent);}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:var(--accent);border-color:var(--accent);}
+.sec{padding:28px 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none;}
+.p-tag{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:1px;margin-bottom:8px;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 16px;line-height:1.3;}
+.thesis{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:16px 18px;margin-bottom:18px;font-size:14.5px;}
+.thesis-lbl{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:6px;}
+.kpi-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
+.kpi-l{color:var(--sub);font-size:11px;text-transform:uppercase;letter-spacing:.5px;}
+.kpi-v{font-size:20px;font-weight:800;margin:4px 0 2px;font-family:'SF Mono',Consolas,monospace;}
+.kpi-s{font-size:12px;color:var(--sub);}
+.fb{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin:14px 0;}
+.fb-r{margin-bottom:10px;font-size:14px;}
+.fb-r:last-child{margin-bottom:0;}
+.fl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.4px;color:var(--accent);margin-right:6px;text-transform:uppercase;}
+.fb-r.n .fl{color:var(--sub);} .fb-r.b .fl{color:var(--bull);} .fb-r.v .fl{color:var(--warn);}
+.tbl-wrap{overflow-x:auto;margin:14px 0;}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px;}
+.tbl th{text-align:left;color:var(--sub);font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;padding:8px 10px;border-bottom:1px solid var(--border);}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--border);}
+.tbl td.f{font-weight:700;font-family:'SF Mono',Consolas,monospace;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
+.mc h4{margin:0 0 6px;font-size:14px;}
+.mc p{margin:0;font-size:13px;color:var(--sub);}
+.pcard{border-radius:8px;padding:16px;margin-bottom:12px;border:1px solid var(--border);}
+.pcard-bull{border-color:rgba(0,200,150,.35);background:rgba(0,200,150,.05);}
+.pcard-base{border-color:rgba(245,166,35,.35);background:rgba(245,166,35,.05);}
+.pcard-bear{border-color:rgba(224,82,82,.35);background:rgba(224,82,82,.05);}
+.pcard-l{font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.pcard-p{font-family:'SF Mono',Consolas,monospace;font-weight:800;font-size:18px;margin-top:8px;}
+.cat{display:flex;flex-direction:column;gap:10px;margin:14px 0;}
+.ctag{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:5px;background:rgba(20,184,166,.15);color:var(--accent);margin-right:8px;}
+.risk{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
+.risk:last-child{border-bottom:none;}
+.rsev{flex-shrink:0;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:5px;text-transform:uppercase;}
+.rsev.hi{background:rgba(224,82,82,.15);color:var(--bear);}
+.rsev.md{background:rgba(245,166,35,.15);color:var(--warn);}
+.disc{font-size:11.5px;color:var(--muted);margin-top:20px;line-height:1.6;}
+.warnbox{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.35);border-radius:8px;padding:14px 16px;font-size:13.5px;margin:14px 0;}
+.warnbox b{color:var(--warn);}
+@media(max-width:640px){.kpi-g{grid-template-columns:1fr 1fr;}.g2p{grid-template-columns:1fr;}}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo">MU</div>
+      <div>
+        <div class="hdr-name">Micron Technology, Inc. &mdash; Nasdaq: MU</div>
+        <div class="hdr-sub">Equity Narrative Analysis &middot; Q4 &amp; FY2026 (chiuso 3/9) &middot; 2 ottobre 2026</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="badge bp">Ricavi trim. +379% YoY</span>
+      <span class="badge bm">Modello su dati pre-trimestrale</span>
+      <span class="link-current">&#128202; Pro</span>
+      <a class="link-other" href="https://claude.ai/artifact/NwqsGLnY17sLYpinDbLmUB" id="link-to-simple">&#128196; Semplice</a>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#exec">Sintesi</a>
+    <a href="#market">Mercato</a>
+    <a href="#financial">Conti</a>
+    <a href="#quality">Qualità utili</a>
+    <a href="#mix">Mix ricavi</a>
+    <a href="#news">Notizie</a>
+    <a href="#catalysts">Catalizzatori</a>
+    <a href="#scenarios">Scenari</a>
+    <a href="#valuation">Valutazione</a>
+    <a href="#risks">Rischi</a>
+    <a href="#conclusion">Conclusione</a>
+    <a href="#fairvalue">Fair Value</a>
+  </div>
+
+  <!-- 1. EXEC -->
+  <div class="sec" id="exec">
+    <div class="p-tag">01 &middot; SINTESI ESECUTIVA</div>
+    <div class="p-h2">Il trimestre più straordinario nella storia di Micron, in un settore che storicamente non premia mai la straordinarietà per molto tempo</div>
+    <div class="thesis">
+      <div class="thesis-lbl">TESI CENTRALE</div>
+      Il 30 settembre Micron ha riportato il miglior trimestre della sua storia: ricavi di $54,23 mld (+379% YoY), margine lordo dell'86,8%, utile netto di $37,7 mld in <em>tre mesi</em>. È la supercycle della memoria AI/HBM al suo picco. Il titolo ha superato i $1.000 e gli analisti rincorrono con target fino a $2.100. Ma Micron è, per natura, l'azienda più ciclica dei semiconduttori: la sua storia recente di P/E (6x nel 2022, 150x nel 2024 dopo un crollo degli utili, 22x nel 2025) è la fotografia di un settore che non ha mai sostenuto margini a questi livelli per più di qualche trimestre. La domanda che conta non è se il trimestre sia stato eccezionale &mdash; lo è stato, senza ambiguità &mdash; ma quanto di questa eccezionalità sia strutturale (HBM, AI, Strategic Customer Agreements pluriennali) e quanto sia ciclica (scarsità d'offerta che la concorrenza, inclusa quella cinese, inizierà a colmare).
+    </div>
+    <div class="kpi-g">
+      <div class="kpi"><div class="kpi-l">Prezzo (2/10)</div><div class="kpi-v">$1.097,39</div><div class="kpi-s">Cap. ~$1.240 mld</div></div>
+      <div class="kpi"><div class="kpi-l">Ricavi Q4 FY26</div><div class="kpi-v">$54,23 mld</div><div class="kpi-s">+379% YoY &middot; +30,8% QoQ</div></div>
+      <div class="kpi"><div class="kpi-l">Margine lordo Q4</div><div class="kpi-v" style="color:var(--bull)">86,8%</div><div class="kpi-s">da 44,7% un anno fa</div></div>
+      <div class="kpi"><div class="kpi-l">Ricavi FY2026</div><div class="kpi-v">$133,19 mld</div><div class="kpi-s">+256% YoY</div></div>
+      <div class="kpi"><div class="kpi-l">Cassa + investimenti</div><div class="kpi-v" style="color:var(--bull)">$73,48 mld</div><div class="kpi-s">vs ~$5,2 mld di debito totale</div></div>
+      <div class="kpi"><div class="kpi-l">Target street high</div><div class="kpi-v">$2.100</div><div class="kpi-s">DA Davidson, 1/10</div></div>
+    </div>
+    <div class="disc">Prezzo di riferimento: $1.097,39, rilevato in diretta dal modello di fair value il 2 ottobre 2026. Prossima trimestrale (Q1 FY2027): tipicamente a dicembre 2026.</div>
+  </div>
+
+  <!-- 2. MARKET -->
+  <div class="sec" id="market">
+    <div class="p-tag">02 &middot; ISTANTANEA DI MERCATO</div>
+    <div class="p-h2">Da $85 a oltre $1.000 in un anno, con un pullback del 40% già consumato e recuperato nel mezzo</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Metrica</th><th>Valore</th></tr>
+      <tr><td>Prezzo (2 ottobre 2026)</td><td class="f">$1.097,39</td></tr>
+      <tr><td>Capitalizzazione di mercato</td><td class="f">~$1.240 mld</td></tr>
+      <tr><td>Range anno civile 2026</td><td class="f">$284,20 &ndash; $1.255,00</td></tr>
+      <tr><td>Range FY2027 (dal 28/8, già)</td><td class="f">$737,89 &ndash; $1.168,50</td></tr>
+      <tr><td>Performance ultimi 12 mesi</td><td class="f" style="color:var(--bull)">oltre +650%</td></tr>
+      <tr><td>P/E trailing (modello)</td><td class="f">14,8x</td></tr>
+      <tr><td>P/E forward (modello)</td><td class="f">5,3x</td></tr>
+      <tr><td>Dividendo trimestrale</td><td class="f">$0,15 (pagabile 29/10/2026)</td></tr>
+    </table></div>
+    <div class="fb">
+      <div class="fb-r"><span class="fl">Fatto</span>Il 30 settembre, dopo l'annuncio dei risultati, il titolo ha prima perso quasi il 4% intraday (per una guidance di margine lordo Q1 FY27 leggermente sotto le attese, legata ad aumenti di compensation ai dipendenti), poi ha recuperato chiudendo in rialzo di circa il 2% il giorno successivo, sulla spinta dei rialzi di target da parte di Rosenblatt e Mizuho.</td></div>
+      <div class="fb-r n"><span class="fl">Lettura neutra</span>Un range di oltre $430 in appena un mese fiscale (da $737,89 a $1.168,50) è un livello di volatilità che pochi titoli a mega-capitalizzazione sperimentano: è la firma di un titolo guidato da revisioni di stima rapide e da un settore storicamente boom-bust.</div>
+      <div class="fb-r b"><span class="fl">Lettura rialzista</span>Nonostante l'estrema volatilità, il trend di fondo resta inequivocabilmente positivo: ogni pullback significativo degli ultimi 12 mesi è stato recuperato e superato entro poche settimane, sostenuto da revisioni di utile in continuo aumento.</div>
+      <div class="fb-r v"><span class="fl">Implicazione di valutazione</span>A un P/E trailing di 14,8x e forward di 5,3x, il titolo sembra oggettivamente "a buon mercato" rispetto a qualunque altro large-cap tech &mdash; ma per un business ciclico ai massimi storici di margine, questo è esattamente il momento in cui i multipli bassi ingannano di più (sezione 9).</div>
+    </div>
+  </div>
+
+  <!-- 3. FINANCIAL -->
+  <div class="sec" id="financial">
+    <div class="p-tag">03 &middot; ANALISI FINANZIARIA APPROFONDITA</div>
+    <div class="p-h2">Un'espansione di margine di 42 punti percentuali in un anno &mdash; quasi tutta prezzo, non efficienza</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Voce (USD mld)</th><th>Q4 FY2026</th><th>Q3 FY2026</th><th>Q4 FY2025</th></tr>
+      <tr><td>Ricavi</td><td class="f">54,23</td><td class="f">41,46</td><td class="f">11,32</td></tr>
+      <tr><td>Margine lordo</td><td class="f" style="color:var(--bull)">86,8%</td><td class="f">84,6%</td><td class="f">44,7%</td></tr>
+      <tr><td>Utile operativo</td><td class="f">43,75</td><td class="f">33,32</td><td class="f">3,65</td></tr>
+      <tr><td>Utile netto GAAP</td><td class="f">37,70</td><td class="f">28,24</td><td class="f">3,20</td></tr>
+      <tr><td>EPS diluito GAAP</td><td class="f">$32,87</td><td class="f">$24,67</td><td class="f">$2,83</td></tr>
+      <tr><td>Cash flow operativo</td><td class="f">43,97</td><td class="f">25,39</td><td class="f">5,73</td></tr>
+      <tr><td>FCF adjusted</td><td class="f">33,20</td><td class="f">18,30</td><td class="f">0,80</td></tr>
+    </table></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Anno fiscale (USD mld)</th><th>FY2026</th><th>FY2025</th></tr>
+      <tr><td>Ricavi</td><td class="f">133,19</td><td class="f">37,38</td></tr>
+      <tr><td>Utile netto GAAP</td><td class="f">84,97</td><td class="f">8,54</td></tr>
+      <tr><td>EPS diluito GAAP</td><td class="f">$74,33</td><td class="f">$7,59</td></tr>
+      <tr><td>Cash flow operativo</td><td class="f">89,68</td><td class="f">17,53</td></tr>
+      <tr><td>CapEx netto</td><td class="f">27,37</td><td class="f">13,80</td></tr>
+      <tr><td>Cassa + investimenti + restricted</td><td class="f">73,48</td><td class="f">n.d.</td></tr>
+    </table></div>
+    <div class="fb">
+      <div class="fb-r"><span class="fl">Fatto</span>Il margine lordo è passato dal 44,7% al 86,8% nell'arco di un solo anno: un'espansione di 42 punti percentuali guidata quasi interamente da prezzi di vendita DRAM/NAND/HBM in forte aumento per scarsità d'offerta, non da riduzioni di costo interne.</td></div>
+      <div class="fb-r n"><span class="fl">Lettura neutra</span>La guidance Q1 FY2027 (margine lordo ~86,25% non-GAAP) implica una leggera flessione rispetto all'87% non-GAAP del Q4 appena chiuso &mdash; il management stesso segnala, implicitamente, che il picco potrebbe già essere molto vicino, non in ulteriore accelerazione.</div>
+      <div class="fb-r b"><span class="fl">Lettura rialzista</span>Il cash flow operativo FY2026 ($89,68 mld) ha superato l'utile netto GAAP ($84,97 mld): non ci sono segnali di aggressività contabile, la cassa generata è reale e ha già permesso di accumulare $73,48 mld di liquidità e investimenti contro appena ~$5,2 mld di debito.</div>
+      <div class="fb-r v"><span class="fl">Implicazione di valutazione</span>Un'azienda che genera $62 mld di free cash flow annuo con zero problemi di bilancio ha una flessibilità enorme per buyback, dividendi o ulteriori investimenti &mdash; ma il mercato deve decidere quale "livello normalizzato" di margine lordo usare per valutarla: 87% (oggi) o qualcosa più vicino alla media storica del settore (30-50%)?</div>
+    </div>
+  </div>
+
+  <!-- 4. QUALITY -->
+  <div class="sec" id="quality">
+    <div class="p-tag">04 &middot; QUALITÀ DEGLI UTILI</div>
+    <div class="p-h2">Utili reali e ben supportati da cassa &mdash; ma attenzione a cosa manca ancora nei dati del modello quantitativo</div>
+    <div class="fb">
+      <div class="fb-r"><span class="fl">Fatto</span>Nel trimestre, Micron ha incassato $12,75 mld di depositi clienti legati a Strategic Customer Agreements (SCA) pluriennali, facendo salire le "passività da contratto clienti non correnti" da $142 mln a $12,9 mld: sono impegni di fornitura/prezzo futuri, non ricavo già riconosciuto, ma segnalano una domanda contrattualmente vincolata di dimensioni inedite per Micron.</div>
+      <div class="fb-r n"><span class="fl">Lettura neutra</span>Una "Patent license charges" da $500 mln ha gravato sugli opex del trimestre &mdash; un costo legale non ricorrente che riduce leggermente, ma non altera, la qualità del risultato operativo sottostante.</div>
+      <div class="fb-r v"><span class="fl">Nota metodologica importante sul modello di sezione 12</span>Il modello di fair value, interrogato il 2 ottobre (due giorni dopo la trimestrale), mostra ricavi TTM di soli $90,27 mld e utile netto TTM di $50,47 mld &mdash; numeri sensibilmente <em>inferiori</em> ai $133,19 mld e $84,97 mld dell'intero FY2026 appena riportato. Il motivo: il provider di dati (Yahoo Finance) non ha ancora aggiornato le serie trimestrali per includere il Q4 FY2026 appena pubblicato, quindi il TTM del modello somma ancora Q1+Q2+Q3 FY26 più il <em>vecchio</em> Q4 FY25 ($11,32 mld) invece del nuovo Q4 FY26 ($54,23 mld). Il prezzo usato dal modello ($1.097,39), invece, è live e già aggiornato: c'è quindi un disallineamento temporaneo tra numeratore (prezzo, aggiornato) e denominatore (utili, non ancora aggiornato) nella sezione 12. Non è un errore del modello, ma un ritardo tipico di 1-3 giorni lavorativi nei feed dati dopo una trimestrale.</div>
+      <div class="fb-r b"><span class="fl">Lettura rialzista</span>Una volta che il TTM si aggiornerà con il Q4 FY2026 reale, la base di utili e ricavi usata dal modello salirà in modo molto significativo: il confronto con il modello in sezione 12 va quindi letto come probabilmente <em>conservativo</em> rispetto a dove si posizionerà non appena i dati saranno correnti.</div>
+    </div>
+  </div>
+
+  <!-- 5. MIX -->
+  <div class="sec" id="mix">
+    <div class="p-tag">05 &middot; MIX DI BUSINESS E CONCENTRAZIONE RICAVI</div>
+    <div class="p-h2">Il segmento Data Center è passato dall'essere marginale a essere il più grande, in un solo anno</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Business Unit (Q4 FY26)</th><th>Ricavi</th><th>% del totale</th><th>Margine operativo</th><th>YoY</th></tr>
+      <tr><td>Core Data Center</td><td class="f">$18,00 mld</td><td class="f">33,2%</td><td class="f">85%</td><td class="f" style="color:var(--bull)">+1.041%</td></tr>
+      <tr><td>Cloud Memory</td><td class="f">$16,28 mld</td><td class="f">30,0%</td><td class="f">76%</td><td class="f" style="color:var(--bull)">+259%</td></tr>
+      <tr><td>Mobile &amp; Client</td><td class="f">$13,11 mld</td><td class="f">24,2%</td><td class="f">88%</td><td class="f" style="color:var(--bull)">+249%</td></tr>
+      <tr><td>Automotive &amp; Embedded</td><td class="f">$6,82 mld</td><td class="f">12,6%</td><td class="f">79%</td><td class="f" style="color:var(--bull)">+376%</td></tr>
+    </table></div>
+    <div class="fb">
+      <div class="fb-r"><span class="fl">Fatto</span>Il Core Data Center Business Unit (verosimilmente il più esposto a HBM e memoria AI) è cresciuto dell'1.041% YoY, diventando il segmento più grande dell'azienda; tutti e quattro i segmenti mostrano margini operativi sopra il 75%, qualcosa di inedito nella storia di Micron.</div>
+      <div class="fb-r n"><span class="fl">Lettura neutra</span>Una crescita così estrema e concentrata in un solo segmento (Data Center/AI) rende Micron, nei fatti, molto più dipendente dal ciclo degli investimenti AI dei grandi hyperscaler di quanto non suggerisca la sua immagine storica di fornitore diversificato di memoria per PC, smartphone e automotive.</div>
+      <div class="fb-r v"><span class="fl">Implicazione di valutazione</span>Se la spesa in infrastrutture AI dei grandi cloud provider decelerasse (il tipo di rischio discusso anche per altri titoli esposti all'AI capex), il segmento che oggi pesa di più sui ricavi di Micron sarebbe anche quello più colpito.</div>
+    </div>
+  </div>
+
+  <!-- 6. NEWS -->
+  <div class="sec" id="news">
+    <div class="p-tag">06 &middot; NARRATIVA GUIDATA DALLE NOTIZIE (ultimi ~90 giorni)</div>
+    <div class="p-h2">Un trimestre record, e una Cina che si muove più velocemente di quanto la narrativa sulla scarsità suggerisca</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Data</th><th>Evento</th><th>Perché conta</th><th>Orizzonte</th></tr>
+      <tr><td>30/9</td><td>Risultati record Q4/FY2026 ($54,23 mld di ricavi trimestrali, margine lordo 86,8%); guidance Q1 FY27 a $61,5 mld, sopra consenso</td><td>Conferma la supercycle AI/HBM al suo picco attuale</td><td>Immediato</td></tr>
+      <tr><td>1/10</td><td>Raffica di rialzi di target: DA Davidson a $2.100, Rosenblatt a $1.900, Cantor Fitzgerald a $2.000; Morgan Stanley più cauto a $1.200 ma lo definisce "top U.S. semiconductor pick"</td><td>Dispersione enorme ($1.200-2.100) segnala incertezza sulla durata del ciclo</td><td>6-18 mesi</td></tr>
+      <tr><td>in corso</td><td>CXMT (ChangXin Memory Technologies, Cina) IPO a Shanghai (+470% al debutto), espansione in NAND, punta a produzione HBM a Shanghai entro fine 2026, prezzi aggressivi su DRAM commodity</td><td>Primo vero sfidante cinese che potrebbe intaccare anche la fascia alta (HBM), non solo quella commodity</td><td>12-24 mesi</td></tr>
+      <tr><td>durante il trimestre</td><td>$12,75 mld di depositi clienti per nuovi Strategic Customer Agreements pluriennali</td><td>Impegni di fornitura/prezzo vincolanti che il CEO Mehrotra cita come fonte di "durability" dei risultati futuri</td><td>24+ mesi</td></tr>
+      <tr><td>agosto 2026 (sfondo)</td><td>Forte volatilità intraday su notizie di espansione CXMT (seconda fabbrica a Pechino)</td><td>Il mercato è già molto sensibile a ogni notizia sulla capacità cinese</td><td>12+ mesi</td></tr>
+    </table></div>
+  </div>
+
+  <!-- 7. CATALYSTS -->
+  <div class="sec" id="catalysts">
+    <div class="p-tag">07 &middot; CALENDARIO CATALIZZATORI</div>
+    <div class="p-h2">Il prossimo trimestre dirà se $61,5 mld è un nuovo pavimento o il punto più alto del ciclo</div>
+    <div class="cat">
+      <div><span class="ctag">3 MESI</span>Trimestrale Q1 FY2027 (tipicamente dicembre): verifica se il margine lordo tiene sopra l'85% come guidato; primi segnali su HBM4/HBM4E per la prossima generazione di GPU AI.</div>
+      <div><span class="ctag">6 MESI</span>Evoluzione della concorrenza CXMT (ramp HBM a Shanghai, espansione NAND); eventuali nuovi Strategic Customer Agreements; Q2 FY2027 (tipicamente marzo 2027).</div>
+      <div><span class="ctag">12 MESI</span>Primo anno fiscale completo (FY2027) a verificare se la "durability" promessa dal management si materializza; evoluzione del ciclo globale di bit-growth della memoria (Morgan Stanley stima ~20% a livello di settore); eventuali sviluppi nella disputa commerciale USA-Cina sui semiconduttori.</div>
+    </div>
+  </div>
+
+  <!-- 8. SCENARIOS -->
+  <div class="sec" id="scenarios">
+    <div class="p-tag">08 &middot; SCENARI: BULL, BASE, BEAR</div>
+    <div class="p-h2">Lo spread di target più ampio tra tutti i titoli analizzati finora in questa serie di report</div>
+    <div class="pcard pcard-bull">
+      <div class="pcard-l" style="color:var(--bull)">Bull case</div>
+      La supercycle AI/HBM continua più a lungo del previsto; CXMT e la concorrenza cinese restano confinate alla fascia commodity senza intaccare HBM; i margini restano sopra l'80% per diversi trimestri ancora; i $62 mld di FCF annuo alimentano buyback aggressivi (alcuni analisti ipotizzano un programma paragonabile a quello di Nvidia).
+      <div class="pcard-p">Target implicito: $1.900-2.100</div>
+    </div>
+    <div class="pcard pcard-base">
+      <div class="pcard-l" style="color:var(--warn)">Base case</div>
+      La guidance Q1 FY27 si realizza come indicato; la domanda HBM/AI resta forte ma il ritmo di crescita sequenziale rallenta gradualmente; CXMT continua a guadagnare quota nella fascia commodity senza ancora intaccare la fascia premium; i margini iniziano una normalizzazione lenta, non brusca.
+      <div class="pcard-p">Target implicito: $1.200-1.600</div>
+    </div>
+    <div class="pcard pcard-bear">
+      <div class="pcard-l" style="color:var(--bear)">Bear case</div>
+      Il ciclo della memoria si inverte più rapidamente del previsto, come già accaduto nel 2022-2023; la capacità cinese si espande più velocemente delle attese e comprime i prezzi anche nella fascia alta; i margini dell'87% si rivelano insostenibili e si normalizzano verso i livelli storici (30-50%); l'enorme capex (oltre $27 mld/anno) genera capacità eccedente quando la domanda AI eventualmente si modera. Il bilancio fortissimo previene un crollo verso lo zero, ma un ritracciamento severo verso i minimi già toccati a settembre è possibile.
+      <div class="pcard-p">Target implicito: $600-740</div>
+    </div>
+  </div>
+
+  <!-- 9. VALUATION -->
+  <div class="sec" id="valuation">
+    <div class="p-tag">09 &middot; FRAMEWORK DI VALUTAZIONE</div>
+    <div class="p-h2">Il P/E più basso tra tutti i titoli di questa serie &mdash; ed è esattamente il motivo per diffidarne</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Anno</th><th>Prezzo</th><th>EPS</th><th>P/E</th></tr>
+      <tr><td>2022</td><td class="f">$49,14</td><td class="f">$7,69</td><td class="f">6,4x</td></tr>
+      <tr><td>2023</td><td class="f">n.d. (perdita)</td><td class="f">n.d.</td><td class="f">n.d.</td></tr>
+      <tr><td>2024</td><td class="f">$103,06</td><td class="f">$0,69</td><td class="f" style="color:var(--warn)">149,6x</td></tr>
+      <tr><td>2025</td><td class="f">$167,05</td><td class="f">$7,56</td><td class="f">22,1x</td></tr>
+      <tr><td>2026 (trailing, modello)</td><td class="f">$1.097,39</td><td class="f">~$74,33 (FY26)</td><td class="f" style="color:var(--bull)">14,8x</td></tr>
+    </table></div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Casa</th><th>Target</th><th>Rating</th><th>Upside implicito</th><th>Data</th></tr>
+      <tr><td>DA Davidson</td><td class="f" style="color:var(--bull)">$2.100</td><td>Buy</td><td class="f">+93,5%</td><td>1/10/2026</td></tr>
+      <tr><td>Cantor Fitzgerald</td><td class="f">$2.000</td><td>Overweight</td><td class="f">+84,3%</td><td>1/10/2026</td></tr>
+      <tr><td>Rosenblatt</td><td class="f">$1.900</td><td>Buy</td><td class="f">+75,1%</td><td>1/10/2026</td></tr>
+      <tr><td>Needham</td><td class="f">$1.650</td><td>Buy</td><td class="f">+52,0%</td><td>1/10/2026</td></tr>
+      <tr><td>TD Cowen</td><td class="f">$1.600</td><td>Buy</td><td class="f">+47,4%</td><td>1/10/2026</td></tr>
+      <tr><td>RBC Capital</td><td class="f">$1.500</td><td>Outperform</td><td class="f">+38,2%</td><td>1/10/2026</td></tr>
+      <tr><td>Mizuho</td><td class="f">$1.400</td><td>Outperform</td><td class="f">+29,0%</td><td>1/10/2026</td></tr>
+      <tr><td>Morgan Stanley</td><td class="f" style="color:var(--warn)">$1.200</td><td>Overweight</td><td class="f">+10,6%</td><td>1/10/2026</td></tr>
+    </table></div>
+    <div class="fb">
+      <div class="fb-r v"><span class="fl">Implicazione di valutazione</span>Anche l'analista più cauto tra quelli monitorati (Morgan Stanley) mantiene un target sopra il prezzo attuale: nessuno sta chiamando un top imminente nel breve termine. Ma la dispersione $1.200-2.100 (quasi $900 di differenza, +75 punti percentuali tra l'estremo basso e quello alto) misura quanto il mercato sia incerto non sul trimestre appena riportato, ma su quanti altri trimestri come questo arriveranno prima che il ciclo si inverta &mdash; la domanda che nessun multiplo P/E, per quanto basso, può risolvere da solo in un settore storicamente ciclico come quello della memoria.</div>
+    </div>
+  </div>
+
+  <!-- 10. RISKS -->
+  <div class="sec" id="risks">
+    <div class="p-tag">10 &middot; RISCHI PRINCIPALI</div>
+    <div class="p-h2">Il rischio numero uno è lo stesso che ha già colpito Micron due volte nell'ultimo decennio</div>
+    <div class="risk"><div><b>Ciclicità estrema del settore memorie</b><br>Il P/E storico di Micron (6x nel 2022, 150x nel 2024 dopo un crollo degli utili) dimostra che margini a questi livelli non sono mai stati sostenuti a lungo nella storia recente del settore.</div><span class="rsev hi">Alto</span></div>
+    <div class="risk"><div><b>Concorrenza cinese (CXMT)</b><br>IPO di successo, espansione aggressiva in NAND e ambizioni dichiarate su HBM; prezzi già a met&agrave; di quelli occidentali sulla fascia commodity.</div><span class="rsev hi">Alto</span></div>
+    <div class="risk"><div><b>Concentrazione sulla domanda AI/data center</b><br>Il segmento Core Data Center è ora il più grande di Micron (+1.041% YoY): un'eventuale decelerazione della spesa AI degli hyperscaler colpirebbe proprio il motore principale della crescita.</div><span class="rsev hi">Alto</span></div>
+    <div class="risk"><div><b>Capex enorme</b><br>Oltre $27 mld/anno investiti in capacità: rischio di eccesso di offerta quando (non se) il ciclo della domanda si modererà.</div><span class="rsev md">Medio</span></div>
+    <div class="risk"><div><b>Dati del modello quantitativo non ancora aggiornati</b><br>Il TTM usato in sezione 12 non include ancora il Q4 FY2026 appena riportato (vedi sezione 4): il confronto va aggiornato appena il feed dati si allinea.</div><span class="rsev md">Medio</span></div>
+    <div class="risk"><div><b>Trappola di valore nei ciclici a picco di ciclo</b><br>Un P/E trailing basso (14,8x) durante un picco di margine storico è un classico segnale falso di "titolo a buon mercato" nei settori ciclici.</div><span class="rsev md">Medio</span></div>
+  </div>
+
+  <!-- 11. CONCLUSION -->
+  <div class="sec" id="conclusion">
+    <div class="p-tag">11 &middot; CONCLUSIONE NARRATIVA FINALE</div>
+    <div class="p-h2">Il trimestre rafforza la tesi di breve termine; la storia di Micron rafforza la cautela di lungo termine</div>
+    <p style="font-size:14.5px;">Il Q4 FY2026 non lascia dubbi: la domanda di memoria per AI (HBM in particolare) ha superato l'offerta in modo così netto che Micron ha trasformato un business storicamente a basso margine in una macchina da utili con margini operativi dell'80%+. I Strategic Customer Agreements pluriennali, con $12,75 mld di depositi già incassati, suggeriscono che almeno una parte di questa forza non è puramente ciclica.</p>
+    <p style="font-size:14.5px;">Ma Micron ha una storia lunga e documentata di cicli di memoria che si invertono bruscamente proprio quando sembrano più solidi: il P/E di 150x del 2024 non è arrivato da un'azienda diversa, è arrivato dalla stessa Micron, due anni dopo un altro picco che sembrava altrettanto strutturale. La concorrenza cinese (CXMT), che oggi compete solo sulla fascia commodity, ha già annunciato ambizioni su HBM entro fine anno.</p>
+    <p style="font-size:14.5px;"><b>Il trimestre non cambia la tesi di fondo su Micron: resta un'azienda eccezionale in un settore che non perdona mai per troppo tempo chi scambia un picco ciclico per un nuovo pavimento permanente.</b> La domanda per i prossimi 12-18 mesi non è se Micron continuerà a generare utili straordinari nel breve (gli Strategic Customer Agreements suggeriscono che probabilmente sì), ma quanto velocemente la capacità cinese e l'eventuale normalizzazione della domanda AI riporteranno i margini verso la loro media storica.</p>
+  </div>
+
+  <!-- 12. FAIR VALUE -->
+  <div class="sec" id="fairvalue">
+    <div class="p-tag">12 &middot; FAIR VALUE &mdash; TWO-STAGE DCF (GROWTH)</div>
+    <div class="p-h2">Un upside implicito del +144% che va letto con lo stesso scetticismo riservato a ogni numero di Micron ai massimi di ciclo</div>
+    <div class="warnbox">
+      <b>Leggere questa sezione insieme alla sezione 4.</b> Il modello, interrogato il 2 ottobre (due giorni dopo la trimestrale), usa ancora un TTM di ricavi/utili che <b>non include</b> il Q4 FY2026 appena riportato &mdash; un tipico ritardo di aggiornamento del data provider. Il prezzo è invece già live e aggiornato. Questo crea un disallineamento temporaneo tra numeratore e denominatore del modello: l'upside implicito del +144% è calcolato su una base di utili più bassa di quella reale, non su dati gonfiati.
+    </div>
+    <div class="thesis">
+      <div class="thesis-lbl">OUTPUT DEL MODELLO PROPRIETARIO</div>
+      Eseguito il 2/10/2026 alle 11:46 (prezzo di calcolo: $1.097,39). Metodo raccomandato: <b>Two-Stage DCF (Growth)</b>, selezionato perché il CapEx ratio (49,1%) supera la soglia del 40% &mdash; coerente con un'azienda che sta investendo capex a ritmi eccezionali per espandere la capacità produttiva.
+    </div>
+    <div class="kpi-g">
+      <div class="kpi"><div class="kpi-l">Stability Grade</div><div class="kpi-v" style="color:#4a9eda">B</div><div class="kpi-s">Margin of safety 20% &middot; sell allowance 25%</div></div>
+      <div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v" style="color:var(--bull)">48,8%</div><div class="kpi-s">Debito ripagabile in 0,1 anni</div></div>
+      <div class="kpi"><div class="kpi-l">CapEx ratio</div><div class="kpi-v" style="color:var(--warn)">49,1%</div><div class="kpi-s">Soglia growth: &gt;40%</div></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Metodo</th><th>Intrinsic Value</th><th>Buy Target</th><th>Sell Target</th><th>Upside</th></tr>
+      <tr><td><b>Two-Stage DCF</b> (raccomandato)</td><td class="f" style="color:var(--bull)">$3.350,26</td><td class="f">$2.680,21</td><td class="f">$4.187,83</td><td class="f" style="color:var(--bull)">+144,2%</td></tr>
+      <tr><td>Buffett (Owner Earnings, non selezionato)</td><td class="f">$1.375,77</td><td class="f">$1.100,62</td><td class="f">$1.719,71</td><td class="f">+0,3%</td></tr>
+    </table></div>
+    <div class="fb">
+      <div class="fb-r"><span class="fl">Fatto</span>Il metodo Buffett (secondario, basato sugli stessi dati TTM non aggiornati) vede il prezzo attuale già quasi esattamente al fair value (+0,3% di upside): è il metodo Two-Stage DCF, che proietta a 10 anni un tasso di crescita del 30% (massimo consentito dal modello), a generare l'ampio upside implicito.</div>
+      <div class="fb-r n"><span class="fl">Lettura neutra</span>Il tasso di crescita del 30% è descritto dal modello come "consenso analisti", ma è anche il valore massimo che il modello consente (clampato 1-30%): per un'azienda il cui fatturato è letteralmente quintuplicato in un anno, qualunque stima di crescita a 10 anni è un esercizio di proiezione lineare di un evento che storicamente non è mai stato lineare.</div>
+      <div class="fb-r b"><span class="fl">Lettura rialzista</span>Anche usando il metodo più conservativo (Buffett) e dati di utili già indietro di un trimestre, il modello non vede il titolo sopravvalutato: a differenza di molti titoli growth analizzati in questa serie di report, qui il business genera già oggi cassa reale ben oltre quella necessaria a sostenere il prezzo.</div>
+      <div class="fb-r v"><span class="fl">Implicazione di valutazione</span>Il vero esercizio da fare non è fidarsi del +144% alla lettera, ma chiedersi: quale tasso di crescita a 10 anni è credibile per un'azienda il cui ultimo trimestre, da solo, ha prodotto più ricavi di quanto l'intera azienda fatturasse in un anno fino a poco tempo fa? Il modello non può rispondere a questa domanda da solo &mdash; può solo mostrare quanto il risultato dipenda da quella singola assunzione.</div>
+    </div>
+    <div class="disc" style="margin-top:20px">
+      Modello proprietario Owner Earnings / Two-Stage DCF su dati Yahoo Finance TTM (somma ultimi 4 trimestri con fallback annuale) &mdash; TTM non ancora aggiornato al Q4 FY2026 (vedi avviso sopra e sezione 4). Calcolato il 2026-10-02 11:46. Parametri: growth rate 30% (consenso analisti, valore massimo consentito), save rate 6%. Non costituisce consulenza finanziaria.
+    </div>
+  </div>
+
+  <div class="disc">
+    <b>Disclaimer.</b> Questo report è un'analisi narrativa a scopo informativo, non è consulenza di investimento personalizzata. I dati di mercato, di bilancio e di consenso analisti sono stati raccolti da fonti pubbliche (comunicato Micron e filing SEC 8-K del 30/9/2026, Benzinga Analyst Ratings, CNBC, TrendForce, TheStreet e altre testate citate nel testo) alla data indicata in testata; verificarli in modo indipendente prima di qualunque decisione operativa. La sezione 12 riporta l'output effettivo del modello quantitativo proprietario (fairvalue.py), calcolato il 2 ottobre 2026, con l'avvertenza esplicita sul ritardo di aggiornamento dei dati fondamentali spiegata sopra.
+  </div>
+</div>
+</body></html>

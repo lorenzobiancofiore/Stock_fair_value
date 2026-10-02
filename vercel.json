@@ -3,6 +3,7 @@
     {"source": "/api/test", "destination": "/api/test"},
     {"source": "/api/health", "destination": "/api/health"},
     {"source": "/api/reports", "destination": "/api/reports"},
+    {"source": "/api/report", "destination": "/api/report"},
     {"source": "/api/analyze", "destination": "/api/analyze"},
     {"source": "/api/analyze/sync", "destination": "/api/analyze-sync"},
     {"source": "/api/(.*)", "destination": "/api/main"},

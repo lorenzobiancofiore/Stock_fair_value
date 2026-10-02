@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micron (MU) - Semplice</title>
+<style>
+:root{
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+:root:not([data-theme="light"]){
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+:root[data-theme="dark"]{
+  --bg:#0d0f14; --card:#13161e; --border:#1e2230; --accent:#14b8a6;
+  --warn:#f5a623; --bear:#e05252; --bull:#00c896; --muted:#6b7280;
+  --text:#e8eaf0; --sub:#9ca3af;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin:0;line-height:1.7;}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px;}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.hdr-left{display:flex;gap:12px;align-items:center;}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0a4a42);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff;flex-shrink:0;}
+.hdr-name{font-weight:700;font-size:17px;}
+.hdr-sub{color:var(--sub);font-size:12.5px;margin-top:2px;}
+.badge{padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:700;}
+.bp{background:rgba(0,200,150,.12);color:var(--bull);border:1px solid rgba(0,200,150,.3);}
+.bm{background:rgba(245,166,35,.12);color:var(--warn);border:1px solid rgba(245,166,35,.3);}
+.link-current{background:var(--accent);color:#fff;padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:700;}
+.link-other{background:transparent;color:var(--sub);border:1px solid var(--border);padding:7px 14px;border-radius:6px;font-size:12.5px;font-weight:700;text-decoration:none;}
+.link-other:hover{color:var(--accent);border-color:var(--accent);}
+.sec{padding:32px 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none;}
+.s-h2{font-size:20px;font-weight:800;margin:0 0 18px;line-height:1.35;}
+.s-num{color:var(--accent);font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:6px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.big{font-size:38px;font-weight:800;font-family:'SF Mono',Consolas,monospace;line-height:1;}
+.sub{font-size:13px;color:var(--sub);margin-top:6px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px;font-size:15px;}
+.card b{display:block;margin-bottom:6px;font-size:14px;text-transform:uppercase;letter-spacing:.4px;}
+.card.pos{border-color:rgba(0,200,150,.4);} .card.pos b{color:var(--bull);}
+.card.mid{border-color:rgba(245,166,35,.4);} .card.mid b{color:var(--warn);}
+.card.neg{border-color:rgba(224,82,82,.4);} .card.neg b{color:var(--bear);}
+.pt{font-family:'SF Mono',Consolas,monospace;font-weight:800;font-size:20px;margin-top:10px;}
+.ebox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-size:14.5px;margin-top:14px;}
+.ebox b{color:var(--accent);}
+.rng{margin:24px 0 8px;}
+.rng-bar{height:14px;border-radius:8px;background:linear-gradient(90deg,var(--bear),var(--warn),var(--bull));position:relative;}
+.rdot{position:absolute;top:-6px;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #0d0f14;box-shadow:0 0 0 2px var(--accent);transform:translateX(-50%);}
+.rdot-l{position:absolute;top:20px;transform:translateX(-50%);font-size:12px;font-weight:700;white-space:nowrap;}
+.rl{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-top:6px;}
+.leg{margin-top:36px;font-size:13px;color:var(--sub);display:flex;flex-direction:column;gap:6px;}
+.leg-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;}
+.disc{font-size:11.5px;color:var(--muted);margin-top:20px;line-height:1.6;}
+.warnbox{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.35);border-radius:10px;padding:16px 18px;font-size:14.5px;margin:14px 0;}
+.warnbox b{color:var(--warn);}
+@media(max-width:480px){.g2{grid-template-columns:1fr;}.big{font-size:32px;}}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo">MU</div>
+      <div>
+        <div class="hdr-name">Micron &mdash; Nasdaq: MU</div>
+        <div class="hdr-sub">Analisi in parole semplici &middot; Q4 e anno fiscale 2026 &middot; 2 ottobre 2026</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="badge bp">Trimestre record</span>
+      <span class="badge bm">Settore molto ciclico</span>
+      <span class="link-current">&#128196; Semplice</span>
+      <a class="link-other" href="https://claude.ai/artifact/QL1cR5SekydNnMYuG8v6eB" id="link-to-pro">&#128202; Pro</a>
+    </div>
+  </div>
+
+  <!-- 01 -->
+  <div class="sec">
+    <div class="s-num">01</div>
+    <div class="s-h2">Come sta crescendo</div>
+    <div class="g2">
+      <div class="stat"><div class="big" style="color:var(--bull)">+379%</div><div class="sub">Ricavi del trimestre vs un anno fa</div></div>
+      <div class="stat"><div class="big" style="color:var(--bull)">86,8%</div><div class="sub">Margine lordo (da 44,7% un anno fa)</div></div>
+    </div>
+    <div class="g2">
+      <div class="stat"><div class="big">$54,2 mld</div><div class="sub">Fatturato in soli tre mesi</div></div>
+      <div class="stat"><div class="big">$37,7 mld</div><div class="sub">Utile netto nello stesso trimestre</div></div>
+    </div>
+    <div class="ebox">
+      <b>Cosa significa in parole semplici:</b> Micron produce i chip di memoria (RAM e memoria flash) che stanno dentro computer, telefoni, auto e, soprattutto oggi, i server che fanno funzionare l'intelligenza artificiale. La domanda di questi chip sta superando così tanto quello che l'industria riesce a produrre che i prezzi sono saliti alle stelle: Micron ha appena chiuso il trimestre migliore della sua storia, guadagnando quasi $38 miliardi in tre mesi &mdash; più di quanto l'intera azienda fatturasse in un anno solo pochi anni fa. Ha anche firmato accordi pluriennali con i grandi clienti che garantiscono forniture e prezzi futuri, incassando già $12,75 miliardi di anticipi.
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="sec">
+    <div class="s-num">02</div>
+    <div class="s-h2">Cosa può succedere</div>
+    <div class="card pos">
+      <b>Scenario positivo</b>
+      La fame di chip di memoria per l'intelligenza artificiale continua più a lungo del previsto, i concorrenti (inclusi quelli cinesi) non riescono a mettersi al passo nella fascia più avanzata, e Micron continua a incassare margini altissimi per diversi trimestri ancora.
+      <div class="pt">Obiettivo: ~$1.900-2.100</div>
+    </div>
+    <div class="card mid">
+      <b>Scenario centrale</b>
+      Le previsioni dell'azienda stessa si realizzano come annunciato, la domanda resta forte ma il ritmo di crescita si modera gradualmente, e i margini iniziano a scendere lentamente dai livelli record attuali, senza crolli bruschi.
+      <div class="pt">Obiettivo: ~$1.200-1.600</div>
+    </div>
+    <div class="card neg">
+      <b>Scenario negativo</b>
+      Il ciclo si inverte più in fretta del previsto &mdash; come è già successo a Micron altre due volte negli ultimi dieci anni &mdash; i produttori cinesi di memoria espandono la capacità più rapidamente delle attese e i prezzi, che oggi sono ai massimi storici, tornano verso livelli molto più normali.
+      <div class="pt">Obiettivo: ~$600-740</div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="sec">
+    <div class="s-num">03</div>
+    <div class="s-h2">Quanto vale</div>
+    <div class="rng">
+      <div class="rng-bar">
+        <div class="rdot" style="left:42%"></div>
+        <div class="rdot-l" style="left:42%">Oggi: $1.097</div>
+      </div>
+      <div class="rl"><span>BEAR $600-740</span><span>BASE $1.200-1.600</span><span>BULL $1.900-2.100</span></div>
+    </div>
+    <div class="leg">
+      <div><span class="leg-dot" style="background:var(--bear)"></span>Rosso = dove potrebbe tornare il titolo se il ciclo si invertisse rapidamente</div>
+      <div><span class="leg-dot" style="background:var(--warn)"></span>Giallo = la zona dove si trovano la maggior parte dei target degli analisti</div>
+      <div><span class="leg-dot" style="background:var(--bull)"></span>Verde = dove potrebbe arrivare se la corsa dell'AI continuasse al ritmo attuale</div>
+    </div>
+    <div class="ebox">
+      Tutti gli analisti che seguono il titolo, anche il più cauto tra loro, vedono ancora spazio di crescita da qui &mdash; ma la distanza tra l'obiettivo più basso ($1.200) e quello più alto ($2.100) è enorme: quasi 900 dollari di differenza. Questo non succede quasi mai con un'azienda così grande, e segnala che nessuno sa davvero per quanto tempo ancora durerà questo momento eccezionale per Micron.
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="sec">
+    <div class="s-num">04</div>
+    <div class="s-h2">Il prezzo giusto secondo i conti</div>
+    <div class="warnbox">
+      <b>Una nota onesta prima dei numeri.</b> Il modello che calcola questo valore usa dati degli ultimi 12 mesi che, al momento del calcolo, non includevano ancora il trimestre record appena annunciato il 30 settembre (il fornitore dei dati aggiorna con un paio di giorni di ritardo). Il prezzo usato invece è quello di oggi. Significa che il numero qui sotto è calcolato su utili leggermente più vecchi di quelli reali &mdash; probabilmente un numero prudente, non esagerato.
+    </div>
+    <div class="g2">
+      <div class="stat"><div class="big" style="color:var(--bull)">$3.350</div><div class="sub">Valore "vero" per azione secondo il modello</div></div>
+      <div class="stat"><div class="big" style="color:#4a9eda">B</div><div class="sub">Voto di stabilità (da A a F)</div></div>
+    </div>
+    <div class="ebox">
+      <b>Un numero impressionante, da maneggiare con cautela.</b> Il modello vede un margine enorme tra il valore "vero" ($3.350) e il prezzo di oggi ($1.097) &mdash; ma questo numero si basa su un'assunzione di crescita del 30% all'anno per i prossimi dieci anni, il massimo che il modello permette di usare. Per un'azienda il cui fatturato è letteralmente quintuplicato in un solo anno, prevedere cosa succederà nei prossimi dieci è quasi impossibile da fare con precisione.
+      <br><br>
+      Un secondo metodo più prudente (che guarda solo alla cassa generata oggi, senza assumere crescita futura) vede invece il titolo già quasi esattamente al suo prezzo giusto. La verità probabile sta nel mezzo: Micron genera oggi cassa reale e solidissima, ma quanto a lungo continuerà a questo ritmo eccezionale è la vera domanda &mdash; non qualcosa che un singolo numero può risolvere.
+    </div>
+  </div>
+
+  <div class="disc">
+    Analisi informativa, non è un consiglio di investimento personalizzato. Prezzo di riferimento: $1.097,39, rilevato in diretta il 2 ottobre 2026. Micron è un titolo storicamente molto volatile: verifica il prezzo corrente prima di qualunque decisione.
+  </div>
+</div>
+</body></html>

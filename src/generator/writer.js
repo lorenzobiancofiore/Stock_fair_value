@@ -77,6 +77,18 @@ function computeQuarter(now, latestReportedQuarter) {
   return `Q${q} FY${fy}`;
 }
 
+function isBlobEnabled() {
+  return Boolean(vercelBlob?.put && process.env.BLOB_READ_WRITE_TOKEN);
+}
+
+function otherModeUrl(ticker, mode) {
+  if (isBlobEnabled()) {
+    return `/api/report?ticker=${ticker.toUpperCase()}&mode=${mode}`;
+  }
+  const tl = normalizeTicker(ticker);
+  return `${tl}-${mode}.html`;
+}
+
 function prepareSimpleData(ticker, companyName, narrative, fvHtmlSimple, accent, fv, latestReportedQuarter) {
   const tl = normalizeTicker(ticker);
   const now = new Date();
@@ -87,7 +99,7 @@ function prepareSimpleData(ticker, companyName, narrative, fvHtmlSimple, accent,
   return {
     ticker: ticker.toUpperCase(), companyName, exchange: 'Borsa', quarter: q, date: today,
     badgePositive: badges.positive || '', badgeNegative: badges.negative || '', badgeMixed: badges.mixed || '',
-    currentModeIcon: '📄', currentModeLabel: 'Semplice', otherFile: `${tl}-pro.html`,
+    currentModeIcon: '📄', currentModeLabel: 'Semplice', otherFile: otherModeUrl(ticker, 'pro'),
     otherModeIcon: '📊', otherModeLabel: 'Pro', accent, accentHover: accent,
     growing: narrative?.simple?.growth || narrative?.simple?.growing || {}, scenarios: narrative?.simple?.scenarios || {},
     valuationIntro: narrative?.simple?.valuationIntro || '',
@@ -106,11 +118,12 @@ function prepareProData(ticker, companyName, narrative, fvHtmlPro, accent, fv, l
   return {
     ticker: ticker.toUpperCase(), companyName, exchange: 'Borsa', quarter: q, date: today,
     badgePositive: badges.positive || '', badgeNegative: badges.negative || '', badgeMixed: badges.mixed || '',
-    currentModeIcon: '📊', currentModeLabel: 'Pro', otherFile: `${tl}-semplice.html`,
+    currentModeIcon: '📊', currentModeLabel: 'Pro', otherFile: otherModeUrl(ticker, 'semplice'),
     otherModeIcon: '📄', otherModeLabel: 'Semplice', accent, accentHover: accent,
     ...pro, fairValueHtmlPro: fvHtmlPro,
   };
 }
+
 /**
  * Salva i report: su Vercel Blob se disponibile, altrimenti su filesystem locale
  */
@@ -120,12 +133,20 @@ async function saveReports(ticker, simpleHtml, proHtml) {
   const proPath = `${tickerLower}/${tickerLower}-pro.html`;
 
   // Vercel Blob (produzione)
-  if (vercelBlob?.put && process.env.BLOB_READ_WRITE_TOKEN) {
+  if (isBlobEnabled()) {
     const [simpleResult, proResult] = await Promise.all([
       vercelBlob.put(simplePath, simpleHtml, { access: 'public', contentType: 'text/html; charset=utf-8', allowOverwrite: true }),
       vercelBlob.put(proPath, proHtml, { access: 'public', contentType: 'text/html; charset=utf-8', allowOverwrite: true })
     ]);
-    return { simpleUrl: simpleResult.url, proUrl: proResult.url, simplePathname: simplePath, proPathname: proPath };
+    return {
+      // URL pubblici serviti inline tramite proxy /api/report
+      simpleUrl: `/api/report?ticker=${ticker.toUpperCase()}&mode=semplice`,
+      proUrl: `/api/report?ticker=${ticker.toUpperCase()}&mode=pro`,
+      simpleBlobUrl: simpleResult.url,
+      proBlobUrl: proResult.url,
+      simplePathname: simplePath,
+      proPathname: proPath
+    };
   }
 
   // Filesystem locale (sviluppo)
@@ -169,6 +190,8 @@ export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimp
   return {
     simpleUrl: blobResult.simpleUrl,
     proUrl: blobResult.proUrl,
+    simpleBlobUrl: blobResult.simpleBlobUrl || blobResult.simpleUrl,
+    proBlobUrl: blobResult.proBlobUrl || blobResult.proUrl,
     simplePathname: blobResult.simplePathname,
     proPathname: blobResult.proPathname
   };
