@@ -1,7 +1,6 @@
 {
   "rewrites": [
     {"source": "/api/test", "destination": "/api/test"},
-    {"source": "/api/health", "destination": "/api/health"},
     {"source": "/api/(.*)", "destination": "/api/index"},
     {"source": "/stocks.json", "destination": "/stocks.json"},
     {"source": "/(.*)", "destination": "/public/$1"}
