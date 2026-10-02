@@ -126,9 +126,6 @@ app.use((req, res) => {
   res.sendFile(path.join(PROJECT_ROOT, 'landing.html'));
 });
 
-// Export per Vercel (non usare app.listen)
-export default app;
-
 // Handler per Vercel Serverless Function
 export default async function handler(req, res) {
   return app(req, res);
