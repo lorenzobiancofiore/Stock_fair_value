@@ -6,7 +6,9 @@
     {"source": "/api/analyze/sync", "destination": "/api/analyze-sync"},
     {"source": "/api/(.*)", "destination": "/api/main"},
     {"source": "/stocks.json", "destination": "/stocks.json"},
-    {"source": "/", "destination": "/landing.html", "type": "redirect"},
     {"source": "/(.*)", "destination": "/public/$1"}
+  ],
+  "redirects": [
+    {"source": "/", "destination": "/landing.html", "permanent": false}
   ]
 }
