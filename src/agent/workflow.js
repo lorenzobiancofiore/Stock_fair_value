@@ -5,6 +5,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 import { generateNarrativeReport } from '../llm/openrouter.js';
 import { generateAndSave } from '../generator/writer.js';
+import { addToManifest } from '../generator/manifest.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..'); // sale a Stock_fair_value/
@@ -245,7 +246,24 @@ export async function runAnalysis(ticker) {
     report.files = files;
     report.steps.push({ fase: 5, status: 'ok', simplePath: files.simpleUrl, proPath: files.proUrl });
 
-    await regenerateManifest(); // Aggiorna stocks.json per la griglia
+    // Registra il report nel manifest (Blob su Vercel, disco in locale)
+    try {
+      const now = new Date();
+      const analysisDate = now.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+      await addToManifest({
+        name: companyName,
+        ticker: ticker.toUpperCase(),
+        folder: ticker.toLowerCase(),
+        simplePath: files.simpleUrl,
+        proPath: files.proUrl,
+        quarter: latestReportedQuarter || null,
+        analysisDate,
+      });
+    } catch (e) {
+      report.warnings.push(`Manifest: ${e.message}`);
+    }
+
+    if (!process.env.VERCEL) await regenerateManifest(); // Aggiorna stocks.json (solo locale)
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
     console.log(`\n✅ Analisi completata in ${elapsed}s per ${ticker}`);

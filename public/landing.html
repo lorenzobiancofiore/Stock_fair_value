@@ -313,13 +313,22 @@
 <script>
   async function loadStocks() {
     try {
-      const res = await fetch('./stocks.json');
-      if (!res.ok) throw new Error('File stocks.json non trovato');
-      const stocks = await res.json();
+      let stocks;
+      try {
+        // Prova prima l'API dinamica (include i report generati su Blob)
+        const res = await fetch('/api/reports');
+        if (!res.ok) throw new Error('API reports non disponibile');
+        stocks = await res.json();
+      } catch (_) {
+        // Fallback al file statico
+        const res = await fetch('./stocks.json');
+        if (!res.ok) throw new Error('File stocks.json non trovato');
+        stocks = await res.json();
+      }
       renderGrid(stocks);
       document.getElementById('status').textContent = `\u25CF ${stocks.length} analisi disponibili`;
     } catch (err) {
-      console.warn('Impossibile caricare stocks.json, uso configurazione di fallback.', err);
+      console.warn('Impossibile caricare le analisi, uso configurazione di fallback.', err);
       renderFallback();
     }
   }
