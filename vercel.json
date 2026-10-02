@@ -10,7 +10,7 @@
     },
     {
       "source": "/api/health",
-      "destination": "/api/index3"
+      "destination": "/api/index4"
     },
     {
       "source": "/api/(.*)",
