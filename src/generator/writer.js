@@ -2,6 +2,13 @@ import fs from 'fs/promises';
 import path from 'path';
 import Handlebars from 'handlebars';
 
+let vercelBlob = null;
+try {
+  vercelBlob = await import('@vercel/blob');
+} catch (e) {
+  // @vercel/blob non disponibile (ambiente locale)
+}
+
 const cssPartial = await fs.readFile(new URL('../templates/shared.css.hbs', import.meta.url), 'utf-8');
 const headerPartial = await fs.readFile(new URL('../templates/shared.header.hbs', import.meta.url), 'utf-8');
 Handlebars.registerPartial('shared.css', cssPartial);
@@ -104,6 +111,40 @@ function prepareProData(ticker, companyName, narrative, fvHtmlPro, accent, fv, l
     ...pro, fairValueHtmlPro: fvHtmlPro,
   };
 }
+/**
+ * Salva i report: su Vercel Blob se disponibile, altrimenti su filesystem locale
+ */
+async function saveReports(ticker, simpleHtml, proHtml) {
+  const tickerLower = ticker.toLowerCase().replace(/\./g, '-');
+  const simplePath = `${tickerLower}/${tickerLower}-semplice.html`;
+  const proPath = `${tickerLower}/${tickerLower}-pro.html`;
+
+  // Vercel Blob (produzione)
+  if (vercelBlob?.put && process.env.BLOB_READ_WRITE_TOKEN) {
+    const [simpleResult, proResult] = await Promise.all([
+      vercelBlob.put(simplePath, simpleHtml, { access: 'public', contentType: 'text/html; charset=utf-8' }),
+      vercelBlob.put(proPath, proHtml, { access: 'public', contentType: 'text/html; charset=utf-8' })
+    ]);
+    return { simpleUrl: simpleResult.url, proUrl: proResult.url, simplePathname: simplePath, proPathname: proPath };
+  }
+
+  // Filesystem locale (sviluppo)
+  const outputDir = path.resolve(process.env.OUTPUT_DIR || '.', tickerLower);
+  await fs.mkdir(outputDir, { recursive: true });
+  const simpleLocal = path.join(outputDir, `${tickerLower}-semplice.html`);
+  const proLocal = path.join(outputDir, `${tickerLower}-pro.html`);
+  await fs.writeFile(simpleLocal, simpleHtml, 'utf-8');
+  await fs.writeFile(proLocal, proHtml, 'utf-8');
+  console.log(`✅ Written locally: ${simpleLocal}`);
+  console.log(`✅ Written locally: ${proLocal}`);
+  return {
+    simpleUrl: `/${tickerLower}/${tickerLower}-semplice.html`,
+    proUrl: `/${tickerLower}/${tickerLower}-pro.html`,
+    simplePathname: simpleLocal,
+    proPathname: proLocal
+  };
+}
+
 export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimple, fvHtmlPro, accent, fv, latestReportedQuarter) {
   const tickerLower = normalizeTicker(ticker);
   const cleanName = sanitizeName(companyName, fv);
@@ -119,11 +160,11 @@ export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimp
   const simpleHtml = simpleTmpl(simpleData);
   const proHtml = proTmpl(proData);
   
-  // Upload directly to Vercel Blob (no local filesystem writes)
-  const blobResult = await uploadToBlob(ticker, simpleHtml, proHtml);
-  
-  console.log(`✅ Uploaded to Blob: ${blobResult.simpleUrl}`);
-  console.log(`✅ Uploaded to Blob: ${blobResult.proUrl}`);
+  // Salva (Blob su Vercel, disco in locale)
+  const blobResult = await saveReports(ticker, simpleHtml, proHtml);
+
+  console.log(`✅ Report salvati: ${blobResult.simpleUrl}`);
+  console.log(`✅ Report salvati: ${blobResult.proUrl}`);
   
   return {
     simpleUrl: blobResult.simpleUrl,
