@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {"source": "/api/test", "destination": "/api/test"},
-    {"source": "/api/health", "destination": "/api/main"},
+    {"source": "/api/health", "destination": "/api/health"},
     {"source": "/api/analyze", "destination": "/api/analyze"},
     {"source": "/api/analyze/sync", "destination": "/api/analyze-sync"},
     {"source": "/api/(.*)", "destination": "/api/main"},
