@@ -1,14 +1,5 @@
 [
   {
-    "name": "aapl",
-    "ticker": "AAPL",
-    "folder": "aapl",
-    "simplePath": "./aapl/aapl-semplice.html",
-    "proPath": "./aapl/aapl-pro.html",
-    "quarter": "Q1 FY2027",
-    "analysisDate": "1 ottobre 2026"
-  },
-  {
     "name": "AMAT",
     "ticker": "AMAT",
     "folder": "AMAT",
