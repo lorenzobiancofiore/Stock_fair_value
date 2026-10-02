@@ -1,31 +1,7 @@
 {
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "framework": null,
   "rewrites": [
-    {
-      "source": "/api/test",
-      "destination": "/api/test"
-    },
-    {
-      "source": "/api/health",
-      "destination": "/api/index4"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index"
-    },
-    {
-      "source": "/stocks.json",
-      "destination": "/stocks.json"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/public/$1"
-    }
-  ],
-  "env": {
-    "NODE_TLS_REJECT_UNAUTHORIZED": "0"
-  }
+    {"source": "/api/(.*)", "destination": "/api/index"},
+    {"source": "/stocks.json", "destination": "/stocks.json"},
+    {"source": "/(.*)", "destination": "/public/$1"}
+  ]
 }
