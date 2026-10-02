@@ -18,3 +18,4 @@ app.post('/analyze/sync', async (req, res) => {
 export default async function handler(req, res) {
   return app(req, res);
 }
+// Force redeploy Fri Oct  2 11:15:20 CEST 2026
