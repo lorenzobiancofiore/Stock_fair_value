@@ -128,3 +128,8 @@ app.use((req, res) => {
 
 // Export per Vercel (non usare app.listen)
 export default app;
+
+// Handler per Vercel Serverless Function
+export default async function handler(req, res) {
+  return app(req, res);
+}
