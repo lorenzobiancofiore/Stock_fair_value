@@ -6,7 +6,7 @@ import path from 'path';
 import { generateNarrativeReport } from '../llm/openrouter.js';
 import { generateAndSave } from '../generator/writer.js';
 import { addToManifest } from '../generator/manifest.js';
-import { normalizeTicker } from '../utils/ticker.js';
+import { normalizeTicker, toYahooFinanceFormat, DEFAULT_EXCHANGE } from '../utils/ticker.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..'); // sale a Stock_fair_value/
@@ -93,19 +93,24 @@ function createFallbackNarrative(companyName, ticker, fairValue) {
 }
 /**
  * Esegue l'analisi completa per un ticker (Fasi 0-5)
+ * @param {string} ticker - ticker inserito dall'utente (es. "AAPL", "ENEL")
+ * @param {string} exchange - codice borsa (es. "US-NY", "IT-MI"); default US-NY
  */
-export async function runAnalysis(ticker) {
+export async function runAnalysis(ticker, exchange = DEFAULT_EXCHANGE) {
   const startTime = Date.now();
-  const report = { ticker, steps: [], warnings: [] };
-  
-  console.log(`\n🚀 Starting analysis for ${ticker}...`);
+  const report = { ticker, exchange, steps: [], warnings: [] };
+
+  // Converte nel formato Yahoo Finance riconosciuto da fairvalue-api
+  const yfTicker = toYahooFinanceFormat(ticker, exchange);
+
+  console.log(`\n🚀 Starting analysis for ${ticker} (${exchange}) → Yahoo: ${yfTicker}...`);
   
   try {
     // FASE 0: Risolvi nome azienda (alias rapido)
     console.log(`📌 Fase 0: Risoluzione nome azienda...`);
-    let companyName = ticker.toUpperCase();
+    let companyName = yfTicker;
     try { 
-      companyName = await resolveCompany(ticker);
+      companyName = await resolveCompany(yfTicker);
     } catch { }
     report.steps.push({ fase: 0, status: 'ok', companyName });
     console.log(`   → (pre-FV) Company: ${companyName?.substring(0, 60)}`);
@@ -113,7 +118,7 @@ export async function runAnalysis(ticker) {
     // FASE 1: Documenti finanziari di base
     console.log(`📌 Fase 1: Raccolta documenti finanziari...`);
     try {
-      const financialDocs = await searchFinancialDocs(ticker.toUpperCase(), companyName);
+      const financialDocs = await searchFinancialDocs(yfTicker, companyName);
       report.financialDocs = financialDocs;
       report.steps.push({ fase: 1, status: 'ok', count: financialDocs.length });
     } catch (e) {
@@ -125,7 +130,7 @@ export async function runAnalysis(ticker) {
     console.log(`📌 Fase 1B: Validazione freschezza dati...`);
     let latestReportedQuarter = null;
     try {
-      const freshness = await validateFreshness(ticker.toUpperCase(), companyName);
+      const freshness = await validateFreshness(yfTicker, companyName);
       report.freshness = freshness;
       report.steps.push({ fase: '1B', status: 'ok', count: freshness.length });
 
@@ -165,7 +170,7 @@ export async function runAnalysis(ticker) {
     // FASE 2: Notizie narrative
     console.log(`📌 Fase 2: Raccolta notizie narrative...`);
     try {
-      const newsResults = await searchNews(ticker.toUpperCase(), companyName);
+      const newsResults = await searchNews(yfTicker, companyName);
       report.newsResults = newsResults;
       report.steps.push({ fase: 2, status: 'ok', count: newsResults.length });
     } catch (e) {
@@ -176,7 +181,7 @@ export async function runAnalysis(ticker) {
     // Target analisti
     let analystTargets = null;
     try {
-      analystTargets = await searchAnalystTargets(ticker.toUpperCase());
+      analystTargets = await searchAnalystTargets(yfTicker);
       report.analystTargets = analystTargets;
     } catch (e) {
       report.warnings.push(`Analyst targets: ${e.message}`);
@@ -187,10 +192,10 @@ export async function runAnalysis(ticker) {
     let fairValue = null;
     let fairValueHtmlSimple = '';
     let fairValueHtmlPro = '';
-    const accent = getAccentColor(ticker);
+    const accent = getAccentColor(yfTicker);
 
     try {
-      fairValue = await getFairValue(ticker.toUpperCase());
+      fairValue = await getFairValue(yfTicker);
       report.fairValue = fairValue;
       report.steps.push({ fase: '2C', status: 'ok', method: fairValue.recommended_method });
 
@@ -202,8 +207,8 @@ export async function runAnalysis(ticker) {
       }
 
       try {
-        fairValueHtmlSimple = await getFairValueHtmlSimple(ticker.toUpperCase(), accent);
-        fairValueHtmlPro = await getFairValueHtmlPro(ticker.toUpperCase(), accent);
+        fairValueHtmlSimple = await getFairValueHtmlSimple(yfTicker, accent);
+        fairValueHtmlPro = await getFairValueHtmlPro(yfTicker, accent);
       } catch (e) {
         report.warnings.push(`Fair Value HTML snippets: ${e.message}`);
         const fb = `<div class="card"><p style="color:var(--bear)">⚠️ Snippet HTML non disponibili: ${e.message}</p></div>`;
@@ -223,7 +228,7 @@ export async function runAnalysis(ticker) {
     let narrative = null;
     try {
       narrative = await generateNarrativeReport({
-        ticker: ticker.toUpperCase(),
+        ticker: yfTicker,
         companyName,
         fairValue: fairValue || {},
         searchResults: report.financialDocs || [],
@@ -235,7 +240,7 @@ export async function runAnalysis(ticker) {
     } catch (e) {
       report.warnings.push(`Fase 3-4: ${e.message}`);
       report.steps.push({ fase: '3-4', status: 'error', error: e.message });
-      narrative = createFallbackNarrative(companyName, ticker.toUpperCase(), fairValue);
+      narrative = createFallbackNarrative(companyName, yfTicker, fairValue);
     }
 
     // FASE 5: Genera e salva due file HTML
@@ -243,7 +248,7 @@ export async function runAnalysis(ticker) {
     let files;
     try {
       files = await generateAndSave(
-        ticker.toUpperCase(), companyName, narrative,
+        yfTicker, companyName, narrative,
         fairValueHtmlSimple, fairValueHtmlPro, accent, fairValue, latestReportedQuarter
       );
       report.files = files;
@@ -260,8 +265,8 @@ export async function runAnalysis(ticker) {
       const analysisDate = now.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
       await addToManifest({
         name: companyName,
-        ticker: ticker.toUpperCase(),
-        folder: normalizeTicker(ticker),
+        ticker: yfTicker,
+        folder: normalizeTicker(yfTicker),
         simplePath: files.simpleUrl,
         proPath: files.proUrl,
         quarter: latestReportedQuarter || null,
@@ -279,15 +284,15 @@ export async function runAnalysis(ticker) {
     console.log(`   Pro: ${files.proUrl}`);
 
     return {
-      success: true, ticker: ticker.toUpperCase(), companyName,
-      folder: normalizeTicker(ticker), elapsed: `${elapsed}s`, ...files,
+      success: true, ticker: yfTicker, companyName, exchange,
+      folder: normalizeTicker(yfTicker), elapsed: `${elapsed}s`, ...files,
       warnings: report.warnings, steps: report.steps,
     };
   } catch (error) {
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
     console.error(`\n❌ Analisi fallita per ${ticker} dopo ${elapsed}s:`, error.message);
     return {
-      success: false, ticker: ticker.toUpperCase(),
+      success: false, ticker: yfTicker,
       error: error.message, elapsed: `${elapsed}s`,
       warnings: report.warnings, steps: report.steps,
     };

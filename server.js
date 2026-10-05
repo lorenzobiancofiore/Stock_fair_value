@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 import { config } from './src/config.js';
 import { runAnalysis } from './src/agent/workflow.js';
+import { DEFAULT_EXCHANGE } from './src/utils/ticker.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname);
@@ -42,13 +43,14 @@ app.use((req, res, next) => {
 
 // API: Nuova analisi
 app.post('/api/analyze', async (req, res) => {
-  const { ticker } = req.body;
+  const { ticker, exchange } = req.body;
 
   if (!ticker || typeof ticker !== 'string' || ticker.trim().length === 0) {
     return res.status(400).json({ error: 'Ticker obbligatorio' });
   }
 
   const cleanTicker = ticker.trim().toUpperCase();
+  const cleanExchange = exchange || DEFAULT_EXCHANGE;
   
   // Run analysis asynchronously - respond immediately with status
   // In a production system we'd use a job queue, but for simplicity we run inline
@@ -57,12 +59,13 @@ app.post('/api/analyze', async (req, res) => {
   res.status(202).json({
     status: 'processing',
     ticker: cleanTicker,
-    message: `Analisi di ${cleanTicker} avviata. Attendere il completamento...`,
+    exchange: cleanExchange,
+    message: `Analisi di ${cleanTicker} (${cleanExchange}) avviata. Attendere il completamento...`,
   });
 
   // Execute analysis (fire and forget essentially, but we could implement polling)
   try {
-    const result = await runAnalysis(cleanTicker);
+    const result = await runAnalysis(cleanTicker, cleanExchange);
     console.log('\n🏁 Analysis result:', JSON.stringify(result, null, 2));
   } catch (error) {
     console.error('\n💥 Analysis failed:', error.message);
@@ -71,25 +74,27 @@ app.post('/api/analyze', async (req, res) => {
 
 // API: Analisi sincrona (con polling)
 app.post('/api/analyze/sync', async (req, res) => {
-  const { ticker } = req.body;
+  const { ticker, exchange } = req.body;
 
   if (!ticker || typeof ticker !== 'string' || ticker.trim().length === 0) {
     return res.status(400).json({ error: 'Ticker obbligatorio' });
   }
 
   const cleanTicker = ticker.trim().toUpperCase();
+  const cleanExchange = exchange || DEFAULT_EXCHANGE;
   
   // Set a timeout of 5 minutes
   req.setTimeout(300000);
   
   try {
-    const result = await runAnalysis(cleanTicker);
+    const result = await runAnalysis(cleanTicker, cleanExchange);
     
     if (result.success) {
       res.json({
         success: true,
         ticker: result.ticker,
         companyName: result.companyName,
+        exchange: result.exchange,
         elapsed: result.elapsed,
         simplePath: result.simpleUrl,
         proPath: result.proUrl,

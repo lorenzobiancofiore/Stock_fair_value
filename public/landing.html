@@ -103,6 +103,23 @@
   .analyze-form input:focus { border-color: var(--accent); }
   .analyze-form input::placeholder { color: var(--muted); font-weight: 400; text-transform: none; }
 
+  .analyze-form select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    max-width: 240px;
+  }
+
+  .analyze-form select:focus { border-color: var(--accent); }
+
   .btn-analyze {
     padding: 12px 24px;
     border-radius: 8px;
@@ -270,6 +287,7 @@
   @media (max-width: 640px) {
     .analyze-form { flex-direction: column; }
     .analyze-form input { width: 100%; }
+    .analyze-form select { width: 100%; max-width: none; }
     .btn-analyze { width: 100%; }
   }
 </style>
@@ -293,7 +311,23 @@
     <h2>🔍 Nuova Analisi</h2>
     <p>Inserisci il ticker di una stock quotata per generare un report narrativo completo (Fair Value + Owners Earnings + Narrative).</p>
     <div class="analyze-form">
-      <input type="text" id="ticker-input" placeholder="Es. NVDA, AAPL, ENI.MI, TSLA..." maxlength="10" autocomplete="off" onkeydown="if(event.key==='Enter')startAnalysis()">
+      <input type="text" id="ticker-input" placeholder="Es. NVDA, AAPL, ENI, AIR..." maxlength="12" autocomplete="off" onkeydown="if(event.key==='Enter')startAnalysis()">
+      <select id="exchange-select" title="Borsa di riferimento (Yahoo Finance)">
+        <option value="US-NY" selected>USA — NYSE</option>
+        <option value="US-NASDAQ">USA — NASDAQ</option>
+        <option value="IT-MI">Italia — Borsa Italiana</option>
+        <option value="FR-PA">Francia — Euronext Paris</option>
+        <option value="DE-DE">Germania — XETRA</option>
+        <option value="NL-AS">Paesi Bassi — Euronext Amsterdam</option>
+        <option value="UK-L">Regno Unito — London SE</option>
+        <option value="ES-MC">Spagna — Bolsa Madrid</option>
+        <option value="CH-SW">Svizzera — SIX</option>
+        <option value="HK-HK">Hong Kong — HKEX</option>
+        <option value="JP-T">Giappone — Tokyo SE</option>
+        <option value="AU-AX">Australia — ASX</option>
+        <option value="CA-TO">Canada — TSX</option>
+        <option value="BR-SA">Brasile — B3</option>
+      </select>
       <button class="btn-analyze" id="analyze-btn" onclick="startAnalysis()">Analizza &rarr;</button>
     </div>
     <div class="analyze-status" id="analyze-status"></div>
@@ -417,7 +451,12 @@
     const input = document.getElementById('ticker-input');
     const btn = document.getElementById('analyze-btn');
     const status = document.getElementById('analyze-status');
+    const exchangeSelect = document.getElementById('exchange-select');
     const ticker = input.value.trim().toUpperCase();
+    const exchange = exchangeSelect ? exchangeSelect.value : 'US-NY';
+    const exchangeLabel = exchangeSelect && exchangeSelect.selectedIndex >= 0
+      ? exchangeSelect.options[exchangeSelect.selectedIndex].text
+      : exchange;
 
     if (!ticker) {
       status.className = 'analyze-status error';
@@ -427,13 +466,13 @@
 
     btn.disabled = true;
     status.className = 'analyze-status loading';
-    status.innerHTML = `<span class="spinner"></span> Avvio analisi di <strong>${ticker}</strong>...`;
+    status.innerHTML = `<span class="spinner"></span> Avvio analisi di <strong>${ticker}</strong> (${exchangeLabel})...`;
 
     try {
       const res = await fetch('/api/analyze/sync', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ticker }),
+        body: JSON.stringify({ ticker, exchange }),
       });
 
       const data = await res.json();
@@ -446,7 +485,7 @@
 
         status.className = 'analyze-status success';
         status.innerHTML = `
-          <strong>\u2705 Analisi completata!</strong> Tempo: ${data.elapsed}<br>
+          <strong>\u2705 Analisi completata!</strong> ${data.ticker || ''} · Tempo: ${data.elapsed}<br>
           <div class="btn-group" style="margin-top:12px;display:flex;gap:8px">
             <a href="${data.simplePath}" class="btn" style="background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none">\uD83D\uDCC4 Semplice</a>
             <a href="${data.proPath}" class="btn" style="background:transparent;border:1px solid var(--bull);color:var(--bull);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none">\uD83D\uDCCA Pro</a>
