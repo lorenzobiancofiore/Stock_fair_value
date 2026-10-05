@@ -4,13 +4,17 @@ const BASE_URL = config.openRouter.baseUrl;
 const API_KEY = config.openRouter.apiKey;
 
 /**
- * Cerca sul web via LLM con web_search supportato
- * Funziona con modelli come perplexity/sonar che hanno web_search nativo
+ * Cerca sul web via LLM con il server tool di OpenRouter (openrouter:web_search)
+ * Model-agnostic: usa Google Gemini 2.5 Flash + fallback gratuiti
+ * Il server tool è eseguito lato OpenRouter, nessuna implementazione client richiesta
  */
 async function fetchLLM(query) {
   const models = [
-    'perplexity/sonar',
-    'perplexity/sonar-pro-search',
+    'google/gemini-2.5-flash',
+    // Fallback gratuiti se il modello primario non è disponibile
+    'google/gemini-2.0-flash-exp:free',
+    'nvidia/nemotron-3-ultra-550b-a55b:free',
+    'microsoft/phi-4:free',
   ];
 
   for (const model of models) {
@@ -20,6 +24,8 @@ async function fetchLLM(query) {
         headers: {
           'Authorization': `Bearer ${API_KEY}`,
           'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://github.com/equity-research-hub',
+          'X-Title': 'Equity Research Hub',
         },
         body: JSON.stringify({
           model,
@@ -27,7 +33,9 @@ async function fetchLLM(query) {
             { role: 'system', content: 'Sei un analista finanziario. Rispondi in modo conciso e fattuale con dati numerici precisi. Cita le fonti.' },
             { role: 'user', content: query }
           ],
-          web_search: true,
+          tools: [
+            { type: 'openrouter:web_search', parameters: { max_results: 5 } }
+          ],
           max_tokens: 1500,
           temperature: 0.1,
         }),

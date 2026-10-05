@@ -6,6 +6,7 @@ import path from 'path';
 import { generateNarrativeReport } from '../llm/openrouter.js';
 import { generateAndSave } from '../generator/writer.js';
 import { addToManifest } from '../generator/manifest.js';
+import { normalizeTicker } from '../utils/ticker.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..'); // sale a Stock_fair_value/
@@ -239,12 +240,19 @@ export async function runAnalysis(ticker) {
 
     // FASE 5: Genera e salva due file HTML
     console.log(`📌 Fase 5: Generazione file HTML...`);
-    const files = await generateAndSave(
-      ticker.toUpperCase(), companyName, narrative,
-      fairValueHtmlSimple, fairValueHtmlPro, accent, fairValue, latestReportedQuarter
-    );
-    report.files = files;
-    report.steps.push({ fase: 5, status: 'ok', simplePath: files.simpleUrl, proPath: files.proUrl });
+    let files;
+    try {
+      files = await generateAndSave(
+        ticker.toUpperCase(), companyName, narrative,
+        fairValueHtmlSimple, fairValueHtmlPro, accent, fairValue, latestReportedQuarter
+      );
+      report.files = files;
+      report.steps.push({ fase: 5, status: 'ok', simplePath: files.simpleUrl, proPath: files.proUrl });
+    } catch (e) {
+      report.warnings.push(`Fase 5: ${e.message}`);
+      report.steps.push({ fase: 5, status: 'error', error: e.message });
+      throw e; // senza file generati non c'è report: propaga al catch esterno
+    }
 
     // Registra il report nel manifest (Blob su Vercel, disco in locale)
     try {
@@ -253,7 +261,7 @@ export async function runAnalysis(ticker) {
       await addToManifest({
         name: companyName,
         ticker: ticker.toUpperCase(),
-        folder: ticker.toLowerCase(),
+        folder: normalizeTicker(ticker),
         simplePath: files.simpleUrl,
         proPath: files.proUrl,
         quarter: latestReportedQuarter || null,
@@ -272,7 +280,7 @@ export async function runAnalysis(ticker) {
 
     return {
       success: true, ticker: ticker.toUpperCase(), companyName,
-      elapsed: `${elapsed}s`, ...files,
+      folder: normalizeTicker(ticker), elapsed: `${elapsed}s`, ...files,
       warnings: report.warnings, steps: report.steps,
     };
   } catch (error) {

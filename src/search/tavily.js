@@ -1,6 +1,7 @@
 import { tavily } from '@tavily/core';
 import { config } from '../config.js';
 import { searchWeb, searchBatch } from './llmSearch.js';
+import { searchSymbol, exchangeHint } from '../utils/ticker.js';
 
 const client = tavily({ apiKey: config.tavily.apiKey });
 
@@ -45,12 +46,14 @@ async function search(query, options = {}) {
  * Fase 1: Documenti finanziari di base
  */
 export async function searchFinancialDocs(ticker, companyName) {
+  const sym = searchSymbol(ticker);
+  const ex = exchangeHint(ticker);
   const queries = [
     `"${companyName}" latest earnings results 2024 2025`,
     `"${companyName}" investor presentation Q3 Q4 2024`,
     `"${companyName}" earnings call transcript 2024`,
     `"${companyName}" guidance outlook 2024 2025`,
-    `"${ticker}" revenue earnings "quarterly" 2024`,
+    `"${sym}"${ex} revenue earnings "quarterly" 2024`,
   ];
 
   const results = [];
@@ -72,11 +75,13 @@ export async function searchFinancialDocs(ticker, companyName) {
 export async function validateFreshness(ticker, companyName) {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+  const sym = searchSymbol(ticker);
+  const ex = exchangeHint(ticker);
   
   const queries = [
-    `"${ticker}" stock price today`,
+    `"${sym}"${ex} stock price today`,
     `"${companyName}" latest earnings results ${currentYear}`,
-    `"${ticker}" analyst price target consensus ${currentYear}`,
+    `"${sym}"${ex} analyst price target consensus ${currentYear}`,
     `"${companyName}" debt cash balance sheet ${currentYear}`,
     `"${companyName}" news ${currentMonth} ${currentYear}`,
   ];
@@ -104,16 +109,18 @@ export async function searchNews(ticker, companyName) {
   const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
   const monthNum = months.indexOf(currentMonth) + 1;
   const prevMonth = monthNum > 1 ? months[monthNum - 2] : months[11];
+  const sym = searchSymbol(ticker);
+  const ex = exchangeHint(ticker);
 
   const queries = [
-    `"${companyName}" "${ticker}" earnings results ${year} guidance`,
+    `"${companyName}" "${sym}" earnings results ${year} guidance`,
     `"${companyName}" latest quarterly results ${prevMonth} ${year}`,
     `"${companyName}" CEO executive change ${year}`,
     `"${companyName}" product launch event ${year}`,
     `"${companyName}" regulatory lawsuit settlement ${year}`,
     `"${companyName}" partnership contract ${prevMonth} ${year}`,
     `"${companyName}" analyst rating outlook ${year} analyst`,
-    `"${ticker}" stock investor news ${currentMonth} ${year}`,
+    `"${sym}"${ex} stock investor news ${currentMonth} ${year}`,
   ];
 
   const results = [];
@@ -152,7 +159,7 @@ export function filterRecentResults(results, maxDays = 180) {
  * Target price analisti
  */
 export async function searchAnalystTargets(ticker) {
-  const query = `"${ticker}" analyst price target consensus 2024`;
+  const query = `"${searchSymbol(ticker)}"${exchangeHint(ticker)} analyst price target consensus 2024`;
   try {
     return await search(query, { maxResults: 10 });
   } catch (e) {
@@ -164,7 +171,7 @@ export async function searchAnalystTargets(ticker) {
  * Ricerca generica per risolvere nome azienda da ticker
  */
 export async function resolveCompanyName(ticker) {
-  const query = `"${ticker}" company name stock`;
+  const query = `"${searchSymbol(ticker)}"${exchangeHint(ticker)} company name stock`;
   try {
     const res = await search(query, { maxResults: 5, searchDepth: 'basic' });
     if (res.answer) return res.answer;

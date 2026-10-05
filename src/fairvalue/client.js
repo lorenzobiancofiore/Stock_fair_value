@@ -100,6 +100,17 @@ export function getAccentColor(ticker) {
     'MC': '#e8112d',
     'VST': '#0066cc',
     'WBD': '#007bff',
+    // Euronext / borse europee
+    'ENGI.PA': '#009fe3',
+    'MC.PA': '#e8112d',
+    'OR.PA': '#1a3c8b',
+    'AIR.PA': '#00205b',
+    'SAN.PA': '#6a2c8f',
+    'SAP.DE': '#0faaff',
+    'SIE.DE': '#009999',
+    'ASML.AS': '#0a2a66',
+    'ENEL.MI': '#00953b',
+    'ENI.MI': '#f5a623',
   };
   
   return colors[ticker.toUpperCase()] || '#7c3aed';

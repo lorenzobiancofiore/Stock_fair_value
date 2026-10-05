@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import Handlebars from 'handlebars';
+import { normalizeTicker } from '../utils/ticker.js';
 
 let vercelBlob = null;
 try {
@@ -13,8 +14,6 @@ const cssPartial = await fs.readFile(new URL('../templates/shared.css.hbs', impo
 const headerPartial = await fs.readFile(new URL('../templates/shared.header.hbs', import.meta.url), 'utf-8');
 Handlebars.registerPartial('shared.css', cssPartial);
 Handlebars.registerPartial('shared.header', headerPartial);
-
-function normalizeTicker(t) { return t.toLowerCase().replace(/\./g, '-'); }
 
 function sanitizeName(name, fv) {
   if (!name) return fv?.company_name || 'N/D';
