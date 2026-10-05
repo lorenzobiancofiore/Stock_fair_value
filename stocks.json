@@ -27,6 +27,15 @@
     "analysisDate": "25 settembre 2026"
   },
   {
+    "name": "baba",
+    "ticker": "BABA",
+    "folder": "baba",
+    "simplePath": "./baba/baba-semplice.html",
+    "proPath": "./baba/baba-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "5 ottobre 2026"
+  },
+  {
     "name": "bzu",
     "ticker": "BZU",
     "folder": "bzu",

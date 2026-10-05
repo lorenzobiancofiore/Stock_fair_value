@@ -7,5 +7,14 @@
     "proPath": "/vst/vst-pro.html",
     "quarter": null,
     "analysisDate": "5 ottobre 2026"
+  },
+  {
+    "name": "Alibaba Group Holding Limited",
+    "ticker": "BABA",
+    "folder": "baba",
+    "simplePath": "/baba/baba-semplice.html",
+    "proPath": "/baba/baba-pro.html",
+    "quarter": null,
+    "analysisDate": "5 ottobre 2026"
   }
 ]
