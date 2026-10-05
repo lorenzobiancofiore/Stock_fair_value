@@ -7,7 +7,7 @@ const FALLBACK_MODELS = config.openRouter.fallbackModels;
 const MAX_RETRIES = 2;
 
 async function chat(messages, options = {}) {
-  const { model, temperature = 0.3, maxTokens = 6000, responseFormat } = options;
+  const { model, temperature = 0.3, maxTokens = 6000, responseFormat, retryOnLength = true } = options;
   const modelList = [model || PRIMARY_MODEL, ...FALLBACK_MODELS];
 
   let lastError = null;
@@ -17,6 +17,8 @@ async function chat(messages, options = {}) {
       try {
         const body = { model: m, messages, temperature, max_tokens: maxTokens };
         if (responseFormat) body.response_format = responseFormat;
+        // Riduci il reasoning per modelli che lo supportano (DeepSeek, Nemotron, ecc.)
+        body.reasoning = { effort: 'low' };
 
         const response = await fetch(`${BASE_URL}/chat/completions`, {
           method: 'POST',
@@ -37,7 +39,50 @@ async function chat(messages, options = {}) {
         }
 
         const data = await response.json();
-        return data.choices[0]?.message?.content || '';
+        const choice = data.choices?.[0];
+        const content = choice?.message?.content || '';
+        const finishReason = choice?.finish_reason;
+        const usage = data.usage;
+
+        // Log diagnostico per debugging
+        if (usage) {
+          console.log(`📊 LLM ${m}: finish_reason=${finishReason}, prompt=${usage.prompt_tokens}, completion=${usage.completion_tokens}, reasoning=${usage.completion_tokens_details?.reasoning_tokens || 0}`);
+        }
+
+        // Se l'output è stato troncato per lunghezza e retry è abilitato
+        if (finishReason === 'length' && retryOnLength) {
+          console.warn(`⚠️  LLM ${m} output troncato (finish_reason=length), retry con schema ridotto...`);
+          // Retry con stessa conversazione ma chiedendo output più conciso
+          const retryMessages = [
+            ...messages,
+            { role: 'assistant', content: content },
+            { role: 'user', content: 'Output troncato. Continua e completa il JSON in modo valido, sii più conciso.' }
+          ];
+          const retryResponse = await fetch(`${BASE_URL}/chat/completions`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${API_KEY}`,
+              'Content-Type': 'application/json',
+              'HTTP-Referer': 'https://github.com/equity-research-hub',
+              'X-Title': 'Equity Research Hub',
+            },
+            body: JSON.stringify({
+              model: m,
+              messages: retryMessages,
+              temperature,
+              max_tokens: maxTokens,
+              response_format: responseFormat,
+              reasoning: { effort: 'low' },
+            }),
+          });
+          if (retryResponse.ok) {
+            const retryData = await retryResponse.json();
+            const retryContent = retryData.choices?.[0]?.message?.content || '';
+            return content + retryContent; // concatena i due pezzi
+          }
+        }
+
+        return content;
       } catch (e) {
         lastError = e;
         console.warn(`⚠️  LLM attempt ${attempt + 1}/${MAX_RETRIES + 1} on ${m}: ${e.message}`);
@@ -47,6 +92,37 @@ async function chat(messages, options = {}) {
   }
 
   throw lastError || new Error('All LLM models exhausted');
+}
+
+/**
+ * Ripara JSON troncato (da finish_reason=length)
+ */
+function repairTruncatedJson(text) {
+  if (!text) return null;
+  // Trova primo { e ultimo }
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  if (start < 0 || end <= start) return null;
+  let json = text.substring(start, end + 1);
+
+  // Conta parentesi e chiudi quelle aperte
+  let openBraces = 0, openBrackets = 0;
+  let inString = false, escaped = false;
+  for (let i = 0; i < json.length; i++) {
+    const ch = json[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+    } else if (ch === '"') inString = true;
+    else if (ch === '{') openBraces++;
+    else if (ch === '}') openBraces--;
+    else if (ch === '[') openBrackets++;
+    else if (ch === ']') openBrackets--;
+  }
+  // Chiudi parentesi/bracket aperti
+  json += ']'.repeat(openBrackets) + '}'.repeat(openBraces);
+  return json;
 }
 
 /**
@@ -105,6 +181,7 @@ ${JSON.stringify({ search: compactSearch, news: compactNews, analyst: compactAna
 Restituisci SOLO JSON valido con questa struttura:
 
 badges: {positive, negative, mixed} - brevi label colorate
+simple.execSummary: {label, text} - sintesi qualitativa "Qualità a sconto": label breve + 2-4 frasi
 simple.growth: {period, metrics[].{label,value,sub}, plainExplanation, guidance[].{label,value,sub}}
 simple.scenarios: {intro, bull/base/bear.{label,headline,price,text}}
 simple.valuationIntro: frase testo
@@ -133,14 +210,23 @@ REGOLE: Analitico, concreto, mai vago. Separa Fatto/Neutra/Bullish/Valutazione. 
     { role: 'user', content: prompt },
   ];
 
+  // maxTokens alto per modelli reasoning + JSON grande
   const response = await chat(messages, {
-    temperature: 0.2, maxTokens: 10000,
+    temperature: 0.2, maxTokens: 32000,
     responseFormat: { type: 'json_object' },
+    retryOnLength: true,
   });
 
   try {
     return JSON.parse(response);
   } catch (e) {
+    // Attempt recovery: ripara JSON troncato
+    const repaired = repairTruncatedJson(response);
+    if (repaired) {
+      try {
+        return JSON.parse(repaired);
+      } catch {}
+    }
     // Attempt recovery: find first { and last }
     const start = response.indexOf('{');
     const end = response.lastIndexOf('}');

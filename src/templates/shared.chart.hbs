@@ -1,0 +1,75 @@
+<script>
+(function () {
+  var TV_SRC = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  var initialized = false;
+
+  function buildConfig(symbol, mode) {
+    var isPro = mode === 'pro';
+    var cfg = {
+      symbol: symbol, locale: 'it', theme: 'dark', style: '1', interval: 'D',
+      autosize: true, volume: true, legend: true, details: false, calendar: false,
+      hotlist: false, watchlist: false, allow_symbol_change: false,
+      hide_side_toolbar: !isPro, hide_top_toolbar: !isPro, withdateranges: isPro,
+      save_image: isPro, enable_publishing: false, support_host: 'https://www.tradingview.com'
+    };
+    if (isPro) { cfg.studies = []; }
+    return cfg;
+  }
+
+  function renderChart(wrapper) {
+    if (!wrapper || wrapper.dataset.tvInit === '1') return;
+    wrapper.dataset.tvInit = '1';
+    var symbol = wrapper.getAttribute('data-tv-symbol');
+    var mode = wrapper.getAttribute('data-tv-mode') || 'simple';
+    var container = wrapper.querySelector('.tv-chart-container');
+    if (!container || !symbol) return;
+    try {
+      var tvContainer = document.createElement('div');
+      tvContainer.className = 'tradingview-widget-container';
+      tvContainer.style.height = '100%';
+      tvContainer.style.width = '100%';
+      var inner = document.createElement('div');
+      inner.className = 'tradingview-widget-container__widget';
+      inner.style.height = '100%';
+      inner.style.width = '100%';
+      tvContainer.appendChild(inner);
+      container.appendChild(tvContainer);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = TV_SRC;
+      script.innerHTML = JSON.stringify(buildConfig(symbol, mode));
+      tvContainer.appendChild(script);
+      setTimeout(function () { wrapper.classList.add('loaded'); }, 1400);
+    } catch (e) {
+      container.innerHTML = '<div class="tv-error">Grafico non disponibile al momento. Riprova pi&ugrave; tardi.</div>';
+      wrapper.classList.add('loaded');
+    }
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    var wrappers = Array.prototype.slice.call(document.querySelectorAll('.tv-chart-wrapper'));
+    if (!wrappers.length) return;
+    if (!('IntersectionObserver' in window)) {
+      wrappers.forEach(renderChart);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          renderChart(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0 });
+    wrappers.forEach(function (w) { io.observe(w); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

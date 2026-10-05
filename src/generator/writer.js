@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import Handlebars from 'handlebars';
 import { normalizeTicker } from '../utils/ticker.js';
+import { buildExecData } from './exec.js';
 
 let vercelBlob = null;
 try {
@@ -14,6 +15,8 @@ const cssPartial = await fs.readFile(new URL('../templates/shared.css.hbs', impo
 const headerPartial = await fs.readFile(new URL('../templates/shared.header.hbs', import.meta.url), 'utf-8');
 Handlebars.registerPartial('shared.css', cssPartial);
 Handlebars.registerPartial('shared.header', headerPartial);
+const chartPartial = await fs.readFile(new URL('../templates/shared.chart.hbs', import.meta.url), 'utf-8');
+Handlebars.registerPartial('shared.chart', chartPartial);
 
 function sanitizeName(name, fv) {
   if (!name) return fv?.company_name || 'N/D';
@@ -176,6 +179,8 @@ export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimp
   
   const simpleData = prepareSimpleData(ticker, cleanName, narrative, fvHtmlSimple, accent, fv, latestReportedQuarter);
   const proData = prepareProData(ticker, cleanName, narrative, fvHtmlPro, accent, fv, latestReportedQuarter);
+  Object.assign(simpleData, buildExecData(ticker, fv, narrative, 'simple'));
+  Object.assign(proData, buildExecData(ticker, fv, narrative, 'pro'));
   
   const simpleHtml = simpleTmpl(simpleData);
   const proHtml = proTmpl(proData);

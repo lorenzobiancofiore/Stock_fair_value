@@ -79,4 +79,28 @@ td.f{color:#e8eaf0;font-weight:600;}
 .sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
 .sec-p:last-child{border-bottom:none;}
 @media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+
+/* ===== TradingView Chart Card ===== */
+.tv-chart-card{background:#13161e;border:1px solid {{accent}}40;border-radius:12px;padding:20px;margin-bottom:24px;width:100%;box-sizing:border-box;overflow:hidden;}
+.tv-chart-header{margin-bottom:14px;}
+.tv-chart-header h3{font-size:15px;font-weight:800;color:#e8eaf0;margin:0 0 4px 0;}
+.tv-chart-header p{font-size:12px;color:#9ca3af;margin:0;}
+.tv-chart-wrapper{position:relative;width:100%;background:#0d0f14;border-radius:8px;overflow:hidden;}
+.tv-chart-container{width:100%;min-height:1px;}
+.tv-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#0d0f14 25%,#1a1d26 50%,#0d0f14 75%);background-size:200% 100%;animation:tv-shimmer 1.5s infinite;border-radius:8px;z-index:1;}
+@keyframes tv-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.tv-chart-wrapper.loaded .tv-skeleton{display:none;}
+.tv-disclaimer{margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;font-size:11px;color:#6b7280;line-height:1.6;}
+.tv-error{display:flex;align-items:center;justify-content:center;height:100%;min-height:200px;color:#e05252;font-size:13px;text-align:center;padding:20px;}
+
+/* Altezze per tipo di report */
+.wrap-s .tv-chart-container{height:420px;}
+.wrap-p .tv-chart-container{height:520px;}
+@media (max-width:640px){
+  .wrap-s .tv-chart-container{height:360px;}
+  .wrap-p .tv-chart-container{height:400px;}
+}
+@media (max-width:480px){
+  .wrap-s .tv-chart-container{height:340px;}
+}
 </style>

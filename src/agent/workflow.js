@@ -40,54 +40,81 @@ async function resolveCompany(ticker) {
 
 /**
  * Genera fallback narrative quando LLM non risponde
+ * Matcha esattamente lo schema dei template (simple + pro)
  */
 function createFallbackNarrative(companyName, ticker, fairValue) {
+  const cur = fairValue?.currency === 'USD' ? '$' : (fairValue?.currency || '');
+  const cp = fairValue?.current_price ? `${cur}${fairValue.current_price}` : 'N/D';
+  const iv = fairValue?.primary_iv ? `${cur}${fairValue.primary_iv}` : 'N/D';
+  const ms = fairValue?.margin_of_safety != null ? `${(fairValue.margin_of_safety * 100).toFixed(0)}%` : 'N/D';
+  const grade = fairValue?.grade || 'N/D';
+
   return {
-    executiveSummary: `Analisi di ${companyName} (${ticker}). Report generato con dati fair value ma senza narrative LLM.`,
-    marketSnapshot: {
-      currentPrice: fairValue?.current_price?.toString() || 'N/D',
-      priceChange1m: 'N/D',
-      priceChange3m: 'N/D',
-      analystConsensus: 'N/D',
-      keyMetrics: { revenue: 'N/D', eps: 'N/D', fcf: 'N/D' }
+    badges: {
+      positive: grade === 'A' || grade === 'B' ? 'Qualità' : '',
+      negative: grade === 'D' || grade === 'F' ? 'Attenzione' : '',
+      mixed: 'Fair Value'
     },
-    financialAnalysis: {
-      revenue: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      margins: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      cashFlow: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      balanceSheet: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' }
-    },
-    earningsQuality: { nonRecurring: '', accountingRisks: '', fact: '', neutral: '', bullish: '', valuationImplication: '' },
-    businessMix: { segments: [], concentration: '', fact: '', neutral: '', bullish: '', valuationImplication: '' },
-    newsNarrative: [],
-    catalystCalendar: [],
-    scenarios: {
-      bull: { priceTarget: 'N/D', narrative: 'Scenario rialzista non disponibile.', probability: 33 },
-      base: { priceTarget: fairValue?.current_price?.toString() || 'N/D', narrative: 'Scenario base non disponibile.', probability: 34 },
-      bear: { priceTarget: 'N/D', narrative: 'Scenario ribassista non disponibile.', probability: 33 }
-    },
-    valuationFramework: {
-      method: fairValue?.recommended_method || 'N/D',
-      primaryIV: fairValue?.primary_iv?.toString() || 'N/D',
-      buyPrice: fairValue?.primary_buy_price?.toString() || 'N/D',
-      sellPrice: fairValue?.primary_sell_price?.toString() || 'N/D',
-      reconciliation: 'Riconciliazione non disponibile.'
-    },
-    keyRisks: [],
-    finalVerdict: {
-      rating: fairValue?.grade ? `${fairValue.grade}` : 'N/D',
-      summary: `Analisi basata esclusivamente sul modello di Fair Value.`,
-      whatWouldChangeMind: 'N/D'
-    },
-    simpleMode: {
-      growing: { metrics: [], explanation: '' },
-      whatCanHappen: {
-        bull: { title: 'Bull', target: 'N/D', text: '' },
-        base: { title: 'Base', target: fairValue?.current_price?.toString() || 'N/D', text: '' },
-        bear: { title: 'Bear', target: 'N/D', text: '' }
+    simple: {
+      execSummary: {
+        label: 'Qualità a sconto',
+        text: `Analisi di ${companyName} (${ticker}). Prezzo ${cp}, Fair Value ${iv}, margine ${ms}. Grade ${grade}.`
       },
-      valuation: { currentPrice: fairValue?.current_price?.toString() || 'N/D', bear: 'N/D', base: 'N/D', bull: 'N/D', explanation: '' },
-      fairValueSummary: ''
+      growth: {
+        period: 'N/D',
+        metrics: [],
+        plainExplanation: 'Dati non disponibili senza LLM.',
+        guidance: []
+      },
+      scenarios: {
+        intro: 'Scenari basati solo sul Fair Value.',
+        bull: { label: 'Bull', headline: 'Ottimistico', price: 'N/D', text: 'Scenario rialzista non disponibile.' },
+        base: { label: 'Base', headline: 'Fair Value', price: iv, text: 'Scenario base: Fair Value.' },
+        bear: { label: 'Bear', headline: 'Pessimistico', price: 'N/D', text: 'Scenario ribassista non disponibile.' }
+      },
+      valuationIntro: `Valutazione basata su ${fairValue?.recommended_method || 'metodo proprietario'}.`,
+      scale: { bear: 'N/D', base: iv, bull: 'N/D', current: cp },
+      legends: { bear: 'Scenario pessimistico', base: 'Fair Value', bull: 'Scenario ottimistico' },
+      qa: { question: 'Qual è il margine di sicurezza?', answer: ms }
+    },
+    pro: {
+      executiveSummary: `Analisi di ${companyName} (${ticker}). Report generato con dati fair value ma senza narrative LLM.`,
+      thesisLabel: 'Sintesi qualitativa',
+      kpis: [
+        { label: 'Prezzo attuale', value: cp, sub: 'Quotazione di mercato', highlight: false },
+        { label: 'Fair Value', value: iv, sub: fairValue?.recommended_method || 'Valore intrinseco', highlight: true },
+        { label: 'Margine di sicurezza', value: ms, sub: 'Sconto vs fair value', highlight: ms !== 'N/D' && parseFloat(ms) > 0 },
+        { label: 'ROIC', value: fairValue?.roic ? `${(fairValue.roic * 100).toFixed(1)}%` : 'N/D', sub: 'Ritorno sul capitale investito', highlight: false },
+        { label: 'P/E Forward', value: fairValue?.forward_pe ? fairValue.forward_pe.toFixed(1) : 'N/D', sub: 'Prezzo / Utili attesi', highlight: false },
+        { label: 'Dividend Yield', value: fairValue?.dividend_yield ? `${(fairValue.dividend_yield * 100).toFixed(1)}%` : 'N/D', sub: 'Rendimento da dividendo', highlight: false }
+      ],
+      verdictLine: `Grade ${grade} - ${ms !== 'N/D' ? parseFloat(ms) > 0 ? 'sottovalutato' : 'sopravvalutato' : 'in linea'}`,
+      marketCards: [
+        { label: 'Prezzo attuale', value: cp, sub: 'Market price', up: true, extra: '' },
+        { label: 'Fair Value', value: iv, sub: 'Intrinsic value', up: false, extra: '' },
+        { label: 'Margine sicurezza', value: ms, sub: 'Discount to FV', up: true, extra: '' },
+        { label: 'Grade', value: grade, sub: 'Quality score', up: true, extra: '' }
+      ],
+      finTable: { headers: ['Metrica', 'Valore'], rows: [], factBlocks: [] },
+      qoe: { warningTitle: 'N/D', warningText: 'Dati non disponibili', factBlocks: [] },
+      mixCards: [],
+      news: [],
+      catalysts: [],
+      scenarios: {
+        bull: { range: 'N/D', assumptions: 'N/D', valuation: 'N/D' },
+        base: { range: 'N/D', assumptions: 'Fair Value', valuation: iv },
+        bear: { range: 'N/D', assumptions: 'N/D', valuation: 'N/D' }
+      },
+      valTable: { headers: ['Metodo', 'Valore'], rows: [], factBlocks: [] },
+      risks: [],
+      finalThesis: {
+        label: 'Verdetto finale',
+        text: `Analisi basata su Fair Value (${fairValue?.recommended_method || 'N/D'}). Grade ${grade}.`,
+        works: [],
+        worries: [],
+        verdict: 'Dati LLM non disponibili.',
+        pills: [{ label: `Grade ${grade}`, bg: '#1e2230', border: '#7c3aed' }]
+      }
     }
   };
 }

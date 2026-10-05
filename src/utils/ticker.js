@@ -135,3 +135,51 @@ export function toYahooFinanceFormat(ticker, exchange = DEFAULT_EXCHANGE) {
   const suffix = getExchangeSuffix(exchange);
   return suffix ? `${up}${suffix}` : up;
 }
+
+/**
+ * Prefissi exchange usati dal widget TradingView (codice borsa -> prefisso).
+ * Le borse US restano senza prefisso: TradingView risolve NYSE/NASDAQ correttamente.
+ */
+export const TRADINGVIEW_EXCHANGES = {
+  'US-NY': '',
+  'US-NASDAQ': '',
+  'IT-MI': 'MIL',
+  'FR-PA': 'EURONEXT',
+  'DE-DE': 'XETR',
+  'NL-AS': 'EURONEXT',
+  'UK-L': 'LSE',
+  'ES-MC': 'BME',
+  'CH-SW': 'SIX',
+  'HK-HK': 'HKEX',
+  'JP-T': 'TSE',
+  'AU-AX': 'ASX',
+  'CA-TO': 'TSX',
+  'BR-SA': 'BMFBOVESPA',
+};
+/** Mappa suffisso Yahoo -> prefisso TradingView. */
+function suffixToTradingViewExchange(suffix) {
+  const map = {
+    '.MI': 'MIL', '.PA': 'EURONEXT', '.AS': 'EURONEXT', '.BR': 'EURONEXT',
+    '.DE': 'XETR', '.F': 'FWB', '.BE': 'BER', '.MU': 'MUN', '.SW': 'SIX', '.VI': 'VIE',
+    '.L': 'LSE', '.MC': 'BME', '.ST': 'OMXSTO', '.HE': 'OMXHEX', '.CO': 'OMXCOP', '.OL': 'OSL',
+    '.TO': 'TSX', '.V': 'TSXV', '.HK': 'HKEX', '.T': 'TSE', '.KS': 'KRX', '.AX': 'ASX',
+    '.NZ': 'NZX', '.SI': 'SGX', '.SA': 'BMFBOVESPA', '.MX': 'BMV',
+  };
+  return map[suffix] || '';
+}
+
+/**
+ * Converte il ticker nel formato simbolo del widget TradingView.
+ * Es. ENEL.MI -> MIL:ENEL   AAPL -> AAPL   ENGI.PA -> EURONEXT:ENGI
+ */
+export function toTradingViewSymbol(ticker, exchange = DEFAULT_EXCHANGE) {
+  const up = String(ticker || '').toUpperCase().trim();
+  if (!up) return up;
+  const parsed = parseTicker(up);
+  if (parsed.suffix) {
+    const prefix = suffixToTradingViewExchange(parsed.suffix);
+    return prefix ? prefix + ':' + parsed.base : parsed.base;
+  }
+  const prefix = TRADINGVIEW_EXCHANGES[exchange] || '';
+  return prefix ? prefix + ':' + up : up;
+}
