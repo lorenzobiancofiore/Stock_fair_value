@@ -50,7 +50,8 @@ body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 .toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
 .toc a:hover{color:#7c3aed;border-color:#7c3aed;}
 .kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
-.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+@media (min-width: 641px){.kpi-g{grid-template-columns:repeat(3,1fr);max-width:800px;margin-left:auto;margin-right:auto;}}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;max-width:300px;}
 .kpi.hi{border-color:#7c3aed60;}
 .kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
 .kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
@@ -119,6 +120,39 @@ td.f{color:#e8eaf0;font-weight:600;}
 .fv-up{color:#00c896;}
 .fv-down{color:#e05252;}
 .fv-note{color:#6b7280;font-size:12px;line-height:1.7;}
+
+/* ===== KPI & Spacing responsive ===== */
+@media (max-width: 640px){
+  .kpi-g { grid-template-columns: 1fr; gap: 8px; }
+  .kpi, .ibox { padding: 14px; }
+  .kpi-v { font-size: 18px; }
+  .ival { font-size: 24px; }
+  .sec { margin-bottom: 28px; }
+  .card { padding: 18px; }
+  .g2 { gap: 12px; }
+}
+@media (max-width: 480px){
+  .kpi-g { gap: 6px; }
+  .kpi, .ibox { padding: 12px; }
+  .kpi-v { font-size: 16px; }
+  .ival { font-size: 22px; }
+  .sec { margin-bottom: 24px; }
+  .card { padding: 16px; }
+  .g2 { gap: 8px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+  .fv-reco { padding: 12px; }
+  .fv-reco-method { font-size: 16px; }
+  .fv-reco-note { font-size: 12px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* Nascondi KPI vuoti */
+.kpi:empty, .ibox:empty { display: none; }
+
+/* Gap KPI grid più compatto su desktop */
+@media (min-width: 641px){
+  .kpi-g { gap: 10px; }
+}
 </style>
 </head><body>
 <div class="hdr">
@@ -130,9 +164,9 @@ td.f{color:#e8eaf0;font-weight:600;}
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <span class="badge bp">Crescita AI Cloud +45%,FCF robusto,Buyback attivo,Target +64% upside</span>
-    <span class="badge bn">Utile netto -57% YoY,Capex +75%,ROIC 5,75%,Margini sotto pressione</span>
-    <span class="badge bm">Valutazione DCF vs Mercato,Rischi geopolitici,Investimenti AI intensivi,Contabilità volatile</span>
+    <span class="badge bp"></span>
+    <span class="badge bn">Attenzione</span>
+    <span class="badge bm">Fair Value</span>
     <span class="lk-cur">📄 Semplice</span>
     <a class="lk-oth" href="baba-pro.html">📊 Pro</a>
   </div>
@@ -140,51 +174,51 @@ td.f{color:#e8eaf0;font-weight:600;}
 <!-- 00: Executive Summary -->
 <div class="sec">
 <div class="p-tag">BABA</div><h2 class="s-h2">Executive Summary</h2>
-<div class="thesis"><div class="thesis-lbl">Qualità a sconto con criticità di breve</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Alibaba Group Holding Limited (NYSE: BABA) quota a 110,80 USD per ADS, rappresentando una valutazione apparentemente attraente rispetto ai modelli DCF interni (fair value 838,54 USD secondo Two-Stage DCF Growth), ma il caso d&#x27;investimento rimane complesso e richiede cautela. La società mantiene una base di ricavi solida (1.023,67 miliardi RMB in FY2026, +8,8% YoY) e una generazione di cassa operativa robusta (78,486 miliardi USD), supportata da una politica aggressiva di buyback (162 milioni USD nel Q1 FY2027) e dividendo ordinario annuo (1,05 USD per ADS). Tuttavia, la pressione sugli utili è significativa: l&#x27;utile netto è crollato del 57% YoY nel trimestre giugno 2026 (10,537 miliardi RMB vs 24,5 miliardi RMB YoY), principalmente a causa di investimenti AI accelerati (capex +75% a 67,68 miliardi RMB), impairment di goodwill e volatilità da mark-to-market su investimenti. Il profilo di rischio include volatilità regolatoria cinese, compressione strutturale dei margini operativi (5,6% nel Q1 FY2027 vs 14% storico), ROIC modesto (5,75%) e incertezza sulla tempistica di normalizzazione del capex. Il consenso sell-side rimane costruttivo con target medio 186,33 USD (MarketBeat, 20 analisti) e rating Moderate Buy/Strong Buy, implicando un upside del +64-68%, ma la dispersione di opinioni (range 117-225 USD) riflette l&#x27;elevata incertezza su AI monetization, margini e contesto macro cinese.</p></div>
+<div class="thesis"><div class="thesis-lbl">Qualità a sconto</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Analisi di Alibaba Group Holding Limited (BABA). Prezzo $110,80, Fair Value $838,54, margine 60%. Grade D.</p></div>
 <div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di Alibaba Group Holding Limited (BABA)</p></div>
 <div class="tv-chart-wrapper" data-tv-symbol="BABA" data-tv-mode="simple"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
 <div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>
-<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$110,80</div><div class="kpi-s">Quotazione di mercato</div></div><div class="kpi hi"><div class="kpi-l">Fair Value</div><div class="kpi-v">$838,54</div><div class="kpi-s">Two-Stage DCF (Growth)</div></div><div class="kpi hi"><div class="kpi-l">Margine di sicurezza</div><div class="kpi-v">60%</div><div class="kpi-s">Sconto vs fair value</div></div><div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v">5,8%</div><div class="kpi-s">Ritorno sul capitale investito</div></div><div class="kpi"><div class="kpi-l">P/E Forward</div><div class="kpi-v">12,0</div><div class="kpi-s">Prezzo / Utili attesi</div></div><div class="kpi"><div class="kpi-l">Dividend Yield</div><div class="kpi-v">0,9%</div><div class="kpi-s">Rendimento da dividendo</div></div></div>
-<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Alibaba quota a sconto significativo rispetto ai modelli DCF interni (fair value 838,54 USD) e al consenso analisti (target 186,33 USD), ma il caso d&#x27;investimento rimane complesso per la pressione sugli utili, il capex AI elevato e i rischi geopolitici. Il titolo è attraente per investitori con orizzonte 12-24 mesi disposti a tollerare volatilità, ma richiede cautela nel breve periodo.</p>
+<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$110,80</div><div class="kpi-s">Quotazione di mercato</div></div><div class="kpi hi"><div class="kpi-l">Fair Value</div><div class="kpi-v">$838,54</div><div class="kpi-s">Two-Stage DCF (Growth)</div></div><div class="kpi hi"><div class="kpi-l">Margine di sicurezza</div><div class="kpi-v">60%</div><div class="kpi-s">Sconto vs fair value</div></div><div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v">5,8%</div><div class="kpi-s">Ritorno sul capitale investito</div></div><div class="kpi"><div class="kpi-l">P/E Forward</div><div class="kpi-v">12,0</div><div class="kpi-s">Prezzo / Utili attesi</div></div><div class="kpi"><div class="kpi-l">Dividend Yield</div><div class="kpi-v">0,9%</div><div class="kpi-s">Rendimento da dividendo</div></div><div class="kpi hi"><div class="kpi-l">Grade</div><div class="kpi-v">D</div><div class="kpi-s">Qualità azienda</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Grade D - sottovalutato</p>
 </div>
 
 
 <!-- 01: Come sta crescendo -->
 <div class="sec">
 <div class="s-num">01</div><h2 class="s-h2">Come sta crescendo Alibaba Group Holding Limited</h2>
-<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">FY2024 – FY2026 (3 anni) e Q1 FY2027 (trimestrale)</div>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">Dati Consumer Cyclical</div>
 <div class="g2" style="margin-bottom:16px">
-<div class="stat"><div class="lbl">Ricavi FY2026</div><div class="big">1.023,67 miliardi RMB</div><div class="sub">+8,8% YoY vs FY2025 (996,35 miliardi RMB)</div></div><div class="stat"><div class="lbl">Ricavi Q1 FY2027 (giugno 2026)</div><div class="big">268,95 miliardi RMB</div><div class="sub">+9% YoY; US$39,639 miliardi</div></div><div class="stat"><div class="lbl">AI Cloud &amp; Compute Services</div><div class="big">+45% YoY</div><div class="sub">ARR &gt;16 miliardi RMB; core growth driver</div></div><div class="stat"><div class="lbl">Gross Profit FY2026</div><div class="big">407,53 miliardi RMB</div><div class="sub">Margine lordo 39,8%; stabile vs FY2025</div></div><div class="stat"><div class="lbl">Operating Income Q1 FY2027</div><div class="big">15,161 miliardi RMB</div><div class="sub">-57% YoY; margine operativo 5,6%</div></div><div class="stat"><div class="lbl">Operating Cash Flow</div><div class="big">78,486 miliardi USD</div><div class="sub">Robusto; supporta buyback e dividendo</div></div>
+<div class="stat"><div class="lbl">Ricavi</div><div class="big">$1,04 T</div><div class="sub">Ultimo anno</div></div><div class="stat"><div class="lbl">Utile netto</div><div class="big">$73,56 Mld</div><div class="sub">Ultimo anno</div></div><div class="stat"><div class="lbl">Free Cash Flow</div><div class="big">$78,49 Mld</div><div class="sub">Operating FCF</div></div><div class="stat"><div class="lbl">ROIC</div><div class="big">5,8%</div><div class="sub">Ritorno sul capitale</div></div>
 </div>
-<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">Alibaba mantiene una crescita ricavi solida nel mid-single digit (8-9% YoY), trainata principalmente dal segmento cloud/AI che accelera al +45% YoY con ARR AI model-as-a-service superiore a 16 miliardi RMB annualizzati. Il gross profit rimane stabile intorno al 40% dei ricavi, ma l&#x27;utile operativo crolla del 57% YoY nel trimestre giugno 2026 a causa di investimenti AI accelerati (capex +75% a 67,68 miliardi RMB), impairment di goodwill e oneri non ricorrenti. La generazione di cassa operativa rimane robusta (78,486 miliardi USD), ma il capex intensivo riduce il free cash flow di breve periodo. Il management non ha fornito guidance esplicita, ma il consenso analisti incorpora una crescita ricavi FY2026 intorno a 1,02 trilioni RMB e un graduale recupero degli utili nei prossimi 12 mesi, una volta che il capex AI inizierà a normalizzarsi.</div></div>
-</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2"><div class="ibox"><div class="lbl">Consenso ricavi FY2026</div><div class="ival">1,02 trilioni RMB</div><div class="sub">Implicito da analisti; +8-9% YoY</div></div><div class="ibox"><div class="lbl">Consenso EPS FY2026</div><div class="ival">In recupero graduale</div><div class="sub">Dopo calo FY2026; normalizzazione capex attesa</div></div><div class="ibox"><div class="lbl">Capex outlook</div><div class="ival">Elevato nel breve</div><div class="sub">AI/infrastruttura cloud; possibile normalizzazione H2 2026</div></div><div class="ibox"><div class="lbl">Dividendo annuale</div><div class="ival">1,05 USD per ADS</div><div class="sub">Ordinario FY2026; record date 11 giugno 2026</div></div></div></div>
+<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">Alibaba Group Holding Limited quota $110,80 con fair value $838,54 (Two-Stage DCF (Growth)). Margine di sicurezza 60%, grade D.</div></div>
+</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2"><div class="ibox"><div class="lbl">Metodo</div><div class="ival">Two-Stage DCF (Growth)</div><div class="sub">Modello applicato</div></div><div class="ibox"><div class="lbl">Grade</div><div class="ival">D</div><div class="sub">Qualità azienda</div></div><div class="ibox"><div class="lbl">Crescita</div><div class="ival">8,6%</div><div class="sub">Tasso stimato</div></div></div></div>
 </div>
 
 <!-- 02: Cosa può succedere -->
 <div class="sec">
 <div class="s-num">02</div><h2 class="s-h2">Cosa può succedere</h2>
-<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Tre scenari di valutazione per Alibaba a 12-24 mesi, basati su dinamiche di capex AI, margini operativi, crescita cloud e contesto macro cinese.</p>
-<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Bull Case</div><div style="color:#00c896;font-size:20px;font-weight:800">AI Cloud Monetization Accelera, Capex Normalizza</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">220–240 USD</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Scenario di rialzo dove Alibaba accelera la monetizzazione dell&#x27;AI cloud oltre consenso (ARR AI &gt;25 miliardi RMB entro H2 2026), il capex inizia a normalizzarsi nel Q3-Q4 2026 liberando FCF, e i margini operativi recuperano verso il 12-14% storico. Supporto da stimolo macro cinese, buyback aggressivi e rivalutazione del titolo come infrastruttura AI + piattaforma e-commerce con ritorno del capitale. Upside implicito +98-116% da prezzo corrente.</p></div>
-<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Base Case</div><div style="color:#f5a623;font-size:20px;font-weight:800">Crescita Mid-Single Digit, Margini Graduali</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">175–195 USD</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Scenario centrale dove ricavi crescono al 7-9% YoY, cloud solido al +30-35% YoY, capex rimane elevato ma inizia a moderarsi nel 2027, e margini operativi recuperano gradualmente verso il 10-11%. Titolo converge verso il consenso analisti attuale (target medio 186,33 USD); valutazione sostenuta da FCF, buyback e dividendo, ma re-rating parziale. Upside implicito +58-76% da prezzo corrente.</p></div>
-<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Bear Case</div><div style="color:#e05252;font-size:20px;font-weight:800">Capex AI Persistente, Utili Compressi</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">95–120 USD</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Scenario di ribasso dove capex AI rimane molto elevato per 18-24 mesi, comprimendo FCF e ROIC, ulteriore erosione dei margini operativi verso il 4-5%, debolezza consumer in Cina per contesto macro sfavorevole, e nuove tensioni regolatorie/geopolitiche. Mercato applica sconto strutturale per bassa visibilità sugli utili e alta intensità di capitale; buyback e dividendo insufficienti a supportare il titolo. Downside implicito -14-+8% da prezzo corrente.</p></div>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Scenari basati su Two-Stage DCF (Growth).</p>
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Bull</div><div style="color:#00c896;font-size:20px;font-weight:800">Ottimistico</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">$880,47</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Prezzo di vendita: $880,47.</p></div>
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Base</div><div style="color:#f5a623;font-size:20px;font-weight:800">Fair Value</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">$838,54</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Fair Value: $838,54.</p></div>
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Bear</div><div style="color:#e05252;font-size:20px;font-weight:800">Pessimistico</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">$335,42</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Prezzo di acquisto: $335,42, margine 60%.</p></div>
 </div>
 
 <!-- 03: Quanto vale il titolo -->
 <div class="sec">
 <div class="s-num">03</div><h2 class="s-h2">Quanto vale il titolo</h2>
-<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Alibaba quota a 110,80 USD per ADS con un P/E forward di 12,0x, multiplo contenuto rispetto al profilo di crescita e alla media storica di large cap internet. I modelli DCF interni Two-Stage Growth indicano un fair value di 838,54 USD (primary IV), implicando un upside significativo, ma la dispersione di opinioni analisti (target 117-225 USD) e la volatilità contabile riflettono l&#x27;incertezza su AI monetization, capex e contesto geopolitico. La valutazione appare attraente su base storica, ma richiede cautela data la compressione degli utili nel breve e il profilo di rischio elevato.</p>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Valutazione basata su Two-Stage DCF (Growth). Prezzo $110,80, Fair Value $838,54, margine 60%.</p>
 <div class="card"><div class="rng"><div class="rng-bar"></div>
-<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">95</div></div>
-<div class="rl" style="left:66.66666666666666%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">185</div></div>
-<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">230</div></div>
-<div class="rdot" style="left:11.11111111111111%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">110,80</div></div></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">$335,42</div></div>
+<div class="rl" style="left:92.29357798165138%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">$838,54</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">$880,47</div></div>
+<div class="rdot" style="left:-41.284403669724774%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">$110,80</div></div></div>
 </div>
 <div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
-<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear 95-122:</strong> Capex AI persistente, margini compressi, rischi geopolitici</div></div>
-<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base 171.5-198.5:</strong> Crescita mid-single digit, margini graduali, FCF robusto</div></div>
-<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull 216.5-243.5:</strong> AI monetization accelera, capex normalizza, stimolo macro cinese</div></div>
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear $335,42-485.9:</strong> Prezzo di acquisto (60%)</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base 825.4-850.6:</strong> Fair Value Two-Stage DCF (Growth)</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull 867.4-892.6:</strong> Prezzo di vendita (+5%)</div></div>
 </div></div>
-<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px"></div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px"></p></div>
+<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px">Qual è il margine di sicurezza?</div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px">60%</p></div>
 </div>
 
 <!-- 04: Il prezzo giusto secondo i conti -->
@@ -281,7 +315,7 @@ td.f{color:#e8eaf0;font-weight:600;}
 
     <div class="disc" style="margin-top:20px">
       Calcolo automatico su dati di bilancio degli ultimi 12 mesi
-      (2026-10-06 08:27). Ipotesi di crescita: 8.6% annuo
+      (2026-10-06 10:00). Ipotesi di crescita: 8.6% annuo
       (crescita ricavi). Non &egrave; un consiglio di investimento.
     </div>
 </div>

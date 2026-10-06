@@ -173,12 +173,21 @@ function prepareProData(ticker, companyName, narrative, fvHtmlPro, accent, fv, l
   const q = computeQuarter(now, latestReportedQuarter);
   const badges = narrative?.badges || computeBadges(fv);
   const pro = narrative?.pro || {};
+  
+  // Filtra KPI vuoti o con valore "N/D"
+  const rawKpis = pro.kpis || [];
+  const filteredKpis = rawKpis.filter(k => 
+    k && k.value != null && String(k.value).trim() !== '' && String(k.value) !== 'N/D'
+  );
+  
   return {
     ticker: ticker.toUpperCase(), companyName, exchange: 'Borsa', quarter: q, date: today,
     badgePositive: badges.positive || '', badgeNegative: badges.negative || '', badgeMixed: badges.mixed || '',
     currentModeIcon: '📊', currentModeLabel: 'Pro', otherFile: otherModeUrl(ticker, 'semplice'),
     otherModeIcon: '📄', otherModeLabel: 'Semplice', accent, accentHover: accent,
-    ...pro, fairValueHtmlPro: fvHtmlPro,
+    ...pro, 
+    kpis: filteredKpis,  // KPI filtrati
+    fairValueHtmlPro: fvHtmlPro,
     fvDisplay: computeFvDisplay(fv),
   };
 }

@@ -29,6 +29,7 @@ function computeExecKpis(fv) {
   if (fv.roic != null) k.push({ label: 'ROIC', value: fmtPct(fv.roic), sub: 'Ritorno sul capitale investito', highlight: false });
   if (fv.forward_pe != null) k.push({ label: 'P/E Forward', value: fmtNum(fv.forward_pe, 1), sub: 'Prezzo / Utili attesi', highlight: false });
   if (fv.dividend_yield != null) k.push({ label: 'Dividend Yield', value: fmtPct(fv.dividend_yield), sub: 'Rendimento da dividendo', highlight: false });
+  if (fv.grade) k.push({ label: 'Grade', value: String(fv.grade), sub: 'Qualità azienda', highlight: true });
   return k;
 }
 function computeVerdict(fv) {

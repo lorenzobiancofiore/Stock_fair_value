@@ -11,8 +11,6 @@
 <div class="tv-chart-wrapper" data-tv-symbol="{{tvSymbol}}" data-tv-mode="pro"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
 <div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>{{/if}}
 {{#if execKpis}}<div class="kpi-g">{{#each execKpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
-
-{{#if kpis}}<div class="kpi-g">{{#each kpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
 {{#if verdictLine}}<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> {{verdictLine}}</p>{{/if}}
 </div>
 
@@ -96,7 +94,6 @@
 <div class="sec-p" id="fv">
 <div class="p-tag">{{ticker}}</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
 {{> fairvalue }}
-{{{fairValueHtmlPro}}}
 </div>
 
 <div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al {{date}}. Non &egrave; consulenza finanziaria.</div>
