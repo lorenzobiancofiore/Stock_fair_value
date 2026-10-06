@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import Handlebars from 'handlebars';
 import { normalizeTicker } from '../utils/ticker.js';
+import { buildExecData } from './exec.js';
 
 let vercelBlob = null;
 try {
@@ -14,6 +15,63 @@ const cssPartial = await fs.readFile(new URL('../templates/shared.css.hbs', impo
 const headerPartial = await fs.readFile(new URL('../templates/shared.header.hbs', import.meta.url), 'utf-8');
 Handlebars.registerPartial('shared.css', cssPartial);
 Handlebars.registerPartial('shared.header', headerPartial);
+const chartPartial = await fs.readFile(new URL('../templates/shared.chart.hbs', import.meta.url), 'utf-8');
+Handlebars.registerPartial('shared.chart', chartPartial);
+const fairvaluePartial = await fs.readFile(new URL('../templates/fairvalue.hbs', import.meta.url), 'utf-8');
+Handlebars.registerPartial('fairvalue', fairvaluePartial);
+
+// ===== Fair Value: formattazione e confronto metodi =====
+function fvMoney(v, cur) {
+  if (v == null || !Number.isFinite(Number(v))) return 'N/D';
+  const sym = cur === 'USD' ? '$' : (cur || '');
+  return `${sym}${Number(v).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function fvPctSigned(v) {
+  if (v == null || !Number.isFinite(Number(v))) return 'N/D';
+  const p = Number(v) * 100;
+  return `${p >= 0 ? '+' : ''}${p.toLocaleString('it-IT', { maximumFractionDigits: 1 })}%`;
+}
+
+/**
+ * Motivazione della scelta del metodo primario (DCF growth vs Buffett Owner Earnings)
+ */
+function fvReason(fv) {
+  if (!fv) return '';
+  const method = fv.recommended_method || 'N/D';
+  const capex = fv.capex_ratio != null ? `${(fv.capex_ratio * 100).toLocaleString('it-IT', { maximumFractionDigits: 0 })}%` : 'N/D';
+  const growth = fv.growth_rate != null ? `${(fv.growth_rate * 100).toLocaleString('it-IT', { maximumFractionDigits: 1 })}%` : 'N/D';
+  if (/dcf/i.test(method)) {
+    return `Modello a due stadi selezionato perché l'azienda ha intensità di capitale elevata (CapEx/OCF ${capex}, sopra la soglia del 40%) e crescita stimata ${growth}: cattura sia la fase di crescita rapida sia la transizione a maturità.`;
+  }
+  if (/buffett|owner/i.test(method)) {
+    return `Modello Owner Earnings di Buffett selezionato perché l'azienda ha intensità di capitale contenuta (CapEx/OCF ${capex}) e flussi di cassa stabili e prevedibili, tipici di un business maturo.`;
+  }
+  return `Metodo selezionato automaticamente dal modello in base al profilo dell'azienda.`;
+}
+
+/**
+ * Prepara i dati per il partial di confronto metodi Fair Value
+ */
+function computeFvDisplay(fv) {
+  if (!fv) return null;
+  const cur = fv.currency || '';
+  const mk = (iv, buy, sell, up) => ({
+    iv: fvMoney(iv, cur), buy: fvMoney(buy, cur), sell: fvMoney(sell, cur),
+    upside: fvPctSigned(up),
+    upsideUp: Number(up) >= 0,
+  });
+  return {
+    currency: cur,
+    recommended: fv.recommended_method || 'N/D',
+    reason: fvReason(fv),
+    isGrowth: !!fv.is_growth_stock,
+    buffett: mk(fv.buffett_iv, fv.buffett_buy_price, fv.buffett_sell_price, fv.buffett_upside),
+    dcf: mk(fv.growth_dcf_iv, fv.growth_dcf_buy_price, fv.growth_dcf_sell_price, fv.growth_dcf_upside),
+    primary: mk(fv.primary_iv, fv.primary_buy_price, fv.primary_sell_price, fv.primary_upside),
+    currentPrice: fvMoney(fv.current_price, cur),
+  };
+}
 
 function sanitizeName(name, fv) {
   if (!name) return fv?.company_name || 'N/D';
@@ -104,6 +162,7 @@ function prepareSimpleData(ticker, companyName, narrative, fvHtmlSimple, accent,
     valuationIntro: narrative?.simple?.valuationIntro || '',
     scale, legends: narrative?.simple?.legends || {},
     qa: narrative?.simple?.qa || null, fairValueHtmlSimple: fvHtmlSimple,
+    fvDisplay: computeFvDisplay(fv),
   };
 }
 
@@ -114,12 +173,22 @@ function prepareProData(ticker, companyName, narrative, fvHtmlPro, accent, fv, l
   const q = computeQuarter(now, latestReportedQuarter);
   const badges = narrative?.badges || computeBadges(fv);
   const pro = narrative?.pro || {};
+  
+  // Filtra KPI vuoti o con valore "N/D"
+  const rawKpis = pro.kpis || [];
+  const filteredKpis = rawKpis.filter(k => 
+    k && k.value != null && String(k.value).trim() !== '' && String(k.value) !== 'N/D'
+  );
+  
   return {
     ticker: ticker.toUpperCase(), companyName, exchange: 'Borsa', quarter: q, date: today,
     badgePositive: badges.positive || '', badgeNegative: badges.negative || '', badgeMixed: badges.mixed || '',
     currentModeIcon: '📊', currentModeLabel: 'Pro', otherFile: otherModeUrl(ticker, 'semplice'),
     otherModeIcon: '📄', otherModeLabel: 'Semplice', accent, accentHover: accent,
-    ...pro, fairValueHtmlPro: fvHtmlPro,
+    ...pro, 
+    kpis: filteredKpis,  // KPI filtrati
+    fairValueHtmlPro: fvHtmlPro,
+    fvDisplay: computeFvDisplay(fv),
   };
 }
 
@@ -176,6 +245,8 @@ export async function generateAndSave(ticker, companyName, narrative, fvHtmlSimp
   
   const simpleData = prepareSimpleData(ticker, cleanName, narrative, fvHtmlSimple, accent, fv, latestReportedQuarter);
   const proData = prepareProData(ticker, cleanName, narrative, fvHtmlPro, accent, fv, latestReportedQuarter);
+  Object.assign(simpleData, buildExecData(ticker, fv, narrative, 'simple'));
+  Object.assign(proData, buildExecData(ticker, fv, narrative, 'pro'));
   
   const simpleHtml = simpleTmpl(simpleData);
   const proHtml = proTmpl(proData);

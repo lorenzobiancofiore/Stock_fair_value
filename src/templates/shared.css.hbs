@@ -38,8 +38,9 @@ body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 .rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
 .rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
 .rdot{position:absolute;top:44px;transform:translateX(-50%);}
-.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
-.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.rdot-c{width:24px;height:24px;background:#7c3aed;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 3px #7c3aed,0 0 12px #7c3aed80;animation:fv-pulse 2s ease-in-out infinite;}
+.rdot-l{position:absolute;top:30px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;background:rgba(13,15,20,0.95);padding:4px 10px;border-radius:6px;border:1px solid #7c3aed60;font-size:11px;font-weight:700;color:#7c3aed;white-space:nowrap;}
+@keyframes fv-pulse{0%,100%{box-shadow:0 0 0 3px #7c3aed,0 0 12px #7c3aed80;}50%{box-shadow:0 0 0 6px #7c3aed,0 0 20px #7c3aedc0;}}
 .leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
 .leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
 .p-tag{color:{{accent}};font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
@@ -50,7 +51,8 @@ body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 .toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
 .toc a:hover{color:{{accent}};border-color:{{accent}};}
 .kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
-.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+@media (min-width: 641px){.kpi-g{grid-template-columns:repeat(3,1fr);max-width:800px;margin-left:auto;margin-right:auto;}}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;max-width:300px;}
 .kpi.hi{border-color:{{accent}}60;}
 .kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
 .kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
@@ -79,4 +81,77 @@ td.f{color:#e8eaf0;font-weight:600;}
 .sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
 .sec-p:last-child{border-bottom:none;}
 @media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+
+/* ===== TradingView Chart Card ===== */
+.tv-chart-card{background:#13161e;border:1px solid {{accent}}40;border-radius:12px;padding:20px;margin-bottom:24px;width:100%;box-sizing:border-box;overflow:hidden;}
+.tv-chart-header{margin-bottom:14px;}
+.tv-chart-header h3{font-size:15px;font-weight:800;color:#e8eaf0;margin:0 0 4px 0;}
+.tv-chart-header p{font-size:12px;color:#9ca3af;margin:0;}
+.tv-chart-wrapper{position:relative;width:100%;background:#0d0f14;border-radius:8px;overflow:hidden;}
+.tv-chart-container{width:100%;min-height:1px;}
+.tv-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#0d0f14 25%,#1a1d26 50%,#0d0f14 75%);background-size:200% 100%;animation:tv-shimmer 1.5s infinite;border-radius:8px;z-index:1;}
+@keyframes tv-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.tv-chart-wrapper.loaded .tv-skeleton{display:none;}
+.tv-disclaimer{margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;font-size:11px;color:#6b7280;line-height:1.6;}
+.tv-error{display:flex;align-items:center;justify-content:center;height:100%;min-height:200px;color:#e05252;font-size:13px;text-align:center;padding:20px;}
+
+/* Altezze per tipo di report */
+.wrap-s .tv-chart-container{height:420px;}
+.wrap-p .tv-chart-container{height:520px;}
+@media (max-width:640px){
+  .wrap-s .tv-chart-container{height:360px;}
+  .wrap-p .tv-chart-container{height:400px;}
+}
+@media (max-width:480px){
+  .wrap-s .tv-chart-container{height:340px;}
+}
+
+/* ===== Fair Value: confronto metodi ===== */
+.fv-compare{margin-bottom:22px;}
+.fv-reco{background:{{accent}}14;border:1px solid {{accent}}40;border-radius:10px;padding:16px;margin-bottom:16px;}
+.fv-reco-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:{{accent}};margin-bottom:8px;}
+.fv-reco-method{font-size:18px;font-weight:800;color:#e8eaf0;margin-bottom:8px;}
+.fv-reco-note{color:#9ca3af;font-size:13px;line-height:1.7;margin:0;}
+.fv-tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid #1e2230;margin-bottom:14px;}
+.fv-tbl{width:100%;border-collapse:collapse;}
+.fv-tbl th{padding:10px 14px;font-size:11px;color:{{accent}};font-weight:700;background:#0f1219;border-bottom:1px solid #1e2230;text-align:left;text-transform:uppercase;}
+.fv-tbl td{padding:11px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#e8eaf0;font-weight:600;}
+.fv-tbl td.fv-m{color:#9ca3af;font-weight:500;}
+.fv-tbl tr:last-child td{border-bottom:none;}
+.fv-up{color:#00c896;}
+.fv-down{color:#e05252;}
+.fv-note{color:#6b7280;font-size:12px;line-height:1.7;}
+
+/* ===== KPI & Spacing responsive ===== */
+@media (max-width: 640px){
+  .kpi-g { grid-template-columns: 1fr; gap: 8px; }
+  .kpi, .ibox { padding: 14px; }
+  .kpi-v { font-size: 18px; }
+  .ival { font-size: 24px; }
+  .sec { margin-bottom: 28px; }
+  .card { padding: 18px; }
+  .g2 { gap: 12px; }
+}
+@media (max-width: 480px){
+  .kpi-g { gap: 6px; }
+  .kpi, .ibox { padding: 12px; }
+  .kpi-v { font-size: 16px; }
+  .ival { font-size: 22px; }
+  .sec { margin-bottom: 24px; }
+  .card { padding: 16px; }
+  .g2 { gap: 8px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+  .fv-reco { padding: 12px; }
+  .fv-reco-method { font-size: 16px; }
+  .fv-reco-note { font-size: 12px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* Nascondi KPI vuoti */
+.kpi:empty, .ibox:empty { display: none; }
+
+/* Gap KPI grid più compatto su desktop */
+@media (min-width: 641px){
+  .kpi-g { gap: 10px; }
+}
 </style>

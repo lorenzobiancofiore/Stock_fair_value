@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Vistra Corp.",
+    "ticker": "VST",
+    "folder": "vst",
+    "simplePath": "/vst/vst-semplice.html",
+    "proPath": "/vst/vst-pro.html",
+    "quarter": null,
+    "analysisDate": "6 ottobre 2026"
+  },
+  {
+    "name": "Alibaba Group Holding Limited",
+    "ticker": "BABA",
+    "folder": "baba",
+    "simplePath": "/baba/baba-semplice.html",
+    "proPath": "/baba/baba-pro.html",
+    "quarter": null,
+    "analysisDate": "6 ottobre 2026"
+  }
+]

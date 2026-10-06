@@ -40,54 +40,132 @@ async function resolveCompany(ticker) {
 
 /**
  * Genera fallback narrative quando LLM non risponde
+ * Matcha esattamente lo schema dei template (simple + pro)
  */
 function createFallbackNarrative(companyName, ticker, fairValue) {
+  const cur = fairValue?.currency || '';
+  const sym = cur === 'USD' ? '$' : (cur + ' ');
+
+  // Formatta valori: compatta per grandi numeri, 2 decimali per i piccoli
+  const fmt = (v) => {
+    if (v == null || !Number.isFinite(Number(v))) return 'N/D';
+    const num = Number(v);
+    const abs = Math.abs(num);
+    if (abs >= 1e12) return sym + (num / 1e12).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' T';
+    if (abs >= 1e9) return sym + (num / 1e9).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Mld';
+    if (abs >= 1e6) return sym + (num / 1e6).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' Mln';
+    return sym + num.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+  const fmtPct = (v) => {
+    if (v == null) return 'N/D';
+    const n = Math.abs(Number(v)) <= 1.5 ? Number(v) * 100 : Number(v);
+    return n.toLocaleString('it-IT', { maximumFractionDigits: 1 }) + '%';
+  };
+  const grade = fairValue?.grade || 'N/D';
+  const cp = fmt(fairValue?.current_price);
+  const iv = fmt(fairValue?.primary_iv);
+  const buy = fmt(fairValue?.primary_buy_price);
+  const sell = fmt(fairValue?.primary_sell_price);
+  const ms = fmtPct(fairValue?.margin_of_safety);
+  const roicStr = fmtPct(fairValue?.roic);
+  const fwdPe = fairValue?.forward_pe ? Number(fairValue.forward_pe).toLocaleString('it-IT', { maximumFractionDigits: 1 }) : 'N/D';
+  const divY = fmtPct(fairValue?.dividend_yield);
+  const method = fairValue?.recommended_method || 'N/D';
+
   return {
-    executiveSummary: `Analisi di ${companyName} (${ticker}). Report generato con dati fair value ma senza narrative LLM.`,
-    marketSnapshot: {
-      currentPrice: fairValue?.current_price?.toString() || 'N/D',
-      priceChange1m: 'N/D',
-      priceChange3m: 'N/D',
-      analystConsensus: 'N/D',
-      keyMetrics: { revenue: 'N/D', eps: 'N/D', fcf: 'N/D' }
+    badges: {
+      positive: grade === 'A' || grade === 'B' ? 'Qualità' : '',
+      negative: grade === 'D' || grade === 'F' ? 'Attenzione' : '',
+      mixed: 'Fair Value'
     },
-    financialAnalysis: {
-      revenue: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      margins: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      cashFlow: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' },
-      balanceSheet: { fact: 'Dati non disponibili', neutral: '', bullish: '', valuationImplication: '' }
-    },
-    earningsQuality: { nonRecurring: '', accountingRisks: '', fact: '', neutral: '', bullish: '', valuationImplication: '' },
-    businessMix: { segments: [], concentration: '', fact: '', neutral: '', bullish: '', valuationImplication: '' },
-    newsNarrative: [],
-    catalystCalendar: [],
-    scenarios: {
-      bull: { priceTarget: 'N/D', narrative: 'Scenario rialzista non disponibile.', probability: 33 },
-      base: { priceTarget: fairValue?.current_price?.toString() || 'N/D', narrative: 'Scenario base non disponibile.', probability: 34 },
-      bear: { priceTarget: 'N/D', narrative: 'Scenario ribassista non disponibile.', probability: 33 }
-    },
-    valuationFramework: {
-      method: fairValue?.recommended_method || 'N/D',
-      primaryIV: fairValue?.primary_iv?.toString() || 'N/D',
-      buyPrice: fairValue?.primary_buy_price?.toString() || 'N/D',
-      sellPrice: fairValue?.primary_sell_price?.toString() || 'N/D',
-      reconciliation: 'Riconciliazione non disponibile.'
-    },
-    keyRisks: [],
-    finalVerdict: {
-      rating: fairValue?.grade ? `${fairValue.grade}` : 'N/D',
-      summary: `Analisi basata esclusivamente sul modello di Fair Value.`,
-      whatWouldChangeMind: 'N/D'
-    },
-    simpleMode: {
-      growing: { metrics: [], explanation: '' },
-      whatCanHappen: {
-        bull: { title: 'Bull', target: 'N/D', text: '' },
-        base: { title: 'Base', target: fairValue?.current_price?.toString() || 'N/D', text: '' },
-        bear: { title: 'Bear', target: 'N/D', text: '' }
+    simple: {
+      execSummary: {
+        label: 'Qualità a sconto',
+        text: `Analisi di ${companyName} (${ticker}). Prezzo ${cp}, Fair Value ${iv}, margine ${ms}. Grade ${grade}.`
       },
-      valuation: { currentPrice: fairValue?.current_price?.toString() || 'N/D', bear: 'N/D', base: 'N/D', bull: 'N/D', explanation: '' },
-      fairValueSummary: ''
+      growth: {
+        period: fairValue?.sector ? `Dati ${fairValue.sector}` : 'Ultimi 12 mesi',
+        metrics: [
+          ...(fairValue?.revenue ? [{ label: 'Ricavi', value: fmt(fairValue.revenue), sub: 'Ultimo anno' }] : []),
+          ...(fairValue?.net_income ? [{ label: 'Utile netto', value: fmt(fairValue.net_income), sub: 'Ultimo anno' }] : []),
+          ...(fairValue?.operating_cash_flow ? [{ label: 'Free Cash Flow', value: fmt(fairValue.operating_cash_flow), sub: 'Operating FCF' }] : []),
+          ...(fairValue?.roic ? [{ label: 'ROIC', value: roicStr, sub: 'Ritorno sul capitale' }] : []),
+        ],
+        plainExplanation: `${companyName} quota ${cp} con fair value ${iv} (${method}). Margine di sicurezza ${ms}, grade ${grade}.`,
+        guidance: [
+          ...(fairValue?.recommended_method ? [{ label: 'Metodo', value: method, sub: 'Modello applicato' }] : []),
+          ...(fairValue?.grade ? [{ label: 'Grade', value: grade, sub: 'Qualità azienda' }] : []),
+          ...(fairValue?.growth_rate ? [{ label: 'Crescita', value: fmtPct(fairValue.growth_rate), sub: 'Tasso stimato' }] : []),
+        ]
+      },
+      scenarios: {
+        intro: `Scenari basati su ${method}.`,
+        bull: { label: 'Bull', headline: 'Ottimistico', price: sell, text: `Prezzo di vendita: ${sell}.` },
+        base: { label: 'Base', headline: 'Fair Value', price: iv, text: `Fair Value: ${iv}.` },
+        bear: { label: 'Bear', headline: 'Pessimistico', price: buy, text: `Prezzo di acquisto: ${buy}, margine ${ms}.` },
+      },
+      valuationIntro: `Valutazione basata su ${method}. Prezzo ${cp}, Fair Value ${iv}, margine ${ms}.`,
+      scale: { bear: buy, base: iv, bull: sell, current: cp },
+      legends: { bear: `Prezzo di acquisto (${ms})`, base: `Fair Value ${method}`, bull: `Prezzo di vendita (+5%)` },
+      qa: { question: `Qual è il margine di sicurezza?`, answer: ms },
+    },
+    pro: {
+      executiveSummary: `Analisi di ${companyName} (${ticker}). Prezzo ${cp}, Fair Value ${iv} (${method}), margine ${ms}. Grade ${grade}.`,
+      thesisLabel: 'Sintesi qualitativa',
+      kpis: [
+        { label: 'Prezzo attuale', value: cp, sub: 'Quotazione di mercato', highlight: false },
+        { label: 'Fair Value', value: iv, sub: method, highlight: true },
+        { label: 'Margine di sicurezza', value: ms, sub: 'Sconto vs fair value', highlight: ms !== 'N/D' && parseFloat(ms) > 0 },
+        { label: 'ROIC', value: roicStr, sub: 'Ritorno sul capitale', highlight: false },
+        { label: 'P/E Forward', value: fwdPe, sub: 'Prezzo / Utili attesi', highlight: false },
+        { label: 'Dividend Yield', value: divY, sub: 'Rendimento da dividendo', highlight: false },
+      ],
+      verdictLine: `Grade ${grade} - ${ms !== 'N/D' ? parseFloat(ms) > 0 ? 'sottovalutato' : 'sopravvalutato' : 'in linea'}`,
+      marketCards: [
+        { label: 'Prezzo attuale', value: cp, sub: 'Prezzo di mercato', up: true, extra: '' },
+        { label: 'Fair Value', value: iv, sub: method, up: false, extra: '' },
+        { label: 'Upside', value: fairValue?.primary_upside != null ? `${(Math.abs(Number(fairValue.primary_upside)) <= 1.5 ? Number(fairValue.primary_upside) * 100 : Number(fairValue.primary_upside)).toLocaleString('it-IT', { maximumFractionDigits: 1 })}%` : 'N/D', sub: 'vs prezzo', up: Number(fairValue?.primary_upside) >= 0, extra: '' },
+        { label: 'Grade', value: grade, sub: 'Qualità azienda', up: grade === 'A' || grade === 'B', extra: '' },
+      ],
+      finTable: { headers: ['Metrica', 'Valore'], rows: [], factBlocks: [] },
+      qoe: { warningTitle: grade === 'D' || grade === 'F' ? 'Attenzione: qualità sotto la media' : 'Qualità standard', warningText: `Grade ${grade}: ${fairValue?.grade_summary || 'valutazione basata su ROIC, debito e CapEx.'}`, factBlocks: [] },
+      mixCards: [],
+      news: [],
+      catalysts: fairValue?.calculated_at ? [{
+        period: `Q${Math.ceil((new Date(fairValue.calculated_at).getMonth() + 1) / 3)} ${new Date(fairValue.calculated_at).getFullYear()}`,
+        event: 'Calcolo Fair Value', impact: 'Aggiornamento valutazione intrinseca',
+      }] : [],
+      scenarios: {
+        bull: { range: sell, assumptions: `Prezzo di vendita (+5% su IV)`, valuation: iv },
+        base: { range: iv, assumptions: `Fair Value ${method}`, valuation: method },
+        bear: { range: buy, assumptions: `Prezzo di acquisto con margine di sicurezza ${ms}`, valuation: iv },
+      },
+      valTable: {
+        headers: ['Metodo', 'IV', 'Acquisto', 'Vendita'],
+        rows: [
+          ['Buffett OE', fmt(fairValue?.buffett_iv), fmt(fairValue?.buffett_buy_price), fmt(fairValue?.buffett_sell_price)],
+          ['Two-Stage DCF', fmt(fairValue?.growth_dcf_iv), fmt(fairValue?.growth_dcf_buy_price), fmt(fairValue?.growth_dcf_sell_price)],
+        ],
+        factBlocks: [{ color: 'green', label: 'Raccomandato', text: method }]
+      },
+      risks: [
+        ...(Array.isArray(fairValue?.grade_reasons) ? fairValue.grade_reasons.map(r => ({
+          severity: grade === 'A' || grade === 'B' ? 'Basso' : (grade === 'C' ? 'Medio' : 'Alto'),
+          title: String(r).substring(0, 35),
+          text: String(r),
+          borderColor: grade === 'A' || grade === 'B' ? 'blue' : (grade === 'C' ? 'orange' : 'red'),
+          bgColor: grade === 'A' || grade === 'B' ? '#e6f2ff' : (grade === 'C' ? '#fff3e6' : '#ffe6e6'),
+          textColor: grade === 'A' || grade === 'B' ? '#0066cc' : (grade === 'C' ? '#b36b00' : '#b30000'),
+        })) : [{ severity: 'Medio', title: 'Valutazione standard', text: `Grade ${grade}`, borderColor: 'orange', bgColor: '#fff3e6', textColor: '#b36b00' }])
+      ],
+      finalThesis: {
+        label: 'Verdetto finale',
+        text: `${companyName} quota ${cp}. Fair Value ${iv}, margine ${ms}. Grade ${grade}: ${fairValue?.grade_summary || 'fair value elaborato dal modello proprietario.'}`,
+        works: ['Fair Value favorevole'],
+        worries: grade === 'D' || grade === 'F' ? ['Grade basso'] : ['Standard di settore'],
+        verdict: `Il prezzo ${cp} rispetto a Fair Value ${iv} (${method}) suggerisce una posizione ${Number(fairValue?.primary_upside) > 0 ? 'favorevole' : 'da rivalutare'}.`,
+        pills: [{ label: `Grade ${grade}`, bg: '#1e2230', border: '#7c3aed' }]
+      }
     }
   };
 }

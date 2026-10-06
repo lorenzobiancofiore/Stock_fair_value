@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vistra Corp. VST - Semplice</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#0066cc;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#0066cc;color:#fff;border:2px solid #0066cc;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #0066cc;color:#0066cc;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#0066cc;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#0066cc;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#0066cc;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#0066cc18;border:1px solid #0066cc40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#0066cc;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#0066cc;border-color:#0066cc;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#0066cc60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#0066cc;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#0066cc;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+
+/* ===== TradingView Chart Card ===== */
+.tv-chart-card{background:#13161e;border:1px solid #0066cc40;border-radius:12px;padding:20px;margin-bottom:24px;width:100%;box-sizing:border-box;overflow:hidden;}
+.tv-chart-header{margin-bottom:14px;}
+.tv-chart-header h3{font-size:15px;font-weight:800;color:#e8eaf0;margin:0 0 4px 0;}
+.tv-chart-header p{font-size:12px;color:#9ca3af;margin:0;}
+.tv-chart-wrapper{position:relative;width:100%;background:#0d0f14;border-radius:8px;overflow:hidden;}
+.tv-chart-container{width:100%;min-height:1px;}
+.tv-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#0d0f14 25%,#1a1d26 50%,#0d0f14 75%);background-size:200% 100%;animation:tv-shimmer 1.5s infinite;border-radius:8px;z-index:1;}
+@keyframes tv-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.tv-chart-wrapper.loaded .tv-skeleton{display:none;}
+.tv-disclaimer{margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;font-size:11px;color:#6b7280;line-height:1.6;}
+.tv-error{display:flex;align-items:center;justify-content:center;height:100%;min-height:200px;color:#e05252;font-size:13px;text-align:center;padding:20px;}
+
+/* Altezze per tipo di report */
+.wrap-s .tv-chart-container{height:420px;}
+.wrap-p .tv-chart-container{height:520px;}
+@media (max-width:640px){
+  .wrap-s .tv-chart-container{height:360px;}
+  .wrap-p .tv-chart-container{height:400px;}
+}
+@media (max-width:480px){
+  .wrap-s .tv-chart-container{height:340px;}
+}
+</style>
+</head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">VST</div>
+    <div>
+      <div class="hdr-name">Vistra Corp. &mdash; Borsa: VST</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 6 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp"></span>
+    <span class="badge bn"></span>
+    <span class="badge bm"></span>
+    <span class="lk-cur">📄 Semplice</span>
+    <a class="lk-oth" href="vst-pro.html">📊 Pro</a>
+  </div>
+</div><div class="wrap-s">
+<!-- 00: Executive Summary -->
+<div class="sec">
+<div class="p-tag">VST</div><h2 class="s-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Qualità a sconto: utility producer con cash flow robusto ma earnings rumorosi</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Vistra Corp. quota a 144,89 $ con fair value interno di 157,61 $, rappresentando un&#x27;opportunità di sottovalutazione moderata in un comparto utilities ad alta specializzazione. La società combina generazione di potenza merchant con retail electricity, creando un modello ibrido che genera flussi di cassa significativi (5,121 miliardi $ di operating cash flow) ma con utili GAAP altamente volatili a causa dell&#x27;esposizione ai derivati e ai mark-to-market. L&#x27;Adjusted EBITDA di 5,912 miliardi $ nel 2025 e la guidance 2026 di 6,8-7,6 miliardi $ dimostrano una traiettoria di crescita solida, supportata da domanda strutturale di energia da data center e AI. Il profilo di rischio è moderato-alto per la sensibilità ai prezzi dell&#x27;energia e alla leva finanziaria (debt sustainability 3,46), ma mitigato da una strategia di hedging avanzata (98% copertura 2026, 89% 2027). Il consenso degli analisti è fortemente positivo con target medio di 212-225 $, implicando un upside del 46-55% rispetto al prezzo attuale, sebbene il rating interno sia conservativo (grade C) riflettendo la complessità contabile e la ciclicità del business.</p></div>
+<div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di Vistra Corp. (VST)</p></div>
+<div class="tv-chart-wrapper" data-tv-symbol="VST" data-tv-mode="simple"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
+<div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>
+<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$144,89</div><div class="kpi-s">Quotazione di mercato</div></div><div class="kpi hi"><div class="kpi-l">Fair Value</div><div class="kpi-v">$157,61</div><div class="kpi-s">Two-Stage DCF (Growth)</div></div><div class="kpi hi"><div class="kpi-l">Margine di sicurezza</div><div class="kpi-v">40%</div><div class="kpi-s">Sconto vs fair value</div></div><div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v">12,9%</div><div class="kpi-s">Ritorno sul capitale investito</div></div><div class="kpi"><div class="kpi-l">P/E Forward</div><div class="kpi-v">13,9</div><div class="kpi-s">Prezzo / Utili attesi</div></div><div class="kpi"><div class="kpi-l">Dividend Yield</div><div class="kpi-v">0,6%</div><div class="kpi-s">Rendimento da dividendo</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Vistra rappresenta un&#x27;opportunità di qualità a sconto nel comparto utilities, con cash flow robusto e visibilità di guidance supportata da hedging avanzato, ma con una contabilità GAAP volatile che limita l&#x27;appeal per investitori conservatori. Il fair value interno di 157,61 $ suggerisce una sottovalutazione moderata, mentre il consenso degli analisti (target 212-225 $) implica un upside significativo se il mercato continua a premiare la qualità del FCF e la tesi di domanda strutturale da AI/data center.</p>
+</div>
+
+
+<!-- 01: Come sta crescendo -->
+<div class="sec">
+<div class="s-num">01</div><h2 class="s-h2">Come sta crescendo Vistra Corp.</h2>
+<div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:20px">2024-2026E</div>
+<div class="g2" style="margin-bottom:16px">
+<div class="stat"><div class="lbl">Ricavi LTM</div><div class="big">19,21 mld $</div><div class="sub">dato interno fornito; 2025 reported 17,74 mld $</div></div><div class="stat"><div class="lbl">Adjusted EBITDA 2025</div><div class="big">5,91 mld $</div><div class="sub">anno completo; guidance 2026 6,8-7,6 mld $</div></div><div class="stat"><div class="lbl">Operating Cash Flow</div><div class="big">5,12 mld $</div><div class="sub">dato interno; supporta capex e dividendi</div></div><div class="stat"><div class="lbl">Tasso di crescita implicito</div><div class="big">8,12% annuo</div><div class="sub">dato interno; coerente con espansione mix e prezzi power</div></div><div class="stat"><div class="lbl">ROIC</div><div class="big">12,86%</div><div class="sub">rendimento del capitale investito; superiore al costo medio ponderato</div></div><div class="stat"><div class="lbl">Capex ratio</div><div class="big">55,97%</div><div class="sub">rapporto capex/operating cash flow; business capital intensive</div></div>
+</div>
+<div class="ebox"><div style="color:#e8eaf0;font-size:14px;font-weight:700;margin-bottom:6px">In parole semplici</div><div style="color:#9ca3af;font-size:14px;line-height:1.7">Vistra sta attraversando una fase di crescita moderata ma sostenuta, dove l&#x27;espansione dei ricavi è trainata non tanto da volumi incrementali quanto da una combinazione di prezzi dell&#x27;energia resilienti, ottimizzazione del portafoglio di hedging e contributi da acquisizioni (come gli asset Lotus). L&#x27;EBITDA adjusted è il vero driver della creazione di valore, crescendo da 5,91 miliardi nel 2025 verso il range 6,8-7,6 miliardi nel 2026, mentre il cash flow operativo rimane robusto a 5,12 miliardi. Il ROIC del 12,86% indica che il capitale è impiegato in modo efficiente, sebbene il capex ratio elevato (55,97%) rifletta la natura capital-intensive del business di generazione di potenza. La crescita attesa dell&#x27;8,12% annuo è moderata ma stabile, supportata da fattori strutturali come la domanda di energia da data center e AI, oltre che da una disciplina di hedging che protegge la visibilità dei flussi futuri.</div></div>
+</div><div class="card"><div style="color:#9ca3af;font-size:13px;margin-bottom:16px">Previsioni per il prossimo periodo</div><div class="g2"><div class="ibox"><div class="lbl">Adjusted EBITDA 2026</div><div class="ival">6,8-7,6 mld $</div><div class="sub">midpoint 7,2 mld $; riaffermato a Q2 2026</div></div><div class="ibox"><div class="lbl">Adjusted FCFbG 2026</div><div class="ival">3,925-4,725 mld $</div><div class="sub">midpoint 4,325 mld $; free cash flow before growth</div></div><div class="ibox"><div class="lbl">Copertura hedging 2026</div><div class="ival">98%</div><div class="sub">volumi coperti; 89% per 2027, 65% per 2028</div></div><div class="ibox"><div class="lbl">Outlook 2027</div><div class="ival">7,4-7,8 mld $ EBITDA</div><div class="sub">indicazione di continuità della crescita oltre 2026</div></div></div></div>
+</div>
+
+<!-- 02: Cosa può succedere -->
+<div class="sec">
+<div class="s-num">02</div><h2 class="s-h2">Cosa può succedere</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:20px">Tre scenari di valutazione riflettono il range di possibili evoluzioni del business di Vistra, considerando i driver principali di pricing dell&#x27;energia, esecuzione operativa, dinamiche di hedging e condizioni di mercato.</p>
+<div class="sc sc-bull"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Rialzista</div><div style="color:#00c896;font-size:20px;font-weight:800">Domanda power sostenuta, prezzi resilienti, guidance alzata</div></div><div style="color:#00c896;font-size:28px;font-weight:900;font-family:monospace">220-240 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">In questo scenario, la domanda di energia da data center e AI continua a crescere più velocemente delle attese, sostenendo i prezzi dell&#x27;elettricità a livelli elevati. Vistra alza la guidance 2026 verso il top end (7,6 mld $ EBITDA) e comunica visibilità positiva per 2027-2028. Le realizzazioni di hedging rimangono favorevoli, il retail spread si espande e il management annuncia ulteriori acquisizioni di asset generativi. Il mercato riprezza il titolo verso i target degli analisti più alti (225-240 $), riconoscendo la qualità del cash flow e la resilienza della domanda strutturale.</p></div>
+<div class="sc sc-base"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Base</div><div style="color:#f5a623;font-size:20px;font-weight:800">Guidance confermata, FCF robusto, utili GAAP volatili</div></div><div style="color:#f5a623;font-size:28px;font-weight:900;font-family:monospace">180-200 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">Lo scenario più probabile vede Vistra confermare la guidance 2026 al midpoint (7,2 mld $ EBITDA) e mantenere un FCF solido intorno a 4,3 miliardi. Gli utili GAAP rimangono rumorosi per effetto dei mark-to-market sui derivati, ma il mercato continua a focalizzarsi su EBITDA e FCF adjusted. Il titolo si muove verso un multiplo più normalizzato su FCF (10-11x), implicando un prezzo target di 180-200 $. La domanda di energia rimane stabile, i prezzi si mantengono in un range ragionevole e il business esegue senza sorprese significative.</p></div>
+<div class="sc sc-bear"><div class="sc-hdr"><div><div style="color:#9ca3af;font-size:12px">Scenario Ribassista</div><div style="color:#e05252;font-size:20px;font-weight:800">Calo prezzi energia, compressione margini, oneri finanziari</div></div><div style="color:#e05252;font-size:28px;font-weight:900;font-family:monospace">115-130 $</div></div><p style="color:#e8eaf0;font-size:15px;line-height:1.75">In questo scenario, una recessione economica o un&#x27;espansione inattesa della capacità generativa porta a una compressione dei prezzi dell&#x27;energia. L&#x27;EBITDA 2026 scende verso il bottom end della guidance (6,8 mld $) e il management riduce l&#x27;outlook 2027. I margini retail si comprimono, le realizzazioni di hedging diventano sfavorevoli e il costo del finanziamento aumenta. Il titolo de-rata verso 115-130 $, con un multiplo FCF di 7-8x riflettendo il profilo di rischio più elevato e l&#x27;incertezza sulla sostenibilità del leverage.</p></div>
+</div>
+
+<!-- 03: Quanto vale il titolo -->
+<div class="sec">
+<div class="s-num">03</div><h2 class="s-h2">Quanto vale il titolo</h2>
+<p style="color:#9ca3af;font-size:15px;line-height:1.7;margin-bottom:24px">Vistra è quotata a 144,89 $ con un fair value interno di 157,61 $ calcolato tramite DCF a due stadi, suggerendo una sottovalutazione moderata del 8,8%. Il modello incorpora una crescita dell&#x27;8,12% annuo e un ROIC del 12,86%, riflettendo la qualità del business ma anche la complessità della contabilità e la sensibilità ai prezzi dell&#x27;energia. Il consenso degli analisti è significativamente più costruttivo, con target medio di 212-225 $, implicando un upside del 46-55% e suggerendo che il mercato valuta il titolo con uno sconto rispetto ai fondamentali.</p>
+<div class="card"><div class="rng"><div class="rng-bar"></div>
+<div class="rl" style="left:0%"><div style="color:#e05252;font-size:11px;font-weight:700">BEAR</div><div style="color:#e05252;font-size:16px;font-weight:900;font-family:monospace">115</div></div>
+<div class="rl" style="left:52%"><div style="color:#f5a623;font-size:11px;font-weight:700">BASE</div><div style="color:#f5a623;font-size:16px;font-weight:900;font-family:monospace">180</div></div>
+<div class="rl" style="left:100%"><div style="color:#00c896;font-size:11px;font-weight:700">BULL</div><div style="color:#00c896;font-size:16px;font-weight:900;font-family:monospace">240</div></div>
+<div class="rdot" style="left:23.200000000000003%"><div class="rdot-c"></div><div class="rdot-l"><div style="color:#e8eaf0;font-size:11px;font-weight:700">OGGI</div><div style="color:#e8eaf0;font-size:16px;font-weight:900;font-family:monospace">144,89</div></div></div>
+</div>
+<div style="margin-top:60px;padding-top:16px;border-top:1px solid #1e2230">
+<div class="leg"><div class="leg-dot" style="background:#e05252"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#e05252">Bear 115-134.5:</strong> Scenario ribassista: compressione prezzi energia, margini sotto pressione, leverage elevato</div></div>
+<div class="leg"><div class="leg-dot" style="background:#f5a623"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#f5a623">Base 162-198:</strong> Scenario base: guidance confermata, FCF robusto, esecuzione operativa stabile</div></div>
+<div class="leg"><div class="leg-dot" style="background:#00c896"></div><div style="color:#9ca3af;font-size:14px;line-height:1.6"><strong style="color:#00c896">Bull 222-258:</strong> Scenario rialzista: domanda power sostenuta, prezzi resilienti, guidance alzata, M&amp;A</div></div>
+</div></div>
+<div class="card"><div style="color:#e8eaf0;font-size:16px;font-weight:800;margin-bottom:12px"></div><p style="color:#9ca3af;font-size:14px;line-height:1.8;margin-bottom:10px"></p></div>
+</div>
+
+<!-- 04: Il prezzo giusto secondo i conti -->
+<div class="sec">
+
+    <div class="s-num">04</div>
+    <h2 class="s-h2">Il prezzo giusto secondo i conti</h2>
+
+    <div class="card" style="border-left:3px solid #e05252">
+      <div class="lbl" style="color:#e05252">FORTEMENTE SOPRAVVALUTATA</div>
+      <div style="font-size:15px;line-height:1.8;margin-top:10px">Facendo i conti sugli utili che l&rsquo;azienda genera oggi, il prezzo a cui conviene comprare sarebbe <strong>USD&nbsp;94.56</strong>. Ma oggi in borsa costa <strong>USD&nbsp;144.89</strong>, cioè <strong style='color:#e05252'>il 35% in pi&ugrave;</strong>. Il mercato sta pagando per una crescita futura che nei numeri attuali non si vede ancora.</div>
+    </div>
+
+    <div class="g2" style="margin-top:20px">
+      <div class="stat">
+        <div class="lbl">Prezzo di oggi</div>
+        <div class="big">USD&nbsp;144.89</div>
+        <div class="sub">quotazione di mercato</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Prezzo a cui comprare</div>
+        <div class="big" style="color:#00c896">USD&nbsp;94.56</div>
+        <div class="sub">con margine di sicurezza</div>
+      </div>
+    </div>
+
+    <div class="rng" style="margin-top:24px">
+      <div class="rng-bar" style="background:linear-gradient(90deg,#00c896 0%,#f5a623 55%,#e05252 100%)"></div>
+      <div class="rl" style="left:0">COMPRARE<br><span style="font-weight:400">USD&nbsp;94.56</span></div>
+      <div class="rl" style="right:0;text-align:right">VENDERE<br><span style="font-weight:400">USD&nbsp;181.25</span></div>
+      <div class="rdot" style="left:58.1%"></div>
+      <div class="rdot-l" style="left:58.1%">oggi</div>
+    </div>
+
+    <div class="ebox" style="margin-top:28px">
+      <div class="lbl">Come funziona questo calcolo</div>
+      <div style="font-size:14px;line-height:1.8;margin-top:8px">
+        Si parte dagli utili reali che l&rsquo;azienda produce &mdash; non quelli promessi &mdash;
+        e si proiettano su 10 anni. Poi si sconta il risultato per tenere conto del fatto che
+        mille euro oggi valgono pi&ugrave; di mille euro fra dieci anni.<br><br>
+        A questo valore si applica uno <strong>sconto di sicurezza</strong> che dipende da quanto
+        l&rsquo;azienda &egrave; robusta. Qui il voto &egrave; <strong style="color:#f5a623">C</strong>
+        &mdash; azienda nella media &mdash; e lo sconto applicato &egrave; del
+        <strong>40%</strong>.<br><br>
+        Pi&ugrave; l&rsquo;azienda &egrave; fragile, pi&ugrave; grande lo sconto richiesto prima
+        di considerarla comprabile.
+      </div>
+    </div>
+
+    <div class="disc" style="margin-top:20px">
+      Calcolo automatico su dati di bilancio degli ultimi 12 mesi
+      (2026-10-06 06:41). Ipotesi di crescita: 8.1% annuo
+      (consenso analisti). Non &egrave; un consiglio di investimento.
+    </div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 6 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+<script>
+(function () {
+  var TV_SRC = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  var initialized = false;
+
+  function buildConfig(symbol, mode) {
+    var isPro = mode === 'pro';
+    var cfg = {
+      symbol: symbol, locale: 'it', theme: 'dark', style: '1', interval: 'D',
+      autosize: true, volume: true, legend: true, details: false, calendar: false,
+      hotlist: false, watchlist: false, allow_symbol_change: false,
+      hide_side_toolbar: !isPro, hide_top_toolbar: !isPro, withdateranges: isPro,
+      save_image: isPro, enable_publishing: false, support_host: 'https://www.tradingview.com'
+    };
+    if (isPro) { cfg.studies = []; }
+    return cfg;
+  }
+
+  function renderChart(wrapper) {
+    if (!wrapper || wrapper.dataset.tvInit === '1') return;
+    wrapper.dataset.tvInit = '1';
+    var symbol = wrapper.getAttribute('data-tv-symbol');
+    var mode = wrapper.getAttribute('data-tv-mode') || 'simple';
+    var container = wrapper.querySelector('.tv-chart-container');
+    if (!container || !symbol) return;
+    try {
+      var tvContainer = document.createElement('div');
+      tvContainer.className = 'tradingview-widget-container';
+      tvContainer.style.height = '100%';
+      tvContainer.style.width = '100%';
+      var inner = document.createElement('div');
+      inner.className = 'tradingview-widget-container__widget';
+      inner.style.height = '100%';
+      inner.style.width = '100%';
+      tvContainer.appendChild(inner);
+      container.appendChild(tvContainer);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = TV_SRC;
+      script.innerHTML = JSON.stringify(buildConfig(symbol, mode));
+      tvContainer.appendChild(script);
+      setTimeout(function () { wrapper.classList.add('loaded'); }, 1400);
+    } catch (e) {
+      container.innerHTML = '<div class="tv-error">Grafico non disponibile al momento. Riprova pi&ugrave; tardi.</div>';
+      wrapper.classList.add('loaded');
+    }
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    var wrappers = Array.prototype.slice.call(document.querySelectorAll('.tv-chart-wrapper'));
+    if (!wrappers.length) return;
+    if (!('IntersectionObserver' in window)) {
+      wrappers.forEach(renderChart);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          renderChart(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0 });
+    wrappers.forEach(function (w) { io.observe(w); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

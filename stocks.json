@@ -1,5 +1,14 @@
 [
   {
+    "name": "acn",
+    "ticker": "ACN",
+    "folder": "acn",
+    "simplePath": "./acn/acn-semplice.html",
+    "proPath": "./acn/acn-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "2 ottobre 2026"
+  },
+  {
     "name": "AMAT",
     "ticker": "AMAT",
     "folder": "AMAT",
@@ -16,6 +25,15 @@
     "proPath": "./avgo/avgo-pro.html",
     "quarter": "Q3 FY2026",
     "analysisDate": "25 settembre 2026"
+  },
+  {
+    "name": "baba",
+    "ticker": "BABA",
+    "folder": "baba",
+    "simplePath": "./baba/baba-semplice.html",
+    "proPath": "./baba/baba-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "6 ottobre 2026"
   },
   {
     "name": "bzu",
@@ -106,6 +124,15 @@
     "proPath": "./panw/panw-pro.html",
     "quarter": "Q3 FY2026",
     "analysisDate": "4 agosto 2026"
+  },
+  {
+    "name": "vst",
+    "ticker": "VST",
+    "folder": "vst",
+    "simplePath": "./vst/vst-semplice.html",
+    "proPath": "./vst/vst-pro.html",
+    "quarter": "Q1 FY2027",
+    "analysisDate": "6 ottobre 2026"
   },
   {
     "name": "vstr",

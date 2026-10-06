@@ -7,7 +7,10 @@
 <!-- Executive Summary -->
 <div class="sec-p" id="exec"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Executive Summary</h2>
 <div class="thesis"><div class="thesis-lbl">{{thesisLabel}}</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">{{executiveSummary}}</p></div>
-{{#if kpis}}<div class="kpi-g">{{#each kpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
+{{#if tvSymbol}}<div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di {{companyName}} ({{ticker}})</p></div>
+<div class="tv-chart-wrapper" data-tv-symbol="{{tvSymbol}}" data-tv-mode="pro"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
+<div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>{{/if}}
+{{#if execKpis}}<div class="kpi-g">{{#each execKpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
 {{#if verdictLine}}<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> {{verdictLine}}</p>{{/if}}
 </div>
 
@@ -68,6 +71,7 @@
 <div class="tbl"><table><thead><tr>{{#each valTable.headers}}<th>{{this}}</th>{{/each}}</tr></thead><tbody>{{#each valTable.rows}}<tr>{{#each this}}<td{{#if @first}} class="f"{{/if}}>{{this}}</td>{{/each}}</tr>{{/each}}</tbody></table></div>
 {{#if valTable.factBlocks}}<div class="fb">{{#each valTable.factBlocks}}<div class="fb-r"><span class="fl" style="color:{{color}}">{{label}} &mdash; </span><span style="color:#e8eaf0">{{text}}</span></div>{{/each}}</div>{{/if}}
 </div>
+{{/if}}
 <!-- Key Risks -->
 {{#if risks}}
 <div class="sec-p" id="risk"><div class="p-tag">{{ticker}}</div><h2 class="p-h2">Key Risks</h2>
@@ -89,10 +93,10 @@
 <!-- Fair Value -->
 <div class="sec-p" id="fv">
 <div class="p-tag">{{ticker}}</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
-{{{fairValueHtmlPro}}}
+{{> fairvalue }}
 </div>
 
 <div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al {{date}}. Non &egrave; consulenza finanziaria.</div>
 </div>
+{{> shared.chart }}
 </body></html>
-{{/if}}

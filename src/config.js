@@ -8,6 +8,9 @@ export const config = {
   openRouter: {
     apiKey: process.env.OPENROUTER_API_KEY,
     model: process.env.OPENROUTER_MODEL || 'meta-llama/llama-3.1-70b-instruct',
+    // Nuovi modelli per pipeline 2-fasi
+    researchModel: process.env.OPENROUTER_RESEARCH_MODEL || 'perplexity/sonar',
+    writerModel: process.env.OPENROUTER_WRITER_MODEL || 'anthropic/claude-haiku-4.5',
     fallbackModels: [
       'nvidia/nemotron-3-ultra-550b-a55b:free',
       'google/gemini-2.0-flash-exp:free',

@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vistra Corp. VST - Pro</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#0066cc;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#0066cc;color:#fff;border:2px solid #0066cc;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #0066cc;color:#0066cc;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#0066cc;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#0066cc;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:20px;height:20px;background:#e8eaf0;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 2px #e8eaf0;}
+.rdot-l{position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#0066cc;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#0066cc18;border:1px solid #0066cc40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#0066cc;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#0066cc;border-color:#0066cc;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;}
+.kpi.hi{border-color:#0066cc60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#0066cc;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#0066cc;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+
+/* ===== TradingView Chart Card ===== */
+.tv-chart-card{background:#13161e;border:1px solid #0066cc40;border-radius:12px;padding:20px;margin-bottom:24px;width:100%;box-sizing:border-box;overflow:hidden;}
+.tv-chart-header{margin-bottom:14px;}
+.tv-chart-header h3{font-size:15px;font-weight:800;color:#e8eaf0;margin:0 0 4px 0;}
+.tv-chart-header p{font-size:12px;color:#9ca3af;margin:0;}
+.tv-chart-wrapper{position:relative;width:100%;background:#0d0f14;border-radius:8px;overflow:hidden;}
+.tv-chart-container{width:100%;min-height:1px;}
+.tv-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#0d0f14 25%,#1a1d26 50%,#0d0f14 75%);background-size:200% 100%;animation:tv-shimmer 1.5s infinite;border-radius:8px;z-index:1;}
+@keyframes tv-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.tv-chart-wrapper.loaded .tv-skeleton{display:none;}
+.tv-disclaimer{margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;font-size:11px;color:#6b7280;line-height:1.6;}
+.tv-error{display:flex;align-items:center;justify-content:center;height:100%;min-height:200px;color:#e05252;font-size:13px;text-align:center;padding:20px;}
+
+/* Altezze per tipo di report */
+.wrap-s .tv-chart-container{height:420px;}
+.wrap-p .tv-chart-container{height:520px;}
+@media (max-width:640px){
+  .wrap-s .tv-chart-container{height:360px;}
+  .wrap-p .tv-chart-container{height:400px;}
+}
+@media (max-width:480px){
+  .wrap-s .tv-chart-container{height:340px;}
+}
+</style>
+</head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">VST</div>
+    <div>
+      <div class="hdr-name">Vistra Corp. &mdash; Borsa: VST</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 6 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp"></span>
+    <span class="badge bn"></span>
+    <span class="badge bm"></span>
+    <span class="lk-cur">📊 Pro</span>
+    <a class="lk-oth" href="vst-semplice.html">📄 Semplice</a>
+  </div>
+</div><div class="wrap-p">
+
+<div class="toc"><a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a><a href="#fairvalue">Fair Value</a></div>
+
+<!-- Executive Summary -->
+<div class="sec-p" id="exec"><div class="p-tag">VST</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Utility producer merchant con cash flow robusto, contabilità rumorosa, upside moderato-alto da rerating su FCF</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Vistra Corp. (NYSE: VST) è un operatore integrato nel comparto Utilities - Independent Power Producers, quotato a 144,89 $ al 6 ottobre 2026 con una capitalizzazione di mercato stimata intorno a 49 miliardi $. La società combina un business di generazione di potenza merchant con un segmento di retail electricity, creando un modello ibrido che genera flussi di cassa significativi ma con un profilo di utili altamente volatile a causa dell&#x27;esposizione ai derivati e ai mark-to-market. Nel 2025, Vistra ha registrato ricavi operativi di 17,738 miliardi $ e un utile netto GAAP di 944 milioni $, mentre l&#x27;Adjusted EBITDA ha raggiunto 5,912 miliardi $, dimostrando la qualità sottostante del business nonostante la rumorosità contabile. L&#x27;operating cash flow di 5,121 miliardi $ (dato interno) supporta un capex ratio del 55,97%, riflettendo la natura capital-intensive della generazione di potenza. Il ROIC del 12,86% indica un&#x27;allocazione efficiente del capitale, superiore al costo medio ponderato. Per il 2026, la società ha riaffermato una guidance di Adjusted EBITDA tra 6,8 e 7,6 miliardi $ e Adjusted FCFbG tra 3,925 e 4,725 miliardi $, con una strategia di hedging avanzata che copre il 98% dei volumi 2026, l&#x27;89% del 2027 e il 65% del 2028. Il fair value interno calcolato tramite DCF a due stadi è 157,61 $, suggerendo una sottovalutazione moderata dell&#x27;8,8% rispetto al prezzo attuale, mentre il consenso degli analisti è significativamente più costruttivo con un target medio di 212-225 $ (upside 46-55%). Il rating interno conservativo (grade C) riflette la complessità della contabilità e la ciclicità del business, ma i fondamentali sottostanti rimangono solidi, supportati da fattori strutturali come la domanda crescente di energia da data center e AI, oltre che da una disciplina operativa e di hedging che protegge la visibilità dei flussi futuri.</p></div>
+<div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di Vistra Corp. (VST)</p></div>
+<div class="tv-chart-wrapper" data-tv-symbol="VST" data-tv-mode="pro"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
+<div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>
+<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$144,89</div><div class="kpi-s">Quotazione di mercato</div></div><div class="kpi hi"><div class="kpi-l">Fair Value</div><div class="kpi-v">$157,61</div><div class="kpi-s">Two-Stage DCF (Growth)</div></div><div class="kpi hi"><div class="kpi-l">Margine di sicurezza</div><div class="kpi-v">40%</div><div class="kpi-s">Sconto vs fair value</div></div><div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v">12,9%</div><div class="kpi-s">Ritorno sul capitale investito</div></div><div class="kpi"><div class="kpi-l">P/E Forward</div><div class="kpi-v">13,9</div><div class="kpi-s">Prezzo / Utili attesi</div></div><div class="kpi"><div class="kpi-l">Dividend Yield</div><div class="kpi-v">0,6%</div><div class="kpi-s">Rendimento da dividendo</div></div></div>
+
+<div class="kpi-g"><div class="kpi hi"><div class="kpi-l">Fair Value (DCF 2-Stage)</div><div class="kpi-v">157,61 $</div><div class="kpi-s">vs prezzo attuale 144,89 $; upside 8,8%</div></div><div class="kpi hi"><div class="kpi-l">Adjusted EBITDA 2025</div><div class="kpi-v">5,91 mld $</div><div class="kpi-s">guidance 2026 6,8-7,6 mld $; crescita 8-12%</div></div><div class="kpi"><div class="kpi-l">Operating Cash Flow</div><div class="kpi-v">5,12 mld $</div><div class="kpi-s">dato interno; supporta capex e distribuzione azionisti</div></div><div class="kpi hi"><div class="kpi-l">ROIC</div><div class="kpi-v">12,86%</div><div class="kpi-s">rendimento del capitale investito; superiore al WACC</div></div><div class="kpi"><div class="kpi-l">Debt Sustainability</div><div class="kpi-v">3,46x</div><div class="kpi-s">leverage moderato-elevato; monitorare in caso di stress cash flow</div></div><div class="kpi"><div class="kpi-l">Forward P/E</div><div class="kpi-v">13,91x</div><div class="kpi-s">multiplo ragionevole per il comparto; sottovalutato vs target analisti</div></div><div class="kpi hi"><div class="kpi-l">Hedging Coverage 2026</div><div class="kpi-v">98%</div><div class="kpi-s">volumi coperti; 89% 2027, 65% 2028; protezione visibilità</div></div><div class="kpi"><div class="kpi-l">Capex Ratio</div><div class="kpi-v">55,97%</div><div class="kpi-s">rapporto capex/OCF; business capital intensive</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Vistra rappresenta un&#x27;opportunità di qualità a sconto nel comparto utilities, con cash flow robusto e visibilità di guidance supportata da hedging avanzato, ma con una contabilità GAAP volatile che limita l&#x27;appeal per investitori conservatori. Il fair value interno di 157,61 $ suggerisce una sottovalutazione moderata, mentre il consenso degli analisti (target 212-225 $) implica un upside significativo se il mercato continua a premiare la qualità del FCF e la tesi di domanda strutturale da AI/data center.</p>
+</div>
+
+<!-- Market Snapshot -->
+<div class="sec-p" id="market"><div class="p-tag">VST</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Prezzo Attuale</div><div style="color:#9ca3af;font-size:22px;font-weight:800">144,89 $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">al 6 ottobre 2026; capitalizzazione ~49 mld $</div><div style="color:#9ca3af;font-size:12px">Sottovalutato rispetto a fair value interno e target analisti</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Fair Value Interno</div><div style="color:#0066cc;font-size:22px;font-weight:800">157,61 $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">DCF 2-Stage; upside 8,8%</div><div style="color:#9ca3af;font-size:12px">Range buy 94,56 $ / sell 181,25 $; conservativo vs sell-side</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Target Analisti Medio</div><div style="color:#0066cc;font-size:22px;font-weight:800">212-225 $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">consenso Strong Buy; range 106-305 $</div><div style="color:#9ca3af;font-size:12px">Upside 46-55%; riflette ottimismo su domanda power e FCF</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Adjusted EBITDA 2026E</div><div style="color:#0066cc;font-size:22px;font-weight:800">6,8-7,6 mld $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">midpoint 7,2 mld $; crescita 8-12% vs 2025</div><div style="color:#9ca3af;font-size:12px">Guidance riaffermata a Q2 2026; supportata da hedging avanzato</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Adjusted FCFbG 2026E</div><div style="color:#0066cc;font-size:22px;font-weight:800">3,925-4,725 mld $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">midpoint 4,325 mld $; free cash flow before growth</div><div style="color:#9ca3af;font-size:12px">Supporta capex, dividendi e riduzione leverage</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Hedging Coverage</div><div style="color:#0066cc;font-size:22px;font-weight:800">98% (2026), 89% (2027), 65% (2028)</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">volumi coperti; protezione visibilità futura</div><div style="color:#9ca3af;font-size:12px">Riduce volatilità earnings e supporta guidance; strategia disciplinata</div></div></div></div></div>
+
+<!-- Financial Deep Dive -->
+<div class="sec-p" id="fin"><div class="p-tag">VST</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><thead><tr><th>Metrica</th><th>2024</th><th>2025</th><th>2026E</th><th>Variazione YoY</th><th>Fonte</th></tr></thead><tbody><tr><td class="f">Ricavi (mld $)</td><td>17,22</td><td>17,74</td><td>~18,5-19,0</td><td>+2,8% (2025), +4-7% (2026E)</td><td>Reported / guidance</td></tr><tr><td class="f">Utile netto GAAP (mld $)</td><td>2,81</td><td>0,94</td><td>~1,2-1,5</td><td>-66,5% (2025), +28-60% (2026E)</td><td>Reported; volatilità mark-to-market</td></tr><tr><td class="f">Adjusted EBITDA (mld $)</td><td>~5,5-5,7</td><td>5,91</td><td>6,8-7,6</td><td>+3,5-7,5% (2025), +8-12% (2026E)</td><td>Reported / guidance</td></tr><tr><td class="f">Operating Cash Flow (mld $)</td><td>~4,8-5,0</td><td>~5,0-5,1</td><td>~5,2-5,5</td><td>+2-5% (2025), +4-8% (2026E)</td><td>Dato interno fornito</td></tr><tr><td class="f">Adjusted FCFbG (mld $)</td><td>~3,5-3,8</td><td>~4,0-4,2</td><td>3,925-4,725</td><td>+5-10% (2025), +0-12% (2026E)</td><td>Guidance 2026</td></tr><tr><td class="f">ROIC (%)</td><td>~12,5-13,0</td><td>~12,8-13,0</td><td>~12,8-13,2</td><td>Stabile</td><td>Dato interno 12,86%</td></tr><tr><td class="f">Debt/EBITDA (x)</td><td>~3,3-3,5</td><td>~3,4-3,5</td><td>~3,2-3,4</td><td>Stabile/leggero miglioramento</td><td>Dato interno 3,46x</td></tr><tr><td class="f">Capex/OCF (%)</td><td>~55-57%</td><td>~56-57%</td><td>~55-58%</td><td>Stabile</td><td>Dato interno 55,97%</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">Crescita EBITDA &mdash; </span><span style="color:#e8eaf0">Adjusted EBITDA atteso in crescita dell&#x27;8-12% nel 2026 verso 6,8-7,6 miliardi $, supportato da pricing power, retail spread e contributi da acquisizioni. Guidance riaffermata a Q2 2026 con visibilità positiva per 2027-2028.</span></div><div class="fb-r"><span class="fl" style="color:yellow">Volatilità GAAP &mdash; </span><span style="color:#e8eaf0">Utile netto GAAP altamente volatile per effetto di mark-to-market gains/losses su derivati: Q1 2026 +1,029 mld $ (gains), Q2 2026 305 mln $ (losses 472 mln $). EBITDA adjusted e FCF sono metriche più informative.</span></div><div class="fb-r"><span class="fl" style="color:green">Cash Flow Robusto &mdash; </span><span style="color:#e8eaf0">Operating cash flow di 5,121 miliardi $ supporta capex capital-intensive (55,97% ratio) e distribuzione azionisti. Adjusted FCFbG 2026 atteso 3,925-4,725 miliardi $, fornendo flessibilità finanziaria.</span></div><div class="fb-r"><span class="fl" style="color:orange">Leverage Moderato-Elevato &mdash; </span><span style="color:#e8eaf0">Debt sustainability 3,46x è moderato-elevato per il comparto; monitorare in caso di compressione EBITDA o aumento tassi. Emissione subordinated notes 1,5 mld $ a settembre 2026 suggerisce gestione attiva del capitale.</span></div><div class="fb-r"><span class="fl" style="color:green">ROIC Superiore al WACC &mdash; </span><span style="color:#e8eaf0">ROIC del 12,86% indica allocazione efficiente del capitale, superiore al costo medio ponderato stimato intorno al 7-8%. Supporta la tesi di creazione di valore a lungo termine.</span></div><div class="fb-r"><span class="fl" style="color:blue">Hedging Avanzato &mdash; </span><span style="color:#e8eaf0">Copertura del 98% volumi 2026, 89% 2027, 65% 2028 riduce volatilità e protegge visibilità di guidance. Strategia disciplinata di hedging è un differenziale competitivo vs competitor meno sofisticati.</span></div></div>
+</div>
+
+<!-- Quality of Earnings -->
+<div class="sec-p" id="qoe"><div class="p-tag">VST</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">Qualità degli Utili: Volatilità Contabile vs Solidità Economica</div><p class="pcard-p">La qualità degli utili di Vistra è buona sul piano economico-cash, ma rumorosa sul piano contabile GAAP. Il principale driver di volatilità è l&#x27;esposizione ai mark-to-market gains/losses su posizioni derivate e hedge: nel Q1 2026 i guadagni non realizzati hanno gonfiato l&#x27;utile netto a 1,029 miliardi $, mentre nel Q2 2026 le perdite non realizzate lo hanno compresso a 305 milioni $ nonostante un EBITDA adjusted di 1,767 miliardi $. Questo è tipico di business con hedging esteso e commodity exposure. Per questo motivo, gli investitori devono focalizzarsi su metriche adjusted (EBITDA, FCF) piuttosto che sul singolo trimestre GAAP. La cassa generata dal business rimane solida e prevedibile, supportata da una strategia di hedging disciplinata che copre il 98% dei volumi 2026.</p></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:yellow">Mark-to-Market Volatility &mdash; </span><span style="color:#e8eaf0">Utile netto GAAP fortemente influenzato da unrealized gains/losses su derivati. Q1 2026: +1,029 mld $ (gains), Q2 2026: 305 mln $ (losses 472 mln $). Questa volatilità non riflette la performance economica sottostante.</span></div><div class="fb-r"><span class="fl" style="color:green">EBITDA Adjusted Stabile &mdash; </span><span style="color:#e8eaf0">Adjusted EBITDA è metrica più informativa: Q2 2026 1,767 mld $ (trimestrale), FY 2025 5,912 mld $ (annuale). Crescita attesa 2026 verso 6,8-7,6 miliardi $ è supportata da fondamentali operativi solidi.</span></div><div class="fb-r"><span class="fl" style="color:green">FCF Robusto e Prevedibile &mdash; </span><span style="color:#e8eaf0">Adjusted FCFbG 2026 atteso 3,925-4,725 miliardi $ fornisce visibilità sulla cassa generata. Operating cash flow di 5,121 miliardi $ è metrica affidabile, non influenzata da mark-to-market.</span></div><div class="fb-r"><span class="fl" style="color:blue">Hedging Disciplinato &mdash; </span><span style="color:#e8eaf0">Copertura avanzata (98% 2026, 89% 2027) riduce la volatilità dei risultati futuri. Strategia di hedging è un differenziale competitivo che protegge la visibilità di guidance e la qualità del cash flow.</span></div></div>
+</div>
+
+<!-- Business Mix -->
+<div class="sec-p" id="mix"><div class="p-tag">VST</div><h2 class="p-h2">Business Mix</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Tesi Bullish: Domanda Power Strutturale</div><div style="color:green;font-size:22px;font-weight:800">Positivo</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Data center e AI trainano domanda di energia; prezzi power resilienti</div><div style="color:#9ca3af;font-size:12px">La domanda strutturale di energia da data center e AI è un driver di lungo termine che supporta prezzi power e margini di generazione. Vistra è ben posizionato per catturare questa crescita con un portafoglio di asset generativi diversificato.</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Tesi Bearish: Volatilità Prezzi Energia</div><div style="color:red;font-size:22px;font-weight:800">Negativo</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Compressione prezzi power riduce margini; scenario recessione</div><div style="color:#9ca3af;font-size:12px">Una recessione economica o un&#x27;espansione inattesa della capacità generativa potrebbe comprimere i prezzi dell&#x27;energia, riducendo l&#x27;EBITDA verso il bottom end della guidance e forzando il management a ridurre l&#x27;outlook 2027. Il leverage (3,46x) amplificherebbe l&#x27;impatto.</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Tesi Mista: Contabilità Rumorosa vs Fondamentali Solidi</div><div style="color:yellow;font-size:22px;font-weight:800">Misto</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">GAAP earnings volatili, ma EBITDA/FCF robusti e prevedibili</div><div style="color:#9ca3af;font-size:12px">La volatilità contabile GAAP può confondere gli investitori, ma i fondamentali sottostanti rimangono solidi. La strategia di hedging avanzata protegge la visibilità di guidance e la qualità del cash flow, mitigando il rischio di sorprese negative.</div></div></div></div></div>
+<!-- News Narrative -->
+<div class="sec-p" id="news"><div class="p-tag">VST</div><h2 class="p-h2">News Narrative</h2>
+<div class="cat"><span class="ctag" style="background:blue20;color:blue">Earnings</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Q2 2026: Utile netto 305 mln $, EBITDA adjusted 1,767 mld $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Vistra ha riportato risultati Q2 2026 il 7 agosto 2026 con utile netto GAAP di 305 milioni $ (compresso da perdite mark-to-market di 472 milioni $ su derivati) e Adjusted EBITDA di 1,767 miliardi $. La società ha riaffermato la guidance 2026 di Adjusted EBITDA 6,8-7,6 miliardi $ e Adjusted FCFbG 3,925-4,725 miliardi $, indicando che la performance operativa rimane solida nonostante la volatilità contabile. Il management ha commentato che il calo dell&#x27;utile netto rispetto al 2025 è stato guidato da unrealized losses su posizioni derivate, non da deterioramento operativo.</div></div></div><div class="cat"><span class="ctag" style="background:green20;color:green">Guidance</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Guidance 2026 Riaffermata: EBITDA 6,8-7,6 mld $, FCF 3,925-4,725 mld $</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">A Q2 2026, Vistra ha riaffermato la guidance 2026 per Adjusted EBITDA tra 6,8 e 7,6 miliardi $ e Adjusted FCFbG tra 3,925 e 4,725 miliardi $. Il management ha indicato che la performance è attesa al midpoint o sopra midpoint della guidance, supportata da pricing power, capacità produttiva, retail spread e contributo degli asset acquisiti da Lotus. La copertura hedging del 98% dei volumi 2026 fornisce visibilità sulla realizzazione della guidance.</div></div></div><div class="cat"><span class="ctag" style="background:blue20;color:blue">Hedging</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Hedging Coverage Avanzata: 98% 2026, 89% 2027, 65% 2028</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Al 1 maggio 2026, Vistra aveva coperto il 98% dei volumi attesi 2026, l&#x27;89% del 2027 e il 65% del 2028 tramite una strategia di hedging disciplinata. Questa copertura avanzata riduce la volatilità dei risultati futuri e protegge la visibilità di guidance, rappresentando un differenziale competitivo vs competitor meno sofisticati. La strategia di hedging è supportata da un team di esperti e da sistemi di gestione del rischio robusti.</div></div></div><div class="cat"><span class="ctag" style="background:orange20;color:orange">Capital</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Emissione Subordinated Notes 1,5 mld $, Settembre 2026</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Il 10 settembre 2026, Vistra ha emesso junior subordinated notes per 1,5 miliardi $ per rafforzare la liquidità e gestire attivamente la struttura del capitale. L&#x27;emissione suggerisce che il management è attento al profilo di finanziamento e intende mantenere flessibilità finanziaria in un contesto di tassi elevati. L&#x27;impatto sul costo medio del debito e sul FCF sarà monitorato nei prossimi trimestri.</div></div></div><div class="cat"><span class="ctag" style="background:green20;color:green">Outlook</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Reuters: Outlook 2026 Positivo, Crescita Portafoglio Generazione</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Il 3 ottobre 2026, Reuters ha riportato che Vistra prevede un adjusted core profit 2026 superiore all&#x27;outlook del periodo corrente, sostenuto dalla crescita del portafoglio di generazione e dalla domanda power USA in crescita. Il management ha sottolineato che la domanda di energia da data center e AI continua a supportare i prezzi power e i margini di generazione, fornendo una base solida per la crescita di lungo termine.</div></div></div><div class="cat"><span class="ctag" style="background:blue20;color:blue">Catalysts</span><div><div style="color:#e8eaf0;font-size:13px;font-weight:600">Q3 2026 Earnings: 6 Novembre 2026</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Vistra pubblicherà i risultati del terzo trimestre 2026 il 6 novembre 2026, rappresentando il catalyst più vicino e più importante per il titolo. L&#x27;earnings call sarà focalizzata su realizzazioni di hedging, performance retail/generation, aggiornamento della guidance 2026/2027 e discussione sulla domanda di energia da data center. Il mercato monitorerà se Vistra confermerà o alzerà il midpoint della guidance.</div></div></div>
+
+</div>
+
+<!-- Catalyst Calendar -->
+<div class="sec-p" id="cat"><div class="p-tag">VST</div><h2 class="p-h2">Catalyst Calendar</h2>
+<div class="tbl"><table><thead><tr><th>Periodo</th><th>Evento</th><th>Impatto</th></tr></thead><tbody><tr><td class="f">6 novembre 2026</td><td>Pubblicazione Risultati Q3 2026 e Earnings Call</td><td>Catalyst più importante di breve termine. Focus su realizzazioni hedging, performance operativa, aggiornamento guidance 2026/2027 e domanda power. Potenziale rerating positivo se guidance alzata o performance sopra attese.</td></tr><tr><td class="f">Q4 2026 / Gennaio 2027</td><td>Risultati FY 2026 e Guidance 2027</td><td>Catalyst di medio termine. Il management comunicherà i risultati annuali 2026 e fornirà guidance 2027, segnalando la traiettoria di crescita di lungo termine. Potenziale upside se EBITDA 2026 supera il top end della guidance.</td></tr><tr><td class="f">2026-2027</td><td>Possibili Acquisizioni di Asset Generativi o Integrazioni Lotus</td><td>Catalyst di lungo termine. Vistra potrebbe annunciare ulteriori acquisizioni di asset generativi o completare integrazioni di asset acquisiti da Lotus, accrescendo scala e sinergie. Potenziale upside da accretion agli utili e da rerating su multipli.</td></tr><tr><td class="f">Continuo</td><td>Evoluzione Domanda Power da Data Center e AI</td><td>Driver strutturale di lungo termine. La domanda crescente di energia da data center e AI supporta prezzi power e margini di generazione. Potenziale upside se la domanda supera le attese e sostiene prezzi a livelli elevati.</td></tr><tr><td class="f">2026-2027</td><td>Revisione Guidance 2027-2028 e Outlook Lungo Termine</td><td>Catalyst di medio-lungo termine. Il management potrebbe rivelare visibilità positiva su 2027-2028 durante earnings call o investor day, supportando un rerating positivo del titolo verso i target degli analisti.</td></tr></tbody></table></div>
+</div>
+
+<!-- Scenarios -->
+<div class="sec-p" id="scen"><div class="p-tag">VST</div><h2 class="p-h2">Bull / Base / Bear</h2>
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">220-240 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> La domanda di energia da data center e AI continua a crescere più velocemente delle attese, sostenendo i prezzi dell&#x27;elettricità a livelli elevati (50-60 $/MWh in ERCOT). Vistra alza la guidance 2026 verso il top end (7,6 miliardi $ EBITDA) e comunica visibilità positiva per 2027-2028 (7,4-7,8 miliardi $ EBITDA). Le realizzazioni di hedging rimangono favorevoli, il retail spread si espande di 1-2 $/MWh e il management annuncia ulteriori acquisizioni di asset generativi. Il mercato riprezza il titolo verso i target degli analisti più alti (225-240 $), applicando un multiplo FCF di 11-12x riconoscendo la qualità del cash flow e la resilienza della domanda strutturale.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> In questo scenario, l&#x27;Adjusted EBITDA 2026 raggiunge 7,6 miliardi $ e l&#x27;Adjusted FCFbG 4,725 miliardi $. Applicando un multiplo FCF di 11-12x (premium vs media storica 9-10x), il prezzo target implicito è 220-240 $. Il ROIC rimane superiore al WACC, supportando la creazione di valore.</p></div>
+<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">180-200 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Vistra conferma la guidance 2026 al midpoint (7,2 miliardi $ EBITDA) e mantiene un FCF solido intorno a 4,3 miliardi. I prezzi dell&#x27;energia si mantengono in un range ragionevole (40-50 $/MWh in ERCOT). Gli utili GAAP rimangono rumorosi per effetto dei mark-to-market sui derivati, ma il mercato continua a focalizzarsi su EBITDA e FCF adjusted. Il retail spread rimane stabile e il management non annuncia sorprese significative. La domanda di energia rimane stabile e il business esegue senza deviazioni dalla guidance.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> In questo scenario, l&#x27;Adjusted EBITDA 2026 raggiunge 7,2 miliardi $ e l&#x27;Adjusted FCFbG 4,3 miliardi $. Applicando un multiplo FCF di 10-11x (in linea con media storica), il prezzo target implicito è 180-200 $. Il titolo si muove verso un multiplo più normalizzato su FCF, riflettendo l&#x27;esecuzione operativa stabile e la visibilità di guidance.</p></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">115-130 $</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Una recessione economica o un&#x27;espansione inattesa della capacità generativa porta a una compressione dei prezzi dell&#x27;energia (25-35 $/MWh in ERCOT). L&#x27;EBITDA 2026 scende verso il bottom end della guidance (6,8 miliardi $) e il management riduce l&#x27;outlook 2027 verso 7,0-7,2 miliardi $. I margini retail si comprimono di 1-2 $/MWh, le realizzazioni di hedging diventano sfavorevoli e il costo del finanziamento aumenta di 50-100 bps. Il leverage sale verso 3,8-4,0x e il management è forzato a ridurre il capex o il dividendo.</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> In questo scenario, l&#x27;Adjusted EBITDA 2026 scende a 6,8 miliardi $ e l&#x27;Adjusted FCFbG a 3,925 miliardi $. Applicando un multiplo FCF di 7-8x (sconto vs media storica per il profilo di rischio elevato), il prezzo target implicito è 115-130 $. Il titolo de-rata significativamente, riflettendo l&#x27;incertezza sulla sostenibilità del leverage e la compressione dei margini.</p></div>
+</div>
+
+<!-- Valuation Framework -->
+<div class="sec-p" id="val"><div class="p-tag">VST</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><thead><tr><th>Metrica di Valutazione</th><th>Valore</th><th>Multiplo / Implicazione</th><th>Benchmark</th><th>Valutazione</th></tr></thead><tbody><tr><td class="f">Fair Value DCF 2-Stage</td><td>157,61 $</td><td>Upside 8,8% vs prezzo attuale 144,89 $</td><td>Conservativo vs target analisti 212-225 $</td><td>Sottovalutato moderatamente</td></tr><tr><td class="f">Target Analisti Medio</td><td>212-225 $</td><td>Upside 46-55% vs prezzo attuale</td><td>Range 106-305 $; consenso Strong Buy</td><td>Significativamente rialzista</td></tr><tr><td class="f">EV/EBITDA 2026E (midpoint)</td><td>~6,8x</td><td>Basato su EBITDA 7,2 mld $ e EV ~49 mld $</td><td>Media comparto 6,5-7,5x</td><td>In linea con comparto</td></tr><tr><td class="f">P/FCF 2026E (midpoint)</td><td>~10,2x</td><td>Basato su FCF 4,3 mld $ e market cap ~49 mld $</td><td>Media storica 9-11x; premium 11-12x</td><td>Ragionevole; upside se rerating</td></tr><tr><td class="f">Forward P/E</td><td>13,91x</td><td>Dato interno fornito</td><td>Media comparto 12-15x</td><td>In linea con comparto</td></tr><tr><td class="f">Debt/EBITDA 2026E</td><td>~3,4x</td><td>Basato su leverage 3,46x e EBITDA 7,2 mld $</td><td>Sostenibile; range 3,0-3,5x</td><td>Moderato-elevato; monitorare</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">DCF Fair Value 157,61 $ &mdash; </span><span style="color:#e8eaf0">Modello DCF 2-Stage con crescita 8,12% e ROIC 12,86% suggerisce fair value 157,61 $, implicando upside 8,8% vs prezzo attuale. Rating conservativo (grade C) riflette complessità contabile e ciclicità del business.</span></div><div class="fb-r"><span class="fl" style="color:green">Target Analisti 212-225 $ &mdash; </span><span style="color:#e8eaf0">Consenso Strong Buy con target medio 212-225 $ (upside 46-55%) suggerisce che il mercato valuta il titolo con uno sconto rispetto ai fondamentali. Range 106-305 $ riflette la dispersione di opinioni tra analisti.</span></div><div class="fb-r"><span class="fl" style="color:blue">EV/EBITDA 6,8x In Linea &mdash; </span><span style="color:#e8eaf0">Multiplo EV/EBITDA 2026E di ~6,8x è in linea con la media del comparto (6,5-7,5x), suggerendo una valutazione ragionevole. Upside se il mercato applica un premium per la qualità del cash flow e la visibilità di guidance.</span></div><div class="fb-r"><span class="fl" style="color:blue">P/FCF 10,2x Ragionevole &mdash; </span><span style="color:#e8eaf0">Multiplo P/FCF 2026E di ~10,2x è ragionevole e in linea con la media storica (9-11x). Potenziale upside a 11-12x se il mercato continua a premiare la qualità del cash flow e la resilienza della domanda strutturale.</span></div><div class="fb-r"><span class="fl" style="color:yellow">Leverage 3,4x Moderato-Elevato &mdash; </span><span style="color:#e8eaf0">Debt/EBITDA 2026E di ~3,4x è moderato-elevato per il comparto; sostenibile ma da monitorare in caso di compressione EBITDA. Emissione subordinated notes 1,5 mld $ suggerisce gestione attiva del capitale.</span></div><div class="fb-r"><span class="fl" style="color:green">Upside Potenziale 46-55% &mdash; </span><span style="color:#e8eaf0">Il gap tra fair value interno (157,61 $) e target analisti (212-225 $) suggerisce upside potenziale del 46-55% se il mercato continua a premiare la qualità del business e la visibilità di guidance. Principale driver di rerating è il riconoscimento della qualità del FCF e della domanda strutturale da AI/data center.</span></div></div>
+</div>
+<!-- Key Risks -->
+<div class="sec-p" id="risk"><div class="p-tag">VST</div><h2 class="p-h2">Key Risks</h2>
+<div class="risk" style="border:1px solid #d32f2f"><span class="rsev" style="background:#ffebee;color:#c62828">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Volatilità Prezzi Energia e Compressione Margini</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Una recessione economica o un&#x27;espansione inattesa della capacità generativa potrebbe comprimere i prezzi dell&#x27;energia (scenario bear: 25-35 $/MWh in ERCOT vs base 40-50 $/MWh). Questo ridurrebbe direttamente i margini di generazione e il retail spread, comprimendo l&#x27;EBITDA verso il bottom end della guidance (6,8 miliardi $) e forzando il management a ridurre l&#x27;outlook 2027. L&#x27;impatto sul FCF sarebbe significativo, con potenziale compressione di 500-700 milioni $.</div></div></div><div class="risk" style="border:1px solid #f57c00"><span class="rsev" style="background:#fff3e0;color:#e65100">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Volatilità Mark-to-Market su Derivati e Contabilità Rumorosa</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il GAAP net income è fortemente influenzato da unrealized gains/losses su posizioni derivate e hedge, creando una volatilità contabile che può confondere gli investitori e portare a sorprese negative. Nel Q2 2026, ad esempio, una perdita mark-to-market di 472 milioni $ ha compresso l&#x27;utile netto a 305 milioni $ nonostante un EBITDA adjusted di 1,767 miliardi $. Questo rischio è mitigato dal focus del mercato su EBITDA e FCF adjusted, ma rimane un fattore di volatilità del prezzo del titolo.</div></div></div><div class="risk" style="border:1px solid #f57f17"><span class="rsev" style="background:#fffde7;color:#f57f17">Moderato</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Leva Finanziaria e Rifinanziamento in Contesto di Tassi Elevati</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Il leverage di 3,46x è moderato-elevato per il comparto e potrebbe diventare problematico in caso di compressione EBITDA o di aumento significativo dei tassi di interesse. La società ha emesso subordinated notes per 1,5 miliardi $ a settembre 2026, suggerendo che il costo del finanziamento è in aumento. Un aumento di 50-100 bps nel costo medio del debito ridurrebbe il FCF di 150-300 milioni $ annuali, impattando la capacità di ridurre il leverage.</div></div></div><div class="risk" style="border:1px solid #7b1fa2"><span class="rsev" style="background:#f3e5f5;color:#6a1b9a">Moderato</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Rischio Regolatorio e di Mercato</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Cambiamenti in capacity markets, regole ambientali o incentivi per le energie rinnovabili potrebbero alterare la redditività del business di generazione. Ad esempio, una riduzione dei prezzi di capacity market o un&#x27;accelerazione della penetrazione di rinnovabili potrebbe comprimere i margini di generazione. Inoltre, cambiamenti normativi nel retail electricity market potrebbero limitare la capacità di Vistra di espandere il retail spread.</div></div></div><div class="risk" style="border:1px solid #0277bd"><span class="rsev" style="background:#e1f5fe;color:#01579b">Moderato</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Concentrazione Geografica e Rischio Nodale</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Vistra ha un&#x27;esposizione significativa ai mercati ERCOT e PJM, che rappresentano una concentrazione geografica. Una crisi di approvvigionamento o un evento meteorologico estremo in queste regioni potrebbe amplificare la volatilità dei risultati. Inoltre, la concentrazione nodale (esposizione a specifici nodi di rete) potrebbe creare rischi di basis risk se i prezzi locali divergono dai prezzi hub.</div></div></div><div class="risk" style="border:1px solid #388e3c"><span class="rsev" style="background:#e8f5e9;color:#1b5e20">Basso</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Rischio di Execution su Hedging e Timing</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Una strategia di hedging troppo aggressiva o mal temporizzata potrebbe limitare l&#x27;upside in fasi di rally dei prezzi dell&#x27;energia. Ad esempio, se Vistra ha coperto volumi a prezzi bassi e i prezzi successivamente salgono, il titolo potrebbe underperform. Tuttavia, questo rischio è mitigato dalla disciplina del management e dalla sofisticazione dei sistemi di gestione del rischio.</div></div></div>
+</div>
+
+<!-- Final Thesis -->
+<div class="sec-p" id="thesis"><div class="p-tag">VST</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">Qualità a Sconto con Upside Moderato-Alto</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Vistra Corp. rappresenta un&#x27;opportunità di qualità a sconto nel comparto utilities, con fondamentali solidi, cash flow robusto e visibilità di guidance supportata da una strategia di hedging avanzata. Il fair value interno di 157,61 $ suggerisce una sottovalutazione moderata dell&#x27;8,8%, mentre il consenso degli analisti (target 212-225 $) implica un upside significativo del 46-55% se il mercato continua a premiare la qualità del FCF e la tesi di domanda strutturale da AI/data center. La principale sfida è la volatilità contabile GAAP dovuta ai mark-to-market gains/losses su derivati, che può confondere gli investitori e creare sorprese negative. Tuttavia, i fondamentali economici rimangono solidi: l&#x27;Adjusted EBITDA è atteso in crescita dell&#x27;8-12% nel 2026 verso 6,8-7,6 miliardi $, l&#x27;operating cash flow è robusto a 5,121 miliardi $, e il ROIC del 12,86% indica un&#x27;allocazione efficiente del capitale. Il profilo di rischio è moderato-alto per la sensibilità ai prezzi dell&#x27;energia e al leverage (3,46x), ma mitigato dalla copertura hedging del 98% dei volumi 2026. Nel complesso, Vistra è un titolo per investitori che comprendono la complessità della contabilità e che sono disposti a guardare oltre il rumore GAAP per apprezzare la qualità del business sottostante.</p></div>
+<div class="g2p"><div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Cash flow robusto e prevedibile: Operating cash flow 5,121 miliardi $, Adjusted FCFbG 2026 3,925-4,725 miliardi $, supporta capex e distribuzione azionisti</li><li>Crescita EBITDA solida: Adjusted EBITDA atteso in crescita 8-12% nel 2026 verso 6,8-7,6 miliardi $, supportato da pricing power e retail spread</li><li>Hedging avanzato e disciplinato: Copertura 98% 2026, 89% 2027, 65% 2028 riduce volatilità e protegge visibilità di guidance</li><li>ROIC superiore al WACC: ROIC 12,86% indica allocazione efficiente del capitale e creazione di valore di lungo termine</li><li>Domanda strutturale da AI/data center: Driver di lungo termine che supporta prezzi power e margini di generazione</li><li>Consenso analisti fortemente positivo: Target medio 212-225 $ (upside 46-55%), consenso Strong Buy</li></ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Volatilità contabile GAAP: Utile netto fortemente influenzato da mark-to-market gains/losses su derivati; Q1 2026 +1,029 mld $ (gains), Q2 2026 305 mln $ (losses 472 mln $)</li><li>Sensibilità ai prezzi dell&#x27;energia: Compressione prezzi power (scenario bear 25-35 $/MWh) ridurrebbe EBITDA verso 6,8 miliardi $ e forzarebbe riduzione outlook 2027</li><li>Leverage moderato-elevato: Debt sustainability 3,46x potrebbe diventare problematico in caso di compressione EBITDA o aumento tassi; emissione subordinated notes 1,5 mld $ suggerisce costo finanziamento in aumento</li><li>Concentrazione geografica: Esposizione significativa a ERCOT e PJM amplifica volatilità; rischio nodale da basis risk</li><li>Complessità contabile e comunicazione: La volatilità GAAP può confondere investitori e creare sorprese negative; richiede sofisticazione per apprezzare i fondamentali sottostanti</li></ul></div></div>
+<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div><p style="color:#9ca3af;font-size:14px;line-height:1.8">BUY con target 180-200 $ (base case) e 220-240 $ (bull case). Il titolo offre un&#x27;opportunità di qualità a sconto con upside moderato-alto, supportato da fondamentali solidi, cash flow robusto e visibilità di guidance. La principale sfida è la volatilità contabile, ma i fondamentali economici rimangono solidi. Adatto per investitori che comprendono la complessità del business e che sono disposti a guardare oltre il rumore GAAP.</p></div>
+<div class="pills"><span class="pill" style="background:#e8f5e915;border:1px solid #4caf5040;color:#4caf50">Fair Value 157,61 $</span><span class="pill" style="background:#e3f2fd15;border:1px solid #2196f340;color:#2196f3">Target Analisti 212-225 $</span><span class="pill" style="background:#fff3e015;border:1px solid #ff980040;color:#ff9800">Upside 46-55%</span><span class="pill" style="background:#f3e5f515;border:1px solid #9c27b040;color:#9c27b0">EBITDA Growth 8-12%</span><span class="pill" style="background:#e0f2f115;border:1px solid #00968840;color:#009688">Hedging 98% 2026</span><span class="pill" style="background:#fce4ec15;border:1px solid #e91e6340;color:#e91e63">Grade C (Conservativo)</span></div>
+</div>
+
+<!-- Fair Value -->
+<div class="sec-p" id="fv">
+<div class="p-tag">VST</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
+
+<div class="sec" id="fairvalue">
+  <div class="p-tag">12 &middot; Modello proprietario</div>
+  <h2 class="p-h2">Fair Value &mdash; Owner Earnings &amp; Two-Stage DCF</h2>
+
+  <div class="thesis">
+    <div class="thesis-lbl">Verdetto del modello</div>
+    <div style="font-size:22px;font-weight:700;color:#e05252;margin-bottom:8px">
+      FORTEMENTE SOPRAVVALUTATA
+    </div>
+    <div style="color:#9ca3af;font-size:14px;line-height:1.7">Il prezzo attuale è molto sopra quanto giustificato dagli Owner Earnings correnti.
+    Metodo applicato: <strong style="color:#e8eaf0">Two-Stage DCF (Growth)</strong>,
+    selezionato automaticamente perch&eacute; il CapEx ratio &egrave; pari a
+    56.0% dell&rsquo;Operating Cash Flow
+    (sopra la soglia del 40% che qualifica un growth stock).</div>
+  </div>
+
+  <div class="kpi-g">
+    <div class="kpi"><div class="kpi-l">Prezzo corrente</div>
+      <div class="kpi-v">USD&nbsp;144.89</div>
+      <div class="kpi-s">mercato</div></div>
+    <div class="kpi"><div class="kpi-l">Intrinsic Value</div>
+      <div class="kpi-v" style="color:#0066cc">USD&nbsp;157.61</div>
+      <div class="kpi-s">senza margine di sicurezza</div></div>
+    <div class="kpi"><div class="kpi-l">Buy Target</div>
+      <div class="kpi-v" style="color:#00c896">USD&nbsp;94.56</div>
+      <div class="kpi-s">IV &times; (1 &minus; MoS 40.0%)</div></div>
+    <div class="kpi"><div class="kpi-l">Sell Target</div>
+      <div class="kpi-v" style="color:#4a9eda">USD&nbsp;181.25</div>
+      <div class="kpi-s">IV &times; (1 + 15.0%)</div></div>
+    <div class="kpi"><div class="kpi-l">Upside al Buy</div>
+      <div class="kpi-v" style="color:#e05252">-34.7%</div>
+      <div class="kpi-s">vs prezzo corrente</div></div>
+    <div class="kpi"><div class="kpi-l">Stability Grade</div>
+      <div class="kpi-v" style="color:#f5a623">C</div>
+      <div class="kpi-s">MoS 40.0% applicato</div></div>
+  </div>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">Confronto tra i due metodi</h3>
+  <table class="tbl">
+    <tr><th></th><th>Buffett &mdash; Owner Earnings</th><th>Two-Stage DCF &mdash; Growth</th></tr>
+    <tr><td class="f">Intrinsic Value</td><td>USD&nbsp;90.38</td><td>USD&nbsp;157.61</td></tr>
+    <tr><td class="f">Buy Target</td><td>USD&nbsp;54.23</td><td>USD&nbsp;94.56</td></tr>
+    <tr><td class="f">Sell Target</td><td>USD&nbsp;103.94</td><td>USD&nbsp;181.25</td></tr>
+    <tr><td class="f">Upside al Buy</td><td>-62.6%</td><td>-34.7%</td></tr>
+    <tr><td class="f">Base di calcolo</td>
+        <td>NI + imposte &minus; CapEx totale + ammort.</td>
+        <td>NI + imposte (esclude growth CapEx)</td></tr>
+    <tr><td class="f">Discount rate</td>
+        <td>6.0% (save rate)</td>
+        <td>10.0% (save + 4% ERP)</td></tr>
+  </table>
+
+  <div class="fb">
+    <div class="fb-r"><span class="fl">Fact</span>
+      Owner Earnings Conservative USD&nbsp;2.72B
+      (USD&nbsp;8.09/azione), Growth-Adjusted USD&nbsp;2.80B
+      (USD&nbsp;8.35/azione). ROIC 12.9%,
+      Debt/OCF 3.5 anni, CapEx/OCF 56.0%.</div>
+    <div class="fb-r"><span class="fl">Lettura neutra</span>
+      Il modello sconta gli Owner Earnings correnti su 10 anni con un growth rate del
+      8.1% (consenso analisti). Non incorpora opzionalit&agrave;
+      strategiche, nuovi mercati o cambi di mix non ancora visibili nei numeri riportati.</div>
+    <div class="fb-r"><span class="fl">Lettura rialzista</span>
+      Se la crescita effettiva supera il 8.1% assunto, o se il mix migliora
+      i margini oltre le ipotesi, l&rsquo;Intrinsic Value si sposta verso l&rsquo;alto in modo
+      non lineare &mdash; specialmente nel Two-Stage DCF, dove il terminal value pesa molto.</div>
+    <div class="fb-r"><span class="fl">Implicazione valutativa</span>
+      Buy Target USD&nbsp;94.56 contro prezzo USD&nbsp;144.89:
+      il modello non giustifica il prezzo attuale sui fondamentali correnti.
+      Questo &egrave; un ancoraggio quantitativo, da leggere insieme agli scenari narrativi
+      della sezione 8, non in sostituzione.</div>
+  </div>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">Multipli P/E &mdash; storico vs forward</h3>
+  
+      <table class="tbl">
+        <tr><th>Esercizio</th><th>Prezzo</th><th>EPS</th><th>P/E</th></tr>
+        <tr><td class='f'>2023</td><td>USD&nbsp;40.22</td><td>USD&nbsp;4.45</td><td>9.0x</td></tr><tr><td class='f'>2024</td><td>USD&nbsp;166.38</td><td>USD&nbsp;7.92</td><td>21.0x</td></tr><tr><td class='f'>2025</td><td>USD&nbsp;157.65</td><td>USD&nbsp;2.81</td><td>56.1x</td></tr><tr><td class='f' style='color:#0066cc'>Forward (est.)</td><td>&mdash;</td><td>&mdash;</td><td style='color:#0066cc'>13.9x</td></tr>
+      </table>
+
+  <h3 style="font-size:15px;margin:28px 0 12px;color:#e8eaf0">
+    Stability Grade C &mdash; derivazione del Margin of Safety</h3>
+  <div style="background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px">
+    <div style="color:#9ca3af;font-size:13px;margin-bottom:10px">Azienda nella media — bilancio sufficiente, utili accettabili.</div>
+    <ul style="margin:0;padding-left:20px;color:#9ca3af;font-size:13px;line-height:1.9">
+      <li>ROIC nella media (12.9%): redditività accettabile</li><li>Debito ripagabile in 3.5 anni: livello accettabile</li><li>CapEx ratio basso (56.0%): business efficiente</li>
+    </ul>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;
+                color:#6b7280;font-size:12px">
+      Scoring 0&ndash;12 su ROIC, Debt/OCF e CapEx/OCF (4 punti ciascuno).
+      11&ndash;12&rarr;A &middot; 8&ndash;10&rarr;B &middot; 5&ndash;7&rarr;C &middot;
+      2&ndash;4&rarr;D &middot; 0&ndash;1&rarr;F. Il grade determina il Margin of Safety
+      applicato al Buy Target: A 0% &middot; B 20% &middot; C 40% &middot; D 60% &middot; F 80%.
+    </div>
+  </div>
+
+  <div class="disc" style="margin-top:20px">
+    Modello proprietario Owner Earnings / Two-Stage DCF su dati Yahoo Finance TTM
+    (somma ultimi 4 trimestri con fallback annuale). Calcolato il 2026-10-06 06:41.
+    Parametri: growth rate 8.1% (consenso analisti),
+    save rate 6.0%. Non costituisce consulenza finanziaria.
+  </div>
+</div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 6 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+<script>
+(function () {
+  var TV_SRC = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  var initialized = false;
+
+  function buildConfig(symbol, mode) {
+    var isPro = mode === 'pro';
+    var cfg = {
+      symbol: symbol, locale: 'it', theme: 'dark', style: '1', interval: 'D',
+      autosize: true, volume: true, legend: true, details: false, calendar: false,
+      hotlist: false, watchlist: false, allow_symbol_change: false,
+      hide_side_toolbar: !isPro, hide_top_toolbar: !isPro, withdateranges: isPro,
+      save_image: isPro, enable_publishing: false, support_host: 'https://www.tradingview.com'
+    };
+    if (isPro) { cfg.studies = []; }
+    return cfg;
+  }
+
+  function renderChart(wrapper) {
+    if (!wrapper || wrapper.dataset.tvInit === '1') return;
+    wrapper.dataset.tvInit = '1';
+    var symbol = wrapper.getAttribute('data-tv-symbol');
+    var mode = wrapper.getAttribute('data-tv-mode') || 'simple';
+    var container = wrapper.querySelector('.tv-chart-container');
+    if (!container || !symbol) return;
+    try {
+      var tvContainer = document.createElement('div');
+      tvContainer.className = 'tradingview-widget-container';
+      tvContainer.style.height = '100%';
+      tvContainer.style.width = '100%';
+      var inner = document.createElement('div');
+      inner.className = 'tradingview-widget-container__widget';
+      inner.style.height = '100%';
+      inner.style.width = '100%';
+      tvContainer.appendChild(inner);
+      container.appendChild(tvContainer);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = TV_SRC;
+      script.innerHTML = JSON.stringify(buildConfig(symbol, mode));
+      tvContainer.appendChild(script);
+      setTimeout(function () { wrapper.classList.add('loaded'); }, 1400);
+    } catch (e) {
+      container.innerHTML = '<div class="tv-error">Grafico non disponibile al momento. Riprova pi&ugrave; tardi.</div>';
+      wrapper.classList.add('loaded');
+    }
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    var wrappers = Array.prototype.slice.call(document.querySelectorAll('.tv-chart-wrapper'));
+    if (!wrappers.length) return;
+    if (!('IntersectionObserver' in window)) {
+      wrappers.forEach(renderChart);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          renderChart(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0 });
+    wrappers.forEach(function (w) { io.observe(w); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>

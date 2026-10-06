@@ -1,6 +1,17 @@
 <!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{companyName}} {{ticker}} - Semplice</title>{{> shared.css }}</head><body>
 {{> shared.header }}
 <div class="wrap-s">
+<!-- 00: Executive Summary -->
+<div class="sec">
+<div class="p-tag">{{ticker}}</div><h2 class="s-h2">Executive Summary</h2>
+{{#if execSummary}}<div class="thesis"><div class="thesis-lbl">{{execLabel}}</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">{{execSummary}}</p></div>{{/if}}
+{{#if tvSymbol}}<div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di {{companyName}} ({{ticker}})</p></div>
+<div class="tv-chart-wrapper" data-tv-symbol="{{tvSymbol}}" data-tv-mode="simple"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
+<div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>{{/if}}
+{{#if execKpis}}<div class="kpi-g">{{#each execKpis}}<div class="kpi{{#if highlight}} hi{{/if}}"><div class="kpi-l">{{label}}</div><div class="kpi-v">{{value}}</div><div class="kpi-s">{{sub}}</div></div>{{/each}}</div>{{/if}}
+{{#if verdict}}<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> {{verdict}}</p>{{/if}}
+</div>
+
 
 <!-- 01: Come sta crescendo -->
 <div class="sec">
@@ -50,9 +61,11 @@
 
 <!-- 04: Il prezzo giusto secondo i conti -->
 <div class="sec">
+{{> fairvalue }}
 {{{fairValueHtmlSimple}}}
 </div>
 
 <div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al {{date}}. Non &egrave; consulenza finanziaria.</div>
 </div>
+{{> shared.chart }}
 </body></html>

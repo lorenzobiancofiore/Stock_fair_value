@@ -1,0 +1,47 @@
+{{#if fvDisplay}}
+<div class="fv-compare">
+  <div class="fv-reco">
+    <div class="fv-reco-badge">Metodo consigliato dal modello</div>
+    <div class="fv-reco-method">{{fvDisplay.recommended}}</div>
+    <p class="fv-reco-note">{{fvDisplay.reason}}</p>
+  </div>
+
+  <div class="fv-tbl-wrap">
+    <table class="fv-tbl">
+      <thead>
+        <tr>
+          <th>Metrica</th>
+          <th>Buffett &mdash; Owner Earnings</th>
+          <th>Two-Stage DCF &mdash; Growth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fv-m">Valore intrinseco</td>
+          <td>{{fvDisplay.buffett.iv}}</td>
+          <td>{{fvDisplay.dcf.iv}}</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Prezzo di acquisto</td>
+          <td>{{fvDisplay.buffett.buy}}</td>
+          <td>{{fvDisplay.dcf.buy}}</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Prezzo di vendita</td>
+          <td>{{fvDisplay.buffett.sell}}</td>
+          <td>{{fvDisplay.dcf.sell}}</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Upside vs prezzo ({{fvDisplay.currentPrice}})</td>
+          <td class="{{#if fvDisplay.buffett.upsideUp}}fv-up{{else}}fv-down{{/if}}">{{fvDisplay.buffett.upside}}</td>
+          <td class="{{#if fvDisplay.dcf.upsideUp}}fv-up{{else}}fv-down{{/if}}">{{fvDisplay.dcf.upside}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fv-note">
+    Il modello applica automaticamente il metodo più adatto al profilo dell&rsquo;azienda (intensit&agrave; di capitale, crescita, stabilit&agrave; dei flussi) e riporta <strong>entrambi i risultati</strong> per trasparenza. Il valore usato come riferimento nel report &egrave; quello del metodo consigliato: <strong>{{fvDisplay.recommended}}</strong>.
+  </div>
+</div>
+{{/if}}

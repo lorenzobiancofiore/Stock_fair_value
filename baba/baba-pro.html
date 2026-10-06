@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Alibaba Group Holding Limited BABA - Pro</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d0f14;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#e8eaf0;-webkit-text-size-adjust:100%;}
+.hdr{background:#13161e;border-bottom:1px solid #1e2230;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.logo{background:#7c3aed;border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:8px;color:#fff;letter-spacing:.01em;}
+.hdr-name{font-weight:800;font-size:14px;}
+.hdr-sub{font-size:11px;color:#6b7280;}
+.badge{border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;text-transform:uppercase;}
+.bp{background:#00c89618;color:#00c896;border:1px solid #00c89640;}
+.bn{background:#e0525218;color:#e05252;border:1px solid #e0525240;}
+.bm{background:#f5a62318;color:#f5a623;border:1px solid #f5a62340;}
+.lk-cur{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;background:#7c3aed;color:#fff;border:2px solid #7c3aed;}
+.lk-oth{display:inline-block;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;border:2px solid #7c3aed;color:#7c3aed;}
+.wrap-s{max-width:720px;margin:0 auto;padding:32px 20px;}
+.wrap-p{max-width:900px;margin:0 auto;padding:32px 20px;}
+.sec{margin-bottom:40px;}
+.disc{color:#6b7280;font-size:11px;line-height:1.6;border-top:1px solid #1e2230;padding-top:14px;margin-top:18px;}
+.s-num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;color:#7c3aed;}
+.s-h2{font-size:26px;font-weight:800;margin:0 0 24px 0;}
+.card{background:#13161e;border-radius:12px;padding:24px;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.stat{text-align:center;}
+.lbl{color:#9ca3af;font-size:12px;margin-bottom:8px;}
+.big{font-size:44px;font-weight:900;line-height:1;color:#00c896;}
+.bign{font-size:44px;font-weight:900;line-height:1;color:#e05252;}
+.sub{color:#9ca3af;font-size:13px;margin-top:6px;}
+.ibox{background:#0d0f14;border-radius:8px;padding:16px;text-align:center;}
+.ival{font-size:28px;font-weight:900;color:#f5a623;}
+.ebox{background:#0d0f14;border-radius:8px;padding:14px;margin-top:12px;}
+.ebox .lbl{color:#7c3aed;margin-bottom:8px;}
+.sc{border-radius:12px;padding:24px;margin-bottom:16px;}
+.sc-bull{background:#001a0d;border:2px solid #00c89660;}
+.sc-base{background:#0d1020;border:2px solid #f5a62360;}
+.sc-bear{background:#1a0808;border:2px solid #e0525260;}
+.sc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.rng{position:relative;height:110px;margin:8px 0 60px 0;}
+.rng-bar{position:absolute;left:0;right:0;top:42px;height:16px;background:linear-gradient(to right,#e05252,#f5a623,#00c896);border-radius:8px;}
+.rl{position:absolute;transform:translateX(-50%);text-align:center;top:0;}
+.rdot{position:absolute;top:44px;transform:translateX(-50%);}
+.rdot-c{width:24px;height:24px;background:#7c3aed;border-radius:50%;border:3px solid #0d0f14;box-shadow:0 0 0 3px #7c3aed,0 0 12px #7c3aed80;animation:fv-pulse 2s ease-in-out infinite;}
+.rdot-l{position:absolute;top:30px;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;background:rgba(13,15,20,0.95);padding:4px 10px;border-radius:6px;border:1px solid #7c3aed60;font-size:11px;font-weight:700;color:#7c3aed;white-space:nowrap;}
+@keyframes fv-pulse{0%,100%{box-shadow:0 0 0 3px #7c3aed,0 0 12px #7c3aed80;}50%{box-shadow:0 0 0 6px #7c3aed,0 0 20px #7c3aedc0;}}
+.leg{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;}
+.leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.p-tag{color:#7c3aed;font-size:11px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700;}
+.p-h2{font-size:22px;font-weight:800;margin:0 0 22px 0;}
+.thesis{background:#7c3aed18;border:1px solid #7c3aed40;border-radius:8px;padding:20px;margin-bottom:22px;}
+.thesis-lbl{color:#7c3aed;font-weight:800;font-size:12px;text-transform:uppercase;margin-bottom:12px;}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.toc a{display:inline-block;padding:6px 14px;border-radius:6px;background:#13161e;border:1px solid #1e2230;color:#9ca3af;font-size:12px;text-decoration:none;font-weight:600;}
+.toc a:hover{color:#7c3aed;border-color:#7c3aed;}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+@media (min-width: 641px){.kpi-g{grid-template-columns:repeat(3,1fr);max-width:800px;margin-left:auto;margin-right:auto;}}
+.kpi{background:#13161e;border-radius:8px;padding:14px 18px;border:1px solid #1e2230;max-width:300px;}
+.kpi.hi{border-color:#7c3aed60;}
+.kpi-l{color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-v{font-size:21px;font-weight:800;font-family:monospace;}
+.kpi.hi .kpi-v{color:#7c3aed;}
+.kpi-s{color:#9ca3af;font-size:12px;margin-top:4px;}
+.tbl{overflow-x:auto;border-radius:8px;border:1px solid #1e2230;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;border-bottom:1px solid #1e2230;background:#0f1219;text-transform:uppercase;text-align:left;}
+td{padding:10px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#9ca3af;text-align:left;}
+td.f{color:#e8eaf0;font-weight:600;}
+.fb{border-left:2px solid #1e2230;padding-left:16px;margin-bottom:20px;}
+.fb-r{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.fl{font-weight:700;font-size:11px;text-transform:uppercase;}
+.g2p{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.mc2{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:16px;}
+.pcard{background:#13161e;border-radius:8px;padding:18px;border:1px solid #1e2230;margin-bottom:12px;}
+.pcard-l{font-weight:700;font-size:12px;text-transform:uppercase;margin-bottom:8px;}
+.pcard-p{color:#9ca3af;font-size:14px;line-height:1.7;}
+.cat{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:14px;display:flex;gap:12px;margin-bottom:10px;}
+.ctag{border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;}
+.risk{background:#13161e;border-radius:8px;padding:16px;display:flex;gap:12px;margin-bottom:12px;}
+.rsev{border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;text-transform:uppercase;min-width:60px;text-align:center;white-space:nowrap;}
+.verdict{background:#13161e;border:1px solid #1e2230;border-radius:8px;padding:20px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.pill{border-radius:6px;padding:8px 14px;font-weight:700;font-size:13px;}
+.sec-p{margin-bottom:44px;padding-bottom:36px;border-bottom:1px solid #1e2230;}
+.sec-p:last-child{border-bottom:none;}
+@media (max-width:640px){.g2,.g2p{grid-template-columns:1fr;}.big,.bign{font-size:36px;}.hdr{padding:10px 16px;}.wrap-s,.wrap-p{padding:20px 16px;}.sc-hdr{flex-direction:column;gap:8px;}}
+
+/* ===== TradingView Chart Card ===== */
+.tv-chart-card{background:#13161e;border:1px solid #7c3aed40;border-radius:12px;padding:20px;margin-bottom:24px;width:100%;box-sizing:border-box;overflow:hidden;}
+.tv-chart-header{margin-bottom:14px;}
+.tv-chart-header h3{font-size:15px;font-weight:800;color:#e8eaf0;margin:0 0 4px 0;}
+.tv-chart-header p{font-size:12px;color:#9ca3af;margin:0;}
+.tv-chart-wrapper{position:relative;width:100%;background:#0d0f14;border-radius:8px;overflow:hidden;}
+.tv-chart-container{width:100%;min-height:1px;}
+.tv-skeleton{position:absolute;inset:0;background:linear-gradient(90deg,#0d0f14 25%,#1a1d26 50%,#0d0f14 75%);background-size:200% 100%;animation:tv-shimmer 1.5s infinite;border-radius:8px;z-index:1;}
+@keyframes tv-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.tv-chart-wrapper.loaded .tv-skeleton{display:none;}
+.tv-disclaimer{margin-top:12px;padding-top:12px;border-top:1px solid #1e2230;font-size:11px;color:#6b7280;line-height:1.6;}
+.tv-error{display:flex;align-items:center;justify-content:center;height:100%;min-height:200px;color:#e05252;font-size:13px;text-align:center;padding:20px;}
+
+/* Altezze per tipo di report */
+.wrap-s .tv-chart-container{height:420px;}
+.wrap-p .tv-chart-container{height:520px;}
+@media (max-width:640px){
+  .wrap-s .tv-chart-container{height:360px;}
+  .wrap-p .tv-chart-container{height:400px;}
+}
+@media (max-width:480px){
+  .wrap-s .tv-chart-container{height:340px;}
+}
+
+/* ===== Fair Value: confronto metodi ===== */
+.fv-compare{margin-bottom:22px;}
+.fv-reco{background:#7c3aed14;border:1px solid #7c3aed40;border-radius:10px;padding:16px;margin-bottom:16px;}
+.fv-reco-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#7c3aed;margin-bottom:8px;}
+.fv-reco-method{font-size:18px;font-weight:800;color:#e8eaf0;margin-bottom:8px;}
+.fv-reco-note{color:#9ca3af;font-size:13px;line-height:1.7;margin:0;}
+.fv-tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid #1e2230;margin-bottom:14px;}
+.fv-tbl{width:100%;border-collapse:collapse;}
+.fv-tbl th{padding:10px 14px;font-size:11px;color:#7c3aed;font-weight:700;background:#0f1219;border-bottom:1px solid #1e2230;text-align:left;text-transform:uppercase;}
+.fv-tbl td{padding:11px 14px;font-size:13px;border-bottom:1px solid #1e2230;color:#e8eaf0;font-weight:600;}
+.fv-tbl td.fv-m{color:#9ca3af;font-weight:500;}
+.fv-tbl tr:last-child td{border-bottom:none;}
+.fv-up{color:#00c896;}
+.fv-down{color:#e05252;}
+.fv-note{color:#6b7280;font-size:12px;line-height:1.7;}
+
+/* ===== KPI & Spacing responsive ===== */
+@media (max-width: 640px){
+  .kpi-g { grid-template-columns: 1fr; gap: 8px; }
+  .kpi, .ibox { padding: 14px; }
+  .kpi-v { font-size: 18px; }
+  .ival { font-size: 24px; }
+  .sec { margin-bottom: 28px; }
+  .card { padding: 18px; }
+  .g2 { gap: 12px; }
+}
+@media (max-width: 480px){
+  .kpi-g { gap: 6px; }
+  .kpi, .ibox { padding: 12px; }
+  .kpi-v { font-size: 16px; }
+  .ival { font-size: 22px; }
+  .sec { margin-bottom: 24px; }
+  .card { padding: 16px; }
+  .g2 { gap: 8px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+  .fv-reco { padding: 12px; }
+  .fv-reco-method { font-size: 16px; }
+  .fv-reco-note { font-size: 12px; }
+  .fv-tbl th, .fv-tbl td { padding: 6px 8px; font-size: 11px; }
+}
+
+/* Nascondi KPI vuoti */
+.kpi:empty, .ibox:empty { display: none; }
+
+/* Gap KPI grid più compatto su desktop */
+@media (min-width: 641px){
+  .kpi-g { gap: 10px; }
+}
+</style>
+</head><body>
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">BABA</div>
+    <div>
+      <div class="hdr-name">Alibaba Group Holding Limited &mdash; Borsa: BABA</div>
+      <div class="hdr-sub">Equity Narrative Analysis &middot; Q1 FY2027 &middot; 6 ottobre 2026</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span class="badge bp"></span>
+    <span class="badge bn">Attenzione</span>
+    <span class="badge bm">Fair Value</span>
+    <span class="lk-cur">📊 Pro</span>
+    <a class="lk-oth" href="baba-semplice.html">📄 Semplice</a>
+  </div>
+</div><div class="wrap-p">
+
+<div class="toc"><a href="#exec">Executive Summary</a><a href="#market">Market Snapshot</a><a href="#fin">Financial Deep Dive</a><a href="#qoe">Quality of Earnings</a><a href="#mix">Business Mix</a><a href="#news">News Narrative</a><a href="#cat">Catalyst Calendar</a><a href="#scen">Scenarios</a><a href="#val">Valuation</a><a href="#risk">Key Risks</a><a href="#thesis">Final Thesis</a><a href="#fairvalue">Fair Value</a></div>
+
+<!-- Executive Summary -->
+<div class="sec-p" id="exec"><div class="p-tag">BABA</div><h2 class="p-h2">Executive Summary</h2>
+<div class="thesis"><div class="thesis-lbl">Sintesi qualitativa</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Analisi di Alibaba Group Holding Limited (BABA). Prezzo $110,80, Fair Value $838,54 (Two-Stage DCF (Growth)), margine 60%. Grade D.</p></div>
+<div class="tv-chart-card"><div class="tv-chart-header"><h3>Andamento del titolo</h3><p>Grafico interattivo di Alibaba Group Holding Limited (BABA)</p></div>
+<div class="tv-chart-wrapper" data-tv-symbol="BABA" data-tv-mode="pro"><div class="tv-chart-container"></div><div class="tv-skeleton" aria-hidden="true"></div></div>
+<div class="tv-disclaimer">Dati di mercato forniti da TradingView. Il fair value riportato sotto il grafico &egrave; un&rsquo;elaborazione proprietaria del sistema.</div></div>
+<div class="kpi-g"><div class="kpi"><div class="kpi-l">Prezzo attuale</div><div class="kpi-v">$110,80</div><div class="kpi-s">Quotazione di mercato</div></div><div class="kpi hi"><div class="kpi-l">Fair Value</div><div class="kpi-v">$838,54</div><div class="kpi-s">Two-Stage DCF (Growth)</div></div><div class="kpi hi"><div class="kpi-l">Margine di sicurezza</div><div class="kpi-v">60%</div><div class="kpi-s">Sconto vs fair value</div></div><div class="kpi"><div class="kpi-l">ROIC</div><div class="kpi-v">5,8%</div><div class="kpi-s">Ritorno sul capitale investito</div></div><div class="kpi"><div class="kpi-l">P/E Forward</div><div class="kpi-v">12,0</div><div class="kpi-s">Prezzo / Utili attesi</div></div><div class="kpi"><div class="kpi-l">Dividend Yield</div><div class="kpi-v">0,9%</div><div class="kpi-s">Rendimento da dividendo</div></div><div class="kpi hi"><div class="kpi-l">Grade</div><div class="kpi-v">D</div><div class="kpi-s">Qualità azienda</div></div></div>
+<p style="color:#9ca3af;font-size:14px;line-height:1.8"><strong style="color:#e8eaf0">Verdetto:</strong> Grade D - sottovalutato</p>
+</div>
+
+<!-- Market Snapshot -->
+<div class="sec-p" id="market"><div class="p-tag">BABA</div><h2 class="p-h2">Market Snapshot</h2>
+<div class="g2p"><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Prezzo attuale</div><div style="color:#7c3aed;font-size:22px;font-weight:800">$110,80</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Prezzo di mercato</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Fair Value</div><div style="color:#9ca3af;font-size:22px;font-weight:800">$838,54</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Two-Stage DCF (Growth)</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Upside</div><div style="color:#7c3aed;font-size:22px;font-weight:800">2%</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">vs prezzo</div></div></div><div class="mc2"><div style="color:#6b7280;font-size:11px;text-transform:uppercase;margin-bottom:8px">Grade</div><div style="color:#9ca3af;font-size:22px;font-weight:800">D</div><div style="color:#9ca3af;font-size:12px;margin-top:4px">Qualità azienda</div></div></div></div></div>
+
+<!-- Financial Deep Dive -->
+<div class="sec-p" id="fin"><div class="p-tag">BABA</div><h2 class="p-h2">Financial Deep Dive</h2>
+<div class="tbl"><table><thead><tr><th>Metrica</th><th>Valore</th></tr></thead><tbody></tbody></table></div>
+
+</div>
+
+<!-- Quality of Earnings -->
+<div class="sec-p" id="qoe"><div class="p-tag">BABA</div><h2 class="p-h2">Quality of Earnings</h2>
+<div class="pcard" style="border-color:#f5a62340;background:#1a170d"><div class="pcard-l" style="color:#f5a623">Attenzione: qualità sotto la media</div><p class="pcard-p">Grade D: Azienda con alcune criticità che impattano la stabilità.</p></div>
+
+</div>
+
+<!-- Business Mix -->
+<!-- News Narrative -->
+
+<!-- Catalyst Calendar -->
+<div class="sec-p" id="cat"><div class="p-tag">BABA</div><h2 class="p-h2">Catalyst Calendar</h2>
+<div class="tbl"><table><thead><tr><th>Periodo</th><th>Evento</th><th>Impatto</th></tr></thead><tbody><tr><td class="f">Q4 2026</td><td>Calcolo Fair Value</td><td>Aggiornamento valutazione intrinseca</td></tr></tbody></table></div>
+</div>
+
+<!-- Scenarios -->
+<div class="sec-p" id="scen"><div class="p-tag">BABA</div><h2 class="p-h2">Bull / Base / Bear</h2>
+<div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#00c896;font-weight:800;font-size:14px;text-transform:uppercase">Bull Case</div><div style="color:#00c896;font-weight:900;font-size:16px;font-family:monospace">$880,47</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Prezzo di vendita (+5% su IV)</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> $838,54</p></div>
+<div style="background:#0d1020;border:1px solid #f5a62340;border-radius:8px;padding:20px;margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#f5a623;font-weight:800;font-size:14px;text-transform:uppercase">Base Case</div><div style="color:#f5a623;font-weight:900;font-size:16px;font-family:monospace">$838,54</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Fair Value Two-Stage DCF (Growth)</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> Two-Stage DCF (Growth)</p></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:20px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="color:#e05252;font-weight:800;font-size:14px;text-transform:uppercase">Bear Case</div><div style="color:#e05252;font-weight:900;font-size:16px;font-family:monospace">$335,42</div></div><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin-bottom:8px"><strong style="color:#e8eaf0">Assunzioni:</strong> Prezzo di acquisto con margine di sicurezza 60%</p><p style="color:#9ca3af;font-size:13px;line-height:1.8;margin:0"><strong style="color:#e8eaf0">Valuation:</strong> $838,54</p></div>
+</div>
+
+<!-- Valuation Framework -->
+<div class="sec-p" id="val"><div class="p-tag">BABA</div><h2 class="p-h2">Valuation Framework</h2>
+<div class="tbl"><table><thead><tr><th>Metodo</th><th>IV</th><th>Acquisto</th><th>Vendita</th></tr></thead><tbody><tr><td class="f">Buffett OE</td><td>$127,60</td><td>$51,04</td><td>$133,98</td></tr><tr><td class="f">Two-Stage DCF</td><td>$838,54</td><td>$335,42</td><td>$880,47</td></tr></tbody></table></div>
+<div class="fb"><div class="fb-r"><span class="fl" style="color:green">Raccomandato &mdash; </span><span style="color:#e8eaf0">Two-Stage DCF (Growth)</span></div></div>
+</div>
+<!-- Key Risks -->
+<div class="sec-p" id="risk"><div class="p-tag">BABA</div><h2 class="p-h2">Key Risks</h2>
+<div class="risk" style="border:1px solid red"><span class="rsev" style="background:#ffe6e6;color:#b30000">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">ROIC basso (5.8%): redditività sott</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">ROIC basso (5.8%): redditività sotto la media</div></div></div><div class="risk" style="border:1px solid red"><span class="rsev" style="background:#ffe6e6;color:#b30000">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">Debito ripagabile in 3.0 anni: live</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">Debito ripagabile in 3.0 anni: livello accettabile</div></div></div><div class="risk" style="border:1px solid red"><span class="rsev" style="background:#ffe6e6;color:#b30000">Alto</span><div><div style="color:#e8eaf0;font-size:14px;font-weight:700">CapEx ratio molto elevato (161.7%):</div><div style="color:#9ca3af;font-size:13px;margin-top:6px;line-height:1.7">CapEx ratio molto elevato (161.7%): alta intensità di capitale</div></div></div>
+</div>
+
+<!-- Final Thesis -->
+<div class="sec-p" id="thesis"><div class="p-tag">BABA</div><h2 class="p-h2">Final Thesis</h2>
+<div class="thesis"><div class="thesis-lbl">Verdetto finale</div><p style="color:#e8eaf0;font-size:14px;line-height:1.75">Alibaba Group Holding Limited quota $110,80. Fair Value $838,54, margine 60%. Grade D: Azienda con alcune criticità che impattano la stabilità.</p></div>
+<div class="g2p"><div style="background:#001a0d;border:1px solid #00c89640;border-radius:8px;padding:16px"><div style="color:#00c896;font-weight:700;margin-bottom:8px">Cosa funziona</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Fair Value favorevole</li></ul></div>
+<div style="background:#1a0808;border:1px solid #e0525240;border-radius:8px;padding:16px"><div style="color:#e05252;font-weight:700;margin-bottom:8px">Cosa preoccupa</div><ul style="color:#9ca3af;font-size:13px;line-height:1.9;padding-left:18px"><li>Grade basso</li></ul></div></div>
+<div class="verdict"><div style="color:#e8eaf0;font-weight:700;margin-bottom:10px">Verdetto finale</div><p style="color:#9ca3af;font-size:14px;line-height:1.8">Il prezzo $110,80 rispetto a Fair Value $838,54 (Two-Stage DCF (Growth)) suggerisce una posizione favorevole.</p></div>
+<div class="pills"><span class="pill" style="background:#1e223015;border:1px solid #7c3aed40;color:#7c3aed">Grade D</span></div>
+</div>
+
+<!-- Fair Value -->
+<div class="sec-p" id="fv">
+<div class="p-tag">BABA</div><h2 class="p-h2">Fair Value &mdash; Owner Earnings / DCF / Revenue Ramp</h2>
+<div class="fv-compare">
+  <div class="fv-reco">
+    <div class="fv-reco-badge">Metodo consigliato dal modello</div>
+    <div class="fv-reco-method">Two-Stage DCF (Growth)</div>
+    <p class="fv-reco-note">Modello a due stadi selezionato perché l&#x27;azienda ha intensità di capitale elevata (CapEx/OCF 162%, sopra la soglia del 40%) e crescita stimata 8,6%: cattura sia la fase di crescita rapida sia la transizione a maturità.</p>
+  </div>
+
+  <div class="fv-tbl-wrap">
+    <table class="fv-tbl">
+      <thead>
+        <tr>
+          <th>Metrica</th>
+          <th>Buffett &mdash; Owner Earnings</th>
+          <th>Two-Stage DCF &mdash; Growth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fv-m">Valore intrinseco</td>
+          <td>$127,60</td>
+          <td>$838,54</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Prezzo di acquisto</td>
+          <td>$51,04</td>
+          <td>$335,42</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Prezzo di vendita</td>
+          <td>$133,98</td>
+          <td>$880,47</td>
+        </tr>
+        <tr>
+          <td class="fv-m">Upside vs prezzo ($110,80)</td>
+          <td class="fv-down">-53,9%</td>
+          <td class="fv-up">+202,7%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fv-note">
+    Il modello applica automaticamente il metodo più adatto al profilo dell&rsquo;azienda (intensit&agrave; di capitale, crescita, stabilit&agrave; dei flussi) e riporta <strong>entrambi i risultati</strong> per trasparenza. Il valore usato come riferimento nel report &egrave; quello del metodo consigliato: <strong>Two-Stage DCF (Growth)</strong>.
+  </div>
+</div>
+</div>
+
+<div class="disc">Disclaimer: contenuto informativo basato su fonti pubbliche al 6 ottobre 2026. Non &egrave; consulenza finanziaria.</div>
+</div>
+<script>
+(function () {
+  var TV_SRC = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  var initialized = false;
+
+  function buildConfig(symbol, mode) {
+    var isPro = mode === 'pro';
+    var cfg = {
+      symbol: symbol, locale: 'it', theme: 'dark', style: '1', interval: 'D',
+      autosize: true, volume: true, legend: true, details: false, calendar: false,
+      hotlist: false, watchlist: false, allow_symbol_change: false,
+      hide_side_toolbar: !isPro, hide_top_toolbar: !isPro, withdateranges: isPro,
+      save_image: isPro, enable_publishing: false, support_host: 'https://www.tradingview.com'
+    };
+    if (isPro) { cfg.studies = []; }
+    return cfg;
+  }
+
+  function renderChart(wrapper) {
+    if (!wrapper || wrapper.dataset.tvInit === '1') return;
+    wrapper.dataset.tvInit = '1';
+    var symbol = wrapper.getAttribute('data-tv-symbol');
+    var mode = wrapper.getAttribute('data-tv-mode') || 'simple';
+    var container = wrapper.querySelector('.tv-chart-container');
+    if (!container || !symbol) return;
+    try {
+      var tvContainer = document.createElement('div');
+      tvContainer.className = 'tradingview-widget-container';
+      tvContainer.style.height = '100%';
+      tvContainer.style.width = '100%';
+      var inner = document.createElement('div');
+      inner.className = 'tradingview-widget-container__widget';
+      inner.style.height = '100%';
+      inner.style.width = '100%';
+      tvContainer.appendChild(inner);
+      container.appendChild(tvContainer);
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = TV_SRC;
+      script.innerHTML = JSON.stringify(buildConfig(symbol, mode));
+      tvContainer.appendChild(script);
+      setTimeout(function () { wrapper.classList.add('loaded'); }, 1400);
+    } catch (e) {
+      container.innerHTML = '<div class="tv-error">Grafico non disponibile al momento. Riprova pi&ugrave; tardi.</div>';
+      wrapper.classList.add('loaded');
+    }
+  }
+
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    var wrappers = Array.prototype.slice.call(document.querySelectorAll('.tv-chart-wrapper'));
+    if (!wrappers.length) return;
+    if (!('IntersectionObserver' in window)) {
+      wrappers.forEach(renderChart);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          renderChart(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0 });
+    wrappers.forEach(function (w) { io.observe(w); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
