@@ -20,16 +20,36 @@ function manifestLocalPath() {
 
 /**
  * Legge il manifest dei report generati (da Blob o da disco locale)
+ * Filtra i report le cui cartelle non esistono più nel blob storage
  */
 export async function getGeneratedManifest() {
   if (useBlob()) {
     try {
-      const { blobs } = await vercelBlob.list({ prefix: MANIFEST_BLOB });
-      const found = blobs.find(b => b.pathname === MANIFEST_BLOB);
-      if (found) {
-        const res = await fetch(found.url);
-        if (res.ok) return await res.json();
+      // 1. Leggi il manifest
+      const { blobs: manifestBlobs } = await vercelBlob.list({ prefix: MANIFEST_BLOB });
+      const found = manifestBlobs.find(b => b.pathname === MANIFEST_BLOB);
+      if (!found) return [];
+      
+      const res = await fetch(found.url);
+      if (!res.ok) return [];
+      const manifest = await res.json();
+
+      // 2. Elenca tutti i blob per verificare quali cartelle esistono
+      const { blobs: allBlobs } = await vercelBlob.list({});
+      const existingFolders = new Set();
+      for (const blob of allBlobs) {
+        // Estrae il nome della cartella (prima parte del path)
+        const parts = blob.pathname.split('/');
+        if (parts.length > 1) {
+          existingFolders.add(parts[0]);
+        }
       }
+
+      // 3. Filtra il manifest: mantiene solo i report la cui cartella esiste
+      return manifest.filter(report => {
+        const folder = report.folder;
+        return folder && existingFolders.has(folder);
+      });
     } catch (e) {
       console.warn('manifest read error:', e.message);
     }
